@@ -1,0 +1,986 @@
+{
+  "femaleNames": [
+    { "name": "Adi Puteri" },
+    { "name": "Adi Putri" },
+    { "name": "Adiputeri" },
+    { "name": "Adiputri" },
+    { "name": "Aishah" },
+    { "name": "Aisyah" },
+    { "name": "Asmaradana" },
+    { "name": "Ayu" },
+    { "name": "Azura" },
+    { "name": "Batari" },
+    { "name": "Bethari" },
+    { "name": "Bintang" },
+    { "name": "Bulan" },
+    { "name": "Bunga" },
+    { "name": "Cahaya" },
+    { "name": "Cahya" },
+    { "name": "Cempaka" },
+    { "name": "Chahaya" },
+    { "name": "Cik" },
+    { "name": "Citra" },
+    { "name": "Dara" },
+    { "name": "Dayang" },
+    { "name": "Delima" },
+    { "name": "Dewi" },
+    { "name": "Dian" },
+    { "name": "Dinihari" },
+    { "name": "Dwi" },
+    { "name": "Eka" },
+    { "name": "Esah" },
+    { "name": "Hapsah" },
+    { "name": "Harum" },
+    { "name": "Haryati" },
+    { "name": "Hayati" },
+    { "name": "Heryati" },
+    { "name": "Indah" },
+    { "name": "Intan" },
+    { "name": "Izzati" },
+    { "name": "Jenab" },
+    { "name": "Joyah" },
+    { "name": "Juwita" },
+    { "name": "Kartika" },
+    { "name": "Kartini" },
+    { "name": "Kasih" },
+    { "name": "Katijah" },
+    { "name": "Kembang" },
+    { "name": "Khatijah" },
+    { "name": "Kuntum" },
+    { "name": "Latipah" },
+    { "name": "Lestari" },
+    { "name": "Mahsuri" },
+    { "name": "Mas Ayu" },
+    { "name": "Masayu" },
+    { "name": "Mastini" },
+    { "name": "Mawar" },
+    { "name": "Mayang" },
+    { "name": "Mega" },
+    { "name": "Melati" },
+    { "name": "Melor" },
+    { "name": "Melur" },
+    { "name": "Minah" },
+    { "name": "Munah" },
+    { "name": "Murni" },
+    { "name": "Nilam" },
+    { "name": "Nirmala" },
+    { "name": "Pertiwi" },
+    { "name": "Purnama" },
+    { "name": "Puspa" },
+    { "name": "Puspawati" },
+    { "name": "Puteri" },
+    { "name": "Putri" },
+    { "name": "Samrita" },
+    { "name": "Sari" },
+    { "name": "Sepiah" },
+    { "name": "Seri" },
+    { "name": "Sinta" },
+    { "name": "Sri" },
+    { "name": "Suria" },
+    { "name": "Suriani" },
+    { "name": "Suriawati" },
+    { "name": "Surintan" },
+    { "name": "Tembam" },
+    { "name": "Tempawan" },
+    { "name": "Teratai" },
+    { "name": "Tijah" },
+    { "name": "Tipah" },
+    { "name": "Wati" },
+    { "name": "Wira" },
+    { "name": "Yati" },
+    { "name": "Zamrud" }
+  ],
+  "maleNames": [
+    { "name": "Adi" },
+    { "name": "Adi Putera" },
+    { "name": "Adi Putra" },
+    { "name": "Adiputera" },
+    { "name": "Adiputra" },
+    { "name": "Agung" },
+    { "name": "Agus" },
+    { "name": "Ahad" },
+    { "name": "Andika" },
+    { "name": "Anjang" },
+    { "name": "Anuar" },
+    { "name": "Atan" },
+    { "name": "Awang" },
+    { "name": "Bagus" },
+    { "name": "Bambang" },
+    { "name": "Basuki" },
+    { "name": "Bayu" },
+    { "name": "Berahim" },
+    { "name": "Bima" },
+    { "name": "Bintang" },
+    { "name": "Buana" },
+    { "name": "Budi" },
+    { "name": "Budiarto" },
+    { "name": "Budiharto" },
+    { "name": "Bujang" },
+    { "name": "Che" },
+    { "name": "Chik" },
+    { "name": "Danang" },
+    { "name": "Danial" },
+    { "name": "Daud" },
+    { "name": "Daut" },
+    { "name": "Deris" },
+    { "name": "Dian" },
+    { "name": "Dollah" },
+    { "name": "Dwi" },
+    { "name": "Eka" },
+    { "name": "Eko" },
+    { "name": "Elyas" },
+    { "name": "Embong" },
+    { "name": "Fajar" },
+    { "name": "Guntur" },
+    { "name": "Haron" },
+    { "name": "Indera" },
+    { "name": "Indra" },
+    { "name": "Ishak" },
+    { "name": "Isnin" },
+    { "name": "Izzat" },
+    { "name": "Jalak" },
+    { "name": "Jaya" },
+    { "name": "Jebat" },
+    { "name": "Kechik" },
+    { "name": "Kefli" },
+    { "name": "Kifli" },
+    { "name": "Leman" },
+    { "name": "Lokman" },
+    { "name": "Lukman" },
+    { "name": "Mad" },
+    { "name": "Mamat" },
+    { "name": "Mat" },
+    { "name": "Megat" },
+    { "name": "Muda" },
+    { "name": "Noh" },
+    { "name": "Omar" },
+    { "name": "Osman" },
+    { "name": "Panjang" },
+    { "name": "Perwira" },
+    { "name": "Putera" },
+    { "name": "Putra" },
+    { "name": "Sabtu" },
+    { "name": "Selasa" },
+    { "name": "Senin" },
+    { "name": "Setiawan" },
+    { "name": "Shuib" },
+    { "name": "Slamet" },
+    { "name": "Suib" },
+    { "name": "Sulung" },
+    { "name": "Tenuk" },
+    { "name": "Teruna" },
+    { "name": "Tuah" },
+    { "name": "Uda" },
+    { "name": "Ujang" },
+    { "name": "Usop" },
+    { "name": "Yaakob" },
+    { "name": "Yahaya" },
+    { "name": "Yunos" },
+    { "name": "Zakaria" },
+    { "name": "Zulkarnain" },
+    { "name": "Zulkifli" },
+    { "name": "Zulkipli" }
+  ],
+  "surnames": [
+    {
+      "name": "Tan",
+      "weight": 71.0
+    },
+    {
+      "name": "Lim",
+      "weight": 61.0
+    },
+    {
+      "name": "Lee",
+      "weight": 55.0
+    },
+    {
+      "name": "Mohamed",
+      "weight": 49.0
+    },
+    {
+      "name": "Wong",
+      "weight": 45.0
+    },
+    {
+      "name": "Ng",
+      "weight": 37.0
+    },
+    {
+      "name": "Chong",
+      "weight": 27.0
+    },
+    {
+      "name": "Ahmad",
+      "weight": 24.0
+    },
+    {
+      "name": "Abdul",
+      "weight": 23.0
+    },
+    {
+      "name": "Chan",
+      "weight": 22.0
+    },
+    {
+      "name": "Ong",
+      "weight": 22.0
+    },
+    {
+      "name": "Chin",
+      "weight": 21.0
+    },
+    {
+      "name": "Yap",
+      "weight": 19.0
+    },
+    {
+      "name": "Ismail",
+      "weight": 19.0
+    },
+    {
+      "name": "Abdullah",
+      "weight": 19.0
+    },
+    {
+      "name": "Wan",
+      "weight": 18.0
+    },
+    {
+      "name": "Abd",
+      "weight": 17.0
+    },
+    {
+      "name": "Leong",
+      "weight": 16.0
+    },
+    {
+      "name": "Goh",
+      "weight": 16.0
+    },
+    {
+      "name": "Low",
+      "weight": 15.0
+    },
+    {
+      "name": "Yong",
+      "weight": 15.0
+    },
+    {
+      "name": "Liew",
+      "weight": 12.0
+    },
+    {
+      "name": "Abu",
+      "weight": 12.0
+    },
+    {
+      "name": "Lai",
+      "weight": 12.0
+    },
+    {
+      "name": "Chew",
+      "weight": 12.0
+    },
+    {
+      "name": "Othman",
+      "weight": 11.0
+    },
+    {
+      "name": "Loh",
+      "weight": 11.0
+    },
+    {
+      "name": "Mohamad",
+      "weight": 11.0
+    },
+    {
+      "name": "Ibrahim",
+      "weight": 11.0
+    },
+    {
+      "name": "Mohammed",
+      "weight": 11.0
+    },
+    {
+      "name": "Chee",
+      "weight": 11.0
+    },
+    {
+      "name": "Hassan",
+      "weight": 11.0
+    },
+    {
+      "name": "Chua",
+      "weight": 10.0
+    },
+    {
+      "name": "Ooi",
+      "weight": 10.0
+    },
+    {
+      "name": "Ho",
+      "weight": 10.0
+    },
+    {
+      "name": "Hashim",
+      "weight": 10.0
+    },
+    {
+      "name": "Teh",
+      "weight": 10.0
+    },
+    {
+      "name": "Lau",
+      "weight": 9.0
+    },
+    {
+      "name": "Khoo",
+      "weight": 9.0
+    },
+    {
+      "name": "Aziz",
+      "weight": 8.0
+    },
+    {
+      "name": "Ali",
+      "weight": 8.0
+    },
+    {
+      "name": "Yusof",
+      "weight": 8.0
+    },
+    {
+      "name": "Kok",
+      "weight": 8.0
+    },
+    {
+      "name": "Zainal",
+      "weight": 8.0
+    },
+    {
+      "name": "Ang",
+      "weight": 8.0
+    },
+    {
+      "name": "Rahman",
+      "weight": 8.0
+    },
+    {
+      "name": "Yee",
+      "weight": 8.0
+    },
+    {
+      "name": "Gan",
+      "weight": 8.0
+    },
+    {
+      "name": "Koh",
+      "weight": 8.0
+    },
+    {
+      "name": "Foo",
+      "weight": 8.0
+    },
+    {
+      "name": "Ling",
+      "weight": 8.0
+    },
+    {
+      "name": "Teoh",
+      "weight": 7.0
+    },
+    {
+      "name": "Chai",
+      "weight": 7.0
+    },
+    {
+      "name": "Kumar",
+      "weight": 7.0
+    },
+    {
+      "name": "Singh",
+      "weight": 7.0
+    },
+    {
+      "name": "Ramli",
+      "weight": 7.0
+    },
+    {
+      "name": "Cheong",
+      "weight": 7.0
+    },
+    {
+      "name": "Choo",
+      "weight": 7.0
+    },
+    {
+      "name": "Cheah",
+      "weight": 7.0
+    },
+    {
+      "name": "Kong",
+      "weight": 7.0
+    },
+    {
+      "name": "Chia",
+      "weight": 6.0
+    },
+    {
+      "name": "Mat",
+      "weight": 6.0
+    },
+    {
+      "name": "Teo",
+      "weight": 6.0
+    },
+    {
+      "name": "Tang",
+      "weight": 6.0
+    },
+    {
+      "name": "Sulaiman",
+      "weight": 6.0
+    },
+    {
+      "name": "Salleh",
+      "weight": 6.0
+    },
+    {
+      "name": "Zakaria",
+      "weight": 6.0
+    },
+    {
+      "name": "Che",
+      "weight": 6.0
+    },
+    {
+      "name": "Omar",
+      "weight": 6.0
+    },
+    {
+      "name": "Yeoh",
+      "weight": 6.0
+    },
+    {
+      "name": "Sim",
+      "weight": 6.0
+    },
+    {
+      "name": "Loo",
+      "weight": 6.0
+    },
+    {
+      "name": "Chang",
+      "weight": 6.0
+    },
+    {
+      "name": "Hamzah",
+      "weight": 6.0
+    },
+    {
+      "name": "Tay",
+      "weight": 6.0
+    },
+    {
+      "name": "Chen",
+      "weight": 6.0
+    },
+    {
+      "name": "Tee",
+      "weight": 6.0
+    },
+    {
+      "name": "Subramaniam",
+      "weight": 5.0
+    },
+    {
+      "name": "Shah",
+      "weight": 5.0
+    },
+    {
+      "name": "Fong",
+      "weight": 5.0
+    },
+    {
+      "name": "Haji",
+      "weight": 5.0
+    },
+    {
+      "name": "Cheng",
+      "weight": 5.0
+    },
+    {
+      "name": "Chow",
+      "weight": 5.0
+    },
+    {
+      "name": "Ishak",
+      "weight": 5.0
+    },
+    {
+      "name": "Azmi",
+      "weight": 5.0
+    },
+    {
+      "name": "Wei",
+      "weight": 5.0
+    },
+    {
+      "name": "Soo",
+      "weight": 5.0
+    },
+    {
+      "name": "Wee",
+      "weight": 5.0
+    },
+    {
+      "name": "Yusoff",
+      "weight": 5.0
+    },
+    {
+      "name": "Hong",
+      "weight": 5.0
+    },
+    {
+      "name": "Nordin",
+      "weight": 5.0
+    },
+    {
+      "name": "Idris",
+      "weight": 5.0
+    },
+    {
+      "name": "Rahim",
+      "weight": 5.0
+    },
+    {
+      "name": "Ting",
+      "weight": 5.0
+    },
+    {
+      "name": "Raj",
+      "weight": 5.0
+    },
+    {
+      "name": "Jaafar",
+      "weight": 4.0
+    },
+    {
+      "name": "Heng",
+      "weight": 4.0
+    },
+    {
+      "name": "Choong",
+      "weight": 4.0
+    },
+    {
+      "name": "Pang",
+      "weight": 4.0
+    },
+    {
+      "name": "Soon",
+      "weight": 4.0
+    },
+    {
+      "name": "Alias",
+      "weight": 4.0
+    },
+    {
+      "name": "Krishnan",
+      "weight": 4.0
+    },
+    {
+      "name": "Yeo",
+      "weight": 4.0
+    },
+    {
+      "name": "Kaur",
+      "weight": 4.0
+    },
+    {
+      "name": "Khor",
+      "weight": 4.0
+    },
+    {
+      "name": "Razali",
+      "weight": 4.0
+    },
+    {
+      "name": "Lam",
+      "weight": 4.0
+    },
+    {
+      "name": "See",
+      "weight": 4.0
+    },
+    {
+      "name": "Rosli",
+      "weight": 4.0
+    },
+    {
+      "name": "Syed",
+      "weight": 4.0
+    },
+    {
+      "name": "Yew",
+      "weight": 4.0
+    },
+    {
+      "name": "Awang",
+      "weight": 4.0
+    },
+    {
+      "name": "Osman",
+      "weight": 4.0
+    },
+    {
+      "name": "Law",
+      "weight": 4.0
+    },
+    {
+      "name": "Hamid",
+      "weight": 4.0
+    },
+    {
+      "name": "Tham",
+      "weight": 4.0
+    },
+    {
+      "name": "Daud",
+      "weight": 4.0
+    },
+    {
+      "name": "Toh",
+      "weight": 3.0
+    },
+    {
+      "name": "Chung",
+      "weight": 3.0
+    },
+    {
+      "name": "Poh",
+      "weight": 3.0
+    },
+    {
+      "name": "Boon",
+      "weight": 3.0
+    },
+    {
+      "name": "Mokhtar",
+      "weight": 3.0
+    },
+    {
+      "name": "Razak",
+      "weight": 3.0
+    },
+    {
+      "name": "Ariffin",
+      "weight": 3.0
+    },
+    {
+      "name": "Amin",
+      "weight": 3.0
+    },
+    {
+      "name": "Ghazali",
+      "weight": 3.0
+    },
+    {
+      "name": "Mansor",
+      "weight": 3.0
+    },
+    {
+      "name": "Nair",
+      "weight": 3.0
+    },
+    {
+      "name": "Muhammad",
+      "weight": 3.0
+    },
+    {
+      "name": "Rashid",
+      "weight": 3.0
+    },
+    {
+      "name": "Bakar",
+      "weight": 3.0
+    },
+    {
+      "name": "Zulkifli",
+      "weight": 3.0
+    },
+    {
+      "name": "Halim",
+      "weight": 3.0
+    },
+    {
+      "name": "Tai",
+      "weight": 3.0
+    },
+    {
+      "name": "Teng",
+      "weight": 3.0
+    },
+    {
+      "name": "Kee",
+      "weight": 3.0
+    },
+    {
+      "name": "Seng",
+      "weight": 3.0
+    },
+    {
+      "name": "Soh",
+      "weight": 3.0
+    },
+    {
+      "name": "Hussin",
+      "weight": 3.0
+    },
+    {
+      "name": "Khan",
+      "weight": 3.0
+    },
+    {
+      "name": "Harun",
+      "weight": 3.0
+    },
+    {
+      "name": "Chuah",
+      "weight": 3.0
+    },
+    {
+      "name": "Anuar",
+      "weight": 3.0
+    },
+    {
+      "name": "Hui",
+      "weight": 3.0
+    },
+    {
+      "name": "Ching",
+      "weight": 3.0
+    },
+    {
+      "name": "Yahya",
+      "weight": 3.0
+    },
+    {
+      "name": "Foong",
+      "weight": 3.0
+    },
+    {
+      "name": "Din",
+      "weight": 3.0
+    },
+    {
+      "name": "Li",
+      "weight": 3.0
+    },
+    {
+      "name": "Mohammad",
+      "weight": 3.0
+    },
+    {
+      "name": "Johari",
+      "weight": 3.0
+    },
+    {
+      "name": "Kamaruddin",
+      "weight": 3.0
+    },
+    {
+      "name": "Raja",
+      "weight": 3.0
+    },
+    {
+      "name": "Firdaus",
+      "weight": 3.0
+    },
+    {
+      "name": "Kamarudin",
+      "weight": 3.0
+    },
+    {
+      "name": "Wahab",
+      "weight": 3.0
+    },
+    {
+      "name": "Lin",
+      "weight": 3.0
+    },
+    {
+      "name": "Nik",
+      "weight": 3.0
+    },
+    {
+      "name": "Nor",
+      "weight": 3.0
+    },
+    {
+      "name": "Noor",
+      "weight": 3.0
+    },
+    {
+      "name": "Man",
+      "weight": 3.0
+    },
+    {
+      "name": "Nizam",
+      "weight": 3.0
+    },
+    {
+      "name": "Zainuddin",
+      "weight": 2.0
+    },
+    {
+      "name": "Kassim",
+      "weight": 2.0
+    },
+    {
+      "name": "Woo",
+      "weight": 2.0
+    },
+    {
+      "name": "Khalid",
+      "weight": 2.0
+    },
+    {
+      "name": "Hussain",
+      "weight": 2.0
+    },
+    {
+      "name": "Musa",
+      "weight": 2.0
+    },
+    {
+      "name": "Devi",
+      "weight": 2.0
+    },
+    {
+      "name": "Muhamad",
+      "weight": 2.0
+    },
+    {
+      "name": "Yen",
+      "weight": 2.0
+    },
+    {
+      "name": "Tong",
+      "weight": 2.0
+    },
+    {
+      "name": "Yahaya",
+      "weight": 2.0
+    },
+    {
+      "name": "Azman",
+      "weight": 2.0
+    },
+    {
+      "name": "Saw",
+      "weight": 2.0
+    },
+    {
+      "name": "Yeap",
+      "weight": 2.0
+    },
+    {
+      "name": "Loke",
+      "weight": 2.0
+    },
+    {
+      "name": "Jamaludin",
+      "weight": 2.0
+    },
+    {
+      "name": "Kuan",
+      "weight": 2.0
+    },
+    {
+      "name": "Siew",
+      "weight": 2.0
+    },
+    {
+      "name": "Ramasamy",
+      "weight": 2.0
+    },
+    {
+      "name": "Hamdan",
+      "weight": 2.0
+    },
+    {
+      "name": "Mahmud",
+      "weight": 2.0
+    },
+    {
+      "name": "Mustafa",
+      "weight": 2.0
+    },
+    {
+      "name": "Arumugam",
+      "weight": 2.0
+    },
+    {
+      "name": "Muniandy",
+      "weight": 2.0
+    },
+    {
+      "name": "Said",
+      "weight": 2.0
+    },
+    {
+      "name": "Bee",
+      "weight": 2.0
+    },
+    {
+      "name": "Phang",
+      "weight": 2.0
+    },
+    {
+      "name": "Hasan",
+      "weight": 2.0
+    },
+    {
+      "name": "Adnan",
+      "weight": 2.0
+    },
+    {
+      "name": "Nasir",
+      "weight": 2.0
+    },
+    {
+      "name": "Sin",
+      "weight": 2.0
+    },
+    {
+      "name": "Kamal",
+      "weight": 2.0
+    },
+    {
+      "name": "Hakim",
+      "weight": 2.0
+    },
+    {
+      "name": "Han",
+      "weight": 2.0
+    },
+    {
+      "name": "Fauzi",
+      "weight": 2.0
+    },
+    {
+      "name": "Yaacob",
+      "weight": 2.0
+    },
+    {
+      "name": "Samsudin",
+      "weight": 2.0
+    },
+    {
+      "name": "Oh",
+      "weight": 2.0
+    }
+  ]
+}

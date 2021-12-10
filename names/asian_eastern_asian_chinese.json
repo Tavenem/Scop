@@ -1,0 +1,1116 @@
+{
+  "femaleNames": [
+    { "name": "Ai" },
+    { "name": "Baozhai" },
+    { "name": "Biyu" },
+    { "name": "Changchang" },
+    { "name": "Changying" },
+    { "name": "Chen" },
+    { "name": "Chenguang" },
+    { "name": "Chunhua" },
+    { "name": "Chuntao" },
+    { "name": "Cuifen" },
+    { "name": "Daiyu" },
+    { "name": "Dandan" },
+    { "name": "Dongmei" },
+    { "name": "Ehuang" },
+    { "name": "Fan" },
+    { "name": "Fang" },
+    { "name": "Fenfang" },
+    { "name": "Guang" },
+    { "name": "Hong" },
+    { "name": "Hualing" },
+    { "name": "Huan" },
+    { "name": "Huian" },
+    { "name": "Huifang" },
+    { "name": "Huiling" },
+    { "name": "Huiqing" },
+    { "name": "Jia" },
+    { "name": "Jiao" },
+    { "name": "Jiayi" },
+    { "name": "Jiaying" },
+    { "name": "Jie" },
+    { "name": "Jingfei" },
+    { "name": "Jinghua" },
+    { "name": "Jinjing" },
+    { "name": "Ju" },
+    { "name": "Juan" },
+    { "name": "Lan" },
+    { "name": "Lanfen" },
+    { "name": "Lanying" },
+    { "name": "Li" },
+    { "name": "Lifen" },
+    { "name": "Lihua" },
+    { "name": "Lijuan" },
+    { "name": "Liling" },
+    { "name": "Lin" },
+    { "name": "Ling" },
+    { "name": "Liqin" },
+    { "name": "Liqiu" },
+    { "name": "Liu" },
+    { "name": "Luli" },
+    { "name": "Mei" },
+    { "name": "Meifen" },
+    { "name": "Meifeng" },
+    { "name": "Meihui" },
+    { "name": "Meili" },
+    { "name": "Meilin" },
+    { "name": "Meirong" },
+    { "name": "Meixiang" },
+    { "name": "Meixiu" },
+    { "name": "Mingxia" },
+    { "name": "Mingzhu" },
+    { "name": "Ngo-Kwang" },
+    { "name": "Ning" },
+    { "name": "Niu" },
+    { "name": "Nüying" },
+    { "name": "O-Huang" },
+    { "name": "Peizhi" },
+    { "name": "Qi" },
+    { "name": "Qiang" },
+    { "name": "Qiao" },
+    { "name": "Qiaolian" },
+    { "name": "Qing" },
+    { "name": "Qingge" },
+    { "name": "Qingling" },
+    { "name": "Qingzhao" },
+    { "name": "Qiu" },
+    { "name": "Qiuyue" },
+    { "name": "Rong" },
+    { "name": "Ruolan" },
+    { "name": "Shan" },
+    { "name": "Shu" },
+    { "name": "Shuang" },
+    { "name": "Shuchun" },
+    { "name": "Song" },
+    { "name": "Suyin" },
+    { "name": "Ting" },
+    { "name": "Tung-Mei" },
+    { "name": "Wen" },
+    { "name": "Wenling" },
+    { "name": "Wenqian" },
+    { "name": "Xia" },
+    { "name": "Xiang" },
+    { "name": "Xiaodan" },
+    { "name": "Xiaofan" },
+    { "name": "Xiaohui" },
+    { "name": "Xiaoli" },
+    { "name": "Xiaolian" },
+    { "name": "Xiaoling" },
+    { "name": "Xiaoqing" },
+    { "name": "Xifeng" },
+    { "name": "Xingjuan" },
+    { "name": "Xiu" },
+    { "name": "Xiulan" },
+    { "name": "Xiurong" },
+    { "name": "Xiuying" },
+    { "name": "Xue" },
+    { "name": "Ya" },
+    { "name": "Yan" },
+    { "name": "Yanmei" },
+    { "name": "Yanyu" },
+    { "name": "Ying" },
+    { "name": "Yingtai" },
+    { "name": "Yu" },
+    { "name": "Yuan" },
+    { "name": "Yuanjun" },
+    { "name": "Yue" },
+    { "name": "Yun" },
+    { "name": "Zhenzhen" },
+    { "name": "Zhilan" },
+    { "name": "Zhu" },
+    { "name": "Zongying" }
+  ],
+  "maleNames": [
+    { "name": "Ai" },
+    { "name": "Aiguo" },
+    { "name": "Bai" },
+    { "name": "Bingwen" },
+    { "name": "Bo" },
+    { "name": "Bohai" },
+    { "name": "Bojing" },
+    { "name": "Bolin" },
+    { "name": "Boqin" },
+    { "name": "Chang" },
+    { "name": "Changming" },
+    { "name": "Changpu" },
+    { "name": "Chao" },
+    { "name": "Chen" },
+    { "name": "Cheng" },
+    { "name": "Chonglin" },
+    { "name": "Chuanli" },
+    { "name": "Da" },
+    { "name": "Delun" },
+    { "name": "Deming" },
+    { "name": "Dingxiang" },
+    { "name": "Dong" },
+    { "name": "Donghai" },
+    { "name": "Duyi" },
+    { "name": "Enlai" },
+    { "name": "Fa" },
+    { "name": "Fan" },
+    { "name": "Fang" },
+    { "name": "Feng" },
+    { "name": "Fengge" },
+    { "name": "Fu" },
+    { "name": "Gang" },
+    { "name": "Geming" },
+    { "name": "Gen" },
+    { "name": "Guang" },
+    { "name": "Guangli" },
+    { "name": "Gui" },
+    { "name": "Guiren" },
+    { "name": "Guoliang" },
+    { "name": "Guowei" },
+    { "name": "Guozhi" },
+    { "name": "Hai" },
+    { "name": "Han" },
+    { "name": "He" },
+    { "name": "Heng" },
+    { "name": "Hong" },
+    { "name": "Honghui" },
+    { "name": "Huan" },
+    { "name": "Huang" },
+    { "name": "Hui" },
+    { "name": "Huiliang" },
+    { "name": "Huiqing" },
+    { "name": "Huizhong" },
+    { "name": "Jian" },
+    { "name": "Jiang" },
+    { "name": "Jianguo" },
+    { "name": "Jianjun" },
+    { "name": "Jianyu" },
+    { "name": "Jiayi" },
+    { "name": "Jing" },
+    { "name": "Jingguo" },
+    { "name": "Jinhai" },
+    { "name": "Junjie" },
+    { "name": "Kang" },
+    { "name": "Lei" },
+    { "name": "Li" },
+    { "name": "Liang" },
+    { "name": "Ling" },
+    { "name": "Liqin" },
+    { "name": "Liu" },
+    { "name": "Liwei" },
+    { "name": "Longwei" },
+    { "name": "Meilin" },
+    { "name": "Mengyao" },
+    { "name": "Mingli" },
+    { "name": "Mingyu" },
+    { "name": "Nianzu" },
+    { "name": "Niu" },
+    { "name": "Peizhi" },
+    { "name": "Peng" },
+    { "name": "Pengfei" },
+    { "name": "Ping" },
+    { "name": "Qi" },
+    { "name": "Qiang" },
+    { "name": "Qiao" },
+    { "name": "Qing" },
+    { "name": "Qingshan" },
+    { "name": "Qingsheng" },
+    { "name": "Qiqiang" },
+    { "name": "Qiu" },
+    { "name": "Quan" },
+    { "name": "Renshu" },
+    { "name": "Rong" },
+    { "name": "Ru" },
+    { "name": "Shan" },
+    { "name": "Shanyuan" },
+    { "name": "Shaoqing" },
+    { "name": "Shen" },
+    { "name": "Shi" },
+    { "name": "Shihong" },
+    { "name": "Shirong" },
+    { "name": "Shoushan" },
+    { "name": "Shun" },
+    { "name": "Shunyuan" },
+    { "name": "Song" },
+    { "name": "Tao" },
+    { "name": "Tengfei" },
+    { "name": "Tingguang" },
+    { "name": "Tingfeng" },
+    { "name": "Wei" },
+    { "name": "Weimin" },
+    { "name": "Weisheng" },
+    { "name": "Weiyuan" },
+    { "name": "Weizhe" },
+    { "name": "Wen" },
+    { "name": "Wencheng" },
+    { "name": "Wenyan" },
+    { "name": "Xiang" },
+    { "name": "Xianliang" },
+    { "name": "Xiaobo" },
+    { "name": "Xiaodan" },
+    { "name": "Xiaojian" },
+    { "name": "Xiaoli" },
+    { "name": "Xiaosheng" },
+    { "name": "Xiaotong" },
+    { "name": "Xiaosi" },
+    { "name": "Xiaowen" },
+    { "name": "Xin" },
+    { "name": "Xing" },
+    { "name": "Xiu" },
+    { "name": "Xue" },
+    { "name": "Xueqin" },
+    { "name": "Yan" },
+    { "name": "Yang" },
+    { "name": "Yanlin" },
+    { "name": "Yaoting" },
+    { "name": "Yaozu" },
+    { "name": "Ye" },
+    { "name": "Yi" },
+    { "name": "Ying" },
+    { "name": "Yingjie" },
+    { "name": "Yong" },
+    { "name": "Yongliang" },
+    { "name": "Yongnian" },
+    { "name": "Yongrui" },
+    { "name": "Yongzheng" },
+    { "name": "You" },
+    { "name": "Yuan" },
+    { "name": "Yuanjun" },
+    { "name": "Yun" },
+    { "name": "Yunru" },
+    { "name": "Yusheng" },
+    { "name": "Zedong" },
+    { "name": "Zemin" },
+    { "name": "Zhaohui" },
+    { "name": "Zhen" },
+    { "name": "Zhengsheng" },
+    { "name": "Zhengzhong" },
+    { "name": "Zhiqiang" },
+    { "name": "Zhong" },
+    { "name": "Zhu" },
+    { "name": "Zian" },
+    { "name": "Zihao" },
+    { "name": "Zixin" }
+  ],
+  "surnames": [
+    {
+      "name": "Wáng",
+      "weight": 14.0
+    },
+    {
+      "name": "Wang",
+      "weight": 14.0
+    },
+    {
+      "name": "Wong",
+      "weight": 14.0
+    },
+    {
+      "name": "Vang",
+      "weight": 14.0
+    },
+    {
+      "name": "Li",
+      "weight": 14.0
+    },
+    {
+      "name": "Lei",
+      "weight": 14.0
+    },
+    {
+      "name": "Lee",
+      "weight": 14.0
+    },
+    {
+      "name": "Le",
+      "weight": 14.0
+    },
+    {
+      "name": "Zhang",
+      "weight": 12.0
+    },
+    {
+      "name": "Chang",
+      "weight": 12.0
+    },
+    {
+      "name": "Zoeng",
+      "weight": 12.0
+    },
+    {
+      "name": "Cheung",
+      "weight": 12.0
+    },
+    {
+      "name": "Cheong",
+      "weight": 12.0
+    },
+    {
+      "name": "Chong",
+      "weight": 12.0
+    },
+    {
+      "name": "Liú",
+      "weight": 4.0
+    },
+    {
+      "name": "Liu",
+      "weight": 4.0
+    },
+    {
+      "name": "Lau",
+      "weight": 4.0
+    },
+    {
+      "name": "Lao",
+      "weight": 4.0
+    },
+    {
+      "name": "Lou",
+      "weight": 4.0
+    },
+    {
+      "name": "Chén",
+      "weight": 4.0
+    },
+    {
+      "name": "Ch'en",
+      "weight": 4.0
+    },
+    {
+      "name": "Can",
+      "weight": 4.0
+    },
+    {
+      "name": "Chan",
+      "weight": 4.0
+    },
+    {
+      "name": "Chun",
+      "weight": 4.0
+    },
+    {
+      "name": "Chean",
+      "weight": 4.0
+    },
+    {
+      "name": "Chin",
+      "weight": 4.0
+    },
+    {
+      "name": "Yáng",
+      "weight": 4.0
+    },
+    {
+      "name": "Yang",
+      "weight": 4.0
+    },
+    {
+      "name": "Joeng",
+      "weight": 4.0
+    },
+    {
+      "name": "Yeung",
+      "weight": 4.0
+    },
+    {
+      "name": "Yeong",
+      "weight": 4.0
+    },
+    {
+      "name": "Ieong",
+      "weight": 4.0
+    },
+    {
+      "name": "Young",
+      "weight": 4.0
+    },
+    {
+      "name": "Huáng",
+      "weight": 4.0
+    },
+    {
+      "name": "Huang",
+      "weight": 4.0
+    },
+    {
+      "name": "Wong",
+      "weight": 4.0
+    },
+    {
+      "name": "Wang",
+      "weight": 4.0
+    },
+    {
+      "name": "Vong",
+      "weight": 4.0
+    },
+    {
+      "name": "Zhào",
+      "weight": 4.0
+    },
+    {
+      "name": "Chao",
+      "weight": 4.0
+    },
+    {
+      "name": "Ziu",
+      "weight": 4.0
+    },
+    {
+      "name": "Chiu",
+      "weight": 4.0
+    },
+    {
+      "name": "Chio",
+      "weight": 4.0
+    },
+    {
+      "name": "Jiu",
+      "weight": 4.0
+    },
+    {
+      "name": "Wú",
+      "weight": 4.0
+    },
+    {
+      "name": "Wu",
+      "weight": 4.0
+    },
+    {
+      "name": "Ng",
+      "weight": 4.0
+    },
+    {
+      "name": "Ung",
+      "weight": 4.0
+    },
+    {
+      "name": "Eng",
+      "weight": 4.0
+    },
+    {
+      "name": "Zhou",
+      "weight": 4.0
+    },
+    {
+      "name": "Chou",
+      "weight": 4.0
+    },
+    {
+      "name": "Zau",
+      "weight": 4.0
+    },
+    {
+      "name": "Chow",
+      "weight": 4.0
+    },
+    {
+      "name": "Jao",
+      "weight": 4.0
+    },
+    {
+      "name": "Chau",
+      "weight": 4.0
+    },
+    {
+      "name": "Xú",
+      "weight": 2.0
+    },
+    {
+      "name": "Hsü",
+      "weight": 2.0
+    },
+    {
+      "name": "Ceoi",
+      "weight": 2.0
+    },
+    {
+      "name": "Tsui",
+      "weight": 2.0
+    },
+    {
+      "name": "Choi",
+      "weight": 2.0
+    },
+    {
+      "name": "Chui",
+      "weight": 2.0
+    },
+    {
+      "name": "Tsua",
+      "weight": 2.0
+    },
+    {
+      "name": "Sun",
+      "weight": 2.0
+    },
+    {
+      "name": "Syun",
+      "weight": 2.0
+    },
+    {
+      "name": "Suen",
+      "weight": 2.0
+    },
+    {
+      "name": "Ma",
+      "weight": 2.0
+    },
+    {
+      "name": "Maa",
+      "weight": 2.0
+    },
+    {
+      "name": "Mah",
+      "weight": 2.0
+    },
+    {
+      "name": "Mar",
+      "weight": 2.0
+    },
+    {
+      "name": "Zhu",
+      "weight": 2.0
+    },
+    {
+      "name": "Chu",
+      "weight": 2.0
+    },
+    {
+      "name": "Zyu",
+      "weight": 2.0
+    },
+    {
+      "name": "Chue",
+      "weight": 2.0
+    },
+    {
+      "name": "Hú",
+      "weight": 2.0
+    },
+    {
+      "name": "Hu",
+      "weight": 2.0
+    },
+    {
+      "name": "Wu",
+      "weight": 2.0
+    },
+    {
+      "name": "Woo",
+      "weight": 2.0
+    },
+    {
+      "name": "Vu",
+      "weight": 2.0
+    },
+    {
+      "name": "Guo",
+      "weight": 2.0
+    },
+    {
+      "name": "Kuo",
+      "weight": 2.0
+    },
+    {
+      "name": "Gwok",
+      "weight": 2.0
+    },
+    {
+      "name": "Kwok",
+      "weight": 2.0
+    },
+    {
+      "name": "Kuok",
+      "weight": 2.0
+    },
+    {
+      "name": "Hé",
+      "weight": 2.0
+    },
+    {
+      "name": "Hê",
+      "weight": 2.0
+    },
+    {
+      "name": "Ho",
+      "weight": 2.0
+    },
+    {
+      "name": "Hoe",
+      "weight": 2.0
+    },
+    {
+      "name": "Gao",
+      "weight": 2.0
+    },
+    {
+      "name": "Kao",
+      "weight": 2.0
+    },
+    {
+      "name": "Gou",
+      "weight": 2.0
+    },
+    {
+      "name": "Ko",
+      "weight": 2.0
+    },
+    {
+      "name": "Kou",
+      "weight": 2.0
+    },
+    {
+      "name": "Go",
+      "weight": 2.0
+    },
+    {
+      "name": "Lín",
+      "weight": 2.0
+    },
+    {
+      "name": "Lin",
+      "weight": 2.0
+    },
+    {
+      "name": "Lam",
+      "weight": 2.0
+    },
+    {
+      "name": "Lum",
+      "weight": 2.0
+    },
+    {
+      "name": "Luó",
+      "weight": 2.0
+    },
+    {
+      "name": "Lo",
+      "weight": 2.0
+    },
+    {
+      "name": "Law",
+      "weight": 2.0
+    },
+    {
+      "name": "Loh",
+      "weight": 2.0
+    },
+    {
+      "name": "Lowe",
+      "weight": 2.0
+    },
+    {
+      "name": "Lor",
+      "weight": 2.0
+    },
+    {
+      "name": "Zhèng",
+      "weight": 2.0
+    },
+    {
+      "name": "Cheng",
+      "weight": 2.0
+    },
+    {
+      "name": "Zeng",
+      "weight": 2.0
+    },
+    {
+      "name": "Cheng",
+      "weight": 2.0
+    },
+    {
+      "name": "Cheang",
+      "weight": 2.0
+    },
+    {
+      "name": "Chiang",
+      "weight": 2.0
+    },
+    {
+      "name": "Liáng",
+      "weight": 2.0
+    },
+    {
+      "name": "Liang",
+      "weight": 2.0
+    },
+    {
+      "name": "Loeng",
+      "weight": 2.0
+    },
+    {
+      "name": "Leung",
+      "weight": 2.0
+    },
+    {
+      "name": "Leong",
+      "weight": 2.0
+    },
+    {
+      "name": "Lang",
+      "weight": 2.0
+    },
+    {
+      "name": "Leng",
+      "weight": 2.0
+    },
+    { "name": "Xiè" },
+    { "name": "Hsieh" },
+    { "name": "Ze" },
+    { "name": "Tse" },
+    { "name": "Che" },
+    { "name": "Sòng" },
+    { "name": "Sung" },
+    { "name": "Táng" },
+    { "name": "T'ang" },
+    { "name": "Tong" },
+    { "name": "Xu" },
+    { "name": "Hsü" },
+    { "name": "Heoi" },
+    { "name": "Hui" },
+    { "name": "Hooi" },
+    { "name": "Hoi" },
+    { "name": "Hán" },
+    { "name": "Han" },
+    { "name": "Hon" },
+    { "name": "Féng" },
+    { "name": "Feng" },
+    { "name": "Fung" },
+    { "name": "Fong" },
+    { "name": "Dèng" },
+    { "name": "Teng" },
+    { "name": "Dang" },
+    { "name": "Tang" },
+    { "name": "Theng" },
+    { "name": "Cáo" },
+    { "name": "Ts'ao" },
+    { "name": "Cou" },
+    { "name": "Tso" },
+    { "name": "Chaw" },
+    { "name": "Péng" },
+    { "name": "P'eng" },
+    { "name": "Pang" },
+    { "name": "Banh" },
+    { "name": "Zeng" },
+    { "name": "Tseng" },
+    { "name": "Zang" },
+    { "name": "Tsang" },
+    { "name": "Chang" },
+    { "name": "Dong" },
+    { "name": "Xiao" },
+    { "name": "Hsiao" },
+    { "name": "Siu" },
+    { "name": "Sio" },
+    { "name": "Tián" },
+    { "name": "T'ien" },
+    { "name": "Tin" },
+    { "name": "Tung" },
+    { "name": "Dung" },
+    { "name": "Tung" },
+    { "name": "Tong" },
+    { "name": "Yuán" },
+    { "name": "Yüan" },
+    { "name": "Jyun" },
+    { "name": "Yuen" },
+    { "name": "Wan" },
+    { "name": "Pan" },
+    { "name": "P'an" },
+    { "name": "Pun" },
+    { "name": "Poon" },
+    { "name": "Pun" },
+    { "name": "Yú" },
+    { "name": "Yü" },
+    { "name": "Jyu" },
+    { "name": "Yue" },
+    { "name": "U" },
+    { "name": "Jiang" },
+    { "name": "Chiang" },
+    { "name": "Zoeng" },
+    { "name": "Tseung" },
+    { "name": "Cài" },
+    { "name": "Ts'ai" },
+    { "name": "Coi" },
+    { "name": "Choi" },
+    { "name": "Choy" },
+    { "name": "Tsoi" },
+    { "name": "Toy" },
+    { "name": "Yú" },
+    { "name": "Yü" },
+    { "name": "Jyu" },
+    { "name": "Yu" },
+    { "name": "Yue" },
+    { "name": "Yee" },
+    { "name": "Dù" },
+    { "name": "Tu" },
+    { "name": "Dou" },
+    { "name": "To" },
+    { "name": "Do" },
+    { "name": "Tou" },
+    { "name": "Yè" },
+    { "name": "Yeh" },
+    { "name": "Jip" },
+    { "name": "Yip" },
+    { "name": "Ip" },
+    { "name": "Yeap" },
+    { "name": "Chéng" },
+    { "name": "Ch'eng" },
+    { "name": "Cing" },
+    { "name": "Ching" },
+    { "name": "Cheng" },
+    { "name": "Su" },
+    { "name": "So" },
+    { "name": "Sou" },
+    { "name": "Wèi" },
+    { "name": "Wei" },
+    { "name": "Ngai" },
+    { "name": "Lu" },
+    { "name": "Lü" },
+    { "name": "Leoi" },
+    { "name": "Lui" },
+    { "name": "Loi" },
+    { "name": "Ting" },
+    { "name": "Ding" },
+    { "name": "Teng" },
+    { "name": "Rèn" },
+    { "name": "Jen" },
+    { "name": "Jam" },
+    { "name": "Yam" },
+    { "name": "Iam" },
+    { "name": "Yum" },
+    { "name": "Shen" },
+    { "name": "Sam" },
+    { "name": "Sum" },
+    { "name": "Shum" },
+    { "name": "Yáo" },
+    { "name": "Yao" },
+    { "name": "Jiu" },
+    { "name": "Yiu" },
+    { "name": "Yeow" },
+    { "name": "Io" },
+    { "name": "Iu" },
+    { "name": "Lú" },
+    { "name": "Lou" },
+    { "name": "Lo" },
+    { "name": "Jiang" },
+    { "name": "Chiang" },
+    { "name": "Goeng" },
+    { "name": "Keung" },
+    { "name": "Geung" },
+    { "name": "Keong" },
+    { "name": "Cui" },
+    { "name": "Ts'ui" },
+    { "name": "Ceoi" },
+    { "name": "Chui" },
+    { "name": "Choi" },
+    { "name": "Zhong" },
+    { "name": "Chung" },
+    { "name": "Zung" },
+    { "name": "Chong" },
+    { "name": "Tán" },
+    { "name": "T'an" },
+    { "name": "Taam" },
+    { "name": "Tam" },
+    { "name": "Tom" },
+    { "name": "Ham" },
+    { "name": "Hom" },
+    { "name": "Lù" },
+    { "name": "Luk" },
+    { "name": "Lok" },
+    { "name": "Wang" },
+    { "name": "Wong" },
+    { "name": "Fàn" },
+    { "name": "Faan" },
+    { "name": "Fan" },
+    { "name": "Jin" },
+    { "name": "King" },
+    { "name": "Gam" },
+    { "name": "Kam" },
+    { "name": "Gum" },
+    { "name": "Shí" },
+    { "name": "Shih" },
+    { "name": "Sek" },
+    { "name": "Shek" },
+    { "name": "Seac" },
+    { "name": "Seak" },
+    { "name": "Liào" },
+    { "name": "Liao" },
+    { "name": "Liu" },
+    { "name": "Lew" },
+    { "name": "Leow" },
+    { "name": "Liew" },
+    { "name": "Lio" },
+    { "name": "Jia" },
+    { "name": "Chia" },
+    { "name": "Gaa" },
+    { "name": "Ka" },
+    { "name": "Ga" },
+    { "name": "Xià" },
+    { "name": "Hsia" },
+    { "name": "Haa" },
+    { "name": "Ha" },
+    { "name": "Wéi" },
+    { "name": "Wei" },
+    { "name": "Wai" },
+    { "name": "Vai" },
+    { "name": "Fù" },
+    { "name": "Fu" },
+    { "name": "Foo" },
+    { "name": "Fang" },
+    { "name": "Fong" },
+    { "name": "Bái" },
+    { "name": "Pai" },
+    { "name": "Baak" },
+    { "name": "Pak" },
+    { "name": "Bak" },
+    { "name": "Zou" },
+    { "name": "Tsou" },
+    { "name": "Zau" },
+    { "name": "Chow" },
+    { "name": "Jao" },
+    { "name": "Chau" },
+    { "name": "Mèng" },
+    { "name": "Meng" },
+    { "name": "Maang" },
+    { "name": "Mang" },
+    { "name": "Xióng" },
+    { "name": "Hsiung" },
+    { "name": "Hung" },
+    { "name": "Hong" },
+    { "name": "Qín" },
+    { "name": "Ch'in" },
+    { "name": "Ceon" },
+    { "name": "Chun" },
+    { "name": "Tseun" },
+    { "name": "Tseon" },
+    { "name": "Chon" },
+    { "name": "Qiu" },
+    { "name": "Ch'iu" },
+    { "name": "Jau" },
+    { "name": "Yau" },
+    { "name": "Iao" },
+    { "name": "Iau" },
+    { "name": "Jiang" },
+    { "name": "Chiang" },
+    { "name": "Gong" },
+    { "name": "Kong" },
+    { "name": "Wan" },
+    { "name": "Xue" },
+    { "name": "Hsüeh" },
+    { "name": "Sit" },
+    { "name": "Yán" },
+    { "name": "Yen" },
+    { "name": "Jim" },
+    { "name": "Yim" },
+    { "name": "Im" },
+    { "name": "Duàn" },
+    { "name": "Tuan" },
+    { "name": "Dyun" },
+    { "name": "Tuen" },
+    { "name": "Tun" },
+    { "name": "Léi" },
+    { "name": "Lei" },
+    { "name": "Leoi" },
+    { "name": "Lui" },
+    { "name": "Loi" },
+    { "name": "Hóu" },
+    { "name": "Hou" },
+    { "name": "Hau" },
+    { "name": "Hao" },
+    { "name": "Lóng" },
+    { "name": "Lung" },
+    { "name": "Loong" },
+    { "name": "Long" },
+    { "name": "Shi" },
+    { "name": "Shih" },
+    { "name": "Si" },
+    { "name": "Sze" },
+    { "name": "Táo" },
+    { "name": "T'ao" },
+    { "name": "Tou" },
+    { "name": "To" },
+    { "name": "Tow" },
+    { "name": "Lí" },
+    { "name": "Lai" },
+    { "name": "Hè" },
+    { "name": "Hê" },
+    { "name": "Ho" },
+    { "name": "Gù" },
+    { "name": "Ku" },
+    { "name": "Gu" },
+    { "name": "Goo" },
+    { "name": "Gu" },
+    { "name": "Khoo" },
+    { "name": "Máo" },
+    { "name": "Mao" },
+    { "name": "Mou" },
+    { "name": "Mo" },
+    { "name": "Hao" },
+    { "name": "Kok" },
+    { "name": "Gong" },
+    { "name": "Kung" },
+    { "name": "Gung" },
+    { "name": "Kung" },
+    { "name": "Kwong" },
+    { "name": "Shào" },
+    { "name": "Shao" },
+    { "name": "Siu" },
+    { "name": "Shiu" },
+    { "name": "Shaw" },
+    { "name": "Sio" },
+    { "name": "Wàn" },
+    { "name": "Wan" },
+    { "name": "Maan" },
+    { "name": "Man" },
+    { "name": "Meng" },
+    { "name": "Qián" },
+    { "name": "Ch'ien" },
+    { "name": "Cin" },
+    { "name": "Chin" },
+    { "name": "Chee" },
+    { "name": "Yán" },
+    { "name": "Yen" },
+    { "name": "Jim" },
+    { "name": "Yim" },
+    { "name": "Im" },
+    { "name": "Tán" },
+    { "name": "Qín" },
+    { "name": "T'an" },
+    { "name": "Taam" },
+    { "name": "Tam" },
+    { "name": "Wu" },
+    { "name": "Mou" },
+    { "name": "Mo" },
+    { "name": "Dài" },
+    { "name": "Tai" },
+    { "name": "Daai" },
+    { "name": "Mò" },
+    { "name": "Mo" },
+    { "name": "Mok" },
+    { "name": "K'ung" },
+    { "name": "Xiàng" },
+    { "name": "Hsiang" },
+    { "name": "Heung" },
+    { "name": "Tang" },
+    { "name": "T'ang" },
+    { "name": "Tong" },
+    { "name": "Kang" },
+    { "name": "Yì" },
+    { "name": "I" },
+    { "name": "Yi" },
+    { "name": "Yik" },
+    { "name": "Cháng" },
+    { "name": "Ch'ang" },
+    { "name": "Soeng" },
+    { "name": "Sheung" },
+    { "name": "Qiáo" },
+    { "name": "Ch'iao" },
+    { "name": "Kiu" },
+    { "name": "Lài" },
+    { "name": "Lai" },
+    { "name": "Laai" },
+    { "name": "Lay" },
+    { "name": "Wén" },
+    { "name": "Wen" },
+    { "name": "Man" },
+    { "name": "Man" },
+    { "name": "Mon" }
+  ]
+}

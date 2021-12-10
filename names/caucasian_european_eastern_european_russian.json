@@ -1,0 +1,1325 @@
+{
+  "femaleNames": [
+    { "name": "Agafya" },
+    { "name": "Agata" },
+    { "name": "Aglaya" },
+    { "name": "Agnessa" },
+    { "name": "Agrafena" },
+    { "name": "Akilina" },
+    { "name": "Aksinya" },
+    { "name": "Akulina" },
+    { "name": "Albina" },
+    { "name": "Aleksandra" },
+    { "name": "Aleksandrina" },
+    { "name": "Alexandra" },
+    { "name": "Alisa" },
+    { "name": "Alla" },
+    { "name": "Allochka" },
+    { "name": "Alyona" },
+    { "name": "Anastasia" },
+    { "name": "Anastasiya" },
+    { "name": "Anfisa" },
+    { "name": "Angela" },
+    { "name": "Angelina" },
+    { "name": "Ania" },
+    { "name": "Anna" },
+    { "name": "Annushka" },
+    { "name": "Antonina" },
+    { "name": "Anushka" },
+    { "name": "Anya" },
+    { "name": "Anzhela" },
+    { "name": "Anzhelina" },
+    { "name": "Apollinariya" },
+    { "name": "Ariadna" },
+    { "name": "Arina" },
+    { "name": "Arisha" },
+    { "name": "Asya" },
+    { "name": "Avdotya" },
+    { "name": "Bogdana" },
+    { "name": "Boleslava" },
+    { "name": "Borislava" },
+    { "name": "Bronislava" },
+    { "name": "Darya" },
+    { "name": "Diana" },
+    { "name": "Dominika" },
+    { "name": "Dunya" },
+    { "name": "Dunyasha" },
+    { "name": "Ekaterina" },
+    { "name": "Elena" },
+    { "name": "Elizaveta" },
+    { "name": "Esfir" },
+    { "name": "Eva" },
+    { "name": "Evdokiya" },
+    { "name": "Evgeniya" },
+    { "name": "Evpraksiya" },
+    { "name": "Faina" },
+    { "name": "Fedora" },
+    { "name": "Feodora" },
+    { "name": "Filippa" },
+    { "name": "Gala" },
+    { "name": "Galina" },
+    { "name": "Galya" },
+    { "name": "Gavriila" },
+    { "name": "Gennadiya" },
+    { "name": "Grusha" },
+    { "name": "Inga" },
+    { "name": "Inna" },
+    { "name": "Ira" },
+    { "name": "Irina" },
+    { "name": "Irinushka" },
+    { "name": "Isidora" },
+    { "name": "Ivanna" },
+    { "name": "Jekaterina" },
+    { "name": "Karina" },
+    { "name": "Katenka" },
+    { "name": "Katerina" },
+    { "name": "Katia" },
+    { "name": "Katya" },
+    { "name": "Kira" },
+    { "name": "Klara" },
+    { "name": "Klava" },
+    { "name": "Klavdiya" },
+    { "name": "Kristina" },
+    { "name": "Kseniya" },
+    { "name": "Lana" },
+    { "name": "Lara" },
+    { "name": "Larisa" },
+    { "name": "Lena" },
+    { "name": "Lidiya" },
+    { "name": "Lidochka" },
+    { "name": "Lilia" },
+    { "name": "Liliya" },
+    { "name": "Lilya" },
+    { "name": "Liouba" },
+    { "name": "Liza" },
+    { "name": "Lizaveta" },
+    { "name": "Luba" },
+    { "name": "Ludmila" },
+    { "name": "Ludmilla" },
+    { "name": "Lyuba" },
+    { "name": "Lyubochka" },
+    { "name": "Lyubov" },
+    { "name": "Lyudmila" },
+    { "name": "Manya" },
+    { "name": "Marfa" },
+    { "name": "Margarita" },
+    { "name": "Marina" },
+    { "name": "Mariya" },
+    { "name": "Marya" },
+    { "name": "Maryana" },
+    { "name": "Masha" },
+    { "name": "Matrona" },
+    { "name": "Matryona" },
+    { "name": "Milena" },
+    { "name": "Miroslava" },
+    { "name": "Motya" },
+    { "name": "Nadejda" },
+    { "name": "Nadezhda" },
+    { "name": "Nadia" },
+    { "name": "Nadya" },
+    { "name": "Nastasia" },
+    { "name": "Nastasya" },
+    { "name": "Nastya" },
+    { "name": "Nata" },
+    { "name": "Natali" },
+    { "name": "Nataliya" },
+    { "name": "Natalya" },
+    { "name": "Natasha" },
+    { "name": "Nika" },
+    { "name": "Nina" },
+    { "name": "Nina" },
+    { "name": "Ninel" },
+    { "name": "Nonna" },
+    { "name": "Oksana" },
+    { "name": "Olga" },
+    { "name": "Olya" },
+    { "name": "Oxana" },
+    { "name": "Pelageya" },
+    { "name": "Pelagiya" },
+    { "name": "Petia" },
+    { "name": "Petya" },
+    { "name": "Polina" },
+    { "name": "Praskoviya" },
+    { "name": "Praskovya" },
+    { "name": "Rada" },
+    { "name": "Radoslava" },
+    { "name": "Raisa" },
+    { "name": "Roksana" },
+    { "name": "Roza" },
+    { "name": "Rozaliya" },
+    { "name": "Ruf" },
+    { "name": "Rufina" },
+    { "name": "Sabina" },
+    { "name": "Sasha" },
+    { "name": "Selena" },
+    { "name": "Serafima" },
+    { "name": "Shura" },
+    { "name": "Slava" },
+    { "name": "Snezhana" },
+    { "name": "Sofiya" },
+    { "name": "Sofya" },
+    { "name": "Sonya" },
+    { "name": "Stanislava" },
+    { "name": "Stasya" },
+    { "name": "Susanna" },
+    { "name": "Sveta" },
+    { "name": "Svetlana" },
+    { "name": "Syuzanna" },
+    { "name": "Taisiya" },
+    { "name": "Tamara" },
+    { "name": "Tanya" },
+    { "name": "Tasha" },
+    { "name": "Tatiana" },
+    { "name": "Tatyana" },
+    { "name": "Toma" },
+    { "name": "Tsetsiliya" },
+    { "name": "Uliana" },
+    { "name": "Ustinya" },
+    { "name": "Valentina" },
+    { "name": "Valeriya" },
+    { "name": "Varvara" },
+    { "name": "Varya" },
+    { "name": "Vasilisa" },
+    { "name": "Vaska" },
+    { "name": "Venera" },
+    { "name": "Vera" },
+    { "name": "Verochka" },
+    { "name": "Veronika" },
+    { "name": "Verusha" },
+    { "name": "Viktoriya" },
+    { "name": "Violetta" },
+    { "name": "Vitaliya" },
+    { "name": "Vladislava" },
+    { "name": "Yana" },
+    { "name": "Yaroslava" },
+    { "name": "Yekaterina" },
+    { "name": "Yelena" },
+    { "name": "Yelizaveta" },
+    { "name": "Yesfir" },
+    { "name": "Yeva" },
+    { "name": "Yevdokiya" },
+    { "name": "Yevgeniya" },
+    { "name": "Yevpraksiya" },
+    { "name": "Yulia" },
+    { "name": "Yuliana" },
+    { "name": "Yulianna" },
+    { "name": "Yuliya" },
+    { "name": "Yustina" },
+    { "name": "Zhanna" },
+    { "name": "Zhannochka" },
+    { "name": "Zhenya" },
+    { "name": "Zina" },
+    { "name": "Zinaida" },
+    { "name": "Zinoviya" },
+    { "name": "Zlata" },
+    { "name": "Zoya" }
+  ],
+  "maleNames": [
+    { "name": "Abram" },
+    { "name": "Adam" },
+    { "name": "Adrian" },
+    { "name": "Afanasiy" },
+    { "name": "Afanasy" },
+    { "name": "Akim" },
+    { "name": "Albert" },
+    { "name": "Aleksandr" },
+    { "name": "Aleksei" },
+    { "name": "Aleksey" },
+    { "name": "Alexei" },
+    { "name": "Alexey" },
+    { "name": "Alyosha" },
+    { "name": "Anastas" },
+    { "name": "Anastasiy" },
+    { "name": "Anatoli" },
+    { "name": "Anatoliy" },
+    { "name": "Anatoly" },
+    { "name": "Andrei" },
+    { "name": "Andrey" },
+    { "name": "Anisim" },
+    { "name": "Anton" },
+    { "name": "Aristarkh" },
+    { "name": "Arkadi" },
+    { "name": "Arkadiy" },
+    { "name": "Arkady" },
+    { "name": "Arkhip" },
+    { "name": "Arseni" },
+    { "name": "Arseniy" },
+    { "name": "Artem" },
+    { "name": "Artemiy" },
+    { "name": "Artur" },
+    { "name": "Artyom" },
+    { "name": "Avgust" },
+    { "name": "Avksentiy" },
+    { "name": "Benedikt" },
+    { "name": "Bogdan" },
+    { "name": "Boleslav" },
+    { "name": "Boris" },
+    { "name": "Borislav" },
+    { "name": "Borya" },
+    { "name": "Bronislav" },
+    { "name": "Daniil" },
+    { "name": "David" },
+    { "name": "Demyan" },
+    { "name": "Denis" },
+    { "name": "Dima" },
+    { "name": "Dimitri" },
+    { "name": "Dmitri" },
+    { "name": "Dmitrii" },
+    { "name": "Dmitriy" },
+    { "name": "Dmitry" },
+    { "name": "Dorofei" },
+    { "name": "Dorofey" },
+    { "name": "Eduard" },
+    { "name": "Ermolai" },
+    { "name": "Evgeni" },
+    { "name": "Evgeniy" },
+    { "name": "Evgeny" },
+    { "name": "Faddei" },
+    { "name": "Faddey" },
+    { "name": "Fedor" },
+    { "name": "Fedot" },
+    { "name": "Fedya" },
+    { "name": "Feliks" },
+    { "name": "Feodor" },
+    { "name": "Feodosiy" },
+    { "name": "Feofan" },
+    { "name": "Feofil" },
+    { "name": "Feofilakt" },
+    { "name": "Ferapont" },
+    { "name": "Filat" },
+    { "name": "Filipp" },
+    { "name": "Fima" },
+    { "name": "Foka" },
+    { "name": "Foma" },
+    { "name": "Fyodor" },
+    { "name": "Gavriil" },
+    { "name": "Gena" },
+    { "name": "Gennadi" },
+    { "name": "Gennadiy" },
+    { "name": "Gennady" },
+    { "name": "Genya" },
+    { "name": "Georgiy" },
+    { "name": "Georgy" },
+    { "name": "Gerasim" },
+    { "name": "German" },
+    { "name": "Germogen" },
+    { "name": "Gleb" },
+    { "name": "Grigori" },
+    { "name": "Grigoriy" },
+    { "name": "Grigory" },
+    { "name": "Grisha" },
+    { "name": "Ignatiy" },
+    { "name": "Igor" },
+    { "name": "Ilari" },
+    { "name": "Ilia" },
+    { "name": "Illarion" },
+    { "name": "Ilya" },
+    { "name": "Innokenti" },
+    { "name": "Innokentiy" },
+    { "name": "Innokenty" },
+    { "name": "Ioann" },
+    { "name": "Iona" },
+    { "name": "Iosif" },
+    { "name": "Ipati" },
+    { "name": "Ipatiy" },
+    { "name": "Ippolit" },
+    { "name": "Irakliy" },
+    { "name": "Irinei" },
+    { "name": "Iriney" },
+    { "name": "Isaak" },
+    { "name": "Isay" },
+    { "name": "Isidor" },
+    { "name": "Ivan" },
+    { "name": "Karp" },
+    { "name": "Kazimir" },
+    { "name": "Kesha" },
+    { "name": "Khariton" },
+    { "name": "Kir" },
+    { "name": "Kirill" },
+    { "name": "Klim" },
+    { "name": "Kliment" },
+    { "name": "Kolya" },
+    { "name": "Konstantin" },
+    { "name": "Kostya" },
+    { "name": "Kuzma" },
+    { "name": "Lavrenti" },
+    { "name": "Lavrentiy" },
+    { "name": "Lavrenty" },
+    { "name": "Lazar" },
+    { "name": "Leonid" },
+    { "name": "Leonti" },
+    { "name": "Leontiy" },
+    { "name": "Leonty" },
+    { "name": "Lev" },
+    { "name": "Luka" },
+    { "name": "Lyosha" },
+    { "name": "Lyov" },
+    { "name": "Makar" },
+    { "name": "Makari" },
+    { "name": "Makariy" },
+    { "name": "Maks" },
+    { "name": "Maksim" },
+    { "name": "Maksimilian" },
+    { "name": "Mark" },
+    { "name": "Marlen" },
+    { "name": "Martin" },
+    { "name": "Matfey" },
+    { "name": "Matvei" },
+    { "name": "Matvey" },
+    { "name": "Maxim" },
+    { "name": "Mechislav" },
+    { "name": "Mefodiy" },
+    { "name": "Melor" },
+    { "name": "Michail" },
+    { "name": "Mikhail" },
+    { "name": "Milan" },
+    { "name": "Miron" },
+    { "name": "Miroslav" },
+    { "name": "Misha" },
+    { "name": "Mitrofan" },
+    { "name": "Mitya" },
+    { "name": "Modest" },
+    { "name": "Moisey" },
+    { "name": "Motya" },
+    { "name": "Mstislav" },
+    { "name": "Naum" },
+    { "name": "Nazar" },
+    { "name": "Nazariy" },
+    { "name": "Nestor" },
+    { "name": "Nika" },
+    { "name": "Nikifor" },
+    { "name": "Nikita" },
+    { "name": "Nikodim" },
+    { "name": "Nikolai" },
+    { "name": "Nikolay" },
+    { "name": "Nikon" },
+    { "name": "Oleg" },
+    { "name": "Onisim" },
+    { "name": "Osip" },
+    { "name": "Pankrati" },
+    { "name": "Pankratiy" },
+    { "name": "Pasha" },
+    { "name": "Patya" },
+    { "name": "Pavel" },
+    { "name": "Petia" },
+    { "name": "Petya" },
+    { "name": "Platon" },
+    { "name": "Prokhor" },
+    { "name": "Prokopiy" },
+    { "name": "Prokopy" },
+    { "name": "Pyotr" },
+    { "name": "Radimir" },
+    { "name": "Radomir" },
+    { "name": "Radoslav" },
+    { "name": "Renat" },
+    { "name": "Robert" },
+    { "name": "Rodion" },
+    { "name": "Rodya" },
+    { "name": "Rolan" },
+    { "name": "Roma" },
+    { "name": "Roman" },
+    { "name": "Rostislav" },
+    { "name": "Rudolf" },
+    { "name": "Rurik" },
+    { "name": "Ruslan" },
+    { "name": "Samuil" },
+    { "name": "Sasha" },
+    { "name": "Saveli" },
+    { "name": "Saveliy" },
+    { "name": "Savely" },
+    { "name": "Savva" },
+    { "name": "Semen" },
+    { "name": "Semyon" },
+    { "name": "Serafim" },
+    { "name": "Sergei" },
+    { "name": "Sergej" },
+    { "name": "Sergey" },
+    { "name": "Sevastian" },
+    { "name": "Sevastyan" },
+    { "name": "Shura" },
+    { "name": "Slava" },
+    { "name": "Spartak" },
+    { "name": "Stanimir" },
+    { "name": "Stanislav" },
+    { "name": "Stas" },
+    { "name": "Stepan" },
+    { "name": "Svyatopolk" },
+    { "name": "Svyatoslav" },
+    { "name": "Taras" },
+    { "name": "Terenti" },
+    { "name": "Terentiy" },
+    { "name": "Tikhon" },
+    { "name": "Timofei" },
+    { "name": "Timofey" },
+    { "name": "Timur" },
+    { "name": "Tit" },
+    { "name": "Vadik" },
+    { "name": "Vadim" },
+    { "name": "Vadimir" },
+    { "name": "Valentin" },
+    { "name": "Valeri" },
+    { "name": "Valerian" },
+    { "name": "Valeriy" },
+    { "name": "Valery" },
+    { "name": "Vanya" },
+    { "name": "Varfolomei" },
+    { "name": "Varfolomey" },
+    { "name": "Varlaam" },
+    { "name": "Varlam" },
+    { "name": "Varnava" },
+    { "name": "Vasili" },
+    { "name": "Vasiliy" },
+    { "name": "Vasily" },
+    { "name": "Vaska" },
+    { "name": "Vassily" },
+    { "name": "Vasya" },
+    { "name": "Veniamin" },
+    { "name": "Venyamin" },
+    { "name": "Vikenti" },
+    { "name": "Vikentiy" },
+    { "name": "Viktor" },
+    { "name": "Vilen" },
+    { "name": "Vissarion" },
+    { "name": "Vitali" },
+    { "name": "Vitalik" },
+    { "name": "Vitaliy" },
+    { "name": "Vitaly" },
+    { "name": "Vitya" },
+    { "name": "Vlad" },
+    { "name": "Vladilen" },
+    { "name": "Vladimir" },
+    { "name": "Vladislav" },
+    { "name": "Vladlen" },
+    { "name": "Vlasi" },
+    { "name": "Vlasiy" },
+    { "name": "Volodya" },
+    { "name": "Volya" },
+    { "name": "Vova" },
+    { "name": "Vsevolod" },
+    { "name": "Vyacheslav" },
+    { "name": "Yakim" },
+    { "name": "Yakov" },
+    { "name": "Yaroslav" },
+    { "name": "Yaroslava" },
+    { "name": "Yasha" },
+    { "name": "Yefim" },
+    { "name": "Yefrem" },
+    { "name": "Yegor" },
+    { "name": "Yemelyan" },
+    { "name": "Yermolai" },
+    { "name": "Yevgeni" },
+    { "name": "Yevgeniy" },
+    { "name": "Yevgeny" },
+    { "name": "Yuli" },
+    { "name": "Yulian" },
+    { "name": "Yuliy" },
+    { "name": "Yura" },
+    { "name": "Yuri" },
+    { "name": "Yuriy" },
+    { "name": "Zakhar" },
+    { "name": "Zhenya" },
+    { "name": "Zinoviy" }
+  ],
+  "surnames": [
+    {
+      "name": "Ivanova",
+      "weight": 90.0
+    },
+    {
+      "name": "Ivanov",
+      "weight": 89.0
+    },
+    {
+      "name": "Petrov",
+      "weight": 46.0
+    },
+    {
+      "name": "Smirnova",
+      "weight": 42.0
+    },
+    {
+      "name": "Petrova",
+      "weight": 40.0
+    },
+    {
+      "name": "Smirnov",
+      "weight": 37.0
+    },
+    {
+      "name": "Kuznetsova",
+      "weight": 35.0
+    },
+    {
+      "name": "Kuznetsov",
+      "weight": 32.0
+    },
+    {
+      "name": "Popov",
+      "weight": 29.0
+    },
+    {
+      "name": "Popova",
+      "weight": 28.0
+    },
+    {
+      "name": "Volkova",
+      "weight": 25.0
+    },
+    {
+      "name": "Novikova",
+      "weight": 23.0
+    },
+    {
+      "name": "Romanova",
+      "weight": 23.0
+    },
+    {
+      "name": "Vasileva",
+      "weight": 23.0
+    },
+    {
+      "name": "Vasilev",
+      "weight": 23.0
+    },
+    {
+      "name": "Andreeva",
+      "weight": 22.0
+    },
+    {
+      "name": "Sokolova",
+      "weight": 22.0
+    },
+    {
+      "name": "Morozova",
+      "weight": 22.0
+    },
+    {
+      "name": "Volkov",
+      "weight": 21.0
+    },
+    {
+      "name": "Pavlova",
+      "weight": 20.0
+    },
+    {
+      "name": "Mikhaylova",
+      "weight": 20.0
+    },
+    {
+      "name": "Sokolov",
+      "weight": 19.0
+    },
+    {
+      "name": "Novikov",
+      "weight": 19.0
+    },
+    {
+      "name": "Morozov",
+      "weight": 19.0
+    },
+    {
+      "name": "Makarova",
+      "weight": 18.0
+    },
+    {
+      "name": "Romanov",
+      "weight": 18.0
+    },
+    {
+      "name": "Pavlov",
+      "weight": 18.0
+    },
+    {
+      "name": "Mikhaylov",
+      "weight": 18.0
+    },
+    {
+      "name": "Sergeeva",
+      "weight": 18.0
+    },
+    {
+      "name": "Nikolaeva",
+      "weight": 18.0
+    },
+    {
+      "name": "Andreev",
+      "weight": 17.0
+    },
+    {
+      "name": "Makarov",
+      "weight": 17.0
+    },
+    {
+      "name": "Egorova",
+      "weight": 17.0
+    },
+    {
+      "name": "Nikolaev",
+      "weight": 17.0
+    },
+    {
+      "name": "Stepanova",
+      "weight": 16.0
+    },
+    {
+      "name": "Shevchenko",
+      "weight": 16.0
+    },
+    {
+      "name": "Orlova",
+      "weight": 16.0
+    },
+    {
+      "name": "Sergeev",
+      "weight": 16.0
+    },
+    {
+      "name": "Nikitina",
+      "weight": 16.0
+    },
+    {
+      "name": "Lebedeva",
+      "weight": 16.0
+    },
+    {
+      "name": "Egorov",
+      "weight": 15.0
+    },
+    {
+      "name": "Alekseeva",
+      "weight": 15.0
+    },
+    {
+      "name": "Kozlova",
+      "weight": 15.0
+    },
+    {
+      "name": "Zakharova",
+      "weight": 15.0
+    },
+    {
+      "name": "Stepanov",
+      "weight": 15.0
+    },
+    {
+      "name": "Kotova",
+      "weight": 15.0
+    },
+    {
+      "name": "Mironova",
+      "weight": 15.0
+    },
+    {
+      "name": "Yakovleva",
+      "weight": 14.0
+    },
+    {
+      "name": "Zaytseva",
+      "weight": 14.0
+    },
+    {
+      "name": "Orlov",
+      "weight": 14.0
+    },
+    {
+      "name": "Nikitin",
+      "weight": 14.0
+    },
+    {
+      "name": "Belova",
+      "weight": 14.0
+    },
+    {
+      "name": "Kozlov",
+      "weight": 14.0
+    },
+    {
+      "name": "Zakharov",
+      "weight": 14.0
+    },
+    {
+      "name": "Frolova",
+      "weight": 13.0
+    },
+    {
+      "name": "Alekseev",
+      "weight": 13.0
+    },
+    {
+      "name": "Belov",
+      "weight": 13.0
+    },
+    {
+      "name": "Frolov",
+      "weight": 13.0
+    },
+    {
+      "name": "Aleksandrova",
+      "weight": 12.0
+    },
+    {
+      "name": "Lebedev",
+      "weight": 12.0
+    },
+    {
+      "name": "Yakovlev",
+      "weight": 12.0
+    },
+    {
+      "name": "Kuzmina",
+      "weight": 12.0
+    },
+    {
+      "name": "Zaytsev",
+      "weight": 12.0
+    },
+    {
+      "name": "Borisova",
+      "weight": 12.0
+    },
+    {
+      "name": "Fedorova",
+      "weight": 12.0
+    },
+    {
+      "name": "Dmitrieva",
+      "weight": 12.0
+    },
+    {
+      "name": "Semenova",
+      "weight": 12.0
+    },
+    {
+      "name": "Antonova",
+      "weight": 11.0
+    },
+    {
+      "name": "Antonov",
+      "weight": 11.0
+    },
+    {
+      "name": "Matveeva",
+      "weight": 11.0
+    },
+    {
+      "name": "Melnikova",
+      "weight": 11.0
+    },
+    {
+      "name": "Medvedeva",
+      "weight": 11.0
+    },
+    {
+      "name": "Maksimova",
+      "weight": 11.0
+    },
+    {
+      "name": "Kuzmin",
+      "weight": 11.0
+    },
+    {
+      "name": "Kotov",
+      "weight": 11.0
+    },
+    {
+      "name": "Mironov",
+      "weight": 11.0
+    },
+    {
+      "name": "Borisov",
+      "weight": 11.0
+    },
+    {
+      "name": "Dmitriev",
+      "weight": 11.0
+    },
+    {
+      "name": "Semenov",
+      "weight": 10.0
+    },
+    {
+      "name": "Fedorov",
+      "weight": 10.0
+    },
+    {
+      "name": "Medvedev",
+      "weight": 10.0
+    },
+    {
+      "name": "Tarasova",
+      "weight": 10.0
+    },
+    {
+      "name": "Vlasova",
+      "weight": 10.0
+    },
+    {
+      "name": "Bondarenko",
+      "weight": 10.0
+    },
+    {
+      "name": "Sidorov",
+      "weight": 10.0
+    },
+    {
+      "name": "Kovalenko",
+      "weight": 10.0
+    },
+    {
+      "name": "Kim",
+      "weight": 10.0
+    },
+    {
+      "name": "Grigoreva",
+      "weight": 10.0
+    },
+    {
+      "name": "Bogdanova",
+      "weight": 10.0
+    },
+    {
+      "name": "Ilina",
+      "weight": 10.0
+    },
+    {
+      "name": "Matveev",
+      "weight": 10.0
+    },
+    {
+      "name": "Kravchenko",
+      "weight": 10.0
+    },
+    {
+      "name": "Grigorev",
+      "weight": 10.0
+    },
+    {
+      "name": "Polyakova",
+      "weight": 10.0
+    },
+    {
+      "name": "Zhukova",
+      "weight": 10.0
+    },
+    {
+      "name": "Sorokina",
+      "weight": 9.0
+    },
+    {
+      "name": "Filippova",
+      "weight": 9.0
+    },
+    {
+      "name": "Abramova",
+      "weight": 9.0
+    },
+    {
+      "name": "Danilova",
+      "weight": 9.0
+    },
+    {
+      "name": "Tarasov",
+      "weight": 9.0
+    },
+    {
+      "name": "Kalinina",
+      "weight": 9.0
+    },
+    {
+      "name": "Aleksandrov",
+      "weight": 9.0
+    },
+    {
+      "name": "Melnikov",
+      "weight": 9.0
+    },
+    {
+      "name": "Timofeeva",
+      "weight": 9.0
+    },
+    {
+      "name": "Zhukov",
+      "weight": 9.0
+    },
+    {
+      "name": "Osipova",
+      "weight": 9.0
+    },
+    {
+      "name": "Guseva",
+      "weight": 9.0
+    },
+    {
+      "name": "Maksimov",
+      "weight": 9.0
+    },
+    {
+      "name": "Sidorova",
+      "weight": 9.0
+    },
+    {
+      "name": "Bogdanov",
+      "weight": 9.0
+    },
+    {
+      "name": "Sorokin",
+      "weight": 9.0
+    },
+    {
+      "name": "Titova",
+      "weight": 9.0
+    },
+    {
+      "name": "Karpova",
+      "weight": 9.0
+    },
+    {
+      "name": "Vlasov",
+      "weight": 8.0
+    },
+    {
+      "name": "Aliev",
+      "weight": 8.0
+    },
+    {
+      "name": "Karpov",
+      "weight": 8.0
+    },
+    {
+      "name": "Danilov",
+      "weight": 8.0
+    },
+    {
+      "name": "Kulikova",
+      "weight": 8.0
+    },
+    {
+      "name": "Kolesnikova",
+      "weight": 8.0
+    },
+    {
+      "name": "Efimova",
+      "weight": 8.0
+    },
+    {
+      "name": "Nazarova",
+      "weight": 8.0
+    },
+    {
+      "name": "Belyaeva",
+      "weight": 8.0
+    },
+    {
+      "name": "Gusev",
+      "weight": 8.0
+    },
+    {
+      "name": "Denisova",
+      "weight": 8.0
+    },
+    {
+      "name": "Vinogradova",
+      "weight": 8.0
+    },
+    {
+      "name": "Davydova",
+      "weight": 8.0
+    },
+    {
+      "name": "Filippov",
+      "weight": 8.0
+    },
+    {
+      "name": "Koroleva",
+      "weight": 8.0
+    },
+    {
+      "name": "Chernova",
+      "weight": 8.0
+    },
+    {
+      "name": "Abramov",
+      "weight": 8.0
+    },
+    {
+      "name": "Timofeev",
+      "weight": 8.0
+    },
+    {
+      "name": "Markova",
+      "weight": 8.0
+    },
+    {
+      "name": "Fomina",
+      "weight": 8.0
+    },
+    {
+      "name": "Polyakov",
+      "weight": 8.0
+    },
+    {
+      "name": "Fyodorov",
+      "weight": 8.0
+    },
+    {
+      "name": "Osipov",
+      "weight": 8.0
+    },
+    {
+      "name": "Nazarov",
+      "weight": 8.0
+    },
+    {
+      "name": "Titov",
+      "weight": 8.0
+    },
+    {
+      "name": "Fyodorova",
+      "weight": 8.0
+    },
+    {
+      "name": "Semyonov",
+      "weight": 8.0
+    },
+    {
+      "name": "Tkachenko",
+      "weight": 8.0
+    },
+    {
+      "name": "Sergeevna",
+      "weight": 8.0
+    },
+    {
+      "name": "Chernov",
+      "weight": 8.0
+    },
+    {
+      "name": "Baranov",
+      "weight": 8.0
+    },
+    {
+      "name": "Semyonova",
+      "weight": 8.0
+    },
+    {
+      "name": "Isaeva",
+      "weight": 8.0
+    },
+    {
+      "name": "Fomin",
+      "weight": 7.0
+    },
+    {
+      "name": "Kolesnikov",
+      "weight": 7.0
+    },
+    {
+      "name": "Isaev",
+      "weight": 7.0
+    },
+    {
+      "name": "Tikhonova",
+      "weight": 7.0
+    },
+    {
+      "name": "Kazakova",
+      "weight": 7.0
+    },
+    {
+      "name": "Gavrilova",
+      "weight": 7.0
+    },
+    {
+      "name": "Efimov",
+      "weight": 7.0
+    },
+    {
+      "name": "Kulikov",
+      "weight": 7.0
+    },
+    {
+      "name": "Kovaleva",
+      "weight": 7.0
+    },
+    {
+      "name": "Vasilyeva",
+      "weight": 7.0
+    },
+    {
+      "name": "Baranova",
+      "weight": 7.0
+    },
+    {
+      "name": "Sergeevich",
+      "weight": 7.0
+    },
+    {
+      "name": "Filatova",
+      "weight": 7.0
+    },
+    {
+      "name": "Kalinin",
+      "weight": 7.0
+    },
+    {
+      "name": "Aleksandrovich",
+      "weight": 7.0
+    },
+    {
+      "name": "Fedotova",
+      "weight": 7.0
+    },
+    {
+      "name": "Gerasimova",
+      "weight": 7.0
+    },
+    {
+      "name": "Aleksandrovna",
+      "weight": 7.0
+    },
+    {
+      "name": "Gavrilov",
+      "weight": 7.0
+    },
+    {
+      "name": "Markov",
+      "weight": 7.0
+    },
+    {
+      "name": "Belyaev",
+      "weight": 7.0
+    },
+    {
+      "name": "Goncharova",
+      "weight": 7.0
+    },
+    {
+      "name": "Denisov",
+      "weight": 7.0
+    },
+    {
+      "name": "Malysheva",
+      "weight": 7.0
+    },
+    {
+      "name": "Tikhonov",
+      "weight": 7.0
+    },
+    {
+      "name": "Ilin",
+      "weight": 7.0
+    },
+    {
+      "name": "Konovalova",
+      "weight": 7.0
+    },
+    {
+      "name": "Ermakova",
+      "weight": 7.0
+    },
+    {
+      "name": "Komarova",
+      "weight": 7.0
+    },
+    {
+      "name": "Klimova",
+      "weight": 7.0
+    },
+    {
+      "name": "Kiseleva",
+      "weight": 7.0
+    },
+    {
+      "name": "Fedotov",
+      "weight": 7.0
+    },
+    {
+      "name": "Davydov",
+      "weight": 7.0
+    },
+    {
+      "name": "Efremova",
+      "weight": 7.0
+    },
+    {
+      "name": "Magomedov",
+      "weight": 7.0
+    },
+    {
+      "name": "Maltseva",
+      "weight": 7.0
+    },
+    {
+      "name": "Konovalov",
+      "weight": 7.0
+    },
+    {
+      "name": "Gerasimov",
+      "weight": 7.0
+    },
+    {
+      "name": "Naumova",
+      "weight": 7.0
+    },
+    {
+      "name": "Kazakov",
+      "weight": 7.0
+    },
+    {
+      "name": "Krylova",
+      "weight": 6.0
+    },
+    {
+      "name": "Scherbakova",
+      "weight": 6.0
+    },
+    {
+      "name": "Naumov",
+      "weight": 6.0
+    },
+    {
+      "name": "Alieva",
+      "weight": 6.0
+    },
+    {
+      "name": "Lazareva",
+      "weight": 6.0
+    },
+    {
+      "name": "Filatov",
+      "weight": 6.0
+    },
+    {
+      "name": "Golubeva",
+      "weight": 6.0
+    },
+    {
+      "name": "Trofimova",
+      "weight": 6.0
+    },
+    {
+      "name": "Savchenko",
+      "weight": 6.0
+    },
+    {
+      "name": "Nikiforova",
+      "weight": 6.0
+    },
+    {
+      "name": "Vinogradov",
+      "weight": 6.0
+    },
+    {
+      "name": "Komarov",
+      "weight": 6.0
+    },
+    {
+      "name": "Vladimirovich",
+      "weight": 6.0
+    },
+    {
+      "name": "Boyko",
+      "weight": 6.0
+    }
+  ]
+}

@@ -1,0 +1,797 @@
+{
+  "femaleNames": [
+    { "name": "Ajabnaz" },
+    { "name": "Asmar" },
+    { "name": "Aybaniz" },
+    { "name": "Aypara" },
+    { "name": "Ayten" },
+    { "name": "Balakhanim" },
+    { "name": "Banovsha" },
+    { "name": "Durna" },
+    { "name": "Elnara" },
+    { "name": "Eloiza" },
+    { "name": "Gumru" },
+    { "name": "Gyunel" },
+    { "name": "Ilgara" },
+    { "name": "Iraida" },
+    { "name": "Jala" },
+    { "name": "Kamala" },
+    { "name": "Khanim" },
+    { "name": "Laman" },
+    { "name": "Mahabbat" },
+    { "name": "Malahat" },
+    { "name": "Mansura" },
+    { "name": "Masma" },
+    { "name": "Matanat" },
+    { "name": "Nabat" },
+    { "name": "Natavan" },
+    { "name": "Nigyar" },
+    { "name": "Nurana" },
+    { "name": "Ofelya" },
+    { "name": "Qizilgül" },
+    { "name": "Ravana" },
+    { "name": "Rovshana" },
+    { "name": "Safura" },
+    { "name": "Shamsiyya" },
+    { "name": "Ulduz" },
+    { "name": "Vafa" },
+    { "name": "Yegana" },
+    { "name": "Zamina" },
+    { "name": "Zarifa" },
+    { "name": "Zarnigar" },
+    { "name": "Zulfiyya" }
+  ],
+  "maleNames": [
+    { "name": "Abulfaz" },
+    { "name": "Aftandil" },
+    { "name": "Agamali" },
+    { "name": "Aghakishi" },
+    { "name": "Anvar" },
+    { "name": "Artogrul" },
+    { "name": "Asgar" },
+    { "name": "Azer" },
+    { "name": "Çinar" },
+    { "name": "Dunyamali" },
+    { "name": "Elariz" },
+    { "name": "Eldaniz" },
+    { "name": "Elgüc" },
+    { "name": "Elshad" },
+    { "name": "Elshan" },
+    { "name": "Ibish" },
+    { "name": "Ilgar" },
+    { "name": "Inar" },
+    { "name": "Javid" },
+    { "name": "Kamran" },
+    { "name": "Orxan" },
+    { "name": "Panah" },
+    { "name": "Ramiz" },
+    { "name": "Rovshan" },
+    { "name": "Shamil" },
+    { "name": "Tamerlan" },
+    { "name": "Uzeyir" },
+    { "name": "Yagub" },
+    { "name": "Zaur" }
+  ],
+  "surnames": [
+    {
+      "name": "Mammadova",
+      "weight": 306.0
+    },
+    {
+      "name": "Mammadov",
+      "weight": 279.0
+    },
+    {
+      "name": "Aliyeva",
+      "weight": 251.0
+    },
+    {
+      "name": "Aliyev",
+      "weight": 240.0
+    },
+    {
+      "name": "Hüseynova",
+      "weight": 151.0
+    },
+    {
+      "name": "Hüseynov",
+      "weight": 145.0
+    },
+    {
+      "name": "Hasanova",
+      "weight": 118.0
+    },
+    {
+      "name": "Hasanov",
+      "weight": 110.0
+    },
+    {
+      "name": "Quliyeva",
+      "weight": 105.0
+    },
+    {
+      "name": "Quliyev",
+      "weight": 104.0
+    },
+    {
+      "name": "Ismayilova",
+      "weight": 87.0
+    },
+    {
+      "name": "Ismayilov",
+      "weight": 85.0
+    },
+    {
+      "name": "Ahmadova",
+      "weight": 83.0
+    },
+    {
+      "name": "Ahmadov",
+      "weight": 76.0
+    },
+    {
+      "name": "Abdullayeva",
+      "weight": 74.0
+    },
+    {
+      "name": "Abdullayev",
+      "weight": 74.0
+    },
+    {
+      "name": "Abbasov",
+      "weight": 67.0
+    },
+    {
+      "name": "Abbasova",
+      "weight": 66.0
+    },
+    {
+      "name": "Cafarova",
+      "weight": 63.0
+    },
+    {
+      "name": "Karimova",
+      "weight": 62.0
+    },
+    {
+      "name": "Qasimova",
+      "weight": 60.0
+    },
+    {
+      "name": "Babayeva",
+      "weight": 59.0
+    },
+    {
+      "name": "Qasimov",
+      "weight": 59.0
+    },
+    {
+      "name": "Babayev",
+      "weight": 59.0
+    },
+    {
+      "name": "Cafarov",
+      "weight": 58.0
+    },
+    {
+      "name": "Karimov",
+      "weight": 56.0
+    },
+    {
+      "name": "Ibrahimova",
+      "weight": 54.0
+    },
+    {
+      "name": "Ibrahimov",
+      "weight": 53.0
+    },
+    {
+      "name": "Haciyeva",
+      "weight": 50.0
+    },
+    {
+      "name": "Haciyev",
+      "weight": 49.0
+    },
+    {
+      "name": "Bayramov",
+      "weight": 47.0
+    },
+    {
+      "name": "Qurbanova",
+      "weight": 46.0
+    },
+    {
+      "name": "Qurbanov",
+      "weight": 45.0
+    },
+    {
+      "name": "Bayramova",
+      "weight": 45.0
+    },
+    {
+      "name": "Mustafayeva",
+      "weight": 42.0
+    },
+    {
+      "name": "Mustafayev",
+      "weight": 41.0
+    },
+    {
+      "name": "Valiyeva",
+      "weight": 38.0
+    },
+    {
+      "name": "Rzayeva",
+      "weight": 38.0
+    },
+    {
+      "name": "Rzayev",
+      "weight": 38.0
+    },
+    {
+      "name": "Mirzayeva",
+      "weight": 38.0
+    },
+    {
+      "name": "Musayeva",
+      "weight": 37.0
+    },
+    {
+      "name": "Musayev",
+      "weight": 37.0
+    },
+    {
+      "name": "Zeynalov",
+      "weight": 37.0
+    },
+    {
+      "name": "Zeynalova",
+      "weight": 36.0
+    },
+    {
+      "name": "Süleymanov",
+      "weight": 36.0
+    },
+    {
+      "name": "Mirzayev",
+      "weight": 36.0
+    },
+    {
+      "name": "Valiyev",
+      "weight": 36.0
+    },
+    {
+      "name": "Süleymanova",
+      "weight": 36.0
+    },
+    {
+      "name": "Asgarova",
+      "weight": 36.0
+    },
+    {
+      "name": "Safarova",
+      "weight": 33.0
+    },
+    {
+      "name": "Rahimova",
+      "weight": 32.0
+    },
+    {
+      "name": "Asgarov",
+      "weight": 32.0
+    },
+    {
+      "name": "Safarov",
+      "weight": 32.0
+    },
+    {
+      "name": "Rüstamova",
+      "weight": 32.0
+    },
+    {
+      "name": "Mamedov",
+      "weight": 31.0
+    },
+    {
+      "name": "Rustamov",
+      "weight": 30.0
+    },
+    {
+      "name": "Xalilova",
+      "weight": 30.0
+    },
+    {
+      "name": "Rahimov",
+      "weight": 29.0
+    },
+    {
+      "name": "Xalilov",
+      "weight": 28.0
+    },
+    {
+      "name": "Maharramova",
+      "weight": 27.0
+    },
+    {
+      "name": "Allahverdiyev",
+      "weight": 27.0
+    },
+    {
+      "name": "Allahverdiyeva",
+      "weight": 26.0
+    },
+    {
+      "name": "Muradov",
+      "weight": 26.0
+    },
+    {
+      "name": "Muradova",
+      "weight": 26.0
+    },
+    {
+      "name": "Sadiqova",
+      "weight": 26.0
+    },
+    {
+      "name": "Mehdiyeva",
+      "weight": 26.0
+    },
+    {
+      "name": "Mehdiyev",
+      "weight": 26.0
+    },
+    {
+      "name": "Maharramov",
+      "weight": 25.0
+    },
+    {
+      "name": "Asadova",
+      "weight": 25.0
+    },
+    {
+      "name": "Sadiqov",
+      "weight": 25.0
+    },
+    {
+      "name": "Asadov",
+      "weight": 25.0
+    },
+    {
+      "name": "Mahmudov",
+      "weight": 24.0
+    },
+    {
+      "name": "Mahmudova",
+      "weight": 24.0
+    },
+    {
+      "name": "Alakbarova",
+      "weight": 24.0
+    },
+    {
+      "name": "Azizov",
+      "weight": 23.0
+    },
+    {
+      "name": "Azizova",
+      "weight": 23.0
+    },
+    {
+      "name": "Orucov",
+      "weight": 23.0
+    },
+    {
+      "name": "Yusifov",
+      "weight": 23.0
+    },
+    {
+      "name": "Orucova",
+      "weight": 22.0
+    },
+    {
+      "name": "Yusifova",
+      "weight": 22.0
+    },
+    {
+      "name": "Alakbarov",
+      "weight": 22.0
+    },
+    {
+      "name": "Aslanov",
+      "weight": 22.0
+    },
+    {
+      "name": "Novruzov",
+      "weight": 21.0
+    },
+    {
+      "name": "Aslanova",
+      "weight": 21.0
+    },
+    {
+      "name": "Kazimova",
+      "weight": 21.0
+    },
+    {
+      "name": "Novruzova",
+      "weight": 21.0
+    },
+    {
+      "name": "Kazimov",
+      "weight": 21.0
+    },
+    {
+      "name": "Qarayeva",
+      "weight": 20.0
+    },
+    {
+      "name": "Samadova",
+      "weight": 20.0
+    },
+    {
+      "name": "Qarayev",
+      "weight": 20.0
+    },
+    {
+      "name": "Isayev",
+      "weight": 19.0
+    },
+    {
+      "name": "Isayeva",
+      "weight": 19.0
+    },
+    {
+      "name": "Samadov",
+      "weight": 19.0
+    },
+    {
+      "name": "Nabiyeva",
+      "weight": 18.0
+    },
+    {
+      "name": "Isgandarova",
+      "weight": 18.0
+    },
+    {
+      "name": "Nasirova",
+      "weight": 17.0
+    },
+    {
+      "name": "Nacafova",
+      "weight": 17.0
+    },
+    {
+      "name": "Nabiyev",
+      "weight": 17.0
+    },
+    {
+      "name": "Nasirov",
+      "weight": 17.0
+    },
+    {
+      "name": "Nacafov",
+      "weight": 16.0
+    },
+    {
+      "name": "Isgandarov",
+      "weight": 16.0
+    },
+    {
+      "name": "Imanov",
+      "weight": 16.0
+    },
+    {
+      "name": "Imanova",
+      "weight": 16.0
+    },
+    {
+      "name": "Rasulova",
+      "weight": 15.0
+    },
+    {
+      "name": "Nuriyeva",
+      "weight": 15.0
+    },
+    {
+      "name": "Nuriyev",
+      "weight": 15.0
+    },
+    {
+      "name": "Akbarova",
+      "weight": 15.0
+    },
+    {
+      "name": "Cavadova",
+      "weight": 15.0
+    },
+    {
+      "name": "Rasulov",
+      "weight": 15.0
+    },
+    {
+      "name": "Mamedova",
+      "weight": 15.0
+    },
+    {
+      "name": "Memmedov",
+      "weight": 14.0
+    },
+    {
+      "name": "Heydarova",
+      "weight": 14.0
+    },
+    {
+      "name": "Cavadov",
+      "weight": 14.0
+    },
+    {
+      "name": "Akbarov",
+      "weight": 14.0
+    },
+    {
+      "name": "Seyidova",
+      "weight": 14.0
+    },
+    {
+      "name": "Heydarov",
+      "weight": 14.0
+    },
+    {
+      "name": "Seyidov",
+      "weight": 13.0
+    },
+    {
+      "name": "Cabbarova",
+      "weight": 13.0
+    },
+    {
+      "name": "Cabbarov",
+      "weight": 13.0
+    },
+    {
+      "name": "Qahramanova",
+      "weight": 13.0
+    },
+    {
+      "name": "Aliev",
+      "weight": 12.0
+    },
+    {
+      "name": "Malikova",
+      "weight": 12.0
+    },
+    {
+      "name": "Hamidova",
+      "weight": 12.0
+    },
+    {
+      "name": "Salimova",
+      "weight": 12.0
+    },
+    {
+      "name": "Qahramanov",
+      "weight": 12.0
+    },
+    {
+      "name": "Salimov",
+      "weight": 12.0
+    },
+    {
+      "name": "Malikov",
+      "weight": 12.0
+    },
+    {
+      "name": "Qafarova",
+      "weight": 12.0
+    },
+    {
+      "name": "Salmanov",
+      "weight": 12.0
+    },
+    {
+      "name": "Alizadeh",
+      "weight": 11.0
+    },
+    {
+      "name": "Hamidov",
+      "weight": 11.0
+    },
+    {
+      "name": "Salmanova",
+      "weight": 11.0
+    },
+    {
+      "name": "Qafarov",
+      "weight": 11.0
+    },
+    {
+      "name": "Qadirova",
+      "weight": 11.0
+    },
+    {
+      "name": "Osmanov",
+      "weight": 11.0
+    },
+    {
+      "name": "Ramazanov",
+      "weight": 11.0
+    },
+    {
+      "name": "Sultanov",
+      "weight": 11.0
+    },
+    {
+      "name": "Sultanova",
+      "weight": 11.0
+    },
+    {
+      "name": "Osmanova",
+      "weight": 11.0
+    },
+    {
+      "name": "Eyvazova",
+      "weight": 11.0
+    },
+    {
+      "name": "Nasibova",
+      "weight": 11.0
+    },
+    {
+      "name": "Amirova",
+      "weight": 11.0
+    },
+    {
+      "name": "Qadirov",
+      "weight": 11.0
+    },
+    {
+      "name": "Eyvazov",
+      "weight": 11.0
+    },
+    {
+      "name": "Namazov",
+      "weight": 11.0
+    },
+    {
+      "name": "Ramazanova",
+      "weight": 11.0
+    },
+    {
+      "name": "Mikayilov",
+      "weight": 10.0
+    },
+    {
+      "name": "Amirov",
+      "weight": 10.0
+    },
+    {
+      "name": "Alasgarova",
+      "weight": 10.0
+    },
+    {
+      "name": "Nasibov",
+      "weight": 10.0
+    },
+    {
+      "name": "Mikayilova",
+      "weight": 10.0
+    },
+    {
+      "name": "Hümbatova",
+      "weight": 10.0
+    },
+    {
+      "name": "Namazova",
+      "weight": 10.0
+    },
+    {
+      "name": "Axundova",
+      "weight": 10.0
+    },
+    {
+      "name": "Cabrayilova",
+      "weight": 10.0
+    },
+    {
+      "name": "Hümbatov",
+      "weight": 10.0
+    },
+    {
+      "name": "Nazarova",
+      "weight": 10.0
+    },
+    {
+      "name": "Azimova",
+      "weight": 10.0
+    },
+    {
+      "name": "Azimov",
+      "weight": 10.0
+    },
+    {
+      "name": "Cabrayilov",
+      "weight": 10.0
+    },
+    {
+      "name": "Nazarov",
+      "weight": 10.0
+    },
+    {
+      "name": "Alasgarov",
+      "weight": 9.0
+    },
+    {
+      "name": "Eliyev",
+      "weight": 9.0
+    },
+    {
+      "name": "Abasov",
+      "weight": 9.0
+    },
+    {
+      "name": "Calilova",
+      "weight": 9.0
+    },
+    {
+      "name": "Axundov",
+      "weight": 9.0
+    },
+    {
+      "name": "Talibov",
+      "weight": 9.0
+    },
+    {
+      "name": "Farzaliyeva",
+      "weight": 9.0
+    },
+    {
+      "name": "Faracova",
+      "weight": 9.0
+    },
+    {
+      "name": "Talibova",
+      "weight": 9.0
+    },
+    {
+      "name": "Badalov",
+      "weight": 9.0
+    },
+    {
+      "name": "Badalova",
+      "weight": 9.0
+    },
+    {
+      "name": "Calilov",
+      "weight": 9.0
+    },
+    {
+      "name": "Farzaliyev",
+      "weight": 9.0
+    },
+    {
+      "name": "Abasova",
+      "weight": 8.0
+    },
+    {
+      "name": "Mammadli",
+      "weight": 8.0
+    },
+    {
+      "name": "Faracov",
+      "weight": 8.0
+    },
+    {
+      "name": "Quluyeva",
+      "weight": 8.0
+    },
+    {
+      "name": "Qocayev",
+      "weight": 8.0
+    },
+    {
+      "name": "Qocayeva",
+      "weight": 8.0
+    }
+  ]
+}

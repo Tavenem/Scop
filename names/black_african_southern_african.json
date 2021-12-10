@@ -1,0 +1,965 @@
+{
+  "femaleNames": [
+    { "name": "Alinafe" },
+    { "name": "Boipelo" },
+    { "name": "Boitumelo" },
+    { "name": "Charlize" },
+    { "name": "Chifundo" },
+    { "name": "Chifuniro" },
+    { "name": "Chikondi" },
+    { "name": "Chikumbutso" },
+    { "name": "Chimwemwe" },
+    { "name": "Chipo" },
+    { "name": "Chisomo" },
+    { "name": "Chiyembekezo" },
+    { "name": "Dalitso" },
+    { "name": "Dikeledi" },
+    { "name": "Dumisani" },
+    { "name": "Farai" },
+    { "name": "Fatsani" },
+    { "name": "Fungai" },
+    { "name": "Ganizani" },
+    { "name": "Hlengiwe" },
+    { "name": "Itumeleng" },
+    { "name": "Kagiso" },
+    { "name": "Katlego" },
+    { "name": "Kefilwe" },
+    { "name": "Kondwani" },
+    { "name": "Kumbukani" },
+    { "name": "Lerato" },
+    { "name": "Lesedi" },
+    { "name": "Limbani" },
+    { "name": "Limbikani" },
+    { "name": "Lindiwe" },
+    { "name": "Lungile" },
+    { "name": "Madalitso" },
+    { "name": "Manyara" },
+    { "name": "Masego" },
+    { "name": "Masozi" },
+    { "name": "Mavuto" },
+    { "name": "Mayamiko" },
+    { "name": "Mayeso" },
+    { "name": "Mbali" },
+    { "name": "Mphatso" },
+    { "name": "Mtendere" },
+    { "name": "Mudiwa" },
+    { "name": "Munashe" },
+    { "name": "Neo" },
+    { "name": "Nkosazana" },
+    { "name": "Nomusa" },
+    { "name": "Nontle" },
+    { "name": "Nosipho" },
+    { "name": "Nosizwe" },
+    { "name": "Nthanda" },
+    { "name": "Ntombi" },
+    { "name": "Nyarai" },
+    { "name": "Pemphero" },
+    { "name": "Pilirani" },
+    { "name": "Refilwe" },
+    { "name": "Retha" },
+    { "name": "Rudo" },
+    { "name": "Rufaro" },
+    { "name": "Rumbidzai" },
+    { "name": "Rutendo" },
+    { "name": "Sekai" },
+    { "name": "Sethunya" },
+    { "name": "Sibonakaliso" },
+    { "name": "Sithembile" },
+    { "name": "Tadala" },
+    { "name": "Tafadzwa" },
+    { "name": "Takondwa" },
+    { "name": "Tamandani" },
+    { "name": "Taonga" },
+    { "name": "Tapiwa" },
+    { "name": "Tariro" },
+    { "name": "Tatenda" },
+    { "name": "Tendai" },
+    { "name": "Thandiwe" },
+    { "name": "Themba" },
+    { "name": "Thoko" },
+    { "name": "Thokozani" },
+    { "name": "Thulile" },
+    { "name": "Tinashe" },
+    { "name": "Tiyamike" },
+    { "name": "Tsholofelo" },
+    { "name": "Tumelo" },
+    { "name": "Unathi" },
+    { "name": "Yamikani" },
+    { "name": "Zola" }
+  ],
+  "maleNames": [
+    { "name": "Alinafe" },
+    { "name": "Andile" },
+    { "name": "Boipelo" },
+    { "name": "Boitumelo" },
+    { "name": "Bongani" },
+    { "name": "Chifundo" },
+    { "name": "Chifuniro" },
+    { "name": "Chikondi" },
+    { "name": "Chikumbutso" },
+    { "name": "Chimwemwe" },
+    { "name": "Chisomo" },
+    { "name": "Chiyembekezo" },
+    { "name": "Dakarai" },
+    { "name": "Dalitso" },
+    { "name": "Dumisani" },
+    { "name": "Farai" },
+    { "name": "Fatsani" },
+    { "name": "Fungai" },
+    { "name": "Ganizani" },
+    { "name": "Itumeleng" },
+    { "name": "Kagiso" },
+    { "name": "Katlego" },
+    { "name": "Kefilwe" },
+    { "name": "Kgosi" },
+    { "name": "Kondwani" },
+    { "name": "Kumbukani" },
+    { "name": "Limbani" },
+    { "name": "Limbikani" },
+    { "name": "Madalitso" },
+    { "name": "Masozi" },
+    { "name": "Mavuto" },
+    { "name": "Mayamiko" },
+    { "name": "Mayeso" },
+    { "name": "Melisizwe" },
+    { "name": "Mphatso" },
+    { "name": "Mtendere" },
+    { "name": "Mudiwa" },
+    { "name": "Munashe" },
+    { "name": "Neo" },
+    { "name": "Nkosana" },
+    { "name": "Nthanda" },
+    { "name": "Paki" },
+    { "name": "Pemphero" },
+    { "name": "Pilirani" },
+    { "name": "Refilwe" },
+    { "name": "Rudo" },
+    { "name": "Rutendo" },
+    { "name": "Sipho" },
+    { "name": "Sithembile" },
+    { "name": "Sizwe" },
+    { "name": "Tadala" },
+    { "name": "Tafadzwa" },
+    { "name": "Takondwa" },
+    { "name": "Tamandani" },
+    { "name": "Taonga" },
+    { "name": "Tatenda" },
+    { "name": "Tau" },
+    { "name": "Tendai" },
+    { "name": "Thabo" },
+    { "name": "Themba" },
+    { "name": "Thoko" },
+    { "name": "Thokozani" },
+    { "name": "Thulani" },
+    { "name": "Tichaona" },
+    { "name": "Tinashe" },
+    { "name": "Tiyamike" },
+    { "name": "Tumelo" },
+    { "name": "Unathi" },
+    { "name": "Xolani" },
+    { "name": "Yamikani" },
+    { "name": "Zephania" }
+  ],
+  "surnames": [
+    {
+      "name": "Moyo",
+      "weight": 327.0
+    },
+    {
+      "name": "Ncube",
+      "weight": 245.0
+    },
+    {
+      "name": "Sibanda",
+      "weight": 225.0
+    },
+    {
+      "name": "Dube",
+      "weight": 210.0
+    },
+    {
+      "name": "Ndlovu",
+      "weight": 193.0
+    },
+    {
+      "name": "Mpofu",
+      "weight": 97.0
+    },
+    {
+      "name": "Sithole",
+      "weight": 74.0
+    },
+    {
+      "name": "Ngwenya",
+      "weight": 73.0
+    },
+    {
+      "name": "Phiri",
+      "weight": 54.0
+    },
+    {
+      "name": "Tshuma",
+      "weight": 51.0
+    },
+    {
+      "name": "Nyoni",
+      "weight": 47.0
+    },
+    {
+      "name": "Nkomo",
+      "weight": 45.0
+    },
+    {
+      "name": "Nyathi",
+      "weight": 45.0
+    },
+    {
+      "name": "Ndhlovu",
+      "weight": 41.0
+    },
+    {
+      "name": "Mhlanga",
+      "weight": 37.0
+    },
+    {
+      "name": "Zhou",
+      "weight": 32.0
+    },
+    {
+      "name": "Khumalo",
+      "weight": 29.0
+    },
+    {
+      "name": "Shumba",
+      "weight": 29.0
+    },
+    {
+      "name": "Gumbo",
+      "weight": 28.0
+    },
+    {
+      "name": "Banda",
+      "weight": 26.0
+    },
+    {
+      "name": "Muleya",
+      "weight": 26.0
+    },
+    {
+      "name": "Hove",
+      "weight": 25.0
+    },
+    {
+      "name": "Shoko",
+      "weight": 24.0
+    },
+    {
+      "name": "Ndebele",
+      "weight": 24.0
+    },
+    {
+      "name": "Maphosa",
+      "weight": 22.0
+    },
+    {
+      "name": "Mapfumo",
+      "weight": 21.0
+    },
+    {
+      "name": "Ndou",
+      "weight": 21.0
+    },
+    {
+      "name": "Siziba",
+      "weight": 21.0
+    },
+    {
+      "name": "Tembo",
+      "weight": 20.0
+    },
+    {
+      "name": "Mlambo",
+      "weight": 18.0
+    },
+    {
+      "name": "Dhliwayo",
+      "weight": 17.0
+    },
+    {
+      "name": "Simango",
+      "weight": 16.0
+    },
+    {
+      "name": "Maposa",
+      "weight": 16.0
+    },
+    {
+      "name": "Mudenda",
+      "weight": 15.0
+    },
+    {
+      "name": "Bhebhe",
+      "weight": 15.0
+    },
+    {
+      "name": "Masuku",
+      "weight": 14.0
+    },
+    {
+      "name": "Makoni",
+      "weight": 14.0
+    },
+    {
+      "name": "Marufu",
+      "weight": 14.0
+    },
+    {
+      "name": "Mlilo",
+      "weight": 13.0
+    },
+    {
+      "name": "Chuma",
+      "weight": 13.0
+    },
+    {
+      "name": "Muyambo",
+      "weight": 12.0
+    },
+    {
+      "name": "Zulu",
+      "weight": 12.0
+    },
+    {
+      "name": "Chauke",
+      "weight": 12.0
+    },
+    {
+      "name": "Mathe",
+      "weight": 12.0
+    },
+    {
+      "name": "Nyandoro",
+      "weight": 12.0
+    },
+    {
+      "name": "Takawira",
+      "weight": 12.0
+    },
+    {
+      "name": "Mpala",
+      "weight": 11.0
+    },
+    {
+      "name": "Mbedzi",
+      "weight": 11.0
+    },
+    {
+      "name": "Munsaka",
+      "weight": 11.0
+    },
+    {
+      "name": "Sigauke",
+      "weight": 11.0
+    },
+    {
+      "name": "Muchenje",
+      "weight": 11.0
+    },
+    {
+      "name": "Mudzingwa",
+      "weight": 11.0
+    },
+    {
+      "name": "Zuze",
+      "weight": 11.0
+    },
+    {
+      "name": "Munemo",
+      "weight": 11.0
+    },
+    {
+      "name": "Katsande",
+      "weight": 11.0
+    },
+    {
+      "name": "Mutasa",
+      "weight": 11.0
+    },
+    {
+      "name": "Lunga",
+      "weight": 11.0
+    },
+    {
+      "name": "Taruvinga",
+      "weight": 10.0
+    },
+    {
+      "name": "Mahachi",
+      "weight": 10.0
+    },
+    {
+      "name": "Nkala",
+      "weight": 10.0
+    },
+    {
+      "name": "Chari",
+      "weight": 10.0
+    },
+    {
+      "name": "Muza",
+      "weight": 10.0
+    },
+    {
+      "name": "Mutero",
+      "weight": 10.0
+    },
+    {
+      "name": "Ndoro",
+      "weight": 10.0
+    },
+    {
+      "name": "Mudimba",
+      "weight": 10.0
+    },
+    {
+      "name": "Mapuranga",
+      "weight": 10.0
+    },
+    {
+      "name": "Muchemwa",
+      "weight": 10.0
+    },
+    {
+      "name": "Nyika",
+      "weight": 10.0
+    },
+    {
+      "name": "Munkuli",
+      "weight": 9.0
+    },
+    {
+      "name": "Mumpande",
+      "weight": 9.0
+    },
+    {
+      "name": "Mubaiwa",
+      "weight": 9.0
+    },
+    {
+      "name": "Ngulube",
+      "weight": 9.0
+    },
+    {
+      "name": "Maseko",
+      "weight": 9.0
+    },
+    {
+      "name": "Gondo",
+      "weight": 9.0
+    },
+    {
+      "name": "Chiwara",
+      "weight": 9.0
+    },
+    {
+      "name": "Mushonga",
+      "weight": 9.0
+    },
+    {
+      "name": "Munetsi",
+      "weight": 8.0
+    },
+    {
+      "name": "Kaseke",
+      "weight": 8.0
+    },
+    {
+      "name": "Chifamba",
+      "weight": 8.0
+    },
+    {
+      "name": "Sande",
+      "weight": 8.0
+    },
+    {
+      "name": "Mangena",
+      "weight": 8.0
+    },
+    {
+      "name": "Muzamba",
+      "weight": 8.0
+    },
+    {
+      "name": "Shava",
+      "weight": 8.0
+    },
+    {
+      "name": "Makaza",
+      "weight": 8.0
+    },
+    {
+      "name": "Mabhena",
+      "weight": 8.0
+    },
+    {
+      "name": "Mlalazi",
+      "weight": 8.0
+    },
+    {
+      "name": "Manyika",
+      "weight": 8.0
+    },
+    {
+      "name": "Makumbe",
+      "weight": 8.0
+    },
+    {
+      "name": "Masango",
+      "weight": 7.0
+    },
+    {
+      "name": "Gatsi",
+      "weight": 7.0
+    },
+    {
+      "name": "Nyamadzawo",
+      "weight": 7.0
+    },
+    {
+      "name": "Shereni",
+      "weight": 7.0
+    },
+    {
+      "name": "Tigere",
+      "weight": 7.0
+    },
+    {
+      "name": "Magaya",
+      "weight": 7.0
+    },
+    {
+      "name": "Mangwiro",
+      "weight": 7.0
+    },
+    {
+      "name": "Mabika",
+      "weight": 7.0
+    },
+    {
+      "name": "Chibanda",
+      "weight": 7.0
+    },
+    {
+      "name": "Makombe",
+      "weight": 7.0
+    },
+    {
+      "name": "Gwenzi",
+      "weight": 7.0
+    },
+    {
+      "name": "Shonhiwa",
+      "weight": 7.0
+    },
+    {
+      "name": "Mandaza",
+      "weight": 7.0
+    },
+    {
+      "name": "Dlamini",
+      "weight": 7.0
+    },
+    {
+      "name": "Tapera",
+      "weight": 7.0
+    },
+    {
+      "name": "Madondo",
+      "weight": 7.0
+    },
+    {
+      "name": "Mandizvidza",
+      "weight": 7.0
+    },
+    {
+      "name": "Ruzvidzo",
+      "weight": 7.0
+    },
+    {
+      "name": "Nyakudya",
+      "weight": 7.0
+    },
+    {
+      "name": "Muzenda",
+      "weight": 7.0
+    },
+    {
+      "name": "Mahlangu",
+      "weight": 7.0
+    },
+    {
+      "name": "Hungwe",
+      "weight": 7.0
+    },
+    {
+      "name": "Makore",
+      "weight": 7.0
+    },
+    {
+      "name": "Mguni",
+      "weight": 7.0
+    },
+    {
+      "name": "Mugabe",
+      "weight": 7.0
+    },
+    {
+      "name": "Mugwagwa",
+      "weight": 6.0
+    },
+    {
+      "name": "Musekiwa",
+      "weight": 6.0
+    },
+    {
+      "name": "Nkiwane",
+      "weight": 6.0
+    },
+    {
+      "name": "Chibaya",
+      "weight": 6.0
+    },
+    {
+      "name": "Majoni",
+      "weight": 6.0
+    },
+    {
+      "name": "Dhlamini",
+      "weight": 6.0
+    },
+    {
+      "name": "Matambo",
+      "weight": 6.0
+    },
+    {
+      "name": "Mashiri",
+      "weight": 6.0
+    },
+    {
+      "name": "Mlotshwa",
+      "weight": 6.0
+    },
+    {
+      "name": "Mutema",
+      "weight": 6.0
+    },
+    {
+      "name": "Mtetwa",
+      "weight": 6.0
+    },
+    {
+      "name": "Machingura",
+      "weight": 6.0
+    },
+    {
+      "name": "Makuyana",
+      "weight": 6.0
+    },
+    {
+      "name": "Mwale",
+      "weight": 6.0
+    },
+    {
+      "name": "Masunda",
+      "weight": 6.0
+    },
+    {
+      "name": "Mwembe",
+      "weight": 6.0
+    },
+    {
+      "name": "Muchena",
+      "weight": 6.0
+    },
+    {
+      "name": "Gomo",
+      "weight": 6.0
+    },
+    {
+      "name": "Nyamande",
+      "weight": 6.0
+    },
+    {
+      "name": "Rusere",
+      "weight": 6.0
+    },
+    {
+      "name": "Chakanyuka",
+      "weight": 6.0
+    },
+    {
+      "name": "Masawi",
+      "weight": 6.0
+    },
+    {
+      "name": "Musonza",
+      "weight": 6.0
+    },
+    {
+      "name": "Marange",
+      "weight": 6.0
+    },
+    {
+      "name": "Mutandwa",
+      "weight": 6.0
+    },
+    {
+      "name": "Jimu",
+      "weight": 6.0
+    },
+    {
+      "name": "Matsika",
+      "weight": 6.0
+    },
+    {
+      "name": "Mhembere",
+      "weight": 6.0
+    },
+    {
+      "name": "Mutize",
+      "weight": 6.0
+    },
+    {
+      "name": "Mkandla",
+      "weight": 6.0
+    },
+    {
+      "name": "Gumede",
+      "weight": 5.0
+    },
+    {
+      "name": "Matare",
+      "weight": 5.0
+    },
+    {
+      "name": "Katiyo",
+      "weight": 5.0
+    },
+    {
+      "name": "Sibindi",
+      "weight": 5.0
+    },
+    {
+      "name": "Mujuru",
+      "weight": 5.0
+    },
+    {
+      "name": "Chinyama",
+      "weight": 5.0
+    },
+    {
+      "name": "Murwira",
+      "weight": 5.0
+    },
+    {
+      "name": "Musarurwa",
+      "weight": 5.0
+    },
+    {
+      "name": "Ngorima",
+      "weight": 5.0
+    },
+    {
+      "name": "Muzanenhamo",
+      "weight": 5.0
+    },
+    {
+      "name": "Ndiweni",
+      "weight": 5.0
+    },
+    {
+      "name": "Motsi",
+      "weight": 5.0
+    },
+    {
+      "name": "Paradza",
+      "weight": 5.0
+    },
+    {
+      "name": "Mkwananzi",
+      "weight": 5.0
+    },
+    {
+      "name": "Mamvura",
+      "weight": 5.0
+    },
+    {
+      "name": "Mawire",
+      "weight": 5.0
+    },
+    {
+      "name": "Munyoro",
+      "weight": 5.0
+    },
+    {
+      "name": "Chiweshe",
+      "weight": 5.0
+    },
+    {
+      "name": "John",
+      "weight": 5.0
+    },
+    {
+      "name": "Muzondo",
+      "weight": 5.0
+    },
+    {
+      "name": "Marowa",
+      "weight": 5.0
+    },
+    {
+      "name": "Khupe",
+      "weight": 5.0
+    },
+    {
+      "name": "Mutale",
+      "weight": 5.0
+    },
+    {
+      "name": "Masiya",
+      "weight": 5.0
+    },
+    {
+      "name": "Mwanza",
+      "weight": 5.0
+    },
+    {
+      "name": "Mashingaidze",
+      "weight": 5.0
+    },
+    {
+      "name": "Marimo",
+      "weight": 5.0
+    },
+    {
+      "name": "Tafirenyika",
+      "weight": 5.0
+    },
+    {
+      "name": "Msipa",
+      "weight": 5.0
+    },
+    {
+      "name": "Nyikadzino",
+      "weight": 5.0
+    },
+    {
+      "name": "Mugadza",
+      "weight": 5.0
+    },
+    {
+      "name": "Maponga",
+      "weight": 5.0
+    },
+    {
+      "name": "Ngirazi",
+      "weight": 5.0
+    },
+    {
+      "name": "Mashava",
+      "weight": 5.0
+    },
+    {
+      "name": "Mhaka",
+      "weight": 5.0
+    },
+    {
+      "name": "James",
+      "weight": 5.0
+    },
+    {
+      "name": "Mafuta",
+      "weight": 5.0
+    },
+    {
+      "name": "Mashonganyika",
+      "weight": 5.0
+    },
+    {
+      "name": "Mafukidze",
+      "weight": 5.0
+    },
+    {
+      "name": "Tsuro",
+      "weight": 5.0
+    },
+    {
+      "name": "Madziva",
+      "weight": 5.0
+    },
+    {
+      "name": "Chirume",
+      "weight": 5.0
+    },
+    {
+      "name": "Mwinde",
+      "weight": 5.0
+    },
+    {
+      "name": "Chikomo",
+      "weight": 5.0
+    },
+    {
+      "name": "Shoniwa",
+      "weight": 5.0
+    },
+    {
+      "name": "Munkombwe",
+      "weight": 5.0
+    },
+    {
+      "name": "Hadebe",
+      "weight": 5.0
+    },
+    {
+      "name": "Kunaka",
+      "weight": 5.0
+    },
+    {
+      "name": "Mbewe",
+      "weight": 5.0
+    },
+    {
+      "name": "Nhamo",
+      "weight": 5.0
+    },
+    {
+      "name": "Taderera",
+      "weight": 4.0
+    },
+    {
+      "name": "Madzinga",
+      "weight": 4.0
+    },
+    {
+      "name": "Tavengwa",
+      "weight": 4.0
+    },
+    {
+      "name": "Siwela",
+      "weight": 4.0
+    },
+    {
+      "name": "Musariri",
+      "weight": 4.0
+    },
+    {
+      "name": "Mudimu",
+      "weight": 4.0
+    },
+    {
+      "name": "Marume",
+      "weight": 4.0
+    }
+  ]
+}
