@@ -1,0 +1,1074 @@
+{
+  "femaleNames": [
+    { "name": "Aarti" },
+    { "name": "Aishwarya" },
+    { "name": "Akhila" },
+    { "name": "Alya" },
+    { "name": "Amrita" },
+    { "name": "Ananya" },
+    { "name": "Anjali" },
+    { "name": "Ankita" },
+    { "name": "Anupama" },
+    { "name": "Arpita" },
+    { "name": "Ayeshma" },
+    { "name": "Ayindri" },
+    { "name": "Bipasha" },
+    { "name": "Chitralekha" },
+    { "name": "Damayanti" },
+    { "name": "Deepa" },
+    { "name": "Deepali" },
+    { "name": "Deepika" },
+    { "name": "Deepti" },
+    { "name": "Devanshi" },
+    { "name": "Dhanishka" },
+    { "name": "Eva" },
+    { "name": "Gayatri" },
+    { "name": "Geeta" },
+    { "name": "Harshita" },
+    { "name": "Hemalata" },
+    { "name": "Indira" },
+    { "name": "Indrani" },
+    { "name": "Jara" },
+    { "name": "Jesminder" },
+    { "name": "Juhi" },
+    { "name": "Kanika" },
+    { "name": "Karthika" },
+    { "name": "Kavita" },
+    { "name": "Kirtan" },
+    { "name": "Lata" },
+    { "name": "Lauretta" },
+    { "name": "Leelavathi" },
+    { "name": "Madhuri" },
+    { "name": "Mallika" },
+    { "name": "Manjula" },
+    { "name": "Mira" },
+    { "name": "Nahla" },
+    { "name": "Naila" },
+    { "name": "Neha" },
+    { "name": "Nikita" },
+    { "name": "Padmavati" },
+    { "name": "Parvathy" },
+    { "name": "Parvati" },
+    { "name": "Phanita" },
+    { "name": "Poonam" },
+    { "name": "Praharshitha" },
+    { "name": "Pratibha" },
+    { "name": "Preeti" },
+    { "name": "Priya" },
+    { "name": "Puja" },
+    { "name": "Ramya" },
+    { "name": "Rani" },
+    { "name": "Rashmi" },
+    { "name": "Rati" },
+    { "name": "Rekha" },
+    { "name": "Richa" },
+    { "name": "Ritwika" },
+    { "name": "Saloni" },
+    { "name": "Sampasree" },
+    { "name": "Sanah" },
+    { "name": "Sandhya" },
+    { "name": "Sania" },
+    { "name": "Saraswati Devi" },
+    { "name": "Satyana" },
+    { "name": "Sharmila" },
+    { "name": "Sheela" },
+    { "name": "Sheetal" },
+    { "name": "Shilpa" },
+    { "name": "Shreya" },
+    { "name": "Shweta" },
+    { "name": "Sneha" },
+    { "name": "Sudha" },
+    { "name": "Sujata" },
+    { "name": "Sulochana" },
+    { "name": "Supriya" },
+    { "name": "Sushma" },
+    { "name": "Susmita" },
+    { "name": "Swetha" },
+    { "name": "Tala" },
+    { "name": "Tanisha" },
+    { "name": "Tanushree" },
+    { "name": "Tejal" },
+    { "name": "Uruvi" },
+    { "name": "Varsha" },
+    { "name": "Vijayalakshmi" },
+    { "name": "Vrushali" },
+    { "name": "Yamini" },
+    { "name": "Yashaswi" },
+    { "name": "Gurdeep" },
+    { "name": "Indra" },
+    { "name": "Jeevan" },
+    { "name": "Kiran" },
+    { "name": "Nalini" },
+    { "name": "Navneet" },
+    { "name": "Ranjani" },
+    { "name": "Ranjith" },
+    { "name": "Sandeep" },
+    { "name": "Soumya" },
+    { "name": "Veena" },
+    { "name": "Vidya" }
+  ],
+  "maleNames": [
+    { "name": "Abhay" },
+    { "name": "Abhinav" },
+    { "name": "Abhishek" },
+    { "name": "Adesh" },
+    { "name": "Ajit" },
+    { "name": "Akhil" },
+    { "name": "Amit" },
+    { "name": "Ammar" },
+    { "name": "Anil" },
+    { "name": "Aniruddha" },
+    { "name": "Anuj" },
+    { "name": "Anup" },
+    { "name": "Anurag" },
+    { "name": "Arjun" },
+    { "name": "Armaan" },
+    { "name": "Arun" },
+    { "name": "Arvind" },
+    { "name": "Aseem" },
+    { "name": "Ashish" },
+    { "name": "Ashoka" },
+    { "name": "Ashvin" },
+    { "name": "Azhar" },
+    { "name": "Bharat" },
+    { "name": "Bhavesh" },
+    { "name": "Bhupinder" },
+    { "name": "Bhushan" },
+    { "name": "Bibin" },
+    { "name": "Bijan" },
+    { "name": "Biju" },
+    { "name": "Binu" },
+    { "name": "Deepak" },
+    { "name": "Devesh" },
+    { "name": "Dipankar" },
+    { "name": "Ekram" },
+    { "name": "Ganesh" },
+    { "name": "Girish" },
+    { "name": "Girjesh" },
+    { "name": "Gopinathan" },
+    { "name": "Gurcharan" },
+    { "name": "Gurunath" },
+    { "name": "Hansraj" },
+    { "name": "Harish" },
+    { "name": "Harsh" },
+    { "name": "Hitesh" },
+    { "name": "Indranil" },
+    { "name": "Ira" },
+    { "name": "Ishana" },
+    { "name": "Jagannath" },
+    { "name": "Jaipal" },
+    { "name": "Jayant" },
+    { "name": "Jitendra" },
+    { "name": "Kalimuthu" },
+    { "name": "Kamran" },
+    { "name": "Karthik" },
+    { "name": "Karthikeyan" },
+    { "name": "Kishor" },
+    { "name": "Krishnan" },
+    { "name": "Krishnappa" },
+    { "name": "Krishnayya" },
+    { "name": "Kumar" },
+    { "name": "Mahboob" },
+    { "name": "Mahendra" },
+    { "name": "Mandar" },
+    { "name": "Manmohan" },
+    { "name": "Mayank" },
+    { "name": "Mukesh" },
+    { "name": "Munish" },
+    { "name": "Nadeem" },
+    { "name": "Nagesh" },
+    { "name": "Nana" },
+    { "name": "Navin" },
+    { "name": "Nihal" },
+    { "name": "Nihar" },
+    { "name": "Nirav" },
+    { "name": "Nitesh" },
+    { "name": "Nitin" },
+    { "name": "Palanivel" },
+    { "name": "Pallav" },
+    { "name": "Pankaj" },
+    { "name": "Prakash" },
+    { "name": "Pramod" },
+    { "name": "Pranab" },
+    { "name": "Pratul" },
+    { "name": "Priyabrata" },
+    { "name": "Rahul" },
+    { "name": "Raj" },
+    { "name": "Raja" },
+    { "name": "Rajesh" },
+    { "name": "Rajinder" },
+    { "name": "Rajiv" },
+    { "name": "Rakesh" },
+    { "name": "Ramakant" },
+    { "name": "Ramesh" },
+    { "name": "Ranbir" },
+    { "name": "Randhir" },
+    { "name": "Ranganath" },
+    { "name": "Ravi" },
+    { "name": "Ravinder" },
+    { "name": "Rinjish" },
+    { "name": "Ritwik" },
+    { "name": "Rohit" },
+    { "name": "Sachin" },
+    { "name": "Sahil" },
+    { "name": "Saket" },
+    { "name": "Samir" },
+    { "name": "Sandeep" },
+    { "name": "Sandeep Kumar" },
+    { "name": "Sandipan" },
+    { "name": "Sarabjit" },
+    { "name": "Saravanan" },
+    { "name": "Satyajit" },
+    { "name": "Sekar" },
+    { "name": "Shahbaz" },
+    { "name": "Shailendra" },
+    { "name": "Sharad" },
+    { "name": "Shekhar" },
+    { "name": "Shishir" },
+    { "name": "Shishira" },
+    { "name": "Shridhar" },
+    { "name": "Shubhendu" },
+    { "name": "Smeet" },
+    { "name": "Somesh" },
+    { "name": "Soumitra" },
+    { "name": "Sourav" },
+    { "name": "Srikanta" },
+    { "name": "Srinivas" },
+    { "name": "Subrata" },
+    { "name": "Sudhir" },
+    { "name": "Sudhir Kumar" },
+    { "name": "Sukhbir" },
+    { "name": "Sundar" },
+    { "name": "Sunder" },
+    { "name": "Sunil" },
+    { "name": "Surendranath" },
+    { "name": "Suresh" },
+    { "name": "Sureza" },
+    { "name": "Surinder" },
+    { "name": "Sushil" },
+    { "name": "Tarun" },
+    { "name": "Umesh" },
+    { "name": "Vasudevan" },
+    { "name": "Venu" },
+    { "name": "Vikas" },
+    { "name": "Vinay" },
+    { "name": "Vinod" },
+    { "name": "Wasim" },
+    { "name": "Yash" },
+    { "name": "Yogesh" },
+    { "name": "Gurdeep" },
+    { "name": "Indra" },
+    { "name": "Jeevan" },
+    { "name": "Kiran" },
+    { "name": "Nalini" },
+    { "name": "Navneet" },
+    { "name": "Ranjani" },
+    { "name": "Ranjith" },
+    { "name": "Sandeep" },
+    { "name": "Soumya" },
+    { "name": "Veena" },
+    { "name": "Vidya" }
+  ],
+  "surnames": [
+    {
+      "name": "Devi",
+      "weight": 692.0
+    },
+    {
+      "name": "Singh",
+      "weight": 361.0
+    },
+    {
+      "name": "Kumar",
+      "weight": 310.0
+    },
+    {
+      "name": "Das",
+      "weight": 105.0
+    },
+    {
+      "name": "Kaur",
+      "weight": 104.0
+    },
+    {
+      "name": "Ram",
+      "weight": 74.0
+    },
+    {
+      "name": "Yadav",
+      "weight": 71.0
+    },
+    {
+      "name": "Kumari",
+      "weight": 63.0
+    },
+    {
+      "name": "Ali",
+      "weight": 58.0
+    },
+    {
+      "name": "Lal",
+      "weight": 58.0
+    },
+    {
+      "name": "Bibi",
+      "weight": 57.0
+    },
+    {
+      "name": "Khatun",
+      "weight": 55.0
+    },
+    {
+      "name": "Bai",
+      "weight": 54.0
+    },
+    {
+      "name": "Sharma",
+      "weight": 49.0
+    },
+    {
+      "name": "Sah",
+      "weight": 45.0
+    },
+    {
+      "name": "Khan",
+      "weight": 44.0
+    },
+    {
+      "name": "Mandal",
+      "weight": 44.0
+    },
+    {
+      "name": "Mondal",
+      "weight": 40.0
+    },
+    {
+      "name": "Patel",
+      "weight": 40.0
+    },
+    {
+      "name": "Patil",
+      "weight": 38.0
+    },
+    {
+      "name": "Prasad",
+      "weight": 37.0
+    },
+    {
+      "name": "Roy",
+      "weight": 34.0
+    },
+    {
+      "name": "Ray",
+      "weight": 33.0
+    },
+    {
+      "name": "Sheikh",
+      "weight": 29.0
+    },
+    {
+      "name": "Shaikh",
+      "weight": 29.0
+    },
+    {
+      "name": "Sahu",
+      "weight": 28.0
+    },
+    {
+      "name": "Gupta",
+      "weight": 27.0
+    },
+    {
+      "name": "Pal",
+      "weight": 25.0
+    },
+    {
+      "name": "Mahato",
+      "weight": 25.0
+    },
+    {
+      "name": "Barman",
+      "weight": 25.0
+    },
+    {
+      "name": "Begam",
+      "weight": 25.0
+    },
+    {
+      "name": "Paramar",
+      "weight": 24.0
+    },
+    {
+      "name": "Ansari",
+      "weight": 23.0
+    },
+    {
+      "name": "Nayak",
+      "weight": 22.0
+    },
+    {
+      "name": "Rathod",
+      "weight": 21.0
+    },
+    {
+      "name": "Jadhav",
+      "weight": 21.0
+    },
+    {
+      "name": "Begum",
+      "weight": 21.0
+    },
+    {
+      "name": "Ghosh",
+      "weight": 21.0
+    },
+    {
+      "name": "Rani",
+      "weight": 21.0
+    },
+    {
+      "name": "Mahto",
+      "weight": 21.0
+    },
+    {
+      "name": "Sarkar",
+      "weight": 20.0
+    },
+    {
+      "name": "Murmu",
+      "weight": 20.0
+    },
+    {
+      "name": "Chand",
+      "weight": 20.0
+    },
+    {
+      "name": "Behera",
+      "weight": 20.0
+    },
+    {
+      "name": "Paswan",
+      "weight": 18.0
+    },
+    {
+      "name": "Mishra",
+      "weight": 18.0
+    },
+    {
+      "name": "Majhi",
+      "weight": 18.0
+    },
+    {
+      "name": "Patal",
+      "weight": 18.0
+    },
+    {
+      "name": "Khatoon",
+      "weight": 17.0
+    },
+    {
+      "name": "Thakur",
+      "weight": 17.0
+    },
+    {
+      "name": "Biswas",
+      "weight": 17.0
+    },
+    {
+      "name": "Thakor",
+      "weight": 17.0
+    },
+    {
+      "name": "Ahamad",
+      "weight": 16.0
+    },
+    {
+      "name": "Pawar",
+      "weight": 16.0
+    },
+    {
+      "name": "Chauhan",
+      "weight": 16.0
+    },
+    {
+      "name": "Naik",
+      "weight": 16.0
+    },
+    {
+      "name": "Pradhan",
+      "weight": 16.0
+    },
+    {
+      "name": "Bano",
+      "weight": 16.0
+    },
+    {
+      "name": "Alam",
+      "weight": 15.0
+    },
+    {
+      "name": "Bauri",
+      "weight": 14.0
+    },
+    {
+      "name": "Saha",
+      "weight": 14.0
+    },
+    {
+      "name": "Shinde",
+      "weight": 14.0
+    },
+    {
+      "name": "Oraon",
+      "weight": 13.0
+    },
+    {
+      "name": "Munda",
+      "weight": 13.0
+    },
+    {
+      "name": "Malik",
+      "weight": 13.0
+    },
+    {
+      "name": "Raut",
+      "weight": 12.0
+    },
+    {
+      "name": "Nath",
+      "weight": 12.0
+    },
+    {
+      "name": "Sardar",
+      "weight": 12.0
+    },
+    {
+      "name": "Shaik",
+      "weight": 11.0
+    },
+    {
+      "name": "Patra",
+      "weight": 11.0
+    },
+    {
+      "name": "Chandra",
+      "weight": 11.0
+    },
+    {
+      "name": "Chahan",
+      "weight": 11.0
+    },
+    {
+      "name": "Tudu",
+      "weight": 11.0
+    },
+    {
+      "name": "Prakash",
+      "weight": 11.0
+    },
+    {
+      "name": "Shah",
+      "weight": 10.0
+    },
+    {
+      "name": "Sinh",
+      "weight": 10.0
+    },
+    {
+      "name": "Raj",
+      "weight": 10.0
+    },
+    {
+      "name": "Jha",
+      "weight": 10.0
+    },
+    {
+      "name": "Vasav",
+      "weight": 10.0
+    },
+    {
+      "name": "Chaudhari",
+      "weight": 10.0
+    },
+    {
+      "name": "Manjhi",
+      "weight": 10.0
+    },
+    {
+      "name": "Jain",
+      "weight": 10.0
+    },
+    {
+      "name": "Mohammed",
+      "weight": 10.0
+    },
+    {
+      "name": "Kamble",
+      "weight": 10.0
+    },
+    {
+      "name": "Soren",
+      "weight": 10.0
+    },
+    {
+      "name": "Pandit",
+      "weight": 9.0
+    },
+    {
+      "name": "Chaudhary",
+      "weight": 9.0
+    },
+    {
+      "name": "Pandey",
+      "weight": 9.0
+    },
+    {
+      "name": "Rai",
+      "weight": 9.0
+    },
+    {
+      "name": "Islam",
+      "weight": 9.0
+    },
+    {
+      "name": "Rana",
+      "weight": 9.0
+    },
+    {
+      "name": "Solanki",
+      "weight": 9.0
+    },
+    {
+      "name": "Pathan",
+      "weight": 9.0
+    },
+    {
+      "name": "Jena",
+      "weight": 9.0
+    },
+    {
+      "name": "Hussain",
+      "weight": 9.0
+    },
+    {
+      "name": "Makavan",
+      "weight": 9.0
+    },
+    {
+      "name": "Gayakwad",
+      "weight": 8.0
+    },
+    {
+      "name": "Hansda",
+      "weight": 8.0
+    },
+    {
+      "name": "Uddin",
+      "weight": 8.0
+    },
+    {
+      "name": "More",
+      "weight": 8.0
+    },
+    {
+      "name": "Nisha",
+      "weight": 8.0
+    },
+    {
+      "name": "Bagdi",
+      "weight": 8.0
+    },
+    {
+      "name": "Varma",
+      "weight": 8.0
+    },
+    {
+      "name": "Jana",
+      "weight": 7.0
+    },
+    {
+      "name": "Sih",
+      "weight": 7.0
+    },
+    {
+      "name": "Kadam",
+      "weight": 7.0
+    },
+    {
+      "name": "Reddy",
+      "weight": 7.0
+    },
+    {
+      "name": "Maity",
+      "weight": 7.0
+    },
+    {
+      "name": "Ahmed",
+      "weight": 7.0
+    },
+    {
+      "name": "Molla",
+      "weight": 7.0
+    },
+    {
+      "name": "Giri",
+      "weight": 7.0
+    },
+    {
+      "name": "Barik",
+      "weight": 7.0
+    },
+    {
+      "name": "Husain",
+      "weight": 7.0
+    },
+    {
+      "name": "Bhagat",
+      "weight": 7.0
+    },
+    {
+      "name": "Bag",
+      "weight": 7.0
+    },
+    {
+      "name": "Kanwar",
+      "weight": 7.0
+    },
+    {
+      "name": "Sekha",
+      "weight": 6.0
+    },
+    {
+      "name": "Hembram",
+      "weight": 6.0
+    },
+    {
+      "name": "Miya",
+      "weight": 6.0
+    },
+    {
+      "name": "Debnath",
+      "weight": 6.0
+    },
+    {
+      "name": "Dey",
+      "weight": 6.0
+    },
+    {
+      "name": "Swain",
+      "weight": 6.0
+    },
+    {
+      "name": "Mal",
+      "weight": 6.0
+    },
+    {
+      "name": "Dutta",
+      "weight": 6.0
+    },
+    {
+      "name": "Jahan",
+      "weight": 6.0
+    },
+    {
+      "name": "Basumatary",
+      "weight": 6.0
+    },
+    {
+      "name": "Bera",
+      "weight": 6.0
+    },
+    {
+      "name": "Shankar",
+      "weight": 6.0
+    },
+    {
+      "name": "Bhoi",
+      "weight": 6.0
+    },
+    {
+      "name": "Tiwari",
+      "weight": 6.0
+    },
+    {
+      "name": "Verma",
+      "weight": 6.0
+    },
+    {
+      "name": "Mali",
+      "weight": 6.0
+    },
+    {
+      "name": "Dei",
+      "weight": 6.0
+    },
+    {
+      "name": "Sing",
+      "weight": 6.0
+    },
+    {
+      "name": "Joshi",
+      "weight": 6.0
+    },
+    {
+      "name": "Rathav",
+      "weight": 6.0
+    },
+    {
+      "name": "Gogoi",
+      "weight": 6.0
+    },
+    {
+      "name": "Sangma",
+      "weight": 6.0
+    },
+    {
+      "name": "Halder",
+      "weight": 6.0
+    },
+    {
+      "name": "Sinha",
+      "weight": 6.0
+    },
+    {
+      "name": "Ahmad",
+      "weight": 5.0
+    },
+    {
+      "name": "Kisku",
+      "weight": 5.0
+    },
+    {
+      "name": "Mohammad",
+      "weight": 5.0
+    },
+    {
+      "name": "Sahoo",
+      "weight": 5.0
+    },
+    {
+      "name": "Paul",
+      "weight": 5.0
+    },
+    {
+      "name": "Marandi",
+      "weight": 5.0
+    },
+    {
+      "name": "Panda",
+      "weight": 5.0
+    },
+    {
+      "name": "Vaghel",
+      "weight": 5.0
+    },
+    {
+      "name": "Rahaman",
+      "weight": 5.0
+    },
+    {
+      "name": "Bewa",
+      "weight": 5.0
+    },
+    {
+      "name": "Solank",
+      "weight": 5.0
+    },
+    {
+      "name": "Karmakar",
+      "weight": 5.0
+    },
+    {
+      "name": "Singha",
+      "weight": 5.0
+    },
+    {
+      "name": "Marak",
+      "weight": 5.0
+    },
+    {
+      "name": "Sekh",
+      "weight": 5.0
+    },
+    {
+      "name": "Lohar",
+      "weight": 5.0
+    },
+    {
+      "name": "Saw",
+      "weight": 5.0
+    },
+    {
+      "name": "Rahman",
+      "weight": 5.0
+    },
+    {
+      "name": "Narayan",
+      "weight": 5.0
+    },
+    {
+      "name": "Kale",
+      "weight": 5.0
+    },
+    {
+      "name": "Rao",
+      "weight": 5.0
+    },
+    {
+      "name": "Boro",
+      "weight": 5.0
+    },
+    {
+      "name": "Pramanik",
+      "weight": 5.0
+    },
+    {
+      "name": "Sahani",
+      "weight": 5.0
+    },
+    {
+      "name": "Rabha",
+      "weight": 5.0
+    },
+    {
+      "name": "Mohanty",
+      "weight": 5.0
+    },
+    {
+      "name": "Shukla",
+      "weight": 5.0
+    },
+    {
+      "name": "Babu",
+      "weight": 5.0
+    },
+    {
+      "name": "Bala",
+      "weight": 5.0
+    },
+    {
+      "name": "Koli",
+      "weight": 5.0
+    },
+    {
+      "name": "Shek",
+      "weight": 5.0
+    },
+    {
+      "name": "Deshmukh",
+      "weight": 5.0
+    },
+    {
+      "name": "Soni",
+      "weight": 5.0
+    },
+    {
+      "name": "Mane",
+      "weight": 5.0
+    },
+    {
+      "name": "Mahata",
+      "weight": 5.0
+    },
+    {
+      "name": "Nair",
+      "weight": 5.0
+    },
+    {
+      "name": "Haldar",
+      "weight": 5.0
+    },
+    {
+      "name": "Sawant",
+      "weight": 5.0
+    },
+    {
+      "name": "Samanta",
+      "weight": 4.0
+    },
+    {
+      "name": "Tivari",
+      "weight": 4.0
+    },
+    {
+      "name": "Debbarma",
+      "weight": 4.0
+    },
+    {
+      "name": "Deka",
+      "weight": 4.0
+    },
+    {
+      "name": "Cavad",
+      "weight": 4.0
+    },
+    {
+      "name": "Mandi",
+      "weight": 4.0
+    },
+    {
+      "name": "Sonvane",
+      "weight": 4.0
+    },
+    {
+      "name": "Haque",
+      "weight": 4.0
+    },
+    {
+      "name": "Pathak",
+      "weight": 4.0
+    },
+    {
+      "name": "Chakraborty",
+      "weight": 4.0
+    },
+    {
+      "name": "Rawal",
+      "weight": 4.0
+    },
+    {
+      "name": "Tanti",
+      "weight": 4.0
+    },
+    {
+      "name": "Rajak",
+      "weight": 4.0
+    },
+    {
+      "name": "Shrivastav",
+      "weight": 4.0
+    },
+    {
+      "name": "Mistri",
+      "weight": 4.0
+    },
+    {
+      "name": "Manna",
+      "weight": 4.0
+    },
+    {
+      "name": "Mallick",
+      "weight": 4.0
+    },
+    {
+      "name": "Sahni",
+      "weight": 4.0
+    },
+    {
+      "name": "Saren",
+      "weight": 4.0
+    },
+    {
+      "name": "Kour",
+      "weight": 4.0
+    },
+    {
+      "name": "Laskar",
+      "weight": 4.0
+    },
+    {
+      "name": "Waghmare",
+      "weight": 4.0
+    }
+  ]
+}

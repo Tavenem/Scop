@@ -1,0 +1,1008 @@
+{
+  "femaleNames": [
+    { "name": "Emma" },
+    { "name": "Nora" },
+    { "name": "Emilie" },
+    { "name": "Sofie" },
+    { "name": "Anna" },
+    { "name": "Thea" },
+    { "name": "Ingrid" },
+    { "name": "Ella" },
+    { "name": "Julie" },
+    { "name": "Ida" },
+    { "name": "Linnea" },
+    { "name": "Sara" },
+    { "name": "Amalie" },
+    { "name": "Olivia" },
+    { "name": "Frida" },
+    { "name": "Mia" },
+    { "name": "Vilde" },
+    { "name": "Jenny" },
+    { "name": "Leah" },
+    { "name": "Mathilde" },
+    { "name": "Tiril" },
+    { "name": "Sofia" },
+    { "name": "Maja" },
+    { "name": "Aurora" },
+    { "name": "Hedda" },
+    { "name": "Maria" },
+    { "name": "Marie" },
+    { "name": "Tuva" },
+    { "name": "Oda" },
+    { "name": "Victoria" },
+    { "name": "Elise" },
+    { "name": "Mie" },
+    { "name": "Eline" },
+    { "name": "Lilly" },
+    { "name": "Selma" },
+    { "name": "Alma" },
+    { "name": "Hanna" },
+    { "name": "Live" },
+    { "name": "Mina" },
+    { "name": "Pernille" },
+    { "name": "Amanda" },
+    { "name": "Celine" },
+    { "name": "Malin" },
+    { "name": "Julia" },
+    { "name": "Sigrid" },
+    { "name": "Mathea" },
+    { "name": "Martine" },
+    { "name": "Agnes" },
+    { "name": "Emily" },
+    { "name": "Mille" },
+    { "name": "Mari" },
+    { "name": "Astrid" },
+    { "name": "Isabella" },
+    { "name": "Signe" },
+    { "name": "Alva" },
+    { "name": "Eva" },
+    { "name": "Sarah" },
+    { "name": "Andrea" },
+    { "name": "Ada" },
+    { "name": "Johanne" },
+    { "name": "Ellinor" },
+    { "name": "Sophia" },
+    { "name": "Amelia" },
+    { "name": "Ronja" },
+    { "name": "Emilia" },
+    { "name": "Hannah" },
+    { "name": "Hermine" },
+    { "name": "Helene" },
+    { "name": "Sunniva" },
+    { "name": "Oline" },
+    { "name": "Iben" },
+    { "name": "Synne" },
+    { "name": "Josefine" },
+    { "name": "Lotte" },
+    { "name": "Ingeborg" },
+    { "name": "Isabell" },
+    { "name": "Sanna" },
+    { "name": "Solveig" },
+    { "name": "Ane" },
+    { "name": "Lykke" },
+    { "name": "Johanna" },
+    { "name": "Saga" },
+    { "name": "Lena" },
+    { "name": "Maya" },
+    { "name": "Stella" },
+    { "name": "Elida" },
+    { "name": "Nathalie" },
+    { "name": "Ylva" },
+    { "name": "Elvira" },
+    { "name": "Milla" },
+    { "name": "Kaja" },
+    { "name": "Anne" },
+    { "name": "Lea" },
+    { "name": "Madelen" },
+    { "name": "Erle" },
+    { "name": "Liv" },
+    { "name": "Louise" },
+    { "name": "Karoline" },
+    { "name": "Celina" },
+    { "name": "Maren" }
+  ],
+  "maleNames": [
+    { "name": "William" },
+    { "name": "Emil" },
+    { "name": "Magnus" },
+    { "name": "Henrik" },
+    { "name": "Mathias" },
+    { "name": "Oliver" },
+    { "name": "Jonas" },
+    { "name": "Elias" },
+    { "name": "Noah" },
+    { "name": "Liam" },
+    { "name": "Sander" },
+    { "name": "Aksel" },
+    { "name": "Isak" },
+    { "name": "Leon" },
+    { "name": "Tobias" },
+    { "name": "Sebastian" },
+    { "name": "Lucas" },
+    { "name": "Markus" },
+    { "name": "Benjamin" },
+    { "name": "Daniel" },
+    { "name": "Adrian" },
+    { "name": "Matheo" },
+    { "name": "Johannes" },
+    { "name": "Martin" },
+    { "name": "Jakob" },
+    { "name": "Theodor" },
+    { "name": "Oskar" },
+    { "name": "Filip" },
+    { "name": "Olav" },
+    { "name": "Håkon" },
+    { "name": "Alexander" },
+    { "name": "Andreas" },
+    { "name": "Kasper" },
+    { "name": "Odin" },
+    { "name": "Theo" },
+    { "name": "Oscar" },
+    { "name": "Lukas" },
+    { "name": "Kristian" },
+    { "name": "Sigurd" },
+    { "name": "Erik" },
+    { "name": "Herman" },
+    { "name": "Mikkel" },
+    { "name": "Marius" },
+    { "name": "Even" },
+    { "name": "Marcus" },
+    { "name": "Ole" },
+    { "name": "Julian" },
+    { "name": "David" },
+    { "name": "Johan" },
+    { "name": "Sondre" },
+    { "name": "Jonathan" },
+    { "name": "Leander" },
+    { "name": "Fredrik" },
+    { "name": "Brage" },
+    { "name": "Gabriel" },
+    { "name": "Ulrik" },
+    { "name": "Ludvig" },
+    { "name": "Felix" },
+    { "name": "Iver" },
+    { "name": "Leo" },
+    { "name": "Jacob" },
+    { "name": "Nikolai" },
+    { "name": "Vetle" },
+    { "name": "Sverre" },
+    { "name": "Adam" },
+    { "name": "Aron" },
+    { "name": "Max" },
+    { "name": "Eirik" },
+    { "name": "Lars" },
+    { "name": "Christian" },
+    { "name": "Alfred" },
+    { "name": "Ola" },
+    { "name": "Edvard" },
+    { "name": "Casper" },
+    { "name": "Trym" },
+    { "name": "Aleksander" },
+    { "name": "Samuel" },
+    { "name": "Emrik" },
+    { "name": "Gustav" },
+    { "name": "Kevin" },
+    { "name": "Thomas" },
+    { "name": "Linus" },
+    { "name": "Kristoffer" },
+    { "name": "Mats" },
+    { "name": "Victor" },
+    { "name": "Viljar" },
+    { "name": "Jesper" },
+    { "name": "Philip" },
+    { "name": "Anton" },
+    { "name": "Storm" },
+    { "name": "Viktor" },
+    { "name": "Simon" },
+    { "name": "Dennis" },
+    { "name": "Peder" },
+    { "name": "Albert" },
+    { "name": "August" },
+    { "name": "Birk" },
+    { "name": "Olai" },
+    { "name": "Sivert" },
+    { "name": "Teodor" }
+  ],
+  "surnames": [
+    {
+      "name": "Hansen",
+      "weight": 46.0
+    },
+    {
+      "name": "Johansen",
+      "weight": 43.0
+    },
+    {
+      "name": "Olsen",
+      "weight": 43.0
+    },
+    {
+      "name": "Andersen",
+      "weight": 37.0
+    },
+    {
+      "name": "Larsen",
+      "weight": 37.0
+    },
+    {
+      "name": "Nilsen",
+      "weight": 33.0
+    },
+    {
+      "name": "Pedersen",
+      "weight": 32.0
+    },
+    {
+      "name": "Kristiansen",
+      "weight": 23.0
+    },
+    {
+      "name": "Jensen",
+      "weight": 22.0
+    },
+    {
+      "name": "Johnsen",
+      "weight": 22.0
+    },
+    {
+      "name": "Berg",
+      "weight": 22.0
+    },
+    {
+      "name": "Eriksen",
+      "weight": 20.0
+    },
+    {
+      "name": "Karlsen",
+      "weight": 20.0
+    },
+    {
+      "name": "Pettersen",
+      "weight": 20.0
+    },
+    {
+      "name": "Dahl",
+      "weight": 15.0
+    },
+    {
+      "name": "Hagen",
+      "weight": 15.0
+    },
+    {
+      "name": "Haugen",
+      "weight": 15.0
+    },
+    {
+      "name": "Jacobsen",
+      "weight": 15.0
+    },
+    {
+      "name": "Lund",
+      "weight": 15.0
+    },
+    {
+      "name": "Johannessen",
+      "weight": 14.0
+    },
+    {
+      "name": "Halvorsen",
+      "weight": 13.0
+    },
+    {
+      "name": "Henriksen",
+      "weight": 12.0
+    },
+    {
+      "name": "Solberg",
+      "weight": 12.0
+    },
+    {
+      "name": "Strand",
+      "weight": 12.0
+    },
+    {
+      "name": "Andreassen",
+      "weight": 12.0
+    },
+    {
+      "name": "Iversen",
+      "weight": 11.0
+    },
+    {
+      "name": "Gundersen",
+      "weight": 11.0
+    },
+    {
+      "name": "Moen",
+      "weight": 11.0
+    },
+    {
+      "name": "Eide",
+      "weight": 11.0
+    },
+    {
+      "name": "Svendsen",
+      "weight": 11.0
+    },
+    {
+      "name": "Jakobsen",
+      "weight": 10.0
+    },
+    {
+      "name": "Lie",
+      "weight": 9.0
+    },
+    {
+      "name": "Paulsen",
+      "weight": 9.0
+    },
+    {
+      "name": "Holm",
+      "weight": 9.0
+    },
+    {
+      "name": "Andresen",
+      "weight": 9.0
+    },
+    {
+      "name": "Lunde",
+      "weight": 9.0
+    },
+    {
+      "name": "Bakken",
+      "weight": 9.0
+    },
+    {
+      "name": "Bakke",
+      "weight": 8.0
+    },
+    {
+      "name": "Knutsen",
+      "weight": 8.0
+    },
+    {
+      "name": "Martinsen",
+      "weight": 8.0
+    },
+    {
+      "name": "Rasmussen",
+      "weight": 8.0
+    },
+    {
+      "name": "Berge",
+      "weight": 8.0
+    },
+    {
+      "name": "Knudsen",
+      "weight": 8.0
+    },
+    {
+      "name": "Hauge",
+      "weight": 8.0
+    },
+    {
+      "name": "Moe",
+      "weight": 8.0
+    },
+    {
+      "name": "Amundsen",
+      "weight": 8.0
+    },
+    {
+      "name": "Christensen",
+      "weight": 8.0
+    },
+    {
+      "name": "Lien",
+      "weight": 8.0
+    },
+    {
+      "name": "Solheim",
+      "weight": 7.0
+    },
+    {
+      "name": "Mathisen",
+      "weight": 7.0
+    },
+    {
+      "name": "Kristensen",
+      "weight": 7.0
+    },
+    {
+      "name": "Kristoffersen",
+      "weight": 7.0
+    },
+    {
+      "name": "Fredriksen",
+      "weight": 7.0
+    },
+    {
+      "name": "Simonsen",
+      "weight": 7.0
+    },
+    {
+      "name": "Nielsen",
+      "weight": 7.0
+    },
+    {
+      "name": "Evensen",
+      "weight": 7.0
+    },
+    {
+      "name": "Aas",
+      "weight": 7.0
+    },
+    {
+      "name": "Myhre",
+      "weight": 6.0
+    },
+    {
+      "name": "Haug",
+      "weight": 6.0
+    },
+    {
+      "name": "Ellingsen",
+      "weight": 6.0
+    },
+    {
+      "name": "Danielsen",
+      "weight": 6.0
+    },
+    {
+      "name": "Arnesen",
+      "weight": 6.0
+    },
+    {
+      "name": "Haugland",
+      "weight": 6.0
+    },
+    {
+      "name": "Sivertsen",
+      "weight": 6.0
+    },
+    {
+      "name": "Thomassen",
+      "weight": 6.0
+    },
+    {
+      "name": "Sandvik",
+      "weight": 6.0
+    },
+    {
+      "name": "Ruud",
+      "weight": 6.0
+    },
+    {
+      "name": "Hanssen",
+      "weight": 6.0
+    },
+    {
+      "name": "Thorsen",
+      "weight": 6.0
+    },
+    {
+      "name": "Berntsen",
+      "weight": 6.0
+    },
+    {
+      "name": "Vik",
+      "weight": 5.0
+    },
+    {
+      "name": "Brekke",
+      "weight": 5.0
+    },
+    {
+      "name": "Gulbrandsen",
+      "weight": 5.0
+    },
+    {
+      "name": "Birkeland",
+      "weight": 5.0
+    },
+    {
+      "name": "Christiansen",
+      "weight": 5.0
+    },
+    {
+      "name": "Jørgensen",
+      "weight": 5.0
+    },
+    {
+      "name": "Nygaard",
+      "weight": 5.0
+    },
+    {
+      "name": "Bjerke",
+      "weight": 5.0
+    },
+    {
+      "name": "Aasen",
+      "weight": 5.0
+    },
+    {
+      "name": "Sørensen",
+      "weight": 5.0
+    },
+    {
+      "name": "Mikkelsen",
+      "weight": 5.0
+    },
+    {
+      "name": "Myklebust",
+      "weight": 5.0
+    },
+    {
+      "name": "Wold",
+      "weight": 4.0
+    },
+    {
+      "name": "Helland",
+      "weight": 4.0
+    },
+    {
+      "name": "Kumar",
+      "weight": 4.0
+    },
+    {
+      "name": "Isaksen",
+      "weight": 4.0
+    },
+    {
+      "name": "Steen",
+      "weight": 4.0
+    },
+    {
+      "name": "Aune",
+      "weight": 4.0
+    },
+    {
+      "name": "Tangen",
+      "weight": 4.0
+    },
+    {
+      "name": "Jenssen",
+      "weight": 4.0
+    },
+    {
+      "name": "Foss",
+      "weight": 4.0
+    },
+    {
+      "name": "Edvardsen",
+      "weight": 4.0
+    },
+    {
+      "name": "Torgersen",
+      "weight": 4.0
+    },
+    {
+      "name": "Thoresen",
+      "weight": 4.0
+    },
+    {
+      "name": "Tveit",
+      "weight": 4.0
+    },
+    {
+      "name": "Antonsen",
+      "weight": 4.0
+    },
+    {
+      "name": "Sunde",
+      "weight": 4.0
+    },
+    {
+      "name": "Abrahamsen",
+      "weight": 4.0
+    },
+    {
+      "name": "Eliassen",
+      "weight": 4.0
+    },
+    {
+      "name": "Carlsen",
+      "weight": 4.0
+    },
+    {
+      "name": "Hermansen",
+      "weight": 4.0
+    },
+    {
+      "name": "Hoff",
+      "weight": 4.0
+    },
+    {
+      "name": "Dahle",
+      "weight": 4.0
+    },
+    {
+      "name": "Gjerde",
+      "weight": 4.0
+    },
+    {
+      "name": "Madsen",
+      "weight": 4.0
+    },
+    {
+      "name": "Singh",
+      "weight": 4.0
+    },
+    {
+      "name": "Gabrielsen",
+      "weight": 4.0
+    },
+    {
+      "name": "Hovland",
+      "weight": 4.0
+    },
+    {
+      "name": "Wilhelmsen",
+      "weight": 4.0
+    },
+    {
+      "name": "Jrgensen",
+      "weight": 4.0
+    },
+    {
+      "name": "Mortensen",
+      "weight": 4.0
+    },
+    {
+      "name": "Hammer",
+      "weight": 4.0
+    },
+    {
+      "name": "Lorentzen",
+      "weight": 4.0
+    },
+    {
+      "name": "Khan",
+      "weight": 3.0
+    },
+    {
+      "name": "Engen",
+      "weight": 3.0
+    },
+    {
+      "name": "Nygård",
+      "weight": 3.0
+    },
+    {
+      "name": "Dale",
+      "weight": 3.0
+    },
+    {
+      "name": "Helgesen",
+      "weight": 3.0
+    },
+    {
+      "name": "Magnussen",
+      "weight": 3.0
+    },
+    {
+      "name": "Hoel",
+      "weight": 3.0
+    },
+    {
+      "name": "Andersson",
+      "weight": 3.0
+    },
+    {
+      "name": "Nilssen",
+      "weight": 3.0
+    },
+    {
+      "name": "Næss",
+      "weight": 3.0
+    },
+    {
+      "name": "Fjeld",
+      "weight": 3.0
+    },
+    {
+      "name": "Eilertsen",
+      "weight": 3.0
+    },
+    {
+      "name": "Nordby",
+      "weight": 3.0
+    },
+    {
+      "name": "Smith",
+      "weight": 3.0
+    },
+    {
+      "name": "Sand",
+      "weight": 3.0
+    },
+    {
+      "name": "Srensen",
+      "weight": 3.0
+    },
+    {
+      "name": "Haaland",
+      "weight": 3.0
+    },
+    {
+      "name": "Wiik",
+      "weight": 3.0
+    },
+    {
+      "name": "Monsen",
+      "weight": 3.0
+    },
+    {
+      "name": "Mikalsen",
+      "weight": 3.0
+    },
+    {
+      "name": "Engebretsen",
+      "weight": 3.0
+    },
+    {
+      "name": "Johannesen",
+      "weight": 3.0
+    },
+    {
+      "name": "Sandberg",
+      "weight": 3.0
+    },
+    {
+      "name": "Wang",
+      "weight": 3.0
+    },
+    {
+      "name": "Sæther",
+      "weight": 3.0
+    },
+    {
+      "name": "Stokke",
+      "weight": 3.0
+    },
+    {
+      "name": "Lind",
+      "weight": 3.0
+    },
+    {
+      "name": "Jansen",
+      "weight": 3.0
+    },
+    {
+      "name": "Ingebrigtsen",
+      "weight": 3.0
+    },
+    {
+      "name": "As",
+      "weight": 3.0
+    },
+    {
+      "name": "Nguyen",
+      "weight": 3.0
+    },
+    {
+      "name": "Johansson",
+      "weight": 3.0
+    },
+    {
+      "name": "Bye",
+      "weight": 3.0
+    },
+    {
+      "name": "Sveen",
+      "weight": 3.0
+    },
+    {
+      "name": "Holmen",
+      "weight": 3.0
+    },
+    {
+      "name": "Berger",
+      "weight": 3.0
+    },
+    {
+      "name": "Fossum",
+      "weight": 3.0
+    },
+    {
+      "name": "Haga",
+      "weight": 3.0
+    },
+    {
+      "name": "Solli",
+      "weight": 3.0
+    },
+    {
+      "name": "Sandnes",
+      "weight": 3.0
+    },
+    {
+      "name": "Torp",
+      "weight": 3.0
+    },
+    {
+      "name": "Borge",
+      "weight": 3.0
+    },
+    {
+      "name": "Breivik",
+      "weight": 3.0
+    },
+    {
+      "name": "Sharma",
+      "weight": 3.0
+    },
+    {
+      "name": "Ludvigsen",
+      "weight": 3.0
+    },
+    {
+      "name": "Enger",
+      "weight": 3.0
+    },
+    {
+      "name": "Rønning",
+      "weight": 3.0
+    },
+    {
+      "name": "Gustavsen",
+      "weight": 3.0
+    },
+    {
+      "name": "Samuelsen",
+      "weight": 3.0
+    },
+    {
+      "name": "Strøm",
+      "weight": 3.0
+    },
+    {
+      "name": "Borgen",
+      "weight": 2.0
+    },
+    {
+      "name": "Ali",
+      "weight": 2.0
+    },
+    {
+      "name": "Egeland",
+      "weight": 2.0
+    },
+    {
+      "name": "Hamre",
+      "weight": 2.0
+    },
+    {
+      "name": "Solvang",
+      "weight": 2.0
+    },
+    {
+      "name": "Kvam",
+      "weight": 2.0
+    },
+    {
+      "name": "Langeland",
+      "weight": 2.0
+    },
+    {
+      "name": "Aase",
+      "weight": 2.0
+    },
+    {
+      "name": "Tvedt",
+      "weight": 2.0
+    },
+    {
+      "name": "Petersen",
+      "weight": 2.0
+    },
+    {
+      "name": "Kolstad",
+      "weight": 2.0
+    },
+    {
+      "name": "Viken",
+      "weight": 2.0
+    },
+    {
+      "name": "Ness",
+      "weight": 2.0
+    },
+    {
+      "name": "Skaar",
+      "weight": 2.0
+    },
+    {
+      "name": "Dalen",
+      "weight": 2.0
+    },
+    {
+      "name": "Meyer",
+      "weight": 2.0
+    },
+    {
+      "name": "Normann",
+      "weight": 2.0
+    },
+    {
+      "name": "Sande",
+      "weight": 2.0
+    },
+    {
+      "name": "Jonassen",
+      "weight": 2.0
+    },
+    {
+      "name": "Syversen",
+      "weight": 2.0
+    },
+    {
+      "name": "Solbakken",
+      "weight": 2.0
+    },
+    {
+      "name": "Gran",
+      "weight": 2.0
+    },
+    {
+      "name": "Teigen",
+      "weight": 2.0
+    },
+    {
+      "name": "Stene",
+      "weight": 2.0
+    },
+    {
+      "name": "Lindberg",
+      "weight": 2.0
+    },
+    {
+      "name": "Eikeland",
+      "weight": 2.0
+    },
+    {
+      "name": "Bøe",
+      "weight": 2.0
+    },
+    {
+      "name": "Ottesen",
+      "weight": 2.0
+    },
+    {
+      "name": "Holst",
+      "weight": 2.0
+    },
+    {
+      "name": "Solem",
+      "weight": 2.0
+    },
+    {
+      "name": "Hole",
+      "weight": 2.0
+    },
+    {
+      "name": "Kvamme",
+      "weight": 2.0
+    },
+    {
+      "name": "Ødegård",
+      "weight": 2.0
+    },
+    {
+      "name": "Skoglund",
+      "weight": 2.0
+    },
+    {
+      "name": "Nilsson",
+      "weight": 2.0
+    },
+    {
+      "name": "Sletten",
+      "weight": 2.0
+    },
+    {
+      "name": "Fosse",
+      "weight": 2.0
+    }
+  ]
+}

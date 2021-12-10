@@ -1,0 +1,1008 @@
+{
+  "femaleNames": [
+    { "name": "Lena" },
+    { "name": "Zuzanna" },
+    { "name": "Julia" },
+    { "name": "Maja" },
+    { "name": "Zofia" },
+    { "name": "Hanna" },
+    { "name": "Aleksandra" },
+    { "name": "Amelia" },
+    { "name": "Natalia" },
+    { "name": "Wiktoria" },
+    { "name": "Alicja" },
+    { "name": "Oliwia" },
+    { "name": "Nikola" },
+    { "name": "Maria" },
+    { "name": "Emilia" },
+    { "name": "Anna" },
+    { "name": "Nadia" },
+    { "name": "Antonina" },
+    { "name": "Gabriela" },
+    { "name": "Martyna" },
+    { "name": "Liliana" },
+    { "name": "Milena" },
+    { "name": "Laura" },
+    { "name": "Pola" },
+    { "name": "Magdalena" },
+    { "name": "Karolina" },
+    { "name": "Kornelia" },
+    { "name": "Weronika" },
+    { "name": "Agata" },
+    { "name": "Iga" },
+    { "name": "Jagoda" },
+    { "name": "Nina" },
+    { "name": "Barbara" },
+    { "name": "Michalina" },
+    { "name": "Kinga" },
+    { "name": "Helena" },
+    { "name": "Paulina" },
+    { "name": "Marcelina" },
+    { "name": "Marta" },
+    { "name": "Patrycja" },
+    { "name": "Malgorzata" },
+    { "name": "Katarzyna" },
+    { "name": "Klaudia" },
+    { "name": "Lucja" },
+    { "name": "Joanna" },
+    { "name": "Blanka" },
+    { "name": "Kaja" },
+    { "name": "Izabela" },
+    { "name": "Dominika" },
+    { "name": "Ewa" },
+    { "name": "Klara" },
+    { "name": "Anastazja" },
+    { "name": "Nela" },
+    { "name": "Lilianna" },
+    { "name": "Sara" },
+    { "name": "Olga" },
+    { "name": "Kalina" },
+    { "name": "Kamila" },
+    { "name": "Daria" },
+    { "name": "Malwina" },
+    { "name": "Sandra" },
+    { "name": "Matylda" },
+    { "name": "Aniela" },
+    { "name": "Adrianna" },
+    { "name": "Urszula" },
+    { "name": "Eliza" },
+    { "name": "Roksana" },
+    { "name": "Natasza" },
+    { "name": "Dorota" },
+    { "name": "Róza" },
+    { "name": "Justyna" },
+    { "name": "Lidia" },
+    { "name": "Marianna" },
+    { "name": "Marika" },
+    { "name": "Liwia" },
+    { "name": "Agnieszka" },
+    { "name": "Karina" },
+    { "name": "Rozalia" },
+    { "name": "Nicola" },
+    { "name": "Monika" },
+    { "name": "Vanessa" },
+    { "name": "Bianka" },
+    { "name": "Aurelia" },
+    { "name": "Ada" },
+    { "name": "Marlena" },
+    { "name": "Dagmara" },
+    { "name": "Emma" },
+    { "name": "Inga" },
+    { "name": "Elena" },
+    { "name": "Olivia" },
+    { "name": "Julita" },
+    { "name": "Diana" },
+    { "name": "Ewelina" },
+    { "name": "Anita" },
+    { "name": "Victoria" },
+    { "name": "Mia" },
+    { "name": "Apolonia" },
+    { "name": "Elzbieta" },
+    { "name": "Sonia" },
+    { "name": "Melania" }
+  ],
+  "maleNames": [
+    { "name": "Jakub" },
+    { "name": "Kacper" },
+    { "name": "Antoni" },
+    { "name": "Filip" },
+    { "name": "Jan" },
+    { "name": "Szymon" },
+    { "name": "Franciszek" },
+    { "name": "Michal" },
+    { "name": "Wojciech" },
+    { "name": "Aleksander" },
+    { "name": "Mikolaj" },
+    { "name": "Adam" },
+    { "name": "Piotr" },
+    { "name": "Mateusz" },
+    { "name": "Bartosz" },
+    { "name": "Igor" },
+    { "name": "Wiktor" },
+    { "name": "Marcel" },
+    { "name": "Dawid" },
+    { "name": "Stanislaw" },
+    { "name": "Milosz" },
+    { "name": "Maksymilian" },
+    { "name": "Karol" },
+    { "name": "Alan" },
+    { "name": "Oliwier" },
+    { "name": "Oskar" },
+    { "name": "Maciej" },
+    { "name": "Tomasz" },
+    { "name": "Dominik" },
+    { "name": "Nikodem" },
+    { "name": "Krzysztof" },
+    { "name": "Pawel" },
+    { "name": "Leon" },
+    { "name": "Hubert" },
+    { "name": "Kamil" },
+    { "name": "Natan" },
+    { "name": "Fabian" },
+    { "name": "Patryk" },
+    { "name": "Bartlomiej" },
+    { "name": "Julian" },
+    { "name": "Tymon" },
+    { "name": "Tymoteusz" },
+    { "name": "Ksawery" },
+    { "name": "Ignacy" },
+    { "name": "Sebastian" },
+    { "name": "Gabriel" },
+    { "name": "Krystian" },
+    { "name": "Adrian" },
+    { "name": "Lukasz" },
+    { "name": "Marcin" },
+    { "name": "Blazej" },
+    { "name": "Kajetan" },
+    { "name": "Borys" },
+    { "name": "Artur" },
+    { "name": "Daniel" },
+    { "name": "Damian" },
+    { "name": "Eryk" },
+    { "name": "Grzegorz" },
+    { "name": "Kuba" },
+    { "name": "Olaf" },
+    { "name": "Rafal" },
+    { "name": "Konrad" },
+    { "name": "Przemyslaw" },
+    { "name": "Nataniel" },
+    { "name": "Radoslaw" },
+    { "name": "Tobiasz" },
+    { "name": "Bruno" },
+    { "name": "Cezary" },
+    { "name": "Olivier" },
+    { "name": "Marek" },
+    { "name": "Robert" },
+    { "name": "Emil" },
+    { "name": "Witold" },
+    { "name": "Kornel" },
+    { "name": "Alex" },
+    { "name": "Aleks" },
+    { "name": "Tadeusz" },
+    { "name": "Gracjan" },
+    { "name": "Jerzy" },
+    { "name": "Andrzej" },
+    { "name": "Arkadiusz" },
+    { "name": "Milan" },
+    { "name": "Jacek" },
+    { "name": "Mieszko" },
+    { "name": "Norbert" },
+    { "name": "Dorian" },
+    { "name": "Brajan" },
+    { "name": "Stefan" },
+    { "name": "Iwo" },
+    { "name": "Gustaw" },
+    { "name": "Konstanty" },
+    { "name": "Leonard" },
+    { "name": "Alexander" },
+    { "name": "Seweryn" },
+    { "name": "Juliusz" },
+    { "name": "Ryszard" },
+    { "name": "Józef" },
+    { "name": "Kazimierz" },
+    { "name": "Jedrzej" },
+    { "name": "Cyprian" }
+  ],
+  "surnames": [
+    {
+      "name": "Nowak",
+      "weight": 25.0
+    },
+    {
+      "name": "Kowalski",
+      "weight": 15.0
+    },
+    {
+      "name": "Kowalska",
+      "weight": 12.0
+    },
+    {
+      "name": "Kowalczyk",
+      "weight": 11.0
+    },
+    {
+      "name": "Krawczyk",
+      "weight": 7.0
+    },
+    {
+      "name": "Mazur",
+      "weight": 7.0
+    },
+    {
+      "name": "Kaczmarek",
+      "weight": 6.0
+    },
+    {
+      "name": "Lewandowski",
+      "weight": 6.0
+    },
+    {
+      "name": "Wojcik",
+      "weight": 5.0
+    },
+    {
+      "name": "Wozniak",
+      "weight": 5.0
+    },
+    {
+      "name": "Pawlak",
+      "weight": 5.0
+    },
+    {
+      "name": "Wieczorek",
+      "weight": 5.0
+    },
+    {
+      "name": "Adamczyk",
+      "weight": 5.0
+    },
+    {
+      "name": "Dudek",
+      "weight": 5.0
+    },
+    {
+      "name": "Jankowski",
+      "weight": 5.0
+    },
+    {
+      "name": "Sikora",
+      "weight": 5.0
+    },
+    {
+      "name": "Kwiatkowski",
+      "weight": 5.0
+    },
+    {
+      "name": "Wojciechowski",
+      "weight": 5.0
+    },
+    {
+      "name": "Kumar",
+      "weight": 5.0
+    },
+    {
+      "name": "Wjcik",
+      "weight": 5.0
+    },
+    {
+      "name": "Piotrowski",
+      "weight": 5.0
+    },
+    {
+      "name": "Walczak",
+      "weight": 5.0
+    },
+    {
+      "name": "Szewczyk",
+      "weight": 5.0
+    },
+    {
+      "name": "Wilk",
+      "weight": 4.0
+    },
+    {
+      "name": "Michalak",
+      "weight": 4.0
+    },
+    {
+      "name": "Pietrzak",
+      "weight": 4.0
+    },
+    {
+      "name": "Grabowski",
+      "weight": 4.0
+    },
+    {
+      "name": "Nowakowski",
+      "weight": 4.0
+    },
+    {
+      "name": "Lewandowska",
+      "weight": 4.0
+    },
+    {
+      "name": "Marciniak",
+      "weight": 4.0
+    },
+    {
+      "name": "Wisniewski",
+      "weight": 4.0
+    },
+    {
+      "name": "Mazurek",
+      "weight": 4.0
+    },
+    {
+      "name": "Michalski",
+      "weight": 4.0
+    },
+    {
+      "name": "Olszewski",
+      "weight": 4.0
+    },
+    {
+      "name": "Duda",
+      "weight": 4.0
+    },
+    {
+      "name": "Majewski",
+      "weight": 4.0
+    },
+    {
+      "name": "Zielinski",
+      "weight": 4.0
+    },
+    {
+      "name": "Kaminski",
+      "weight": 4.0
+    },
+    {
+      "name": "Woniak",
+      "weight": 4.0
+    },
+    {
+      "name": "Baran",
+      "weight": 4.0
+    },
+    {
+      "name": "Dabrowski",
+      "weight": 4.0
+    },
+    {
+      "name": "Kwiatkowska",
+      "weight": 4.0
+    },
+    {
+      "name": "Nowicki",
+      "weight": 4.0
+    },
+    {
+      "name": "Jaworski",
+      "weight": 4.0
+    },
+    {
+      "name": "Malinowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Wojciechowska",
+      "weight": 3.0
+    },
+    {
+      "name": "Lis",
+      "weight": 3.0
+    },
+    {
+      "name": "Krol",
+      "weight": 3.0
+    },
+    {
+      "name": "Singh",
+      "weight": 3.0
+    },
+    {
+      "name": "Kowal",
+      "weight": 3.0
+    },
+    {
+      "name": "Jankowska",
+      "weight": 3.0
+    },
+    {
+      "name": "Kubiak",
+      "weight": 3.0
+    },
+    {
+      "name": "Piotrowska",
+      "weight": 3.0
+    },
+    {
+      "name": "Krupa",
+      "weight": 3.0
+    },
+    {
+      "name": "Ostrowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Rutkowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Witkowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Stankiewicz",
+      "weight": 3.0
+    },
+    {
+      "name": "Zajac",
+      "weight": 3.0
+    },
+    {
+      "name": "Kowalik",
+      "weight": 3.0
+    },
+    {
+      "name": "Grabowska",
+      "weight": 3.0
+    },
+    {
+      "name": "Zawadzki",
+      "weight": 3.0
+    },
+    {
+      "name": "Szymczak",
+      "weight": 3.0
+    },
+    {
+      "name": "Polak",
+      "weight": 3.0
+    },
+    {
+      "name": "Tomaszewski",
+      "weight": 3.0
+    },
+    {
+      "name": "Sobczak",
+      "weight": 3.0
+    },
+    {
+      "name": "Marek",
+      "weight": 3.0
+    },
+    {
+      "name": "Sadowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Szymanski",
+      "weight": 3.0
+    },
+    {
+      "name": "Nowakowska",
+      "weight": 3.0
+    },
+    {
+      "name": "Markiewicz",
+      "weight": 3.0
+    },
+    {
+      "name": "Chmielewski",
+      "weight": 3.0
+    },
+    {
+      "name": "Michalska",
+      "weight": 3.0
+    },
+    {
+      "name": "Szulc",
+      "weight": 3.0
+    },
+    {
+      "name": "Sawicki",
+      "weight": 3.0
+    },
+    {
+      "name": "Jakubowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Majewska",
+      "weight": 3.0
+    },
+    {
+      "name": "Olszewska",
+      "weight": 3.0
+    },
+    {
+      "name": "Janik",
+      "weight": 3.0
+    },
+    {
+      "name": "Borkowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Kozak",
+      "weight": 3.0
+    },
+    {
+      "name": "Kot",
+      "weight": 3.0
+    },
+    {
+      "name": "Kania",
+      "weight": 3.0
+    },
+    {
+      "name": "Zalewski",
+      "weight": 3.0
+    },
+    {
+      "name": "Jaworska",
+      "weight": 3.0
+    },
+    {
+      "name": "Stepien",
+      "weight": 3.0
+    },
+    {
+      "name": "Nowicka",
+      "weight": 3.0
+    },
+    {
+      "name": "Malinowska",
+      "weight": 3.0
+    },
+    {
+      "name": "Wasilewski",
+      "weight": 3.0
+    },
+    {
+      "name": "Jarosz",
+      "weight": 3.0
+    },
+    {
+      "name": "Wisniewska",
+      "weight": 3.0
+    },
+    {
+      "name": "Kaczmarczyk",
+      "weight": 3.0
+    },
+    {
+      "name": "Zielinska",
+      "weight": 3.0
+    },
+    {
+      "name": "Zalewska",
+      "weight": 3.0
+    },
+    {
+      "name": "Kozlowski",
+      "weight": 3.0
+    },
+    {
+      "name": "Wrobel",
+      "weight": 2.0
+    },
+    {
+      "name": "Kalinowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Bak",
+      "weight": 2.0
+    },
+    {
+      "name": "Kurek",
+      "weight": 2.0
+    },
+    {
+      "name": "Pawlik",
+      "weight": 2.0
+    },
+    {
+      "name": "Kaminska",
+      "weight": 2.0
+    },
+    {
+      "name": "Dabrowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Wysocki",
+      "weight": 2.0
+    },
+    {
+      "name": "Kucharski",
+      "weight": 2.0
+    },
+    {
+      "name": "Ostrowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Tomczyk",
+      "weight": 2.0
+    },
+    {
+      "name": "Madej",
+      "weight": 2.0
+    },
+    {
+      "name": "Sadowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Szczepaniak",
+      "weight": 2.0
+    },
+    {
+      "name": "Krajewski",
+      "weight": 2.0
+    },
+    {
+      "name": "Zakrzewski",
+      "weight": 2.0
+    },
+    {
+      "name": "Zawadzka",
+      "weight": 2.0
+    },
+    {
+      "name": "Witkowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Gajda",
+      "weight": 2.0
+    },
+    {
+      "name": "Sawicka",
+      "weight": 2.0
+    },
+    {
+      "name": "Tomaszewska",
+      "weight": 2.0
+    },
+    {
+      "name": "Kruk",
+      "weight": 2.0
+    },
+    {
+      "name": "Winiewski",
+      "weight": 2.0
+    },
+    {
+      "name": "Tomczak",
+      "weight": 2.0
+    },
+    {
+      "name": "Maj",
+      "weight": 2.0
+    },
+    {
+      "name": "Mucha",
+      "weight": 2.0
+    },
+    {
+      "name": "Makowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Rutkowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Maciejewski",
+      "weight": 2.0
+    },
+    {
+      "name": "Adamski",
+      "weight": 2.0
+    },
+    {
+      "name": "Laskowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Michalik",
+      "weight": 2.0
+    },
+    {
+      "name": "Borkowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Stasiak",
+      "weight": 2.0
+    },
+    {
+      "name": "Sikorski",
+      "weight": 2.0
+    },
+    {
+      "name": "Czarnecki",
+      "weight": 2.0
+    },
+    {
+      "name": "Konieczny",
+      "weight": 2.0
+    },
+    {
+      "name": "Wrbel",
+      "weight": 2.0
+    },
+    {
+      "name": "Gajewski",
+      "weight": 2.0
+    },
+    {
+      "name": "Markowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Socha",
+      "weight": 2.0
+    },
+    {
+      "name": "Baranowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Klimek",
+      "weight": 2.0
+    },
+    {
+      "name": "Dziedzic",
+      "weight": 2.0
+    },
+    {
+      "name": "Wojtowicz",
+      "weight": 2.0
+    },
+    {
+      "name": "Jakubowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Bednarek",
+      "weight": 2.0
+    },
+    {
+      "name": "Borowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Chmielewska",
+      "weight": 2.0
+    },
+    {
+      "name": "Urban",
+      "weight": 2.0
+    },
+    {
+      "name": "Gorski",
+      "weight": 2.0
+    },
+    {
+      "name": "Wawrzyniak",
+      "weight": 2.0
+    },
+    {
+      "name": "Mazurkiewicz",
+      "weight": 2.0
+    },
+    {
+      "name": "Zajic",
+      "weight": 2.0
+    },
+    {
+      "name": "Szymanska",
+      "weight": 2.0
+    },
+    {
+      "name": "Wroblewski",
+      "weight": 2.0
+    },
+    {
+      "name": "Dibrowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Wysocka",
+      "weight": 2.0
+    },
+    {
+      "name": "Winiewska",
+      "weight": 2.0
+    },
+    {
+      "name": "Marzec",
+      "weight": 2.0
+    },
+    {
+      "name": "Bik",
+      "weight": 2.0
+    },
+    {
+      "name": "Sowa",
+      "weight": 2.0
+    },
+    {
+      "name": "Sharma",
+      "weight": 2.0
+    },
+    {
+      "name": "Wrona",
+      "weight": 2.0
+    },
+    {
+      "name": "Kalinowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Olejniczak",
+      "weight": 2.0
+    },
+    {
+      "name": "Brzozowski",
+      "weight": 2.0
+    },
+    {
+      "name": "Majchrzak",
+      "weight": 2.0
+    },
+    {
+      "name": "Urbaniak",
+      "weight": 2.0
+    },
+    {
+      "name": "Zych",
+      "weight": 2.0
+    },
+    {
+      "name": "Kowalewski",
+      "weight": 2.0
+    },
+    {
+      "name": "Czarnecka",
+      "weight": 2.0
+    },
+    {
+      "name": "Wolski",
+      "weight": 2.0
+    },
+    {
+      "name": "Jasinski",
+      "weight": 2.0
+    },
+    {
+      "name": "Anna",
+      "weight": 2.0
+    },
+    {
+      "name": "Bednarczyk",
+      "weight": 2.0
+    },
+    {
+      "name": "Skiba",
+      "weight": 2.0
+    },
+    {
+      "name": "Kasprzak",
+      "weight": 2.0
+    },
+    {
+      "name": "Owczarek",
+      "weight": 2.0
+    },
+    {
+      "name": "Nowacki",
+      "weight": 2.0
+    },
+    {
+      "name": "Wasilewska",
+      "weight": 2.0
+    },
+    {
+      "name": "Grzelak",
+      "weight": 2.0
+    },
+    {
+      "name": "Chojnacki",
+      "weight": 2.0
+    },
+    {
+      "name": "Kowalewska",
+      "weight": 2.0
+    },
+    {
+      "name": "Kucharska",
+      "weight": 2.0
+    },
+    {
+      "name": "Null",
+      "weight": 2.0
+    },
+    {
+      "name": "Przybylski",
+      "weight": 2.0
+    },
+    {
+      "name": "Kulesza",
+      "weight": 2.0
+    },
+    {
+      "name": "Zakrzewska",
+      "weight": 2.0
+    },
+    {
+      "name": "Zaremba",
+      "weight": 2.0
+    },
+    {
+      "name": "Marczak",
+      "weight": 2.0
+    },
+    {
+      "name": "Kasprzyk",
+      "weight": 2.0
+    },
+    {
+      "name": "Dibrowska",
+      "weight": 2.0
+    },
+    {
+      "name": "Sobczyk",
+      "weight": 2.0
+    },
+    {
+      "name": "Piotr",
+      "weight": 2.0
+    },
+    {
+      "name": "Krajewska",
+      "weight": 2.0
+    },
+    {
+      "name": "Bielecki",
+      "weight": 2.0
+    },
+    {
+      "name": "Lech",
+      "weight": 2.0
+    },
+    {
+      "name": "Sienkiewicz",
+      "weight": 2.0
+    },
+    {
+      "name": "Witek",
+      "weight": 2.0
+    },
+    {
+      "name": "Piasecki",
+      "weight": 2.0
+    },
+    {
+      "name": "Olejnik",
+      "weight": 2.0
+    },
+    {
+      "name": "Konopka",
+      "weight": 2.0
+    },
+    {
+      "name": "Sikorska",
+      "weight": 2.0
+    },
+    {
+      "name": "Nawrocki",
+      "weight": 2.0
+    }
+  ]
+}

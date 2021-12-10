@@ -1,0 +1,900 @@
+{
+  "femaleNames": [
+    { "name": "An" },
+    { "name": "Bich" },
+    { "name": "Cà" },
+    { "name": "Cam" },
+    { "name": "Chau" },
+    { "name": "Chi" },
+    { "name": "Cuc" },
+    { "name": "Ha" },
+    { "name": "Hai" },
+    { "name": "Hanh" },
+    { "name": "Hao" },
+    { "name": "Hien" },
+    { "name": "Hoa" },
+    { "name": "Hòng" },
+    { "name": "Hue" },
+    { "name": "Hùong" },
+    { "name": "Kim" },
+    { "name": "Kim Cuc" },
+    { "name": "Kim-Ly" },
+    { "name": "Lien" },
+    { "name": "Linh" },
+    { "name": "Mai" },
+    { "name": "Ngoc" },
+    { "name": "Ngoc Bich" },
+    { "name": "Ngon" },
+    { "name": "Nguyet" },
+    { "name": "Nhung" },
+    { "name": "Phuong" },
+    { "name": "Quy" },
+    { "name": "Quyen" },
+    { "name": "Sang" },
+    { "name": "Thanh" },
+    { "name": "Thi" },
+    { "name": "Thu" },
+    { "name": "Thuy" },
+    { "name": "Tien" },
+    { "name": "Trúc" },
+    { "name": "Tu" },
+    { "name": "Tuyên" },
+    { "name": "Tuyet" },
+    { "name": "Xuan" },
+    { "name": "Yen" }
+  ],
+  "maleNames": [
+    { "name": "An" },
+    { "name": "An Dung" },
+    { "name": "Ba" },
+    { "name": "Bao" },
+    { "name": "Binh" },
+    { "name": "Cà" },
+    { "name": "Chien" },
+    { "name": "Chinh" },
+    { "name": "Công" },
+    { "name": "Cuong" },
+    { "name": "Dai" },
+    { "name": "Danh" },
+    { "name": "Dinh" },
+    { "name": "Ðuc" },
+    { "name": "Dung" },
+    { "name": "Duong" },
+    { "name": "Ha" },
+    { "name": "Hai" },
+    { "name": "Hao" },
+    { "name": "Hien" },
+    { "name": "Hieu" },
+    { "name": "Hùng" },
+    { "name": "Huu" },
+    { "name": "Huynh" },
+    { "name": "Lành" },
+    { "name": "Minh" },
+    { "name": "Ngai" },
+    { "name": "Nhung" },
+    { "name": "Phong" },
+    { "name": "Phuc" },
+    { "name": "Phuoc" },
+    { "name": "Quan" },
+    { "name": "Quang" },
+    { "name": "Quy" },
+    { "name": "Sang" },
+    { "name": "Thanh" },
+    { "name": "Thao" },
+    { "name": "Thinh" },
+    { "name": "Thuán" },
+    { "name": "Trai" },
+    { "name": "Trang" },
+    { "name": "Trong" },
+    { "name": "Trúc" },
+    { "name": "Trung" },
+    { "name": "Tu" },
+    { "name": "Tuan" },
+    { "name": "Van" },
+    { "name": "Vien" },
+    { "name": "Vinh" },
+    { "name": "Xuan" }
+  ],
+  "surnames": [
+    {
+      "name": "Tran",
+      "weight": 559.0
+    },
+    {
+      "name": "Pham",
+      "weight": 370.0
+    },
+    {
+      "name": "Le",
+      "weight": 341.0
+    },
+    {
+      "name": "Hoang",
+      "weight": 216.0
+    },
+    {
+      "name": "Vu",
+      "weight": 202.0
+    },
+    {
+      "name": "Phan",
+      "weight": 163.0
+    },
+    {
+      "name": "Bui",
+      "weight": 148.0
+    },
+    {
+      "name": "Huynh",
+      "weight": 142.0
+    },
+    {
+      "name": "Vo",
+      "weight": 134.0
+    },
+    {
+      "name": "Dang",
+      "weight": 132.0
+    },
+    {
+      "name": "Truong",
+      "weight": 128.0
+    },
+    {
+      "name": "Ngo",
+      "weight": 118.0
+    },
+    {
+      "name": "Duong",
+      "weight": 108.0
+    },
+    {
+      "name": "Ha",
+      "weight": 107.0
+    },
+    {
+      "name": "Do",
+      "weight": 103.0
+    },
+    {
+      "name": "Dinh",
+      "weight": 92.0
+    },
+    {
+      "name": "Ho",
+      "weight": 87.0
+    },
+    {
+      "name": "Trinh",
+      "weight": 80.0
+    },
+    {
+      "name": "Doan",
+      "weight": 72.0
+    },
+    {
+      "name": "Thi",
+      "weight": 70.0
+    },
+    {
+      "name": "Hong",
+      "weight": 70.0
+    },
+    {
+      "name": "Dao",
+      "weight": 67.0
+    },
+    {
+      "name": "Hung",
+      "weight": 66.0
+    },
+    {
+      "name": "Lam",
+      "weight": 60.0
+    },
+    {
+      "name": "Cao",
+      "weight": 55.0
+    },
+    {
+      "name": "Luong",
+      "weight": 53.0
+    },
+    {
+      "name": "Luu",
+      "weight": 47.0
+    },
+    {
+      "name": "Thai",
+      "weight": 46.0
+    },
+    {
+      "name": "Nam",
+      "weight": 43.0
+    },
+    {
+      "name": "Ly",
+      "weight": 42.0
+    },
+    {
+      "name": "Thanh",
+      "weight": 42.0
+    },
+    {
+      "name": "Tu",
+      "weight": 38.0
+    },
+    {
+      "name": "Lan",
+      "weight": 37.0
+    },
+    {
+      "name": "Mai",
+      "weight": 37.0
+    },
+    {
+      "name": "Son",
+      "weight": 36.0
+    },
+    {
+      "name": "Van",
+      "weight": 36.0
+    },
+    {
+      "name": "Phung",
+      "weight": 36.0
+    },
+    {
+      "name": "Anh",
+      "weight": 35.0
+    },
+    {
+      "name": "Chau",
+      "weight": 33.0
+    },
+    {
+      "name": "Minh",
+      "weight": 32.0
+    },
+    {
+      "name": "Vuong",
+      "weight": 32.0
+    },
+    {
+      "name": "Chu",
+      "weight": 31.0
+    },
+    {
+      "name": "Tan",
+      "weight": 30.0
+    },
+    {
+      "name": "Nguyn",
+      "weight": 30.0
+    },
+    {
+      "name": "An",
+      "weight": 29.0
+    },
+    {
+      "name": "Ta",
+      "weight": 29.0
+    },
+    {
+      "name": "Ngoc",
+      "weight": 28.0
+    },
+    {
+      "name": "Tam",
+      "weight": 27.0
+    },
+    {
+      "name": "Tung",
+      "weight": 26.0
+    },
+    {
+      "name": "Yen",
+      "weight": 25.0
+    },
+    {
+      "name": "Bao",
+      "weight": 25.0
+    },
+    {
+      "name": "Phuong",
+      "weight": 25.0
+    },
+    {
+      "name": "To",
+      "weight": 24.0
+    },
+    {
+      "name": "Huu",
+      "weight": 23.0
+    },
+    {
+      "name": "Thuy",
+      "weight": 21.0
+    },
+    {
+      "name": "Thu",
+      "weight": 20.0
+    },
+    {
+      "name": "le Thi",
+      "weight": 19.0
+    },
+    {
+      "name": "Dong",
+      "weight": 19.0
+    },
+    {
+      "name": "Quan",
+      "weight": 19.0
+    },
+    {
+      "name": "Quang",
+      "weight": 18.0
+    },
+    {
+      "name": "Ngan",
+      "weight": 17.0
+    },
+    {
+      "name": "Lien",
+      "weight": 17.0
+    },
+    {
+      "name": "Trang",
+      "weight": 16.0
+    },
+    {
+      "name": "Quach",
+      "weight": 16.0
+    },
+    {
+      "name": "Tuan",
+      "weight": 15.0
+    },
+    {
+      "name": "Lai",
+      "weight": 15.0
+    },
+    {
+      "name": "Diep",
+      "weight": 15.0
+    },
+    {
+      "name": "Chung",
+      "weight": 14.0
+    },
+    {
+      "name": "Linh",
+      "weight": 14.0
+    },
+    {
+      "name": "Dung",
+      "weight": 14.0
+    },
+    {
+      "name": "Huong",
+      "weight": 14.0
+    },
+    {
+      "name": "Tong",
+      "weight": 13.0
+    },
+    {
+      "name": "Trieu",
+      "weight": 13.0
+    },
+    {
+      "name": "Duc",
+      "weight": 13.0
+    },
+    {
+      "name": "Hue",
+      "weight": 13.0
+    },
+    {
+      "name": "Ng",
+      "weight": 12.0
+    },
+    {
+      "name": "Trung",
+      "weight": 12.0
+    },
+    {
+      "name": "Viet",
+      "weight": 12.0
+    },
+    {
+      "name": "Xuan",
+      "weight": 12.0
+    },
+    {
+      "name": "Han",
+      "weight": 12.0
+    },
+    {
+      "name": "Tang",
+      "weight": 12.0
+    },
+    {
+      "name": "Dam",
+      "weight": 12.0
+    },
+    {
+      "name": "Bach",
+      "weight": 12.0
+    },
+    {
+      "name": "Quy",
+      "weight": 11.0
+    },
+    {
+      "name": "Thao",
+      "weight": 11.0
+    },
+    {
+      "name": "Hoa",
+      "weight": 11.0
+    },
+    {
+      "name": "Duy",
+      "weight": 11.0
+    },
+    {
+      "name": "Ba",
+      "weight": 11.0
+    },
+    {
+      "name": "Nghiem",
+      "weight": 11.0
+    },
+    {
+      "name": "Tai",
+      "weight": 10.0
+    },
+    {
+      "name": "Lu",
+      "weight": 10.0
+    },
+    {
+      "name": "Ðung",
+      "weight": 10.0
+    },
+    {
+      "name": "le Van",
+      "weight": 10.0
+    },
+    {
+      "name": "Hai",
+      "weight": 10.0
+    },
+    {
+      "name": "Diem",
+      "weight": 10.0
+    },
+    {
+      "name": "La",
+      "weight": 10.0
+    },
+    {
+      "name": "Quoc",
+      "weight": 10.0
+    },
+    {
+      "name": "Dieu",
+      "weight": 9.0
+    },
+    {
+      "name": "Tien",
+      "weight": 9.0
+    },
+    {
+      "name": "Giang",
+      "weight": 9.0
+    },
+    {
+      "name": "Thach",
+      "weight": 9.0
+    },
+    {
+      "name": "Huy",
+      "weight": 9.0
+    },
+    {
+      "name": "Chien",
+      "weight": 9.0
+    },
+    {
+      "name": "Ðinh",
+      "weight": 9.0
+    },
+    {
+      "name": "Khanh",
+      "weight": 9.0
+    },
+    {
+      "name": "Thong",
+      "weight": 9.0
+    },
+    {
+      "name": "Hao",
+      "weight": 9.0
+    },
+    {
+      "name": "My",
+      "weight": 9.0
+    },
+    {
+      "name": "Nguyen",
+      "weight": 8.0
+    },
+    {
+      "name": "Kieu",
+      "weight": 8.0
+    },
+    {
+      "name": "Dai",
+      "weight": 8.0
+    },
+    {
+      "name": "Quynh",
+      "weight": 8.0
+    },
+    {
+      "name": "Chi",
+      "weight": 8.0
+    },
+    {
+      "name": "Than",
+      "weight": 8.0
+    },
+    {
+      "name": "Huyen",
+      "weight": 8.0
+    },
+    {
+      "name": "Hau",
+      "weight": 8.0
+    },
+    {
+      "name": "Hien",
+      "weight": 8.0
+    },
+    {
+      "name": "Cuong",
+      "weight": 8.0
+    },
+    {
+      "name": "Hang",
+      "weight": 8.0
+    },
+    {
+      "name": "Hua",
+      "weight": 8.0
+    },
+    {
+      "name": "le Thanh",
+      "weight": 7.0
+    },
+    {
+      "name": "Bi",
+      "weight": 7.0
+    },
+    {
+      "name": "Vinh",
+      "weight": 7.0
+    },
+    {
+      "name": "Binh",
+      "weight": 7.0
+    },
+    {
+      "name": "Loi",
+      "weight": 7.0
+    },
+    {
+      "name": "Hng",
+      "weight": 7.0
+    },
+    {
+      "name": "Nga",
+      "weight": 7.0
+    },
+    {
+      "name": "Thang",
+      "weight": 7.0
+    },
+    {
+      "name": "Du",
+      "weight": 7.0
+    },
+    {
+      "name": "le Minh",
+      "weight": 7.0
+    },
+    {
+      "name": "Nguyenthi",
+      "weight": 7.0
+    },
+    {
+      "name": "Hanh",
+      "weight": 7.0
+    },
+    {
+      "name": "Bang",
+      "weight": 7.0
+    },
+    {
+      "name": "Cong",
+      "weight": 7.0
+    },
+    {
+      "name": "Hieu",
+      "weight": 6.0
+    },
+    {
+      "name": "Manh",
+      "weight": 6.0
+    },
+    {
+      "name": "Thien",
+      "weight": 6.0
+    },
+    {
+      "name": "Ðuc",
+      "weight": 6.0
+    },
+    {
+      "name": "Phng",
+      "weight": 6.0
+    },
+    {
+      "name": "do Thi",
+      "weight": 6.0
+    },
+    {
+      "name": "Ton",
+      "weight": 6.0
+    },
+    {
+      "name": "Dng",
+      "weight": 6.0
+    },
+    {
+      "name": "Tieu",
+      "weight": 6.0
+    },
+    {
+      "name": "Bich",
+      "weight": 6.0
+    },
+    {
+      "name": "Ðào",
+      "weight": 6.0
+    },
+    {
+      "name": "Phm",
+      "weight": 6.0
+    },
+    {
+      "name": "le Quang",
+      "weight": 5.0
+    },
+    {
+      "name": "Lieu",
+      "weight": 5.0
+    },
+    {
+      "name": "Nhan",
+      "weight": 5.0
+    },
+    {
+      "name": "Nhu",
+      "weight": 5.0
+    },
+    {
+      "name": "Phong",
+      "weight": 5.0
+    },
+    {
+      "name": "Dien",
+      "weight": 5.0
+    },
+    {
+      "name": "Sy",
+      "weight": 5.0
+    },
+    {
+      "name": "Man",
+      "weight": 5.0
+    },
+    {
+      "name": "Nguyenvan",
+      "weight": 5.0
+    },
+    {
+      "name": "Tham",
+      "weight": 5.0
+    },
+    {
+      "name": "Dau",
+      "weight": 5.0
+    },
+    {
+      "name": "Trong",
+      "weight": 5.0
+    },
+    {
+      "name": "Phu",
+      "weight": 5.0
+    },
+    {
+      "name": "Nhat",
+      "weight": 5.0
+    },
+    {
+      "name": "Kha",
+      "weight": 5.0
+    },
+    {
+      "name": "Vgn",
+      "weight": 5.0
+    },
+    {
+      "name": "Khac",
+      "weight": 5.0
+    },
+    {
+      "name": "Su",
+      "weight": 5.0
+    },
+    {
+      "name": "Be",
+      "weight": 5.0
+    },
+    {
+      "name": "Ðoàn",
+      "weight": 5.0
+    },
+    {
+      "name": "le Ngoc",
+      "weight": 5.0
+    },
+    {
+      "name": "Nhung",
+      "weight": 5.0
+    },
+    {
+      "name": "Bac",
+      "weight": 4.0
+    },
+    {
+      "name": "Sinh",
+      "weight": 4.0
+    },
+    {
+      "name": "Toan",
+      "weight": 4.0
+    },
+    {
+      "name": "Phuc",
+      "weight": 4.0
+    },
+    {
+      "name": "Liem",
+      "weight": 4.0
+    },
+    {
+      "name": "le Nguyen",
+      "weight": 4.0
+    },
+    {
+      "name": "The",
+      "weight": 4.0
+    },
+    {
+      "name": "Tuyen",
+      "weight": 4.0
+    },
+    {
+      "name": "Hoai",
+      "weight": 4.0
+    },
+    {
+      "name": "Ninh",
+      "weight": 4.0
+    },
+    {
+      "name": "Loan",
+      "weight": 4.0
+    },
+    {
+      "name": "Bien",
+      "weight": 4.0
+    },
+    {
+      "name": "Cuc",
+      "weight": 4.0
+    },
+    {
+      "name": "le Hoang",
+      "weight": 4.0
+    },
+    {
+      "name": "Que",
+      "weight": 4.0
+    },
+    {
+      "name": "Mac",
+      "weight": 4.0
+    },
+    {
+      "name": "Tuyet",
+      "weight": 4.0
+    },
+    {
+      "name": "Can",
+      "weight": 4.0
+    },
+    {
+      "name": "Trng",
+      "weight": 4.0
+    },
+    {
+      "name": "le Anh",
+      "weight": 4.0
+    },
+    {
+      "name": "Truc",
+      "weight": 4.0
+    },
+    {
+      "name": "Phi",
+      "weight": 4.0
+    },
+    {
+      "name": "Tram",
+      "weight": 4.0
+    },
+    {
+      "name": "Vy",
+      "weight": 4.0
+    },
+    {
+      "name": "Lim",
+      "weight": 4.0
+    },
+    {
+      "name": "Khong",
+      "weight": 4.0
+    },
+    {
+      "name": "Vi",
+      "weight": 4.0
+    },
+    {
+      "name": "Au",
+      "weight": 4.0
+    },
+    {
+      "name": "Tuong",
+      "weight": 4.0
+    },
+    {
+      "name": "Khoa",
+      "weight": 3.0
+    },
+    {
+      "name": "Tri",
+      "weight": 3.0
+    },
+    {
+      "name": "Quyet",
+      "weight": 3.0
+    }
+  ]
+}

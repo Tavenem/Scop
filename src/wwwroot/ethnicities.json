@@ -1,0 +1,303 @@
+[
+  {
+    "type": "asian",
+    "types": [
+      {
+        "type": "central asian",
+        "types": [
+          {
+            "type": "kazakh",
+            "hasNames": true
+          }
+        ]
+      },
+      {
+        "type": "eastern asian",
+        "types": [
+          {
+            "type": "chinese",
+            "hasNames": true
+          },
+          {
+            "type": "japanese",
+            "hasNames": true
+          },
+          {
+            "type": "korean",
+            "hasNames": true
+          }
+        ]
+      },
+      {
+        "type": "southeast asian",
+        "types": [
+          {
+            "type": "cambodian",
+            "hasNames": true
+          },
+          {
+            "type": "filipino",
+            "hasNames": true
+          },
+          {
+            "type": "indonesian",
+            "hasNames": true
+          },
+          {
+            "type": "malaysian",
+            "hasNames": true
+          },
+          {
+            "type": "thai",
+            "hasNames": true
+          },
+          {
+            "type": "vietnamese",
+            "hasNames": true
+          }
+        ]
+      },
+      {
+        "type": "southern asian",
+        "types": [
+          {
+            "type": "bangladeshi",
+            "hasNames": true
+          },
+          {
+            "type": "indian",
+            "hasNames": true
+          },
+          {
+            "type": "nepalese",
+            "hasNames": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "black",
+    "types": [
+      {
+        "type": "african",
+        "types": [
+          {
+            "type": "eastern african",
+            "hasNames": true
+          },
+          {
+            "type": "southern african",
+            "hasNames": true
+          },
+          {
+            "type": "western african",
+            "hasNames": true
+          }
+        ]
+      },
+      {
+        "type": "american",
+        "types": [
+          {
+            "type": "caribbean islander",
+            "types": [
+              {
+                "type": "haitian",
+                "hasNames": true
+              }
+            ]
+          },
+          {
+            "type": "north american",
+            "hasNames": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "caucasian",
+    "types": [
+      {
+        "type": "american",
+        "isDefault":  true,
+        "hasNames": true
+      },
+      {
+        "type": "australian",
+        "hasNames": true
+      },
+      {
+        "type": "european",
+        "types": [
+          {
+            "type": "eastern european",
+            "types": [
+              {
+                "type": "czech",
+                "hasNames": true
+              },
+              {
+                "type": "polish",
+                "hasNames": true
+              },
+              {
+                "type": "romanian",
+                "hasNames": true
+              },
+              {
+                "type": "russian",
+                "hasNames": true
+              },
+              {
+                "type": "ukranian",
+                "hasNames": true
+              }
+            ]
+          },
+          {
+            "type": "northern european",
+            "types": [
+              {
+                "type": "danish",
+                "hasNames": true
+              },
+              {
+                "type": "english",
+                "hasNames": true
+              },
+              {
+                "type": "finnish",
+                "hasNames": true
+              },
+              {
+                "type": "irish",
+                "hasNames": true
+              },
+              {
+                "type": "norwegian",
+                "hasNames": true
+              },
+              {
+                "type": "scottish",
+                "hasNames": true
+              },
+              {
+                "type": "swedish",
+                "hasNames": true
+              }
+            ]
+          },
+          {
+            "type": "southern european",
+            "types": [
+              {
+                "type": "greek",
+                "hasNames": true
+              },
+              {
+                "type": "italian",
+                "hasNames": true
+              },
+              {
+                "type": "serbian",
+                "hasNames": true
+              }
+            ]
+          },
+          {
+            "type": "western european",
+            "types": [
+              {
+                "type": "austrian",
+                "hasNames": true
+              },
+              {
+                "type": "belgian",
+                "hasNames": true
+              },
+              {
+                "type": "dutch",
+                "hasNames": true
+              },
+              {
+                "type": "french",
+                "hasNames": true
+              },
+              {
+                "type": "german",
+                "hasNames": true
+              },
+              {
+                "type": "portugeuse",
+                "hasNames": true
+              },
+              {
+                "type": "spanish",
+                "hasNames": true
+              },
+              {
+                "type": "swiss",
+                "hasNames": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "indigenous peoples",
+    "types": [
+      {
+        "type": "indigenous american",
+        "hasNames": true
+      },
+      {
+        "type": "indigenous australian",
+        "hasNames": true
+      },
+      {
+        "type": "oceania native",
+        "hasNames": true
+      }
+    ]
+  },
+  {
+    "type": "latino",
+    "types": [
+      {
+        "type": "brazilian",
+        "hasNames": true
+      },
+      {
+        "type": "hispanic",
+        "hasNames": true
+      }
+    ]
+  },
+  {
+    "type": "middle eastern",
+    "hasNames": true,
+    "types": [
+      {
+        "type": "western asian",
+        "types": [
+          {
+            "type": "azerbaijani",
+            "hasNames": true
+          },
+          {
+            "type": "iranian",
+            "hasNames": true
+          },
+          {
+            "type": "israeli",
+            "hasNames": true
+          }
+        ]
+      }
+    ]
+  }
+]

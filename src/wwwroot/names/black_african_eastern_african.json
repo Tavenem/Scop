@@ -1,0 +1,878 @@
+{
+  "femaleNames": [
+    { "name": "Aberash" },
+    { "name": "Achieng" },
+    { "name": "Adhiambo" },
+    { "name": "Akinyi" },
+    { "name": "Alemayehu" },
+    { "name": "Asha" },
+    { "name": "Atieno" },
+    { "name": "Awiti" },
+    { "name": "Babirye" },
+    { "name": "Chausiku" },
+    { "name": "Desta" },
+    { "name": "Eshe" },
+    { "name": "Furaha" },
+    { "name": "Hiwot" },
+    { "name": "Imani" },
+    { "name": "Kamaria" },
+    { "name": "Kirabo" },
+    { "name": "Makena" },
+    { "name": "Marjani" },
+    { "name": "Mchumba" },
+    { "name": "Meklit" },
+    { "name": "Mirembe" },
+    { "name": "Mwanajuma" },
+    { "name": "Nakato" },
+    { "name": "Nia" },
+    { "name": "Nuru" },
+    { "name": "Nyah" },
+    { "name": "Sanaa" },
+    { "name": "Sauda" },
+    { "name": "Seble" },
+    { "name": "Ssanyu" },
+    { "name": "Subira" },
+    { "name": "Werknesh" },
+    { "name": "Worknesh" },
+    { "name": "Zuri" }
+  ],
+  "maleNames": [
+    { "name": "Alemayehu" },
+    { "name": "Berhanu" },
+    { "name": "Chiumbo" },
+    { "name": "Dejen" },
+    { "name": "Desta" },
+    { "name": "Faraji" },
+    { "name": "Filbert" },
+    { "name": "Gwandoya" },
+    { "name": "Imamu" },
+    { "name": "Imani" },
+    { "name": "Isingoma" },
+    { "name": "Jelani" },
+    { "name": "Jengo" },
+    { "name": "Jumaane" },
+    { "name": "Kato" },
+    { "name": "Khamisi" },
+    { "name": "Kibwe" },
+    { "name": "Kirabo" },
+    { "name": "Makena" },
+    { "name": "Masamba" },
+    { "name": "Mosi" },
+    { "name": "Mwenye" },
+    { "name": "Ochieng" },
+    { "name": "Odhiambo" },
+    { "name": "Otieno" },
+    { "name": "Sefu" },
+    { "name": "Simba" },
+    { "name": "Tafari" },
+    { "name": "Tamrat" },
+    { "name": "Tendaji" },
+    { "name": "Tewodros" },
+    { "name": "Wasswa" },
+    { "name": "Wekesa" },
+    { "name": "Yared" },
+    { "name": "Zuberi" }
+  ],
+  "surnames": [
+    {
+      "name": "Tesfaye",
+      "weight": 127.0
+    },
+    {
+      "name": "Tadesse",
+      "weight": 125.0
+    },
+    {
+      "name": "Abebe",
+      "weight": 119.0
+    },
+    {
+      "name": "Kebede",
+      "weight": 117.0
+    },
+    {
+      "name": "Bekele",
+      "weight": 106.0
+    },
+    {
+      "name": "Getachew",
+      "weight": 101.0
+    },
+    {
+      "name": "Assefa",
+      "weight": 97.0
+    },
+    {
+      "name": "Hailu",
+      "weight": 91.0
+    },
+    {
+      "name": "Girma",
+      "weight": 86.0
+    },
+    {
+      "name": "Mekonnen",
+      "weight": 84.0
+    },
+    {
+      "name": "Alemu",
+      "weight": 80.0
+    },
+    {
+      "name": "Alemayehu",
+      "weight": 65.0
+    },
+    {
+      "name": "Solomon",
+      "weight": 63.0
+    },
+    {
+      "name": "Haile",
+      "weight": 60.0
+    },
+    {
+      "name": "Teshome",
+      "weight": 60.0
+    },
+    {
+      "name": "Worku",
+      "weight": 56.0
+    },
+    {
+      "name": "Tilahun",
+      "weight": 54.0
+    },
+    {
+      "name": "Abera",
+      "weight": 51.0
+    },
+    {
+      "name": "Mohammed",
+      "weight": 51.0
+    },
+    {
+      "name": "Tsegaye",
+      "weight": 51.0
+    },
+    {
+      "name": "Kassa",
+      "weight": 47.0
+    },
+    {
+      "name": "Belay",
+      "weight": 47.0
+    },
+    {
+      "name": "Tefera",
+      "weight": 45.0
+    },
+    {
+      "name": "Ayele",
+      "weight": 45.0
+    },
+    {
+      "name": "Berhanu",
+      "weight": 43.0
+    },
+    {
+      "name": "Desta",
+      "weight": 43.0
+    },
+    {
+      "name": "Mamo",
+      "weight": 43.0
+    },
+    {
+      "name": "Ayalew",
+      "weight": 40.0
+    },
+    {
+      "name": "Asfaw",
+      "weight": 40.0
+    },
+    {
+      "name": "Beyene",
+      "weight": 40.0
+    },
+    {
+      "name": "Negash",
+      "weight": 38.0
+    },
+    {
+      "name": "Lemma",
+      "weight": 36.0
+    },
+    {
+      "name": "Shiferaw",
+      "weight": 35.0
+    },
+    {
+      "name": "Mengistu",
+      "weight": 35.0
+    },
+    {
+      "name": "Mulugeta",
+      "weight": 35.0
+    },
+    {
+      "name": "Taye",
+      "weight": 33.0
+    },
+    {
+      "name": "Seid",
+      "weight": 33.0
+    },
+    {
+      "name": "Demissie",
+      "weight": 32.0
+    },
+    {
+      "name": "Seyoum",
+      "weight": 31.0
+    },
+    {
+      "name": "Eshetu",
+      "weight": 30.0
+    },
+    {
+      "name": "Legesse",
+      "weight": 30.0
+    },
+    {
+      "name": "Amare",
+      "weight": 30.0
+    },
+    {
+      "name": "Getahun",
+      "weight": 30.0
+    },
+    {
+      "name": "Abate",
+      "weight": 27.0
+    },
+    {
+      "name": "Gebre",
+      "weight": 26.0
+    },
+    {
+      "name": "Tessema",
+      "weight": 26.0
+    },
+    {
+      "name": "Hassen",
+      "weight": 25.0
+    },
+    {
+      "name": "Belete",
+      "weight": 25.0
+    },
+    {
+      "name": "Hagos",
+      "weight": 25.0
+    },
+    {
+      "name": "Moges",
+      "weight": 25.0
+    },
+    {
+      "name": "Wolde",
+      "weight": 25.0
+    },
+    {
+      "name": "Zeleke",
+      "weight": 24.0
+    },
+    {
+      "name": "Nigussie",
+      "weight": 23.0
+    },
+    {
+      "name": "Zewdie",
+      "weight": 23.0
+    },
+    {
+      "name": "Kedir",
+      "weight": 23.0
+    },
+    {
+      "name": "Berhe",
+      "weight": 23.0
+    },
+    {
+      "name": "Mengesha",
+      "weight": 23.0
+    },
+    {
+      "name": "Bogale",
+      "weight": 22.0
+    },
+    {
+      "name": "Mesfin",
+      "weight": 21.0
+    },
+    {
+      "name": "Tekle",
+      "weight": 21.0
+    },
+    {
+      "name": "Molla",
+      "weight": 21.0
+    },
+    {
+      "name": "Kidane",
+      "weight": 20.0
+    },
+    {
+      "name": "Abdi",
+      "weight": 20.0
+    },
+    {
+      "name": "Yilma",
+      "weight": 20.0
+    },
+    {
+      "name": "Hailemariam",
+      "weight": 19.0
+    },
+    {
+      "name": "Yohannes",
+      "weight": 19.0
+    },
+    {
+      "name": "Berhane",
+      "weight": 19.0
+    },
+    {
+      "name": "Teklu",
+      "weight": 19.0
+    },
+    {
+      "name": "Kifle",
+      "weight": 18.0
+    },
+    {
+      "name": "Gizaw",
+      "weight": 18.0
+    },
+    {
+      "name": "Tesfay",
+      "weight": 18.0
+    },
+    {
+      "name": "Asrat",
+      "weight": 18.0
+    },
+    {
+      "name": "Addis",
+      "weight": 18.0
+    },
+    {
+      "name": "Gebru",
+      "weight": 18.0
+    },
+    {
+      "name": "Feleke",
+      "weight": 17.0
+    },
+    {
+      "name": "Terefe",
+      "weight": 17.0
+    },
+    {
+      "name": "Sisay",
+      "weight": 17.0
+    },
+    {
+      "name": "Demeke",
+      "weight": 17.0
+    },
+    {
+      "name": "Dejene",
+      "weight": 17.0
+    },
+    {
+      "name": "Wondimu",
+      "weight": 16.0
+    },
+    {
+      "name": "Seifu",
+      "weight": 16.0
+    },
+    {
+      "name": "Yimer",
+      "weight": 16.0
+    },
+    {
+      "name": "Adugna",
+      "weight": 16.0
+    },
+    {
+      "name": "Gebremedhin",
+      "weight": 16.0
+    },
+    {
+      "name": "Negussie",
+      "weight": 15.0
+    },
+    {
+      "name": "Ketema",
+      "weight": 15.0
+    },
+    {
+      "name": "Mekuria",
+      "weight": 15.0
+    },
+    {
+      "name": "Gebremariam",
+      "weight": 15.0
+    },
+    {
+      "name": "Zewdu",
+      "weight": 15.0
+    },
+    {
+      "name": "Hussen",
+      "weight": 15.0
+    },
+    {
+      "name": "Asefa",
+      "weight": 15.0
+    },
+    {
+      "name": "Adane",
+      "weight": 15.0
+    },
+    {
+      "name": "Mekonen",
+      "weight": 14.0
+    },
+    {
+      "name": "Melese",
+      "weight": 14.0
+    },
+    {
+      "name": "Belachew",
+      "weight": 14.0
+    },
+    {
+      "name": "Birhanu",
+      "weight": 14.0
+    },
+    {
+      "name": "Admasu",
+      "weight": 14.0
+    },
+    {
+      "name": "Teferi",
+      "weight": 14.0
+    },
+    {
+      "name": "Fekadu",
+      "weight": 14.0
+    },
+    {
+      "name": "Habte",
+      "weight": 14.0
+    },
+    {
+      "name": "Desalegn",
+      "weight": 14.0
+    },
+    {
+      "name": "Debebe",
+      "weight": 14.0
+    },
+    {
+      "name": "Melaku",
+      "weight": 14.0
+    },
+    {
+      "name": "Gebeyehu",
+      "weight": 14.0
+    },
+    {
+      "name": "Mitiku",
+      "weight": 13.0
+    },
+    {
+      "name": "Getaneh",
+      "weight": 13.0
+    },
+    {
+      "name": "Belayneh",
+      "weight": 13.0
+    },
+    {
+      "name": "Alem",
+      "weight": 13.0
+    },
+    {
+      "name": "Kahsay",
+      "weight": 13.0
+    },
+    {
+      "name": "Gemechu",
+      "weight": 13.0
+    },
+    {
+      "name": "Takele",
+      "weight": 13.0
+    },
+    {
+      "name": "Kassahun",
+      "weight": 13.0
+    },
+    {
+      "name": "Tamiru",
+      "weight": 12.0
+    },
+    {
+      "name": "Admassu",
+      "weight": 12.0
+    },
+    {
+      "name": "Girmay",
+      "weight": 12.0
+    },
+    {
+      "name": "Temesgen",
+      "weight": 12.0
+    },
+    {
+      "name": "Eshete",
+      "weight": 12.0
+    },
+    {
+      "name": "Araya",
+      "weight": 12.0
+    },
+    {
+      "name": "Fisseha",
+      "weight": 12.0
+    },
+    {
+      "name": "Abraha",
+      "weight": 12.0
+    },
+    {
+      "name": "Regassa",
+      "weight": 12.0
+    },
+    {
+      "name": "Abdella",
+      "weight": 12.0
+    },
+    {
+      "name": "Tadele",
+      "weight": 11.0
+    },
+    {
+      "name": "Mulatu",
+      "weight": 11.0
+    },
+    {
+      "name": "Kiros",
+      "weight": 11.0
+    },
+    {
+      "name": "Nigatu",
+      "weight": 11.0
+    },
+    {
+      "name": "Jemal",
+      "weight": 11.0
+    },
+    {
+      "name": "Tesema",
+      "weight": 11.0
+    },
+    {
+      "name": "Mehari",
+      "weight": 11.0
+    },
+    {
+      "name": "Abay",
+      "weight": 11.0
+    },
+    {
+      "name": "Zenebe",
+      "weight": 11.0
+    },
+    {
+      "name": "Teka",
+      "weight": 11.0
+    },
+    {
+      "name": "Kassaye",
+      "weight": 10.0
+    },
+    {
+      "name": "Gebrehiwot",
+      "weight": 10.0
+    },
+    {
+      "name": "Afework",
+      "weight": 10.0
+    },
+    {
+      "name": "Tafesse",
+      "weight": 10.0
+    },
+    {
+      "name": "Adem",
+      "weight": 10.0
+    },
+    {
+      "name": "Tarekegn",
+      "weight": 10.0
+    },
+    {
+      "name": "Zegeye",
+      "weight": 10.0
+    },
+    {
+      "name": "Arega",
+      "weight": 10.0
+    },
+    {
+      "name": "Gebretsadik",
+      "weight": 10.0
+    },
+    {
+      "name": "Zerihun",
+      "weight": 10.0
+    },
+    {
+      "name": "Geremew",
+      "weight": 10.0
+    },
+    {
+      "name": "Ibrahim",
+      "weight": 10.0
+    },
+    {
+      "name": "Yimam",
+      "weight": 10.0
+    },
+    {
+      "name": "Hussein",
+      "weight": 10.0
+    },
+    {
+      "name": "Tibebu",
+      "weight": 10.0
+    },
+    {
+      "name": "Abraham",
+      "weight": 10.0
+    },
+    {
+      "name": "Tegegne",
+      "weight": 9.0
+    },
+    {
+      "name": "Yirga",
+      "weight": 9.0
+    },
+    {
+      "name": "Workneh",
+      "weight": 9.0
+    },
+    {
+      "name": "Melesse",
+      "weight": 9.0
+    },
+    {
+      "name": "Endale",
+      "weight": 9.0
+    },
+    {
+      "name": "Tesfa",
+      "weight": 9.0
+    },
+    {
+      "name": "Ejigu",
+      "weight": 9.0
+    },
+    {
+      "name": "Amsalu",
+      "weight": 9.0
+    },
+    {
+      "name": "Tiruneh",
+      "weight": 9.0
+    },
+    {
+      "name": "Yemane",
+      "weight": 9.0
+    },
+    {
+      "name": "Mohamed",
+      "weight": 9.0
+    },
+    {
+      "name": "Woldemariam",
+      "weight": 9.0
+    },
+    {
+      "name": "Tassew",
+      "weight": 8.0
+    },
+    {
+      "name": "Balcha",
+      "weight": 8.0
+    },
+    {
+      "name": "Gashaw",
+      "weight": 8.0
+    },
+    {
+      "name": "Asmare",
+      "weight": 8.0
+    },
+    {
+      "name": "Hussien",
+      "weight": 8.0
+    },
+    {
+      "name": "Dessalegn",
+      "weight": 8.0
+    },
+    {
+      "name": "Aberra",
+      "weight": 8.0
+    },
+    {
+      "name": "Lakew",
+      "weight": 8.0
+    },
+    {
+      "name": "Tamene",
+      "weight": 8.0
+    },
+    {
+      "name": "Gebremichael",
+      "weight": 8.0
+    },
+    {
+      "name": "Mersha",
+      "weight": 8.0
+    },
+    {
+      "name": "Mulat",
+      "weight": 8.0
+    },
+    {
+      "name": "Nega",
+      "weight": 8.0
+    },
+    {
+      "name": "Adamu",
+      "weight": 8.0
+    },
+    {
+      "name": "Daba",
+      "weight": 8.0
+    },
+    {
+      "name": "Gebremeskel",
+      "weight": 8.0
+    },
+    {
+      "name": "Argaw",
+      "weight": 8.0
+    },
+    {
+      "name": "Million",
+      "weight": 7.0
+    },
+    {
+      "name": "Kibret",
+      "weight": 7.0
+    },
+    {
+      "name": "Aklilu",
+      "weight": 7.0
+    },
+    {
+      "name": "Chala",
+      "weight": 7.0
+    },
+    {
+      "name": "Gezahegn",
+      "weight": 7.0
+    },
+    {
+      "name": "Samson",
+      "weight": 7.0
+    },
+    {
+      "name": "Gudeta",
+      "weight": 7.0
+    },
+    {
+      "name": "Meshesha",
+      "weight": 7.0
+    },
+    {
+      "name": "Birhane",
+      "weight": 7.0
+    },
+    {
+      "name": "Alebachew",
+      "weight": 7.0
+    },
+    {
+      "name": "Tsegay",
+      "weight": 7.0
+    },
+    {
+      "name": "Tedla",
+      "weight": 7.0
+    },
+    {
+      "name": "Biru",
+      "weight": 7.0
+    },
+    {
+      "name": "Woldu",
+      "weight": 7.0
+    },
+    {
+      "name": "Ashenafi",
+      "weight": 7.0
+    },
+    {
+      "name": "Dagne",
+      "weight": 7.0
+    },
+    {
+      "name": "Fantahun",
+      "weight": 7.0
+    },
+    {
+      "name": "Tadese",
+      "weight": 7.0
+    },
+    {
+      "name": "Gidey",
+      "weight": 7.0
+    },
+    {
+      "name": "Samuel",
+      "weight": 7.0
+    },
+    {
+      "name": "Abrha",
+      "weight": 7.0
+    },
+    {
+      "name": "Elias",
+      "weight": 7.0
+    },
+    {
+      "name": "Geleta",
+      "weight": 7.0
+    }
+  ]
+}

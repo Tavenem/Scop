@@ -1,0 +1,226 @@
+{
+  "femaleNames": [
+    { "name": "Aigoul" },
+    { "name": "Asel" },
+    { "name": "Auken" },
+    { "name": "Jean" },
+    { "name": "Mariam" },
+    { "name": "Raikhan" },
+    { "name": "Aiaulym" },
+    { "name": "Aigerim" },
+    { "name": "Ainagul" },
+    { "name": "Ainura" },
+    { "name": "Aiselu" },
+    { "name": "Aizhan" },
+    { "name": "Alaphia" },
+    { "name": "Aquanika" },
+    { "name": "Aruzhan" },
+    { "name": "Assel" },
+    { "name": "Assem" },
+    { "name": "Ayia-Napa" },
+    { "name": "Batima" },
+    { "name": "Binagurung" },
+    { "name": "Bota" },
+    { "name": "Botagoz" },
+    { "name": "Dilnara" },
+    { "name": "Enlik" },
+    { "name": "Gulfiya" },
+    { "name": "Gulshaim" }
+  ],
+  "maleNames": [
+    { "name": "Akmetzhan" },
+    { "name": "Alen" },
+    { "name": "Alibek" },
+    { "name": "Arman" },
+    { "name": "Askar" },
+    { "name": "Baltabek" },
+    { "name": "Camran" },
+    { "name": "Daniar" },
+    { "name": "Dastan" },
+    { "name": "Eric" },
+    { "name": "Erkin" },
+    { "name": "Erzhan" },
+    { "name": "Garri" },
+    { "name": "Hojanias" },
+    { "name": "Jean" },
+    { "name": "Kairat" },
+    { "name": "Kemhebek" },
+    { "name": "Marat" },
+    { "name": "Mukhametkali" },
+    { "name": "Nazer" },
+    { "name": "Nurlan" },
+    { "name": "Nursultan" },
+    { "name": "Oraz" },
+    { "name": "Ravil" },
+    { "name": "Serik" },
+    { "name": "Serikbek" },
+    { "name": "Talgat" },
+    { "name": "Taras" },
+    { "name": "Abai" },
+    { "name": "Ablai" },
+    { "name": "Achmedjan" },
+    { "name": "Amanet" },
+    { "name": "Aniyar" },
+    { "name": "Assylhan" },
+    { "name": "Baurzhan" },
+    { "name": "Beibitzhan" },
+    { "name": "Borat" },
+    { "name": "Daniyarbek" },
+    { "name": "Ershat" },
+    { "name": "Fauske" },
+    { "name": "Fomenko" },
+    { "name": "Kapan" },
+    { "name": "Kenes" },
+    { "name": "Khazretgali" },
+    { "name": "Kholmatzhon" },
+    { "name": "Kuanyshbek" },
+    { "name": "Madiyar" },
+    { "name": "Magjan" }
+  ],
+  "surnames": [
+    {
+      "name": "Akhmetov",
+      "weight": 74.0
+    },
+    {
+      "name": "Omarov",
+      "weight": 45.0
+    },
+    {
+      "name": "Kim",
+      "weight": 42.0
+    },
+    {
+      "name": "Ospanov",
+      "weight": 41.0
+    },
+    {
+      "name": "Ivanov",
+      "weight": 39.0
+    },
+    {
+      "name": "Aliyev",
+      "weight": 36.0
+    },
+    {
+      "name": "Suleimenov",
+      "weight": 34.0
+    },
+    {
+      "name": "Iskakov",
+      "weight": 32.0
+    },
+    {
+      "name": "Abdrakhmanov",
+      "weight": 29.0
+    },
+    {
+      "name": "Ibragimov",
+      "weight": 29.0
+    },
+    {
+      "name": "Kaliyev",
+      "weight": 28.0
+    },
+    {
+      "name": "Sadykov",
+      "weight": 28.0
+    },
+    {
+      "name": "Ibrayev",
+      "weight": 27.0
+    },
+    {
+      "name": "Kuznetsov",
+      "weight": 26.0
+    },
+    {
+      "name": "Popov",
+      "weight": 25.0
+    },
+    {
+      "name": "Smagulov",
+      "weight": 24.0
+    },
+    {
+      "name": "Abdulayev",
+      "weight": 24.0
+    },
+    {
+      "name": "Isayev",
+      "weight": 23.0
+    },
+    {
+      "name": "Sultanov",
+      "weight": 23.0
+    },
+    {
+      "name": "Yussupov",
+      "weight": 23.0
+    },
+    {
+      "name": "Ismailov",
+      "weight": 21.0
+    },
+    {
+      "name": "Nurgaliyev",
+      "weight": 21.0
+    },
+    {
+      "name": "Karimov",
+      "weight": 21.0
+    },
+    {
+      "name": "Serik",
+      "weight": 20.0
+    },
+    {
+      "name": "Li",
+      "weight": 17.0
+    },
+    {
+      "name": "Amangeldy",
+      "weight": 15.0
+    },
+    {
+      "name": "Tsoi",
+      "weight": 12.0
+    },
+    {
+      "name": "Bolat",
+      "weight": 11.0
+    },
+    {
+      "name": "Bondarenko",
+      "weight": 11.0
+    },
+    {
+      "name": "Marat",
+      "weight": 10.0
+    },
+    {
+      "name": "Serikbai",
+      "weight": 10.0
+    },
+    {
+      "name": "Kussainov",
+      "weight": 10.0
+    },
+    {
+      "name": "Murat",
+      "weight": 10.0
+    },
+    { "name": "Abdulin" },
+    { "name": "Abdullayev" },
+    { "name": "Abdulov" },
+    { "name": "Aitmukhambetov" },
+    { "name": "Aronov" },
+    { "name": "Bayzhanov" },
+    { "name": "Nabiev" },
+    { "name": "Nabieva" },
+    { "name": "Nabiyev" },
+    { "name": "Nabiyeva" },
+    { "name": "Niyazov" },
+    { "name": "Usenov" }
+  ]
+}

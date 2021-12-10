@@ -1,0 +1,883 @@
+{
+  "femaleNames": [
+    { "name": "Ade" },
+    { "name": "Devi" },
+    { "name": "Dewi" },
+    { "name": "Erlin" },
+    { "name": "Fanny" },
+    { "name": "Farida" },
+    { "name": "Glenna" },
+    { "name": "Harjanti" },
+    { "name": "Hartanti" },
+    { "name": "Ida" },
+    { "name": "Inge" },
+    { "name": "Lanny" },
+    { "name": "Leony" },
+    { "name": "Liana" },
+    { "name": "Liani" },
+    { "name": "Ratna" },
+    { "name": "Shinta" },
+    { "name": "Siska" },
+    { "name": "Sri" },
+    { "name": "Sucianty" },
+    { "name": "Susanti" },
+    { "name": "Utami" },
+    { "name": "Vera" },
+    { "name": "Verawati" },
+    { "name": "Veronika" },
+    { "name": "Widya" },
+    { "name": "Widyawati" },
+    { "name": "Yanti" },
+    { "name": "Yenny" },
+    { "name": "Yulia" },
+    { "name": "Yuliana" },
+    { "name": "Yuliani" }
+  ],
+  "maleNames": [
+    { "name": "Ade" },
+    { "name": "Adi" },
+    { "name": "Agus" },
+    { "name": "Ari" },
+    { "name": "Ary" },
+    { "name": "Bambang" },
+    { "name": "Benny" },
+    { "name": "Budi" },
+    { "name": "Deddy" },
+    { "name": "Djaja" },
+    { "name": "Djaya" },
+    { "name": "Jaya" },
+    { "name": "Doddy" },
+    { "name": "Hadi" },
+    { "name": "Hadian" },
+    { "name": "Hamdani" },
+    { "name": "Handoko" },
+    { "name": "Hartono" },
+    { "name": "Hendra" },
+    { "name": "Hendri" },
+    { "name": "Hengki" },
+    { "name": "Hengky" },
+    { "name": "Herman" },
+    { "name": "Indra" },
+    { "name": "Irwan" },
+    { "name": "Ivan" },
+    { "name": "Iwan" },
+    { "name": "Johan" },
+    { "name": "Ridwan" },
+    { "name": "Sonny" },
+    { "name": "Sudirman" },
+    { "name": "Sudomo" },
+    { "name": "Sugiarto" },
+    { "name": "Suharto" },
+    { "name": "Suhendra" },
+    { "name": "Sukarno" },
+    { "name": "Suparman" },
+    { "name": "Surya" },
+    { "name": "Suryadi" },
+    { "name": "Susanto" },
+    { "name": "Teguh" },
+    { "name": "Yandi" },
+    { "name": "Yohanes" }
+  ],
+  "surnames": [
+    {
+      "name": "Sari",
+      "weight": 90.0
+    },
+    {
+      "name": "Setiawan",
+      "weight": 63.0
+    },
+    {
+      "name": "Lestari",
+      "weight": 62.0
+    },
+    {
+      "name": "Hidayat",
+      "weight": 51.0
+    },
+    {
+      "name": "Saputra",
+      "weight": 51.0
+    },
+    {
+      "name": "Wati",
+      "weight": 49.0
+    },
+    {
+      "name": "Rahayu",
+      "weight": 49.0
+    },
+    {
+      "name": "Santoso",
+      "weight": 41.0
+    },
+    {
+      "name": "Wahyuni",
+      "weight": 40.0
+    },
+    {
+      "name": "Kurniawan",
+      "weight": 38.0
+    },
+    {
+      "name": "Dewi",
+      "weight": 38.0
+    },
+    {
+      "name": "Susanti",
+      "weight": 38.0
+    },
+    {
+      "name": "Putra",
+      "weight": 36.0
+    },
+    {
+      "name": "Susanto",
+      "weight": 34.0
+    },
+    {
+      "name": "Astuti",
+      "weight": 33.0
+    },
+    {
+      "name": "Ningsih",
+      "weight": 32.0
+    },
+    {
+      "name": "Arifin",
+      "weight": 32.0
+    },
+    {
+      "name": "Handayani",
+      "weight": 30.0
+    },
+    {
+      "name": "Siregar",
+      "weight": 28.0
+    },
+    {
+      "name": "Gunawan",
+      "weight": 27.0
+    },
+    {
+      "name": "Rahman",
+      "weight": 27.0
+    },
+    {
+      "name": "Wijaya",
+      "weight": 26.0
+    },
+    {
+      "name": "Irawan",
+      "weight": 25.0
+    },
+    {
+      "name": "Wibowo",
+      "weight": 25.0
+    },
+    {
+      "name": "Hasanah",
+      "weight": 23.0
+    },
+    {
+      "name": "Wulandari",
+      "weight": 22.0
+    },
+    {
+      "name": "Nugroho",
+      "weight": 22.0
+    },
+    {
+      "name": "Aminah",
+      "weight": 21.0
+    },
+    {
+      "name": "Hadi",
+      "weight": 21.0
+    },
+    {
+      "name": "Yanti",
+      "weight": 21.0
+    },
+    {
+      "name": "Efendi",
+      "weight": 21.0
+    },
+    {
+      "name": "Putri",
+      "weight": 20.0
+    },
+    {
+      "name": "Fatimah",
+      "weight": 20.0
+    },
+    {
+      "name": "Wahyudi",
+      "weight": 20.0
+    },
+    {
+      "name": "Sinaga",
+      "weight": 20.0
+    },
+    {
+      "name": "Prasetyo",
+      "weight": 20.0
+    },
+    {
+      "name": "Utami",
+      "weight": 20.0
+    },
+    {
+      "name": "Widodo",
+      "weight": 20.0
+    },
+    {
+      "name": "Nurhayati",
+      "weight": 19.0
+    },
+    {
+      "name": "Anwar",
+      "weight": 19.0
+    },
+    {
+      "name": "Suryani",
+      "weight": 19.0
+    },
+    {
+      "name": "Purwanto",
+      "weight": 19.0
+    },
+    {
+      "name": "Lubis",
+      "weight": 18.0
+    },
+    {
+      "name": "Utomo",
+      "weight": 18.0
+    },
+    {
+      "name": "Pratama",
+      "weight": 18.0
+    },
+    {
+      "name": "Purnomo",
+      "weight": 18.0
+    },
+    {
+      "name": "Maulana",
+      "weight": 18.0
+    },
+    {
+      "name": "Ali",
+      "weight": 18.0
+    },
+    {
+      "name": "Rohman",
+      "weight": 18.0
+    },
+    {
+      "name": "Nasution",
+      "weight": 18.0
+    },
+    {
+      "name": "Mulyani",
+      "weight": 17.0
+    },
+    {
+      "name": "Rahmawati",
+      "weight": 17.0
+    },
+    {
+      "name": "Purba",
+      "weight": 16.0
+    },
+    {
+      "name": "Hermawan",
+      "weight": 16.0
+    },
+    {
+      "name": "Harahap",
+      "weight": 16.0
+    },
+    {
+      "name": "Yusuf",
+      "weight": 16.0
+    },
+    {
+      "name": "Kogoya",
+      "weight": 16.0
+    },
+    {
+      "name": "Hartono",
+      "weight": 15.0
+    },
+    {
+      "name": "Hasan",
+      "weight": 15.0
+    },
+    {
+      "name": "Abidin",
+      "weight": 15.0
+    },
+    {
+      "name": "Wiyono",
+      "weight": 14.0
+    },
+    {
+      "name": "Ahmad",
+      "weight": 14.0
+    },
+    {
+      "name": "Riyanto",
+      "weight": 14.0
+    },
+    {
+      "name": "Hayati",
+      "weight": 14.0
+    },
+    {
+      "name": "Yani",
+      "weight": 14.0
+    },
+    {
+      "name": "Ginting",
+      "weight": 14.0
+    },
+    {
+      "name": "Riyadi",
+      "weight": 14.0
+    },
+    {
+      "name": "Fauzi",
+      "weight": 14.0
+    },
+    {
+      "name": "Hakim",
+      "weight": 13.0
+    },
+    {
+      "name": "Simanjuntak",
+      "weight": 13.0
+    },
+    {
+      "name": "Amin",
+      "weight": 13.0
+    },
+    {
+      "name": "Aisyah",
+      "weight": 13.0
+    },
+    {
+      "name": "Salim",
+      "weight": 12.0
+    },
+    {
+      "name": "Khasanah",
+      "weight": 12.0
+    },
+    {
+      "name": "Huda",
+      "weight": 12.0
+    },
+    {
+      "name": "Hasibuan",
+      "weight": 12.0
+    },
+    {
+      "name": "Hidayah",
+      "weight": 12.0
+    },
+    {
+      "name": "Bahri",
+      "weight": 12.0
+    },
+    {
+      "name": "Saputro",
+      "weight": 12.0
+    },
+    {
+      "name": "Susilo",
+      "weight": 12.0
+    },
+    {
+      "name": "Marlina",
+      "weight": 11.0
+    },
+    {
+      "name": "Nugraha",
+      "weight": 11.0
+    },
+    {
+      "name": "Aini",
+      "weight": 11.0
+    },
+    {
+      "name": "Sihombing",
+      "weight": 11.0
+    },
+    {
+      "name": "Safitri",
+      "weight": 11.0
+    },
+    {
+      "name": "Nurjanah",
+      "weight": 11.0
+    },
+    {
+      "name": "Sulastri",
+      "weight": 11.0
+    },
+    {
+      "name": "Permana",
+      "weight": 11.0
+    },
+    {
+      "name": "Nur",
+      "weight": 11.0
+    },
+    {
+      "name": "Agustina",
+      "weight": 11.0
+    },
+    {
+      "name": "Pratiwi",
+      "weight": 11.0
+    },
+    {
+      "name": "Tarigan",
+      "weight": 11.0
+    },
+    {
+      "name": "Iskandar",
+      "weight": 11.0
+    },
+    {
+      "name": "Hidayati",
+      "weight": 11.0
+    },
+    {
+      "name": "Sembiring",
+      "weight": 11.0
+    },
+    {
+      "name": "Se",
+      "weight": 11.0
+    },
+    {
+      "name": "Aisah",
+      "weight": 11.0
+    },
+    {
+      "name": "Sumarni",
+      "weight": 10.0
+    },
+    {
+      "name": "Sumiati",
+      "weight": 10.0
+    },
+    {
+      "name": "Yanto",
+      "weight": 10.0
+    },
+    {
+      "name": "Sutrisno",
+      "weight": 10.0
+    },
+    {
+      "name": "Yulianti",
+      "weight": 10.0
+    },
+    {
+      "name": "Ismail",
+      "weight": 10.0
+    },
+    {
+      "name": "Mulyadi",
+      "weight": 10.0
+    },
+    {
+      "name": "Suryana",
+      "weight": 10.0
+    },
+    {
+      "name": "Anggraini",
+      "weight": 10.0
+    },
+    {
+      "name": "Hartati",
+      "weight": 10.0
+    },
+    {
+      "name": "Supriadi",
+      "weight": 10.0
+    },
+    {
+      "name": "Spd",
+      "weight": 10.0
+    },
+    {
+      "name": "Purwanti",
+      "weight": 10.0
+    },
+    {
+      "name": "Supriatna",
+      "weight": 10.0
+    },
+    {
+      "name": "Rohmah",
+      "weight": 10.0
+    },
+    {
+      "name": "Mulyono",
+      "weight": 10.0
+    },
+    {
+      "name": "Mulyana",
+      "weight": 10.0
+    },
+    {
+      "name": "Kurniawati",
+      "weight": 10.0
+    },
+    {
+      "name": "Abdullah",
+      "weight": 10.0
+    },
+    {
+      "name": "Pasaribu",
+      "weight": 10.0
+    },
+    {
+      "name": "Kurnia",
+      "weight": 10.0
+    },
+    {
+      "name": "Saragih",
+      "weight": 9.0
+    },
+    {
+      "name": "Mulyati",
+      "weight": 9.0
+    },
+    {
+      "name": "Usman",
+      "weight": 9.0
+    },
+    {
+      "name": "Khotimah",
+      "weight": 9.0
+    },
+    {
+      "name": "Prayitno",
+      "weight": 9.0
+    },
+    {
+      "name": "Supriyanto",
+      "weight": 9.0
+    },
+    {
+      "name": "Kusuma",
+      "weight": 9.0
+    },
+    {
+      "name": "Siswanto",
+      "weight": 9.0
+    },
+    {
+      "name": "Hamid",
+      "weight": 9.0
+    },
+    {
+      "name": "Anggraeni",
+      "weight": 9.0
+    },
+    {
+      "name": "Aziz",
+      "weight": 9.0
+    },
+    {
+      "name": "Akbar",
+      "weight": 9.0
+    },
+    {
+      "name": "Wenda",
+      "weight": 9.0
+    },
+    {
+      "name": "Tabuni",
+      "weight": 9.0
+    },
+    {
+      "name": "Saleh",
+      "weight": 9.0
+    },
+    {
+      "name": "Ibrahim",
+      "weight": 9.0
+    },
+    {
+      "name": "Haryanto",
+      "weight": 9.0
+    },
+    {
+      "name": "Susilawati",
+      "weight": 9.0
+    },
+    {
+      "name": "Wahyuningsih",
+      "weight": 9.0
+    },
+    {
+      "name": "Ridwan",
+      "weight": 9.0
+    },
+    {
+      "name": "Herawati",
+      "weight": 9.0
+    },
+    {
+      "name": "Raharjo",
+      "weight": 9.0
+    },
+    {
+      "name": "Setiawati",
+      "weight": 9.0
+    },
+    {
+      "name": "Sitorus",
+      "weight": 9.0
+    },
+    {
+      "name": "Azizah",
+      "weight": 8.0
+    },
+    {
+      "name": "Astutik",
+      "weight": 8.0
+    },
+    {
+      "name": "Manurung",
+      "weight": 8.0
+    },
+    {
+      "name": "Nuraeni",
+      "weight": 8.0
+    },
+    {
+      "name": "Supriyadi",
+      "weight": 8.0
+    },
+    {
+      "name": "Siahaan",
+      "weight": 8.0
+    },
+    {
+      "name": "Azis",
+      "weight": 8.0
+    },
+    {
+      "name": "Anam",
+      "weight": 8.0
+    },
+    {
+      "name": "Suwito",
+      "weight": 8.0
+    },
+    {
+      "name": "Firmansyah",
+      "weight": 8.0
+    },
+    {
+      "name": "Wijayanti",
+      "weight": 8.0
+    },
+    {
+      "name": "Situmorang",
+      "weight": 8.0
+    },
+    {
+      "name": "Asih",
+      "weight": 8.0
+    },
+    {
+      "name": "Cahyono",
+      "weight": 8.0
+    },
+    {
+      "name": "Jaya",
+      "weight": 8.0
+    },
+    {
+      "name": "Setyawan",
+      "weight": 8.0
+    },
+    {
+      "name": "Kurniasih",
+      "weight": 8.0
+    },
+    {
+      "name": "Farida",
+      "weight": 8.0
+    },
+    {
+      "name": "Darmawan",
+      "weight": 8.0
+    },
+    {
+      "name": "Damayanti",
+      "weight": 8.0
+    },
+    {
+      "name": "Yuliana",
+      "weight": 8.0
+    },
+    {
+      "name": "Andriani",
+      "weight": 8.0
+    },
+    {
+      "name": "Yulianto",
+      "weight": 8.0
+    },
+    {
+      "name": "Mustofa",
+      "weight": 8.0
+    },
+    {
+      "name": "Rahmat",
+      "weight": 8.0
+    },
+    {
+      "name": "Fitriani",
+      "weight": 8.0
+    },
+    {
+      "name": "Susilowati",
+      "weight": 8.0
+    },
+    {
+      "name": "Ramadhan",
+      "weight": 8.0
+    },
+    {
+      "name": "Kartini",
+      "weight": 8.0
+    },
+    {
+      "name": "Karim",
+      "weight": 8.0
+    },
+    {
+      "name": "Saepudin",
+      "weight": 8.0
+    },
+    {
+      "name": "Jannah",
+      "weight": 8.0
+    },
+    {
+      "name": "Halim",
+      "weight": 8.0
+    },
+    {
+      "name": "Panjaitan",
+      "weight": 7.0
+    },
+    {
+      "name": "Maryati",
+      "weight": 7.0
+    },
+    {
+      "name": "Nainggolan",
+      "weight": 7.0
+    },
+    {
+      "name": "Hariyanto",
+      "weight": 7.0
+    },
+    {
+      "name": "Suherman",
+      "weight": 7.0
+    },
+    {
+      "name": "Hj",
+      "weight": 7.0
+    },
+    {
+      "name": "Sutisna",
+      "weight": 7.0
+    },
+    {
+      "name": "Arif",
+      "weight": 7.0
+    },
+    {
+      "name": "Basri",
+      "weight": 7.0
+    },
+    {
+      "name": "Halimah",
+      "weight": 7.0
+    },
+    {
+      "name": "Priyanto",
+      "weight": 7.0
+    },
+    {
+      "name": "Setyowati",
+      "weight": 7.0
+    },
+    {
+      "name": "Rifai",
+      "weight": 7.0
+    },
+    {
+      "name": "Syahputra",
+      "weight": 7.0
+    },
+    {
+      "name": "Slamet",
+      "weight": 7.0
+    },
+    {
+      "name": "Purnama",
+      "weight": 7.0
+    },
+    {
+      "name": "Sudrajat",
+      "weight": 7.0
+    },
+    {
+      "name": "Puspitasari",
+      "weight": 7.0
+    },
+    {
+      "name": "Wonda",
+      "weight": 7.0
+    },
+    {
+      "name": "Hartini",
+      "weight": 7.0
+    },
+    {
+      "name": "Tanjung",
+      "weight": 7.0
+    },
+    {
+      "name": "Suryadi",
+      "weight": 7.0
+    },
+    {
+      "name": "Soleh",
+      "weight": 7.0
+    },
+    {
+      "name": "Ernawati",
+      "weight": 7.0
+    },
+    {
+      "name": "Umar",
+      "weight": 7.0
+    }
+  ]
+}

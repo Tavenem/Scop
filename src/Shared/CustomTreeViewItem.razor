@@ -1,0 +1,127 @@
+﻿@inherits MudComponentBase
+@attribute [CascadingTypeParameter(nameof(T))]
+@typeparam T
+
+<li @ondrop="OnDropAsync"
+    @ondrop:stopPropagation="true"
+    @attributes="UserAttributes"
+    class="@Classname"
+    style="@Style"
+    ondragover="event.preventDefault();">
+    <div class="@ContentClassname" @onclick="OnItemClicked" @onclick:stopPropagation="true">
+        <MudTreeViewItemToggleButton Loading="Loading"
+                                     Expanded="Expanded"
+                                     ExpandedChanged="OnItemExpanded"
+                                     Visible="@HasChild"
+                                     ExpandedIcon="@(HasRealChild ? ExpandedIcon : MudBlazor.Icons.Material.Filled.Add)"
+                                     ExpandedIconColor="@ExpandedIconColor"
+                                     LoadingIcon="@LoadingIcon"
+                                     LoadingIconColor="LoadingIconColor" />
+
+        @if (MudTreeRoot is not null && MudTreeRoot.MultiSelection && Selectable)
+        {
+            <MudCheckBox Class="mud-treeview-item-checkbox"
+                         Color="Color.Inherit"
+                         CheckedIcon="@CheckedIcon"
+                         UncheckedIcon="@UncheckedIcon"
+                         @bind-Checked="IsChecked"
+                         Disabled="@Disabled" />
+        }
+
+        <div class="d-flex align-center flex-grow-1" draggable="true" @ondragstart="OnDragStartAsync">
+            @if (Icons?.Count > 0)
+            {
+                <MudMenu Icon="@Icons[IconIndex]"
+                         Class="mud-treeview-item-icon"
+                         Dense="true"
+                         Color="@IconColor"
+                         Disabled="Disabled">
+                    @for (var i = 0; i < Icons.Count; i++)
+                    {
+                        var index = i;
+                        <MudMenuItem @key="index" OnClick="@(_ => OnSelectIconIndex(index))">
+                            <MudIcon Icon="@Icons[index]" Color="@IconColor" />
+                        </MudMenuItem>
+                    }
+                </MudMenu>
+            }
+            else if (!string.IsNullOrEmpty(Icon))
+            {
+                <div class="mud-treeview-item-icon">
+                    <MudIcon Icon="@Icon" Color="@IconColor" />
+                </div>
+            }
+
+            @Content
+            
+            @if (ShowText && !string.IsNullOrEmpty(Text))
+            {
+                <MudText Typo="@TextTypo" Class="@TextClassname" Style="@TextStyle">
+                    @Text
+                </MudText>
+            }
+        </div>
+
+        @if (!string.IsNullOrEmpty(EndText))
+        {            
+            <MudText Typo="@EndTextTypo" Class="@EndTextClass">
+                @EndText
+            </MudText>  
+        }
+
+        @if (EndIcons is not null)
+        {
+            <div class="mud-treeview-item-icon">
+                @EndIcons
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(EndIcon))
+        {
+            <div class="mud-treeview-item-icon">
+                @if (OnEndIconClick.HasDelegate)
+                {
+                    if (!string.IsNullOrEmpty(EndIconTooltip))
+                    {
+                        <MudTooltip Text="@EndIconTooltip" Delay="600">
+                            <MudIconButton OnClick="OnEndIconClickAsync" Disabled="Disabled" Icon="@EndIcon" Color="@EndIconColor" />
+                        </MudTooltip>
+                    }
+                    else
+                    {
+                        <MudIconButton OnClick="OnEndIconClickAsync" Disabled="Disabled" Icon="@EndIcon" Color="@EndIconColor" />
+                    }
+                }
+                else if (!string.IsNullOrEmpty(EndIconTooltip))
+                {
+                    <MudTooltip Text="@EndIconTooltip" Delay="600">
+                        <MudIcon Icon="@EndIcon" Color="@EndIconColor" />
+                    </MudTooltip>
+                }
+                else
+                {
+                    <MudIcon Icon="@EndIcon" Color="@EndIconColor" />
+                }
+            </div>
+        }
+    </div>
+    @if (ShowChildren)
+    {
+        <MudCollapse Expanded="@Expanded">
+            <CascadingValue Value="@MudTreeRoot" IsFixed="true">
+                <CascadingValue Value="this" IsFixed="true">
+                    <CustomTreeView T="T"
+                                    Class="mud-treeview-group"
+                                    Items="Items"
+                                    ItemTemplate="MudTreeRoot?.ItemTemplate!">
+                        <ChildContent>
+                            @ChildContent
+                        </ChildContent>
+                        <EndContent>
+                            @EndContent
+                        </EndContent>
+                    </CustomTreeView>
+                </CascadingValue>
+            </CascadingValue>
+        </MudCollapse>
+    }
+</li>

@@ -1,0 +1,3983 @@
+{
+  "femaleNames": [
+    { "name": "Ae-jung" },
+    { "name": "Areum" },
+    { "name": "Bit-na" },
+    { "name": "Bo-young" },
+    { "name": "Bora" },
+    { "name": "Chae-won" },
+    { "name": "Chae-young" },
+    { "name": "Chun-hwa" },
+    { "name": "Chun-ja" },
+    { "name": "Da-hee" },
+    { "name": "Do-hee" },
+    { "name": "Eun-ah" },
+    { "name": "Eun-bi" },
+    { "name": "Eun-byul" },
+    { "name": "Eun-chae" },
+    { "name": "Eun-ha" },
+    { "name": "Eun-hee" },
+    { "name": "Eun-hye" },
+    { "name": "Eun-ji" },
+    { "name": "Eun-jin" },
+    { "name": "Eun-ju" },
+    { "name": "Eun-jung" },
+    { "name": "Eun-kyung" },
+    { "name": "Eun-mi" },
+    { "name": "Eun-sook" },
+    { "name": "Eun-suh" },
+    { "name": "Eun-young" },
+    { "name": "Ga-in" },
+    { "name": "Ga-young" },
+    { "name": "Gyuri" },
+    { "name": "Ha-eun" },
+    { "name": "Hana" },
+    { "name": "Hye-bin" },
+    { "name": "Hye-in" },
+    { "name": "Hye-ja" },
+    { "name": "Hye-jin" },
+    { "name": "Hye-jung" },
+    { "name": "Hye-kyung" },
+    { "name": "Hye-mi" },
+    { "name": "Hye-rim" },
+    { "name": "Hye-su" },
+    { "name": "Hye-won" },
+    { "name": "Hyo-joo" },
+    { "name": "Hyo-rin" },
+    { "name": "Hyun-a" },
+    { "name": "Hyun-kyung" },
+    { "name": "Hyun-mi" },
+    { "name": "Hyun-sook" },
+    { "name": "In-hye" },
+    { "name": "In-sook" },
+    { "name": "Ja-kyung" },
+    { "name": "Jae-eun" },
+    { "name": "Jang-mi" },
+    { "name": "Jeong-ja" },
+    { "name": "Ji-ae" },
+    { "name": "Ji-eun" },
+    { "name": "Ji-hye" },
+    { "name": "Ji-yeon" },
+    { "name": "Ji-young" },
+    { "name": "Jina" },
+    { "name": "Jung-ah" },
+    { "name": "Jung-sook" },
+    { "name": "Jung-soon" },
+    { "name": "Kyung-ah" },
+    { "name": "Kyung-hee" },
+    { "name": "Kyung-hwa" },
+    { "name": "Kyung-ja" },
+    { "name": "Kyung-ok" },
+    { "name": "Kyung-sook" },
+    { "name": "Mi-hee" },
+    { "name": "Mi-ja" },
+    { "name": "Mi-jung" },
+    { "name": "Mi-kyung" },
+    { "name": "Mi-ran" },
+    { "name": "Mi-sook" },
+    { "name": "Mi-yeon" },
+    { "name": "Mi-young" },
+    { "name": "Min-hee" },
+    { "name": "Min-ji" },
+    { "name": "Min-jung" },
+    { "name": "Min-seo" },
+    { "name": "Mina" },
+    { "name": "Myung-hwa" },
+    { "name": "Myung-ok" },
+    { "name": "Myung-sook" },
+    { "name": "Myung-soon" },
+    { "name": "Na-young" },
+    { "name": "Nana" },
+    { "name": "Nari" },
+    { "name": "Nuri" },
+    { "name": "Sang-mi" },
+    { "name": "Se-bin" },
+    { "name": "Seo-hyeon" },
+    { "name": "Seo-yeon" },
+    { "name": "Seo-yun" },
+    { "name": "Seol-hee" },
+    { "name": "Seon-ok" },
+    { "name": "Seong-ja" },
+    { "name": "Seung-ah" },
+    { "name": "Shin-hye" },
+    { "name": "Si-yeon" },
+    { "name": "So-hyun" },
+    { "name": "So-won" },
+    { "name": "So-yi" },
+    { "name": "So-young" },
+    { "name": "Soo-ah" },
+    { "name": "Soo-hee" },
+    { "name": "Sook-ja" },
+    { "name": "Soon-hee" },
+    { "name": "Soon-ja" },
+    { "name": "Sora" },
+    { "name": "Su-mi" },
+    { "name": "Sun-hee" },
+    { "name": "Sun-hwa" },
+    { "name": "Sun-mi" },
+    { "name": "Sun-ok" },
+    { "name": "Sung-mi" },
+    { "name": "Sung-sook" },
+    { "name": "Ye-eun" },
+    { "name": "Ye-ji" },
+    { "name": "Ye-jin" },
+    { "name": "Ye-rin" },
+    { "name": "Ye-seo" },
+    { "name": "Ye-won" },
+    { "name": "Yeo-jin" },
+    { "name": "Yeon-hee" },
+    { "name": "Yi-kyung" },
+    { "name": "Yoo-kyung" },
+    { "name": "Yoon-hee" },
+    { "name": "Yoon-sook" },
+    { "name": "Young-ae" },
+    { "name": "Young-hee" },
+    { "name": "Young-ja" },
+    { "name": "Young-mi" },
+    { "name": "Young-sook" },
+    { "name": "Yu-ri" },
+    { "name": "Yumi" },
+    { "name": "Bo-kyung" },
+    { "name": "Bo-yeon" },
+    { "name": "Boa" },
+    { "name": "Byung-hee" },
+    { "name": "Chun-hee" },
+    { "name": "Da-bin" },
+    { "name": "Do-yeon" },
+    { "name": "Duri" },
+    { "name": "Eun-jae" },
+    { "name": "Eun-sang" },
+    { "name": "Eun-soo" },
+    { "name": "Eun-sung" },
+    { "name": "Ha-neul" },
+    { "name": "Ha-sun" },
+    { "name": "Hae-jin" },
+    { "name": "Hae-joo" },
+    { "name": "Hae-won" },
+    { "name": "Hee-jung" },
+    { "name": "Hee-kyung" },
+    { "name": "Hee-sun" },
+    { "name": "Hee-sung" },
+    { "name": "Ho-jung" },
+    { "name": "Hong-joo" },
+    { "name": "Hye-sung" },
+    { "name": "Hyo-jin" },
+    { "name": "Hyun-hee" },
+    { "name": "Hyun-jin" },
+    { "name": "Hyun-joo" },
+    { "name": "Hyun-jung" },
+    { "name": "Hyun-sik" },
+    { "name": "Hyun-soo" },
+    { "name": "Hyung-joo" },
+    { "name": "In-soo" },
+    { "name": "In-young" },
+    { "name": "Ja-kyung" },
+    { "name": "Jae-gyu" },
+    { "name": "Jae-hee" },
+    { "name": "Jae-in" },
+    { "name": "Jae-kyung" },
+    { "name": "Jae-shin" },
+    { "name": "Jae-young" },
+    { "name": "Ji-ha" },
+    { "name": "Ji-hae" },
+    { "name": "Ji-hu" },
+    { "name": "Ji-hyun" },
+    { "name": "Ji-min" },
+    { "name": "Ji-su" },
+    { "name": "Ji-won" },
+    { "name": "Ji-woo" },
+    { "name": "Ji-yoon" },
+    { "name": "Jin-hee" },
+    { "name": "Jin-ho" },
+    { "name": "Jin-joo" },
+    { "name": "Jin-soo" },
+    { "name": "Jin-sung" },
+    { "name": "Jin-young" },
+    { "name": "Jong-ok" },
+    { "name": "Joo-hyun" },
+    { "name": "Joon-hee" },
+    { "name": "Jung-eun" },
+    { "name": "Jung-hee" },
+    { "name": "Jung-hwa" },
+    { "name": "Jung-hyun" },
+    { "name": "Jung-won" },
+    { "name": "Kwang-hee" },
+    { "name": "Kyu-won" },
+    { "name": "Kyung-ju" },
+    { "name": "Kyung-lim" },
+    { "name": "Kyung-min" },
+    { "name": "Kyung-sun" },
+    { "name": "Kyung-won" },
+    { "name": "Man-hee" },
+    { "name": "Mi-sun" },
+    { "name": "Min-ju" },
+    { "name": "Min-jun" },
+    { "name": "Min-kyung" },
+    { "name": "Min-soo" },
+    { "name": "Min-sun" },
+    { "name": "Min-young" },
+    { "name": "Mu-young" },
+    { "name": "Myung-hee" },
+    { "name": "Nam-seon" },
+    { "name": "Nam-sun" },
+    { "name": "Sang" },
+    { "name": "Sang-eun" },
+    { "name": "Se-yeon" },
+    { "name": "Se-young" },
+    { "name": "Seong-han" },
+    { "name": "Seul-ki" },
+    { "name": "Seung-eun" },
+    { "name": "Seung-hee" },
+    { "name": "Seung-hwa" },
+    { "name": "Seung-hyun" },
+    { "name": "Seung-min" },
+    { "name": "Seung-yeon" },
+    { "name": "Seung-yong" },
+    { "name": "Shin-young" },
+    { "name": "Si-won" },
+    { "name": "Soo-hyun" },
+    { "name": "Soo-jin" },
+    { "name": "Soo-jung" },
+    { "name": "Soo-kyung" },
+    { "name": "Soo-min" },
+    { "name": "Soo-yeon" },
+    { "name": "Soo-young" },
+    { "name": "Su-bin" },
+    { "name": "Su-ji" },
+    { "name": "Sun-young" },
+    { "name": "Sung-hee" },
+    { "name": "Sung-hyun" },
+    { "name": "Tae-hee" },
+    { "name": "Tae-hyun" },
+    { "name": "Tae-yeon" },
+    { "name": "Tae-young" },
+    { "name": "Yeon-woo" },
+    { "name": "Yeong-ok" },
+    { "name": "Yi-soo" },
+    { "name": "Yoo-jung" },
+    { "name": "Yoon-jung" },
+    { "name": "Young-jin" },
+    { "name": "Young-joo" },
+    { "name": "Young-nam" },
+    { "name": "Young-shin" },
+    { "name": "Yu-jin" },
+    { "name": "Yun-seo" }
+  ],
+  "maleNames": [
+    { "name": "Bo-kyung" },
+    { "name": "Bo-yeon" },
+    { "name": "Boa" },
+    { "name": "Byung-hee" },
+    { "name": "Chun-hee" },
+    { "name": "Da-bin" },
+    { "name": "Do-yeon" },
+    { "name": "Duri" },
+    { "name": "Eun-jae" },
+    { "name": "Eun-sang" },
+    { "name": "Eun-soo" },
+    { "name": "Eun-sung" },
+    { "name": "Ha-neul" },
+    { "name": "Ha-sun" },
+    { "name": "Hae-jin" },
+    { "name": "Hae-joo" },
+    { "name": "Hae-won" },
+    { "name": "Hee-jung" },
+    { "name": "Hee-kyung" },
+    { "name": "Hee-sun" },
+    { "name": "Hee-sung" },
+    { "name": "Ho-jung" },
+    { "name": "Hong-joo" },
+    { "name": "Hye-sung" },
+    { "name": "Hyo-jin" },
+    { "name": "Hyun-hee" },
+    { "name": "Hyun-jin" },
+    { "name": "Hyun-joo" },
+    { "name": "Hyun-jung" },
+    { "name": "Hyun-sik" },
+    { "name": "Hyun-soo" },
+    { "name": "Hyung-joo" },
+    { "name": "In-soo" },
+    { "name": "In-young" },
+    { "name": "Ja-kyung" },
+    { "name": "Jae-gyu" },
+    { "name": "Jae-hee" },
+    { "name": "Jae-in" },
+    { "name": "Jae-kyung" },
+    { "name": "Jae-shin" },
+    { "name": "Jae-young" },
+    { "name": "Ji-ha" },
+    { "name": "Ji-hae" },
+    { "name": "Ji-hu" },
+    { "name": "Ji-hyun" },
+    { "name": "Ji-min" },
+    { "name": "Ji-su" },
+    { "name": "Ji-won" },
+    { "name": "Ji-woo" },
+    { "name": "Ji-yoon" },
+    { "name": "Jin-hee" },
+    { "name": "Jin-ho" },
+    { "name": "Jin-joo" },
+    { "name": "Jin-soo" },
+    { "name": "Jin-sung" },
+    { "name": "Jin-young" },
+    { "name": "Jong-ok" },
+    { "name": "Joo-hyun" },
+    { "name": "Joon-hee" },
+    { "name": "Jung-eun" },
+    { "name": "Jung-hee" },
+    { "name": "Jung-hwa" },
+    { "name": "Jung-hyun" },
+    { "name": "Jung-won" },
+    { "name": "Kwang-hee" },
+    { "name": "Kyu-won" },
+    { "name": "Kyung-ju" },
+    { "name": "Kyung-lim" },
+    { "name": "Kyung-min" },
+    { "name": "Kyung-sun" },
+    { "name": "Kyung-won" },
+    { "name": "Man-hee" },
+    { "name": "Mi-sun" },
+    { "name": "Min-ju" },
+    { "name": "Min-jun" },
+    { "name": "Min-kyung" },
+    { "name": "Min-soo" },
+    { "name": "Min-sun" },
+    { "name": "Min-young" },
+    { "name": "Mu-young" },
+    { "name": "Myung-hee" },
+    { "name": "Nam-seon" },
+    { "name": "Nam-sun" },
+    { "name": "Sang" },
+    { "name": "Sang-eun" },
+    { "name": "Se-yeon" },
+    { "name": "Se-young" },
+    { "name": "Seong-han" },
+    { "name": "Seul-ki" },
+    { "name": "Seung-eun" },
+    { "name": "Seung-hee" },
+    { "name": "Seung-hwa" },
+    { "name": "Seung-hyun" },
+    { "name": "Seung-min" },
+    { "name": "Seung-yeon" },
+    { "name": "Seung-yong" },
+    { "name": "Shin-young" },
+    { "name": "Si-won" },
+    { "name": "Soo-hyun" },
+    { "name": "Soo-jin" },
+    { "name": "Soo-jung" },
+    { "name": "Soo-kyung" },
+    { "name": "Soo-min" },
+    { "name": "Soo-yeon" },
+    { "name": "Soo-young" },
+    { "name": "Su-bin" },
+    { "name": "Su-ji" },
+    { "name": "Sun-young" },
+    { "name": "Sung-hee" },
+    { "name": "Sung-hyun" },
+    { "name": "Tae-hee" },
+    { "name": "Tae-hyun" },
+    { "name": "Tae-yeon" },
+    { "name": "Tae-young" },
+    { "name": "Yeon-woo" },
+    { "name": "Yeong-ok" },
+    { "name": "Yi-soo" },
+    { "name": "Yoo-jung" },
+    { "name": "Yoon-jung" },
+    { "name": "Young-jin" },
+    { "name": "Young-joo" },
+    { "name": "Young-nam" },
+    { "name": "Young-shin" },
+    { "name": "Yu-jin" },
+    { "name": "Yun-seo" },
+    { "name": "Beom-seok" },
+    { "name": "Beom-soo" },
+    { "name": "Byung-chul" },
+    { "name": "Byung-ho" },
+    { "name": "Byung-hoon" },
+    { "name": "Byung-hun" },
+    { "name": "Byung-joon" },
+    { "name": "Byung-woo" },
+    { "name": "Byung-wook" },
+    { "name": "Chang-ho" },
+    { "name": "Chang-hoon" },
+    { "name": "Chang-min" },
+    { "name": "Chang-woo" },
+    { "name": "Cheol-min" },
+    { "name": "Chi-won" },
+    { "name": "Chul" },
+    { "name": "Chul-soo" },
+    { "name": "Chul-soon" },
+    { "name": "Dae-hyun" },
+    { "name": "Dae-sung" },
+    { "name": "Dae-won" },
+    { "name": "Deok-su" },
+    { "name": "Do-hun" },
+    { "name": "Do-hyun" },
+    { "name": "Do-won" },
+    { "name": "Dong-chan" },
+    { "name": "Dong-chul" },
+    { "name": "Dong-geun" },
+    { "name": "Dong-gun" },
+    { "name": "Dong-ha" },
+    { "name": "Dong-hoon" },
+    { "name": "Dong-hyuk" },
+    { "name": "Dong-hyun" },
+    { "name": "Dong-il" },
+    { "name": "Dong-joo" },
+    { "name": "Dong-jun" },
+    { "name": "Dong-soo" },
+    { "name": "Dong-suk" },
+    { "name": "Dong-won" },
+    { "name": "Dong-wook" },
+    { "name": "Geun" },
+    { "name": "Gun" },
+    { "name": "Hae-il" },
+    { "name": "Hae-seong" },
+    { "name": "Han-bin" },
+    { "name": "Han-jae" },
+    { "name": "Hee-chul" },
+    { "name": "Hee-joon" },
+    { "name": "Ho" },
+    { "name": "Ho-jin" },
+    { "name": "Ho-jun" },
+    { "name": "Ho-sung" },
+    { "name": "Hong-gi" },
+    { "name": "Hoon" },
+    { "name": "Hyuk" },
+    { "name": "Hyun-jun" },
+    { "name": "Hyun-seok" },
+    { "name": "Hyun-seung" },
+    { "name": "Hyun-tae" },
+    { "name": "Hyun-woo" },
+    { "name": "Hyun-wook" },
+    { "name": "Hyung-joon" },
+    { "name": "Hyung-min" },
+    { "name": "Hyung-won" },
+    { "name": "Il" },
+    { "name": "Il-sung" },
+    { "name": "In-sik" },
+    { "name": "Jae-beom" },
+    { "name": "Jae-geun" },
+    { "name": "Jae-ho" },
+    { "name": "Jae-hyuk" },
+    { "name": "Jae-hyun" },
+    { "name": "Jae-joon" },
+    { "name": "Jae-suk" },
+    { "name": "Jae-sung" },
+    { "name": "Jae-won" },
+    { "name": "Jae-woo" },
+    { "name": "Jae-wook" },
+    { "name": "Jae-woong" },
+    { "name": "Jae-yong" },
+    { "name": "Jae-yoon" },
+    { "name": "Ji-ho" },
+    { "name": "Ji-hoon" },
+    { "name": "Ji-hwan" },
+    { "name": "Ji-seok" },
+    { "name": "Ji-tae" },
+    { "name": "Ji-woon" },
+    { "name": "Ji-woong" },
+    { "name": "Jin-hwan" },
+    { "name": "Jin-hyuk" },
+    { "name": "Jin-sun" },
+    { "name": "Jin-woo" },
+    { "name": "Jin-wook" },
+    { "name": "Jong-hoon" },
+    { "name": "Jong-hyuk" },
+    { "name": "Jong-hyun" },
+    { "name": "Jong-il" },
+    { "name": "Jong-seok" },
+    { "name": "Jong-soo" },
+    { "name": "Jong-yul" },
+    { "name": "Joo-hwan" },
+    { "name": "Joo-won" },
+    { "name": "Joon-ho" },
+    { "name": "Joon-hyuk" },
+    { "name": "Joon-ki" },
+    { "name": "Joon-tae" },
+    { "name": "Jun-ha" },
+    { "name": "Jun-sang" },
+    { "name": "Jun-seo" },
+    { "name": "Jun-seok" },
+    { "name": "Jun-young" },
+    { "name": "Jung-ho" },
+    { "name": "Jung-hoon" },
+    { "name": "Jung-hwan" },
+    { "name": "Jung-il" },
+    { "name": "Jung-jin" },
+    { "name": "Jung-min" },
+    { "name": "Jung-mo" },
+    { "name": "Jung-myung" },
+    { "name": "Jung-nam" },
+    { "name": "Jung-sik" },
+    { "name": "Jung-soo" },
+    { "name": "Jung-woo" },
+    { "name": "Kang-min" },
+    { "name": "Ki-ha" },
+    { "name": "Ki-jung" },
+    { "name": "Ki-moon" },
+    { "name": "Ki-nam" },
+    { "name": "Ki-tae" },
+    { "name": "Ki-woo" },
+    { "name": "Ki-woong" },
+    { "name": "Ki-young" },
+    { "name": "Kun-woo" },
+    { "name": "Kwang-ho" },
+    { "name": "Kwang-hoon" },
+    { "name": "Kwang-hwan" },
+    { "name": "Kwang-hyok" },
+    { "name": "Kwang-hyun" },
+    { "name": "Kwang-jo" },
+    { "name": "Kwang-min" },
+    { "name": "Kwang-seok" },
+    { "name": "Kwang-seon" },
+    { "name": "Kwang-sik" },
+    { "name": "Kwang-su" },
+    { "name": "Kyu-chul" },
+    { "name": "Kyung-chul" },
+    { "name": "Kyung-gu" },
+    { "name": "Kyung-ho" },
+    { "name": "Kyung-hwan" },
+    { "name": "Kyung-jae" },
+    { "name": "Kyung-joon" },
+    { "name": "Kyung-mo" },
+    { "name": "Kyung-seok" },
+    { "name": "Kyung-soo" },
+    { "name": "Kyung-tae" },
+    { "name": "Kyung-taek" },
+    { "name": "Kyung-wan" },
+    { "name": "Man-seok" },
+    { "name": "Man-sik" },
+    { "name": "Man-soo" },
+    { "name": "Min-chul" },
+    { "name": "Min-ho" },
+    { "name": "Min-hyuk" },
+    { "name": "Min-jae" },
+    { "name": "Min-ki" },
+    { "name": "Min-kyu" },
+    { "name": "Min-seok" },
+    { "name": "Min-woo" },
+    { "name": "Moon-sik" },
+    { "name": "Moon-soo" },
+    { "name": "Mu-yeol" },
+    { "name": "Myung-hoon" },
+    { "name": "Myung-hwan" },
+    { "name": "Myung-soo" },
+    { "name": "Myung-yong" },
+    { "name": "Nam-gi" },
+    { "name": "Nam-il" },
+    { "name": "Nuri" },
+    { "name": "Oh-seong" },
+    { "name": "Sang-chul" },
+    { "name": "Sang-hoon" },
+    { "name": "Sang-hyun" },
+    { "name": "Sang-jun" },
+    { "name": "Sang-won" },
+    { "name": "Sang-woo" },
+    { "name": "Sang-wook" },
+    { "name": "Se-yoon" },
+    { "name": "Seo-jun" },
+    { "name": "Seok-ho" },
+    { "name": "Seok-ju" },
+    { "name": "Seung-chul" },
+    { "name": "Seung-gi" },
+    { "name": "Seung-heon" },
+    { "name": "Seung-ho" },
+    { "name": "Seung-hoon" },
+    { "name": "Seung-hwan" },
+    { "name": "Seung-jae" },
+    { "name": "Seung-jun" },
+    { "name": "Seung-soo" },
+    { "name": "Seung-won" },
+    { "name": "Seung-woo" },
+    { "name": "Seung-yoon" },
+    { "name": "Shi-woo" },
+    { "name": "Soo-geun" },
+    { "name": "Suk-won" },
+    { "name": "Sun-woo" },
+    { "name": "Sung-chul" },
+    { "name": "Sung-ha" },
+    { "name": "Sung-ho" },
+    { "name": "Sung-hoon" },
+    { "name": "Sung-il" },
+    { "name": "Sung-jae" },
+    { "name": "Sung-jin" },
+    { "name": "Sung-keun" },
+    { "name": "Sung-ki" },
+    { "name": "Sung-min" },
+    { "name": "Sung-mo" },
+    { "name": "Sung-nam" },
+    { "name": "Sung-soo" },
+    { "name": "Sung-won" },
+    { "name": "Sung-woo" },
+    { "name": "Sung-yong" },
+    { "name": "Tae" },
+    { "name": "Tae-ho" },
+    { "name": "Tae-il" },
+    { "name": "Tae-joon" },
+    { "name": "Tae-soo" },
+    { "name": "Tae-suk" },
+    { "name": "Tae-sung" },
+    { "name": "Tae-won" },
+    { "name": "Tae-woo" },
+    { "name": "Tae-wook" },
+    { "name": "Tae-woong" },
+    { "name": "Tae-yong" },
+    { "name": "Won-chul" },
+    { "name": "Won-ho" },
+    { "name": "Won-il" },
+    { "name": "Won-jae" },
+    { "name": "Won-sik" },
+    { "name": "Won-yong" },
+    { "name": "Woo-jin" },
+    { "name": "Woo-sung" },
+    { "name": "Woong" },
+    { "name": "Ye-jun" },
+    { "name": "Yeon-seok" },
+    { "name": "Yo-han" },
+    { "name": "Yong-gi" },
+    { "name": "Yong-ho" },
+    { "name": "Yong-joon" },
+    { "name": "Yoo-gun" },
+    { "name": "Yoon-sung" },
+    { "name": "Young-chul" },
+    { "name": "Young-gi" },
+    { "name": "Young-ha" },
+    { "name": "Young-ho" },
+    { "name": "Young-hwan" },
+    { "name": "Young-jae" },
+    { "name": "Young-jun" },
+    { "name": "Young-min" },
+    { "name": "Young-sik" },
+    { "name": "Young-soo" },
+    { "name": "Young-tae" },
+    { "name": "Young-wook" },
+    { "name": "Yun-seok" }
+  ],
+  "surnames": [
+    {
+      "name": "Gim",
+      "weight": 9925949.0
+    },
+    {
+      "name": "Kim",
+      "weight": 9925949.0
+    },
+    {
+      "name": "Ghim",
+      "weight": 9925949.0
+    },
+    {
+      "name": "Kym",
+      "weight": 9925949.0
+    },
+    {
+      "name": "Keem",
+      "weight": 9925949.0
+    },
+    {
+      "name": "I",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Yi",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Lee",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Yi",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Rhee",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Ree",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Rie",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Rhie",
+      "weight": 6796227.0
+    },
+    {
+      "name": "Bak",
+      "weight": 3895121.0
+    },
+    {
+      "name": "Pak",
+      "weight": 3895121.0
+    },
+    {
+      "name": "Bahk",
+      "weight": 3895121.0
+    },
+    {
+      "name": "Pahk",
+      "weight": 3895121.0
+    },
+    {
+      "name": "Jeong",
+      "weight": 2230611.0
+    },
+    {
+      "name": "Chung",
+      "weight": 2230611.0
+    },
+    {
+      "name": "Jung",
+      "weight": 2230611.0
+    },
+    {
+      "name": "Joung",
+      "weight": 2230611.0
+    },
+    {
+      "name": "Chong",
+      "weight": 2230611.0
+    },
+    {
+      "name": "Cheong",
+      "weight": 2230611.0
+    },
+    {
+      "name": "Choung",
+      "weight": 2230611.0
+    },
+    {
+      "name": "Choe",
+      "weight": 2169704.0
+    },
+    {
+      "name": "Ch'oe",
+      "weight": 2169704.0
+    },
+    {
+      "name": "Choi",
+      "weight": 2169704.0
+    },
+    {
+      "name": "Che",
+      "weight": 2169704.0
+    },
+    {
+      "name": "Choy",
+      "weight": 2169704.0
+    },
+    {
+      "name": "Chey",
+      "weight": 2169704.0
+    },
+    {
+      "name": "Jo",
+      "weight": 1347730.0
+    },
+    {
+      "name": "Cho",
+      "weight": 1347730.0
+    },
+    {
+      "name": "Joe",
+      "weight": 1347730.0
+    },
+    {
+      "name": "Joh",
+      "weight": 1347730.0
+    },
+    {
+      "name": "Jou",
+      "weight": 1347730.0
+    },
+    {
+      "name": "Gang",
+      "weight": 1169805.0
+    },
+    {
+      "name": "Kang",
+      "weight": 1169805.0
+    },
+    {
+      "name": "Kahng",
+      "weight": 1169805.0
+    },
+    {
+      "name": "Khang",
+      "weight": 1169805.0
+    },
+    {
+      "name": "Jang",
+      "weight": 949257.0
+    },
+    {
+      "name": "Chang",
+      "weight": 949257.0
+    },
+    {
+      "name": "Jahng",
+      "weight": 949257.0
+    },
+    {
+      "name": "Jhang",
+      "weight": 949257.0
+    },
+    {
+      "name": "Yun",
+      "weight": 948600.0
+    },
+    {
+      "name": "Yoon",
+      "weight": 948600.0
+    },
+    {
+      "name": "Youn",
+      "weight": 948600.0
+    },
+    {
+      "name": "Yune",
+      "weight": 948600.0
+    },
+    {
+      "name": "Yeun",
+      "weight": 948600.0
+    },
+    {
+      "name": "Sin",
+      "weight": 911556.0
+    },
+    {
+      "name": "Shin",
+      "weight": 911556.0
+    },
+    {
+      "name": "Shinn",
+      "weight": 911556.0
+    },
+    {
+      "name": "Sheen",
+      "weight": 911556.0
+    },
+    {
+      "name": "Seen",
+      "weight": 911556.0
+    },
+    {
+      "name": "Sinn",
+      "weight": 911556.0
+    },
+    {
+      "name": "Cynn",
+      "weight": 911556.0
+    },
+    {
+      "name": "Han",
+      "weight": 715556.0
+    },
+    {
+      "name": "Hahn",
+      "weight": 715556.0
+    },
+    {
+      "name": "Hann",
+      "weight": 715556.0
+    },
+    {
+      "name": "O",
+      "weight": 706908.0
+    },
+    {
+      "name": "Oh",
+      "weight": 706908.0
+    },
+    {
+      "name": "Oe",
+      "weight": 706908.0
+    },
+    {
+      "name": "Au",
+      "weight": 706908.0
+    },
+    {
+      "name": "Ou",
+      "weight": 706908.0
+    },
+    {
+      "name": "Seo",
+      "weight": 695249.0
+    },
+    {
+      "name": "Suh",
+      "weight": 695249.0
+    },
+    {
+      "name": "Surh",
+      "weight": 695249.0
+    },
+    {
+      "name": "Su",
+      "weight": 695249.0
+    },
+    {
+      "name": "Sur",
+      "weight": 695249.0
+    },
+    {
+      "name": "So",
+      "weight": 695249.0
+    },
+    {
+      "name": "Seoh",
+      "weight": 695249.0
+    },
+    {
+      "name": "Jeon",
+      "weight": 687867.0
+    },
+    {
+      "name": "Jun",
+      "weight": 687867.0
+    },
+    {
+      "name": "Chun",
+      "weight": 687867.0
+    },
+    {
+      "name": "Chon",
+      "weight": 687867.0
+    },
+    {
+      "name": "Cheon",
+      "weight": 687867.0
+    },
+    {
+      "name": "Gwon",
+      "weight": 652495.0
+    },
+    {
+      "name": "Kwon",
+      "weight": 652495.0
+    },
+    {
+      "name": "Kweon",
+      "weight": 652495.0
+    },
+    {
+      "name": "Hwang",
+      "weight": 644294.0
+    },
+    {
+      "name": "Song",
+      "weight": 639082.0
+    },
+    {
+      "name": "Soung",
+      "weight": 639082.0
+    },
+    {
+      "name": "An",
+      "weight": 637786.0
+    },
+    {
+      "name": "Ahn",
+      "weight": 637786.0
+    },
+    {
+      "name": "Arn",
+      "weight": 637786.0
+    },
+    {
+      "name": "Aan",
+      "weight": 637786.0
+    },
+    {
+      "name": "Im",
+      "weight": 635507.0
+    },
+    {
+      "name": "Lim",
+      "weight": 635507.0
+    },
+    {
+      "name": "Yim",
+      "weight": 635507.0
+    },
+    {
+      "name": "Rim",
+      "weight": 635507.0
+    },
+    {
+      "name": "Leem",
+      "weight": 635507.0
+    },
+    {
+      "name": "Rhim",
+      "weight": 635507.0
+    },
+    {
+      "name": "Ryu",
+      "weight": 603084.0
+    },
+    {
+      "name": "Ryou",
+      "weight": 603084.0
+    },
+    {
+      "name": "Rou",
+      "weight": 603084.0
+    },
+    {
+      "name": "Ryoo",
+      "weight": 603084.0
+    },
+    {
+      "name": "Yu",
+      "weight": 603084.0
+    },
+    {
+      "name": "Yoo",
+      "weight": 603084.0
+    },
+    {
+      "name": "Yuh",
+      "weight": 603084.0
+    },
+    {
+      "name": "Hong",
+      "weight": 518635.0
+    },
+    {
+      "name": "Houng",
+      "weight": 518635.0
+    },
+    {
+      "name": "Yang",
+      "weight": 486645.0
+    },
+    {
+      "name": "Lyang",
+      "weight": 486645.0
+    },
+    {
+      "name": "Yu",
+      "weight": 437900.0
+    },
+    {
+      "name": "Yoo",
+      "weight": 437900.0
+    },
+    {
+      "name": "You",
+      "weight": 437900.0
+    },
+    {
+      "name": "Go",
+      "weight": 435839.0
+    },
+    {
+      "name": "Ko",
+      "weight": 435839.0
+    },
+    {
+      "name": "Koh",
+      "weight": 435839.0
+    },
+    {
+      "name": "Goh",
+      "weight": 435839.0
+    },
+    {
+      "name": "Kho",
+      "weight": 435839.0
+    },
+    {
+      "name": "Kor",
+      "weight": 435839.0
+    },
+    {
+      "name": "Mun",
+      "weight": 426927.0
+    },
+    {
+      "name": "Moon",
+      "weight": 426927.0
+    },
+    {
+      "name": "Muhn",
+      "weight": 426927.0
+    },
+    {
+      "name": "Son",
+      "weight": 415182.0
+    },
+    {
+      "name": "Sohn",
+      "weight": 415182.0
+    },
+    {
+      "name": "Soun",
+      "weight": 415182.0
+    },
+    {
+      "name": "Bae",
+      "weight": 372064.0
+    },
+    {
+      "name": "Pae",
+      "weight": 372064.0
+    },
+    {
+      "name": "Bai",
+      "weight": 372064.0
+    },
+    {
+      "name": "Pae",
+      "weight": 372064.0
+    },
+    {
+      "name": "Pai",
+      "weight": 372064.0
+    },
+    {
+      "name": "Bay",
+      "weight": 372064.0
+    },
+    {
+      "name": "Pay",
+      "weight": 372064.0
+    },
+    {
+      "name": "Baek",
+      "weight": 351275.0
+    },
+    {
+      "name": "Paek",
+      "weight": 351275.0
+    },
+    {
+      "name": "Baik",
+      "weight": 351275.0
+    },
+    {
+      "name": "Back",
+      "weight": 351275.0
+    },
+    {
+      "name": "Paik",
+      "weight": 351275.0
+    },
+    {
+      "name": "Pack",
+      "weight": 351275.0
+    },
+    {
+      "name": "Heo",
+      "weight": 300448.0
+    },
+    {
+      "name": "Hur",
+      "weight": 300448.0
+    },
+    {
+      "name": "Huh",
+      "weight": 300448.0
+    },
+    {
+      "name": "Her",
+      "weight": 300448.0
+    },
+    {
+      "name": "Hu",
+      "weight": 300448.0
+    },
+    {
+      "name": "Ho",
+      "weight": 300448.0
+    },
+    {
+      "name": "Hoh",
+      "weight": 300448.0
+    },
+    {
+      "name": "Heoh",
+      "weight": 300448.0
+    },
+    {
+      "name": "No",
+      "weight": 290434.0
+    },
+    {
+      "name": "Noh",
+      "weight": 290434.0
+    },
+    {
+      "name": "Roh",
+      "weight": 290434.0
+    },
+    {
+      "name": "Ro",
+      "weight": 290434.0
+    },
+    {
+      "name": "Nam",
+      "weight": 257178.0
+    },
+    {
+      "name": "Nahm",
+      "weight": 257178.0
+    },
+    {
+      "name": "Nham",
+      "weight": 257178.0
+    },
+    {
+      "name": "Narm",
+      "weight": 257178.0
+    },
+    {
+      "name": "Sim",
+      "weight": 252255.0
+    },
+    {
+      "name": "Shim",
+      "weight": 252255.0
+    },
+    {
+      "name": "Seem",
+      "weight": 252255.0
+    },
+    {
+      "name": "Sheem",
+      "weight": 252255.0
+    },
+    {
+      "name": "Sihm",
+      "weight": 252255.0
+    },
+    {
+      "name": "Ju",
+      "weight": 215010.0
+    },
+    {
+      "name": "Chu",
+      "weight": 215010.0
+    },
+    {
+      "name": "Joo",
+      "weight": 215010.0
+    },
+    {
+      "name": "Choo",
+      "weight": 215010.0
+    },
+    {
+      "name": "Jou",
+      "weight": 215010.0
+    },
+    {
+      "name": "Zoo",
+      "weight": 215010.0
+    },
+    {
+      "name": "Jew",
+      "weight": 215010.0
+    },
+    {
+      "name": "Zu",
+      "weight": 215010.0
+    },
+    {
+      "name": "Ha",
+      "weight": 213758.0
+    },
+    {
+      "name": "Hah",
+      "weight": 213758.0
+    },
+    {
+      "name": "Har",
+      "weight": 213758.0
+    },
+    {
+      "name": "Gu",
+      "weight": 192302.0
+    },
+    {
+      "name": "Ku",
+      "weight": 192302.0
+    },
+    {
+      "name": "Koo",
+      "weight": 192302.0
+    },
+    {
+      "name": "Goo",
+      "weight": 192302.0
+    },
+    {
+      "name": "Kou",
+      "weight": 192302.0
+    },
+    {
+      "name": "Kuh",
+      "weight": 192302.0
+    },
+    {
+      "name": "Khoo",
+      "weight": 192302.0
+    },
+    {
+      "name": "Khu",
+      "weight": 192302.0
+    },
+    {
+      "name": "Gwak",
+      "weight": 187322.0
+    },
+    {
+      "name": "Kwak",
+      "weight": 187322.0
+    },
+    {
+      "name": "Kwag",
+      "weight": 187322.0
+    },
+    {
+      "name": "Kwack",
+      "weight": 187322.0
+    },
+    {
+      "name": "Gwag",
+      "weight": 187322.0
+    },
+    {
+      "name": "Koak",
+      "weight": 187322.0
+    },
+    {
+      "name": "Kuark",
+      "weight": 187322.0
+    },
+    {
+      "name": "Seong",
+      "weight": 185363.0
+    },
+    {
+      "name": "Sung",
+      "weight": 185363.0
+    },
+    {
+      "name": "Soung",
+      "weight": 185363.0
+    },
+    {
+      "name": "Song",
+      "weight": 185363.0
+    },
+    {
+      "name": "Cha",
+      "weight": 180589.0
+    },
+    {
+      "name": "Ch'a",
+      "weight": 180589.0
+    },
+    {
+      "name": "Char",
+      "weight": 180589.0
+    },
+    {
+      "name": "Chah",
+      "weight": 180589.0
+    },
+    {
+      "name": "U",
+      "weight": 180141.0
+    },
+    {
+      "name": "Woo",
+      "weight": 180141.0
+    },
+    {
+      "name": "Wu",
+      "weight": 180141.0
+    },
+    {
+      "name": "Ou",
+      "weight": 180141.0
+    },
+    {
+      "name": "Wo",
+      "weight": 180141.0
+    },
+    {
+      "name": "Uh",
+      "weight": 180141.0
+    },
+    {
+      "name": "Na",
+      "weight": 172022.0
+    },
+    {
+      "name": "Nah",
+      "weight": 172022.0
+    },
+    {
+      "name": "La",
+      "weight": 172022.0
+    },
+    {
+      "name": "Rha",
+      "weight": 172022.0
+    },
+    {
+      "name": "Rah",
+      "weight": 172022.0
+    },
+    {
+      "name": "Jin",
+      "weight": 170980.0
+    },
+    {
+      "name": "Chin",
+      "weight": 170980.0
+    },
+    {
+      "name": "Jeen",
+      "weight": 170980.0
+    },
+    {
+      "name": "Gin",
+      "weight": 170980.0
+    },
+    {
+      "name": "Min",
+      "weight": 159054.0
+    },
+    {
+      "name": "Minn",
+      "weight": 159054.0
+    },
+    {
+      "name": "Mihn",
+      "weight": 159054.0
+    },
+    {
+      "name": "Ji",
+      "weight": 147572.0
+    },
+    {
+      "name": "Chi",
+      "weight": 147572.0
+    },
+    {
+      "name": "Jee",
+      "weight": 147572.0
+    },
+    {
+      "name": "Gi",
+      "weight": 147572.0
+    },
+    {
+      "name": "Chee",
+      "weight": 147572.0
+    },
+    {
+      "name": "Gee",
+      "weight": 147572.0
+    },
+    {
+      "name": "Jhi",
+      "weight": 147572.0
+    },
+    {
+      "name": "Eom",
+      "weight": 132990.0
+    },
+    {
+      "name": "Um",
+      "weight": 132990.0
+    },
+    {
+      "name": "Uhm",
+      "weight": 132990.0
+    },
+    {
+      "name": "Oum",
+      "weight": 132990.0
+    },
+    {
+      "name": "Ohm",
+      "weight": 132990.0
+    },
+    {
+      "name": "Byeon",
+      "weight": 131554.0
+    },
+    {
+      "name": "Byun",
+      "weight": 131554.0
+    },
+    {
+      "name": "Byon",
+      "weight": 131554.0
+    },
+    {
+      "name": "Pyun",
+      "weight": 131554.0
+    },
+    {
+      "name": "Byoun",
+      "weight": 131554.0
+    },
+    {
+      "name": "Pyon",
+      "weight": 131554.0
+    },
+    {
+      "name": "Pyoun",
+      "weight": 131554.0
+    },
+    {
+      "name": "Pyeon",
+      "weight": 131554.0
+    },
+    {
+      "name": "Won",
+      "weight": 120465.0
+    },
+    {
+      "name": "Weon",
+      "weight": 120465.0
+    },
+    {
+      "name": "Woen",
+      "weight": 120465.0
+    },
+    {
+      "name": "Wone",
+      "weight": 120465.0
+    },
+    {
+      "name": "Wun",
+      "weight": 120465.0
+    },
+    {
+      "name": "One",
+      "weight": 120465.0
+    },
+    {
+      "name": "Bang",
+      "weight": 119703.0
+    },
+    {
+      "name": "Pang",
+      "weight": 119703.0
+    },
+    {
+      "name": "Bhang",
+      "weight": 119703.0
+    },
+    {
+      "name": "Bahng",
+      "weight": 119703.0
+    },
+    {
+      "name": "Pahng",
+      "weight": 119703.0
+    },
+    {
+      "name": "Phang",
+      "weight": 119703.0
+    },
+    {
+      "name": "Chae",
+      "weight": 119251.0
+    },
+    {
+      "name": "Ch'ae",
+      "weight": 119251.0
+    },
+    {
+      "name": "Chai",
+      "weight": 119251.0
+    },
+    {
+      "name": "Che",
+      "weight": 119251.0
+    },
+    {
+      "name": "Cheon",
+      "weight": 112227.0
+    },
+    {
+      "name": "Chun",
+      "weight": 112227.0
+    },
+    {
+      "name": "Chon",
+      "weight": 112227.0
+    },
+    {
+      "name": "Choun",
+      "weight": 112227.0
+    },
+    {
+      "name": "Im",
+      "weight": 99986.0
+    },
+    {
+      "name": "Yim",
+      "weight": 99986.0
+    },
+    {
+      "name": "Gong",
+      "weight": 85606.0
+    },
+    {
+      "name": "Kong",
+      "weight": 85606.0
+    },
+    {
+      "name": "Kohng",
+      "weight": 85606.0
+    },
+    {
+      "name": "Koung",
+      "weight": 85606.0
+    },
+    {
+      "name": "Goung",
+      "weight": 85606.0
+    },
+    {
+      "name": "Khong",
+      "weight": 85606.0
+    },
+    {
+      "name": "Hyeon",
+      "weight": 81807.0
+    },
+    {
+      "name": "Hyun",
+      "weight": 81807.0
+    },
+    {
+      "name": "Hyon",
+      "weight": 81807.0
+    },
+    {
+      "name": "Hyoun",
+      "weight": 81807.0
+    },
+    {
+      "name": "Ham",
+      "weight": 75955.0
+    },
+    {
+      "name": "Hahm",
+      "weight": 75955.0
+    },
+    {
+      "name": "Hamm",
+      "weight": 75955.0
+    },
+    {
+      "name": "Haam",
+      "weight": 75955.0
+    },
+    {
+      "name": "Yeo",
+      "weight": 75196.0
+    },
+    {
+      "name": "Yu",
+      "weight": 75196.0
+    },
+    {
+      "name": "Yo",
+      "weight": 75196.0
+    },
+    {
+      "name": "Yeu",
+      "weight": 75196.0
+    },
+    {
+      "name": "Yuh",
+      "weight": 75196.0
+    },
+    {
+      "name": "Yeo",
+      "weight": 75196.0
+    },
+    {
+      "name": "Yoh",
+      "weight": 75196.0
+    },
+    {
+      "name": "Yeom",
+      "weight": 63951.0
+    },
+    {
+      "name": "Yum",
+      "weight": 63951.0
+    },
+    {
+      "name": "Youm",
+      "weight": 63951.0
+    },
+    {
+      "name": "Yeum",
+      "weight": 63951.0
+    },
+    {
+      "name": "Yom",
+      "weight": 63951.0
+    },
+    {
+      "name": "Yeoum",
+      "weight": 63951.0
+    },
+    {
+      "name": "Chu",
+      "weight": 55309.0
+    },
+    {
+      "name": "Ch'u",
+      "weight": 55309.0
+    },
+    {
+      "name": "Choo",
+      "weight": 55309.0
+    },
+    {
+      "name": "Chou",
+      "weight": 55309.0
+    },
+    {
+      "name": "Chyu",
+      "weight": 55309.0
+    },
+    {
+      "name": "Do",
+      "weight": 54779.0
+    },
+    {
+      "name": "To",
+      "weight": 54779.0
+    },
+    {
+      "name": "Doh",
+      "weight": 54779.0
+    },
+    {
+      "name": "Toe",
+      "weight": 54779.0
+    },
+    {
+      "name": "Doe",
+      "weight": 54779.0
+    },
+    {
+      "name": "Toh",
+      "weight": 54779.0
+    },
+    {
+      "name": "Seok",
+      "weight": 54610.0
+    },
+    {
+      "name": "Suk",
+      "weight": 54610.0
+    },
+    {
+      "name": "Sok",
+      "weight": 54610.0
+    },
+    {
+      "name": "Suck",
+      "weight": 54610.0
+    },
+    {
+      "name": "Sek",
+      "weight": 54610.0
+    },
+    {
+      "name": "So",
+      "weight": 49456.0
+    },
+    {
+      "name": "Soh",
+      "weight": 49456.0
+    },
+    {
+      "name": "Seol",
+      "weight": 42064.0
+    },
+    {
+      "name": "Sul",
+      "weight": 42064.0
+    },
+    {
+      "name": "Seul",
+      "weight": 42064.0
+    },
+    {
+      "name": "Sol",
+      "weight": 42064.0
+    },
+    {
+      "name": "Sull",
+      "weight": 42064.0
+    },
+    {
+      "name": "Seon",
+      "weight": 38849.0
+    },
+    {
+      "name": "Sun",
+      "weight": 38849.0
+    },
+    {
+      "name": "Son",
+      "weight": 38849.0
+    },
+    {
+      "name": "Suhn",
+      "weight": 38849.0
+    },
+    {
+      "name": "Sen",
+      "weight": 38849.0
+    },
+    {
+      "name": "Ma",
+      "weight": 36094.0
+    },
+    {
+      "name": "Mah",
+      "weight": 36094.0
+    },
+    {
+      "name": "Mar",
+      "weight": 36094.0
+    },
+    {
+      "name": "Yeon",
+      "weight": 32528.0
+    },
+    {
+      "name": "Youn",
+      "weight": 32528.0
+    },
+    {
+      "name": "Yun",
+      "weight": 32528.0
+    },
+    {
+      "name": "Yon",
+      "weight": 32528.0
+    },
+    {
+      "name": "Yeun",
+      "weight": 32528.0
+    },
+    {
+      "name": "Yeoun",
+      "weight": 32528.0
+    },
+    {
+      "name": "Gil",
+      "weight": 32418.0
+    },
+    {
+      "name": "Kil",
+      "weight": 32418.0
+    },
+    {
+      "name": "Gill",
+      "weight": 32418.0
+    },
+    {
+      "name": "Khil",
+      "weight": 32418.0
+    },
+    {
+      "name": "Keel",
+      "weight": 32418.0
+    },
+    {
+      "name": "Kihl",
+      "weight": 32418.0
+    },
+    {
+      "name": "Kiehl",
+      "weight": 32418.0
+    },
+    {
+      "name": "Wi",
+      "weight": 30496.0
+    },
+    {
+      "name": "Wee",
+      "weight": 30496.0
+    },
+    {
+      "name": "We",
+      "weight": 30496.0
+    },
+    {
+      "name": "Wie",
+      "weight": 30496.0
+    },
+    {
+      "name": "Je",
+      "weight": 29968.0
+    },
+    {
+      "name": "Che",
+      "weight": 29968.0
+    },
+    {
+      "name": "Jae",
+      "weight": 29968.0
+    },
+    {
+      "name": "Jea",
+      "weight": 29968.0
+    },
+    {
+      "name": "Che",
+      "weight": 29968.0
+    },
+    {
+      "name": "Jei",
+      "weight": 29968.0
+    },
+    {
+      "name": "Jhe",
+      "weight": 29968.0
+    },
+    {
+      "name": "Pyo",
+      "weight": 28398.0
+    },
+    {
+      "name": "P'yo",
+      "weight": 28398.0
+    },
+    {
+      "name": "Phyo",
+      "weight": 28398.0
+    },
+    {
+      "name": "Pio",
+      "weight": 28398.0
+    },
+    {
+      "name": "Peo",
+      "weight": 28398.0
+    },
+    {
+      "name": "Pyoh",
+      "weight": 28398.0
+    },
+    {
+      "name": "Myeong",
+      "weight": 26746.0
+    },
+    {
+      "name": "Myung",
+      "weight": 26746.0
+    },
+    {
+      "name": "Myoung",
+      "weight": 26746.0
+    },
+    {
+      "name": "Myong",
+      "weight": 26746.0
+    },
+    {
+      "name": "Gi",
+      "weight": 26679.0
+    },
+    {
+      "name": "Ki",
+      "weight": 26679.0
+    },
+    {
+      "name": "Kee",
+      "weight": 26679.0
+    },
+    {
+      "name": "Key",
+      "weight": 26679.0
+    },
+    {
+      "name": "Gee",
+      "weight": 26679.0
+    },
+    {
+      "name": "Ky",
+      "weight": 26679.0
+    },
+    {
+      "name": "Khee",
+      "weight": 26679.0
+    },
+    {
+      "name": "Kie",
+      "weight": 26679.0
+    },
+    {
+      "name": "Ban",
+      "weight": 26171.0
+    },
+    {
+      "name": "Pan",
+      "weight": 26171.0
+    },
+    {
+      "name": "Bahn",
+      "weight": 26171.0
+    },
+    {
+      "name": "Pan",
+      "weight": 26171.0
+    },
+    {
+      "name": "Pahn",
+      "weight": 26171.0
+    },
+    {
+      "name": "Bhan",
+      "weight": 26171.0
+    },
+    {
+      "name": "Van",
+      "weight": 26171.0
+    },
+    {
+      "name": "Geum",
+      "weight": 23489.0
+    },
+    {
+      "name": "Keum",
+      "weight": 23489.0
+    },
+    {
+      "name": "Kum",
+      "weight": 23489.0
+    },
+    {
+      "name": "Gum",
+      "weight": 23489.0
+    },
+    {
+      "name": "Guem",
+      "weight": 23489.0
+    },
+    {
+      "name": "Kuem",
+      "weight": 23489.0
+    },
+    {
+      "name": "Wang",
+      "weight": 23447.0
+    },
+    {
+      "name": "Ok",
+      "weight": 22964.0
+    },
+    {
+      "name": "Ock",
+      "weight": 22964.0
+    },
+    {
+      "name": "Ohk",
+      "weight": 22964.0
+    },
+    {
+      "name": "Oak",
+      "weight": 22964.0
+    },
+    {
+      "name": "Og",
+      "weight": 22964.0
+    },
+    {
+      "name": "Ohg",
+      "weight": 22964.0
+    },
+    {
+      "name": "Oag",
+      "weight": 22964.0
+    },
+    {
+      "name": "Yuk",
+      "weight": 21545.0
+    },
+    {
+      "name": "Yook",
+      "weight": 21545.0
+    },
+    {
+      "name": "Youk",
+      "weight": 21545.0
+    },
+    {
+      "name": "Yug",
+      "weight": 21545.0
+    },
+    {
+      "name": "Ryuk",
+      "weight": 21545.0
+    },
+    {
+      "name": "Yuck",
+      "weight": 21545.0
+    },
+    {
+      "name": "In",
+      "weight": 20635.0
+    },
+    {
+      "name": "Ihn",
+      "weight": 20635.0
+    },
+    {
+      "name": "Yin",
+      "weight": 20635.0
+    },
+    {
+      "name": "Inn",
+      "weight": 20635.0
+    },
+    {
+      "name": "Lin",
+      "weight": 20635.0
+    },
+    {
+      "name": "Maeng",
+      "weight": 20219.0
+    },
+    {
+      "name": "Maing",
+      "weight": 20219.0
+    },
+    {
+      "name": "Mo",
+      "weight": 19834.0
+    },
+    {
+      "name": "Moh",
+      "weight": 19834.0
+    },
+    {
+      "name": "Moe",
+      "weight": 19834.0
+    },
+    {
+      "name": "Tak",
+      "weight": 19395.0
+    },
+    {
+      "name": "T'ak",
+      "weight": 19395.0
+    },
+    {
+      "name": "Tark",
+      "weight": 19395.0
+    },
+    {
+      "name": "Tag",
+      "weight": 19395.0
+    },
+    {
+      "name": "Tack",
+      "weight": 19395.0
+    },
+    {
+      "name": "Tahk",
+      "weight": 19395.0
+    },
+    {
+      "name": "Guk",
+      "weight": 18976.0
+    },
+    {
+      "name": "Kuk",
+      "weight": 18976.0
+    },
+    {
+      "name": "Kook",
+      "weight": 18976.0
+    },
+    {
+      "name": "Gook",
+      "weight": 18976.0
+    },
+    {
+      "name": "Kug",
+      "weight": 18976.0
+    },
+    {
+      "name": "Gug",
+      "weight": 18976.0
+    },
+    {
+      "name": "Cook",
+      "weight": 18976.0
+    },
+    {
+      "name": "Namgung",
+      "weight": 18743.0
+    },
+    {
+      "name": "Namkung",
+      "weight": 18743.0
+    },
+    {
+      "name": "Namgoong",
+      "weight": 18743.0
+    },
+    {
+      "name": "Namkoong",
+      "weight": 18743.0
+    },
+    {
+      "name": "Namkuhng",
+      "weight": 18743.0
+    },
+    {
+      "name": "Namguhng",
+      "weight": 18743.0
+    },
+    {
+      "name": "Eo",
+      "weight": 17551.0
+    },
+    {
+      "name": "Uh",
+      "weight": 17551.0
+    },
+    {
+      "name": "Urh",
+      "weight": 17551.0
+    },
+    {
+      "name": "Eoh",
+      "weight": 17551.0
+    },
+    {
+      "name": "Gyeong",
+      "weight": 15784.0
+    },
+    {
+      "name": "Kyung",
+      "weight": 15784.0
+    },
+    {
+      "name": "Kyoung",
+      "weight": 15784.0
+    },
+    {
+      "name": "Kyeong",
+      "weight": 15784.0
+    },
+    {
+      "name": "Kyong",
+      "weight": 15784.0
+    },
+    {
+      "name": "Eun",
+      "weight": 15657.0
+    },
+    {
+      "name": "Un",
+      "weight": 15657.0
+    },
+    {
+      "name": "Unn",
+      "weight": 15657.0
+    },
+    {
+      "name": "Pyeon",
+      "weight": 15308.0
+    },
+    {
+      "name": "Pyun",
+      "weight": 15308.0
+    },
+    {
+      "name": "Pyon",
+      "weight": 15308.0
+    },
+    {
+      "name": "Pyoun",
+      "weight": 15308.0
+    },
+    {
+      "name": "Pyen",
+      "weight": 15308.0
+    },
+    {
+      "name": "Yong",
+      "weight": 14067.0
+    },
+    {
+      "name": "Lyong",
+      "weight": 14067.0
+    },
+    {
+      "name": "Ye",
+      "weight": 12656.0
+    },
+    {
+      "name": "Yeh",
+      "weight": 12656.0
+    },
+    {
+      "name": "Bong",
+      "weight": 11819.0
+    },
+    {
+      "name": "Pong",
+      "weight": 11819.0
+    },
+    {
+      "name": "Bhong",
+      "weight": 11819.0
+    },
+    {
+      "name": "Bohng",
+      "weight": 11819.0
+    },
+    {
+      "name": "Pohng",
+      "weight": 11819.0
+    },
+    {
+      "name": "Vong",
+      "weight": 11819.0
+    },
+    {
+      "name": "Sa",
+      "weight": 10118.0
+    },
+    {
+      "name": "Sah",
+      "weight": 10118.0
+    },
+    {
+      "name": "Sar",
+      "weight": 10118.0
+    },
+    {
+      "name": "Bu",
+      "weight": 9592.0
+    },
+    {
+      "name": "Boo",
+      "weight": 9592.0
+    },
+    {
+      "name": "Pu",
+      "weight": 9592.0
+    },
+    {
+      "name": "Bou",
+      "weight": 9592.0
+    },
+    {
+      "name": "Poo",
+      "weight": 9592.0
+    },
+    {
+      "name": "Booh",
+      "weight": 9592.0
+    },
+    {
+      "name": "Buh",
+      "weight": 9592.0
+    },
+    {
+      "name": "Pou",
+      "weight": 9592.0
+    },
+    {
+      "name": "Pooh",
+      "weight": 9592.0
+    },
+    {
+      "name": "Hwangbo",
+      "weight": 9148.0
+    },
+    {
+      "name": "Hwangpo",
+      "weight": 9148.0
+    },
+    {
+      "name": "Ga",
+      "weight": 9090.0
+    },
+    {
+      "name": "Ka",
+      "weight": 9090.0
+    },
+    {
+      "name": "Kar",
+      "weight": 9090.0
+    },
+    {
+      "name": "Gar",
+      "weight": 9090.0
+    },
+    {
+      "name": "Kah",
+      "weight": 9090.0
+    },
+    {
+      "name": "Gah",
+      "weight": 9090.0
+    },
+    {
+      "name": "Bok",
+      "weight": 8644.0
+    },
+    {
+      "name": "Pok",
+      "weight": 8644.0
+    },
+    {
+      "name": "Pock",
+      "weight": 8644.0
+    },
+    {
+      "name": "Bog",
+      "weight": 8644.0
+    },
+    {
+      "name": "Pog",
+      "weight": 8644.0
+    },
+    {
+      "name": "Bock",
+      "weight": 8644.0
+    },
+    {
+      "name": "Mok",
+      "weight": 8191.0
+    },
+    {
+      "name": "Mock",
+      "weight": 8191.0
+    },
+    {
+      "name": "Mog",
+      "weight": 8191.0
+    },
+    {
+      "name": "Mork",
+      "weight": 8191.0
+    },
+    {
+      "name": "Tae",
+      "weight": 8165.0
+    },
+    {
+      "name": "T'ae",
+      "weight": 8165.0
+    },
+    {
+      "name": "Tai",
+      "weight": 8165.0
+    },
+    {
+      "name": "Tay",
+      "weight": 8165.0
+    },
+    {
+      "name": "Hyeong",
+      "weight": 6640.0
+    },
+    {
+      "name": "Hyung",
+      "weight": 6640.0
+    },
+    {
+      "name": "Hyoung",
+      "weight": 6640.0
+    },
+    {
+      "name": "Hyong",
+      "weight": 6640.0
+    },
+    {
+      "name": "Hyeung",
+      "weight": 6640.0
+    },
+    {
+      "name": "Pi",
+      "weight": 6303.0
+    },
+    {
+      "name": "P'i",
+      "weight": 6303.0
+    },
+    {
+      "name": "Pee",
+      "weight": 6303.0
+    },
+    {
+      "name": "Phee",
+      "weight": 6303.0
+    },
+    {
+      "name": "Phi",
+      "weight": 6303.0
+    },
+    {
+      "name": "Phy",
+      "weight": 6303.0
+    },
+    {
+      "name": "Pih",
+      "weight": 6303.0
+    },
+    {
+      "name": "Gye",
+      "weight": 6282.0
+    },
+    {
+      "name": "Kye",
+      "weight": 6282.0
+    },
+    {
+      "name": "Kyeh",
+      "weight": 6282.0
+    },
+    {
+      "name": "Kye",
+      "weight": 6282.0
+    },
+    {
+      "name": "Kay",
+      "weight": 6282.0
+    },
+    {
+      "name": "Kie",
+      "weight": 6282.0
+    },
+    {
+      "name": "Ho",
+      "weight": 6106.0
+    },
+    {
+      "name": "Hoh",
+      "weight": 6106.0
+    },
+    {
+      "name": "Gam",
+      "weight": 5998.0
+    },
+    {
+      "name": "Kam",
+      "weight": 5998.0
+    },
+    {
+      "name": "Kahm",
+      "weight": 5998.0
+    },
+    {
+      "name": "Gahm",
+      "weight": 5998.0
+    },
+    {
+      "name": "Du",
+      "weight": 5958.0
+    },
+    {
+      "name": "Tu",
+      "weight": 5958.0
+    },
+    {
+      "name": "Doo",
+      "weight": 5958.0
+    },
+    {
+      "name": "Do",
+      "weight": 5958.0
+    },
+    {
+      "name": "Dou",
+      "weight": 5958.0
+    },
+    {
+      "name": "Tou",
+      "weight": 5958.0
+    },
+    {
+      "name": "To",
+      "weight": 5958.0
+    },
+    {
+      "name": "Too",
+      "weight": 5958.0
+    },
+    {
+      "name": "Eum",
+      "weight": 5936.0
+    },
+    {
+      "name": "Um",
+      "weight": 5936.0
+    },
+    {
+      "name": "Em",
+      "weight": 5936.0
+    },
+    {
+      "name": "Yeum",
+      "weight": 5936.0
+    },
+    {
+      "name": "Dong",
+      "weight": 5564.0
+    },
+    {
+      "name": "Tong",
+      "weight": 5564.0
+    },
+    {
+      "name": "Dhong",
+      "weight": 5564.0
+    },
+    {
+      "name": "Thong",
+      "weight": 5564.0
+    },
+    {
+      "name": "Bin",
+      "weight": 5252.0
+    },
+    {
+      "name": "Pin",
+      "weight": 5252.0
+    },
+    {
+      "name": "Been",
+      "weight": 5252.0
+    },
+    {
+      "name": "Pihn",
+      "weight": 5252.0
+    },
+    {
+      "name": "Phin",
+      "weight": 5252.0
+    },
+    {
+      "name": "Bean",
+      "weight": 5252.0
+    },
+    {
+      "name": "Bihn",
+      "weight": 5252.0
+    },
+    {
+      "name": "Pean",
+      "weight": 5252.0
+    },
+    {
+      "name": "On",
+      "weight": 5081.0
+    },
+    {
+      "name": "Ohn",
+      "weight": 5081.0
+    },
+    {
+      "name": "Ohnn",
+      "weight": 5081.0
+    },
+    {
+      "name": "Jegal",
+      "weight": 4444.0
+    },
+    {
+      "name": "Chegal",
+      "weight": 4444.0
+    },
+    {
+      "name": "Jaegal",
+      "weight": 4444.0
+    },
+    {
+      "name": "Jekal",
+      "weight": 4444.0
+    },
+    {
+      "name": "Jeagal",
+      "weight": 4444.0
+    },
+    {
+      "name": "Chegal",
+      "weight": 4444.0
+    },
+    {
+      "name": "Chekal",
+      "weight": 4444.0
+    },
+    {
+      "name": "Sagong",
+      "weight": 4307.0
+    },
+    {
+      "name": "Sagong",
+      "weight": 4307.0
+    },
+    {
+      "name": "Sakong",
+      "weight": 4307.0
+    },
+    {
+      "name": "Sagoung",
+      "weight": 4307.0
+    },
+    {
+      "name": "Sakoung",
+      "weight": 4307.0
+    },
+    {
+      "name": "Si",
+      "weight": 3928.0
+    },
+    {
+      "name": "Shi",
+      "weight": 3928.0
+    },
+    {
+      "name": "See",
+      "weight": 3928.0
+    },
+    {
+      "name": "Sie",
+      "weight": 3928.0
+    },
+    {
+      "name": "Sea",
+      "weight": 3928.0
+    },
+    {
+      "name": "Seonu",
+      "weight": 3560.0
+    },
+    {
+      "name": "Sunwoo",
+      "weight": 3560.0
+    },
+    {
+      "name": "Seonwoo",
+      "weight": 3560.0
+    },
+    {
+      "name": "Sonu",
+      "weight": 3560.0
+    },
+    {
+      "name": "Sunoo",
+      "weight": 3560.0
+    },
+    {
+      "name": "Sunwou",
+      "weight": 3560.0
+    },
+    {
+      "name": "Seonwu",
+      "weight": 3560.0
+    },
+    {
+      "name": "Sonwu",
+      "weight": 3560.0
+    },
+    {
+      "name": "Beom",
+      "weight": 3472.0
+    },
+    {
+      "name": "Bum",
+      "weight": 3472.0
+    },
+    {
+      "name": "Bom",
+      "weight": 3472.0
+    },
+    {
+      "name": "Peom",
+      "weight": 3472.0
+    },
+    {
+      "name": "Pum",
+      "weight": 3472.0
+    },
+    {
+      "name": "Puhm",
+      "weight": 3472.0
+    },
+    {
+      "name": "Buhm",
+      "weight": 3472.0
+    },
+    {
+      "name": "Seung",
+      "weight": 3304.0
+    },
+    {
+      "name": "Sung",
+      "weight": 3304.0
+    },
+    {
+      "name": "Gal",
+      "weight": 3178.0
+    },
+    {
+      "name": "Kal",
+      "weight": 3178.0
+    },
+    {
+      "name": "Karl",
+      "weight": 3178.0
+    },
+    {
+      "name": "Garl",
+      "weight": 3178.0
+    },
+    {
+      "name": "Gahl",
+      "weight": 3178.0
+    },
+    {
+      "name": "Kahl",
+      "weight": 3178.0
+    },
+    {
+      "name": "Jwa",
+      "weight": 3130.0
+    },
+    {
+      "name": "Chwa",
+      "weight": 3130.0
+    },
+    {
+      "name": "Joa",
+      "weight": 3130.0
+    },
+    {
+      "name": "Choa",
+      "weight": 3130.0
+    },
+    {
+      "name": "Paeng",
+      "weight": 2825.0
+    },
+    {
+      "name": "P'aeng",
+      "weight": 2825.0
+    },
+    {
+      "name": "Pang",
+      "weight": 2825.0
+    },
+    {
+      "name": "Paing",
+      "weight": 2825.0
+    },
+    {
+      "name": "Peng",
+      "weight": 2825.0
+    },
+    {
+      "name": "Gan",
+      "weight": 2429.0
+    },
+    {
+      "name": "Kan",
+      "weight": 2429.0
+    },
+    {
+      "name": "Gahn",
+      "weight": 2429.0
+    },
+    {
+      "name": "Kahn",
+      "weight": 2429.0
+    },
+    {
+      "name": "Sang",
+      "weight": 2298.0
+    },
+    {
+      "name": "Sahng",
+      "weight": 2298.0
+    },
+    {
+      "name": "Seomun",
+      "weight": 1861.0
+    },
+    {
+      "name": "Suhmun",
+      "weight": 1861.0
+    },
+    {
+      "name": "Suhmoon",
+      "weight": 1861.0
+    },
+    {
+      "name": "Seomoon",
+      "weight": 1861.0
+    },
+    {
+      "name": "Somoon",
+      "weight": 1861.0
+    },
+    {
+      "name": "Gyeon",
+      "weight": 1670.0
+    },
+    {
+      "name": "Kyun",
+      "weight": 1670.0
+    },
+    {
+      "name": "Kyeon",
+      "weight": 1670.0
+    },
+    {
+      "name": "Kyoun",
+      "weight": 1670.0
+    },
+    {
+      "name": "Kyon",
+      "weight": 1670.0
+    },
+    {
+      "name": "Dan",
+      "weight": 1585.0
+    },
+    {
+      "name": "Tan",
+      "weight": 1585.0
+    },
+    {
+      "name": "Dahn",
+      "weight": 1585.0
+    },
+    {
+      "name": "Than",
+      "weight": 1585.0
+    },
+    {
+      "name": "Sun",
+      "weight": 1296.0
+    },
+    {
+      "name": "Soon",
+      "weight": 1296.0
+    },
+    {
+      "name": "Chang",
+      "weight": 1179.0
+    },
+    {
+      "name": "Ch'ang",
+      "weight": 1179.0
+    },
+    {
+      "name": "Chahng",
+      "weight": 1179.0
+    },
+    {
+      "name": "Dang",
+      "weight": 1025.0
+    },
+    {
+      "name": "Tang",
+      "weight": 1025.0
+    },
+    {
+      "name": "Dhang",
+      "weight": 1025.0
+    },
+    {
+      "name": "Thang",
+      "weight": 1025.0
+    },
+    {
+      "name": "Ong",
+      "weight": 964.0
+    },
+    {
+      "name": "Ohng",
+      "weight": 964.0
+    },
+    {
+      "name": "Oung",
+      "weight": 964.0
+    },
+    {
+      "name": "Jong",
+      "weight": 962.0
+    },
+    {
+      "name": "Chong",
+      "weight": 962.0
+    },
+    {
+      "name": "Hwa",
+      "weight": 945.0
+    },
+    {
+      "name": "Howa",
+      "weight": 945.0
+    },
+    {
+      "name": "Hoa",
+      "weight": 945.0
+    },
+    {
+      "name": "Dokgo",
+      "weight": 807.0
+    },
+    {
+      "name": "Tokko",
+      "weight": 807.0
+    },
+    {
+      "name": "Dokko",
+      "weight": 807.0
+    },
+    {
+      "name": "Toko",
+      "weight": 807.0
+    },
+    {
+      "name": "Tokko",
+      "weight": 807.0
+    },
+    {
+      "name": "Dockko",
+      "weight": 807.0
+    },
+    {
+      "name": "Dogko",
+      "weight": 807.0
+    },
+    {
+      "name": "Togko",
+      "weight": 807.0
+    },
+    {
+      "name": "Doko",
+      "weight": 807.0
+    },
+    {
+      "name": "Bing",
+      "weight": 727.0
+    },
+    {
+      "name": "Ping",
+      "weight": 727.0
+    },
+    {
+      "name": "A",
+      "weight": 632.0
+    },
+    {
+      "name": "Ah",
+      "weight": 632.0
+    },
+    {
+      "name": "Ar",
+      "weight": 632.0
+    },
+    {
+      "name": "Pyeong",
+      "weight": 608.0
+    },
+    {
+      "name": "Pyung",
+      "weight": 608.0
+    },
+    {
+      "name": "Pyong",
+      "weight": 608.0
+    },
+    {
+      "name": "Pyoung",
+      "weight": 608.0
+    },
+    {
+      "name": "Pyeng",
+      "weight": 608.0
+    },
+    {
+      "name": "Dae",
+      "weight": 606.0
+    },
+    {
+      "name": "Tae",
+      "weight": 606.0
+    },
+    {
+      "name": "Dai",
+      "weight": 606.0
+    },
+    {
+      "name": "Dea",
+      "weight": 606.0
+    },
+    {
+      "name": "Day",
+      "weight": 606.0
+    },
+    {
+      "name": "Pung",
+      "weight": 586.0
+    },
+    {
+      "name": "P'ung",
+      "weight": 586.0
+    },
+    {
+      "name": "Poong",
+      "weight": 586.0
+    },
+    {
+      "name": "Puhng",
+      "weight": 586.0
+    },
+    {
+      "name": "Poohng",
+      "weight": 586.0
+    },
+    {
+      "name": "Gung",
+      "weight": 562.0
+    },
+    {
+      "name": "Kung",
+      "weight": 562.0
+    },
+    {
+      "name": "Koong",
+      "weight": 562.0
+    },
+    {
+      "name": "Kwoong",
+      "weight": 562.0
+    },
+    {
+      "name": "Jeom",
+      "weight": 516.0
+    },
+    {
+      "name": "Heung",
+      "weight": 462.0
+    },
+    {
+      "name": "Huhng",
+      "weight": 462.0
+    },
+    {
+      "name": "Nae",
+      "weight": 440.0
+    },
+    {
+      "name": "Nai",
+      "weight": 440.0
+    },
+    {
+      "name": "Nay",
+      "weight": 440.0
+    },
+    {
+      "name": "Cho",
+      "weight": 351.0
+    },
+    {
+      "name": "Ch'o",
+      "weight": 351.0
+    },
+    {
+      "name": "Chu",
+      "weight": 351.0
+    },
+    {
+      "name": "Chou",
+      "weight": 351.0
+    },
+    {
+      "name": "Choh",
+      "weight": 351.0
+    },
+    {
+      "name": "Nang",
+      "weight": 341.0
+    },
+    {
+      "name": "Nahng",
+      "weight": 341.0
+    },
+    {
+      "name": "Lang",
+      "weight": 341.0
+    },
+    {
+      "name": "Hae",
+      "weight": 322.0
+    },
+    {
+      "name": "Hay",
+      "weight": 322.0
+    },
+    {
+      "name": "Hai",
+      "weight": 322.0
+    },
+    {
+      "name": "Pan",
+      "weight": 290.0
+    },
+    {
+      "name": "P'an",
+      "weight": 290.0
+    },
+    {
+      "name": "Pahn",
+      "weight": 290.0
+    },
+    {
+      "name": "Phan",
+      "weight": 290.0
+    },
+    {
+      "name": "Parn",
+      "weight": 290.0
+    },
+    {
+      "name": "Pann",
+      "weight": 290.0
+    },
+    {
+      "name": "Yeong",
+      "weight": 259.0
+    },
+    {
+      "name": "Young",
+      "weight": 259.0
+    },
+    {
+      "name": "Pil",
+      "weight": 251.0
+    },
+    {
+      "name": "P'il",
+      "weight": 251.0
+    },
+    {
+      "name": "Phil",
+      "weight": 251.0
+    },
+    {
+      "name": "Peel",
+      "weight": 251.0
+    },
+    {
+      "name": "Gwok",
+      "weight": 248.0
+    },
+    {
+      "name": "Kwog",
+      "weight": 248.0
+    },
+    {
+      "name": "Gwog",
+      "weight": 248.0
+    },
+    {
+      "name": "Geun",
+      "weight": 242.0
+    },
+    {
+      "name": "Keun",
+      "weight": 242.0
+    },
+    {
+      "name": "Mae",
+      "weight": 222.0
+    },
+    {
+      "name": "May",
+      "weight": 222.0
+    },
+    {
+      "name": "Dongbang",
+      "weight": 220.0
+    },
+    {
+      "name": "Tongbang",
+      "weight": 220.0
+    },
+    {
+      "name": "Tongpang",
+      "weight": 220.0
+    },
+    {
+      "name": "Dongpang",
+      "weight": 220.0
+    },
+    {
+      "name": "Mi",
+      "weight": 199.0
+    },
+    {
+      "name": "Mee",
+      "weight": 199.0
+    },
+    {
+      "name": "Mih",
+      "weight": 199.0
+    },
+    {
+      "name": "Meeh",
+      "weight": 199.0
+    },
+    {
+      "name": "Su",
+      "weight": 199.0
+    },
+    {
+      "name": "Soo",
+      "weight": 199.0
+    },
+    {
+      "name": "Sooh",
+      "weight": 199.0
+    },
+    {
+      "name": "Yo",
+      "weight": 198.0
+    },
+    {
+      "name": "Ya",
+      "weight": 180.0
+    },
+    {
+      "name": "Yah",
+      "weight": 180.0
+    },
+    {
+      "name": "Yar",
+      "weight": 180.0
+    },
+    {
+      "name": "Muk",
+      "weight": 179.0
+    },
+    {
+      "name": "Mook",
+      "weight": 179.0
+    },
+    {
+      "name": "Ja",
+      "weight": 178.0
+    },
+    {
+      "name": "Cha",
+      "weight": 178.0
+    },
+    {
+      "name": "Man",
+      "weight": 172.0
+    },
+    {
+      "name": "Mann",
+      "weight": 172.0
+    },
+    {
+      "name": "Mahn",
+      "weight": 172.0
+    },
+    {
+      "name": "Un",
+      "weight": 170.0
+    },
+    {
+      "name": "Woon",
+      "weight": 170.0
+    },
+    {
+      "name": "Wun",
+      "weight": 170.0
+    },
+    {
+      "name": "Whun",
+      "weight": 170.0
+    },
+    {
+      "name": "Wuhn",
+      "weight": 170.0
+    },
+    {
+      "name": "Hwan",
+      "weight": 157.0
+    },
+    {
+      "name": "Hoan",
+      "weight": 157.0
+    },
+    {
+      "name": "Howan",
+      "weight": 157.0
+    },
+    {
+      "name": "Gok",
+      "weight": 155.0
+    },
+    {
+      "name": "Kok",
+      "weight": 155.0
+    },
+    {
+      "name": "Kog",
+      "weight": 155.0
+    },
+    {
+      "name": "Gog",
+      "weight": 155.0
+    },
+    {
+      "name": "Tan",
+      "weight": 155.0
+    },
+    {
+      "name": "T'an",
+      "weight": 155.0
+    },
+    {
+      "name": "Tahn",
+      "weight": 155.0
+    },
+    {
+      "name": "Tann",
+      "weight": 155.0
+    },
+    {
+      "name": "Po",
+      "weight": 129.0
+    },
+    {
+      "name": "P'o",
+      "weight": 129.0
+    },
+    {
+      "name": "Pho",
+      "weight": 129.0
+    },
+    {
+      "name": "Poh",
+      "weight": 129.0
+    },
+    {
+      "name": "Yeop",
+      "weight": 127.0
+    },
+    {
+      "name": "Yeob",
+      "weight": 127.0
+    },
+    {
+      "name": "Youb",
+      "weight": 127.0
+    },
+    {
+      "name": "Yeop",
+      "weight": 127.0
+    },
+    {
+      "name": "Yub",
+      "weight": 127.0
+    },
+    {
+      "name": "Yup",
+      "weight": 127.0
+    },
+    {
+      "name": "Yob",
+      "weight": 127.0
+    },
+    {
+      "name": "Ae",
+      "weight": 123.0
+    },
+    {
+      "name": "Ay",
+      "weight": 123.0
+    },
+    {
+      "name": "Ai",
+      "weight": 123.0
+    },
+    {
+      "name": "Don",
+      "weight": 115.0
+    },
+    {
+      "name": "Ton",
+      "weight": 115.0
+    },
+    {
+      "name": "Dohn",
+      "weight": 115.0
+    },
+    {
+      "name": "Tohn",
+      "weight": 115.0
+    },
+    {
+      "name": "Hu",
+      "weight": 114.0
+    },
+    {
+      "name": "Hoo",
+      "weight": 114.0
+    },
+    {
+      "name": "Hooh",
+      "weight": 114.0
+    },
+    {
+      "name": "Huh",
+      "weight": 114.0
+    },
+    {
+      "name": "Hak",
+      "weight": 101.0
+    },
+    {
+      "name": "Hag",
+      "weight": 101.0
+    },
+    {
+      "name": "Hahk",
+      "weight": 101.0
+    },
+    {
+      "name": "Hahg",
+      "weight": 101.0
+    },
+    {
+      "name": "Noe",
+      "weight": 92.0
+    },
+    {
+      "name": "Roi",
+      "weight": 92.0
+    },
+    {
+      "name": "Noi",
+      "weight": 92.0
+    },
+    {
+      "name": "Bi",
+      "weight": 90.0
+    },
+    {
+      "name": "Pi",
+      "weight": 90.0
+    },
+    {
+      "name": "Bee",
+      "weight": 90.0
+    },
+    {
+      "name": "Pee",
+      "weight": 90.0
+    },
+    {
+      "name": "Bih",
+      "weight": 90.0
+    },
+    {
+      "name": "Bhi",
+      "weight": 90.0
+    },
+    {
+      "name": "Pih",
+      "weight": 90.0
+    },
+    {
+      "name": "Phi",
+      "weight": 90.0
+    },
+    {
+      "name": "Gae",
+      "weight": 86.0
+    },
+    {
+      "name": "Kae",
+      "weight": 86.0
+    },
+    {
+      "name": "Kay",
+      "weight": 86.0
+    },
+    {
+      "name": "Gai",
+      "weight": 86.0
+    },
+    {
+      "name": "Kai",
+      "weight": 86.0
+    },
+    {
+      "name": "Sip",
+      "weight": 82.0
+    },
+    {
+      "name": "Ship",
+      "weight": 82.0
+    },
+    {
+      "name": "Sihp",
+      "weight": 82.0
+    },
+    {
+      "name": "Seep",
+      "weight": 82.0
+    },
+    {
+      "name": "Sib",
+      "weight": 82.0
+    },
+    {
+      "name": "Seeb",
+      "weight": 82.0
+    },
+    {
+      "name": "Sihb",
+      "weight": 82.0
+    },
+    {
+      "name": "Nan",
+      "weight": 80.0
+    },
+    {
+      "name": "Nahn",
+      "weight": 80.0
+    },
+    {
+      "name": "Rahn",
+      "weight": 80.0
+    },
+    {
+      "name": "Nhan",
+      "weight": 80.0
+    },
+    {
+      "name": "Rhan",
+      "weight": 80.0
+    },
+    {
+      "name": "Jun",
+      "weight": 72.0
+    },
+    {
+      "name": "Chun",
+      "weight": 72.0
+    },
+    {
+      "name": "Juhn",
+      "weight": 72.0
+    },
+    {
+      "name": "Jhun",
+      "weight": 72.0
+    },
+    {
+      "name": "Choon",
+      "weight": 72.0
+    },
+    {
+      "name": "Joon",
+      "weight": 72.0
+    },
+    {
+      "name": "Chuhn",
+      "weight": 72.0
+    },
+    {
+      "name": "Myo",
+      "weight": 61.0
+    },
+    {
+      "name": "Myoh",
+      "weight": 61.0
+    },
+    {
+      "name": "Mio",
+      "weight": 61.0
+    },
+    {
+      "name": "Dam",
+      "weight": 57.0
+    },
+    {
+      "name": "Tam",
+      "weight": 57.0
+    },
+    {
+      "name": "Tham",
+      "weight": 57.0
+    },
+    {
+      "name": "Dham",
+      "weight": 57.0
+    },
+    {
+      "name": "Dahm",
+      "weight": 57.0
+    },
+    {
+      "name": "Tahm",
+      "weight": 57.0
+    },
+    {
+      "name": "Janggok",
+      "weight": 52.0
+    },
+    {
+      "name": "Changgok",
+      "weight": 52.0
+    },
+    {
+      "name": "Gangjeon",
+      "weight": 51.0
+    },
+    {
+      "name": "Gangjun",
+      "weight": 51.0
+    },
+    {
+      "name": "Gangjon",
+      "weight": 51.0
+    },
+    {
+      "name": "Kangjun",
+      "weight": 51.0
+    },
+    {
+      "name": "Kangjeon",
+      "weight": 51.0
+    },
+    {
+      "name": "Kangjoun",
+      "weight": 51.0
+    },
+    {
+      "name": "Gangjoun",
+      "weight": 51.0
+    },
+    {
+      "name": "Sam",
+      "weight": 51.0
+    },
+    {
+      "name": "Sahm",
+      "weight": 51.0
+    },
+    {
+      "name": "Sarm",
+      "weight": 51.0
+    },
+    {
+      "name": "Eogeum",
+      "weight": 51.0
+    },
+    {
+      "name": "Eokeum",
+      "weight": 51.0
+    },
+    {
+      "name": "Okeum",
+      "weight": 51.0
+    },
+    {
+      "name": "Okum",
+      "weight": 51.0
+    },
+    {
+      "name": "Ukeum",
+      "weight": 51.0
+    },
+    {
+      "name": "Ugeum",
+      "weight": 51.0
+    },
+    {
+      "name": "Ukum",
+      "weight": 51.0
+    },
+    {
+      "name": "Jeo",
+      "weight": 48.0
+    },
+    {
+      "name": "Gun",
+      "weight": 46.0
+    },
+    {
+      "name": "Kun",
+      "weight": 46.0
+    },
+    {
+      "name": "Koon",
+      "weight": 46.0
+    },
+    {
+      "name": "Goon",
+      "weight": 46.0
+    },
+    {
+      "name": "Guhn",
+      "weight": 46.0
+    },
+    {
+      "name": "Kuhn",
+      "weight": 46.0
+    },
+    {
+      "name": "Gyo",
+      "weight": 41.0
+    },
+    {
+      "name": "Kyo",
+      "weight": 41.0
+    },
+    {
+      "name": "Kyoh",
+      "weight": 41.0
+    },
+    {
+      "name": "Gyoh",
+      "weight": 41.0
+    },
+    {
+      "name": "Nu",
+      "weight": 24.0
+    },
+    {
+      "name": "Noo",
+      "weight": 24.0
+    },
+    {
+      "name": "Roo",
+      "weight": 24.0
+    },
+    {
+      "name": "Sobong",
+      "weight": 18.0
+    },
+    {
+      "name": "Sohbong",
+      "weight": 18.0
+    },
+    {
+      "name": "Sopong",
+      "weight": 18.0
+    },
+    {
+      "name": "Shobong",
+      "weight": 18.0
+    },
+    {
+      "name": "Sohpong",
+      "weight": 18.0
+    },
+    {
+      "name": "Shopong",
+      "weight": 18.0
+    },
+    {
+      "name": "Mangjeol",
+      "weight": 10.0
+    },
+    {
+      "name": "Mangjul",
+      "weight": 10.0
+    },
+    {
+      "name": "Mangjuhl",
+      "weight": 10.0
+    },
+    {
+      "name": "Mangjoul",
+      "weight": 10.0
+    },
+    {
+      "name": "Jeung",
+      "weight": 6.0
+    },
+    {
+      "name": "Jung",
+      "weight": 6.0
+    },
+    {
+      "name": "Cheung",
+      "weight": 6.0
+    },
+    {
+      "name": "Chung",
+      "weight": 6.0
+    },
+    {
+      "name": "Jeup",
+      "weight": 4.0
+    },
+    {
+      "name": "Jup",
+      "weight": 4.0
+    },
+    {
+      "name": "Jub",
+      "weight": 4.0
+    },
+    {
+      "name": "Jeub",
+      "weight": 4.0
+    },
+    {
+      "name": "Cheup",
+      "weight": 4.0
+    },
+    {
+      "name": "Chup",
+      "weight": 4.0
+    },
+    {
+      "name": "Cheub",
+      "weight": 4.0
+    },
+    {
+      "name": "Chub",
+      "weight": 4.0
+    }
+  ]
+}

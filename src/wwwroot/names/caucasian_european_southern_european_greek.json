@@ -1,0 +1,1032 @@
+{
+  "femaleNames": [
+    { "name": "Afroditi" },
+    { "name": "Agape" },
+    { "name": "Agathe" },
+    { "name": "Aglaia" },
+    { "name": "Aikaterine" },
+    { "name": "Alexandra" },
+    { "name": "Alexis" },
+    { "name": "Anastasia" },
+    { "name": "Andriana" },
+    { "name": "Angeliki" },
+    { "name": "Anna" },
+    { "name": "Athanasia" },
+    { "name": "Avra" },
+    { "name": "Chara" },
+    { "name": "Chrysanthi" },
+    { "name": "Chryssa" },
+    { "name": "Demetra" },
+    { "name": "Demi" },
+    { "name": "Despina" },
+    { "name": "Despoina" },
+    { "name": "Diamantina" },
+    { "name": "Diamanto" },
+    { "name": "Dimitra" },
+    { "name": "Dora" },
+    { "name": "Efimia" },
+    { "name": "Efrosyni" },
+    { "name": "Efthalia" },
+    { "name": "Efthymia" },
+    { "name": "Eftychia" },
+    { "name": "Eleftheria" },
+    { "name": "Elene" },
+    { "name": "Eleni" },
+    { "name": "Elisavet" },
+    { "name": "Elpida" },
+    { "name": "Eva" },
+    { "name": "Evdokia" },
+    { "name": "Evgenia" },
+    { "name": "Evridiki" },
+    { "name": "Filippa" },
+    { "name": "Fotini" },
+    { "name": "Georgia" },
+    { "name": "Gianna" },
+    { "name": "Glykeria" },
+    { "name": "Haris" },
+    { "name": "Iliana" },
+    { "name": "Ioanna" },
+    { "name": "Iro" },
+    { "name": "Katerina" },
+    { "name": "Katina" },
+    { "name": "Kiki" },
+    { "name": "Konstantina" },
+    { "name": "Koralia" },
+    { "name": "Korina" },
+    { "name": "Kyriake" },
+    { "name": "Kyriaki" },
+    { "name": "Kyveli" },
+    { "name": "Louiza" },
+    { "name": "Maria" },
+    { "name": "Marianna" },
+    { "name": "Marika" },
+    { "name": "Marina" },
+    { "name": "Martha" },
+    { "name": "Melina" },
+    { "name": "Melpomeni" },
+    { "name": "Nana" },
+    { "name": "Natasa" },
+    { "name": "Nefeli" },
+    { "name": "Nikoleta" },
+    { "name": "Nomiki" },
+    { "name": "Olympia" },
+    { "name": "Panagiota" },
+    { "name": "Paraskevi" },
+    { "name": "Paraskevoula" },
+    { "name": "Pelagia" },
+    { "name": "Persefoni" },
+    { "name": "Polyxeni" },
+    { "name": "Sara" },
+    { "name": "Selene" },
+    { "name": "Sibylla" },
+    { "name": "Sofia" },
+    { "name": "Sophia" },
+    { "name": "Sotiria" },
+    { "name": "Spyridoula" },
+    { "name": "Stamatia" },
+    { "name": "Stavroula" },
+    { "name": "Tasia" },
+    { "name": "Tasoula" },
+    { "name": "Tatiana" },
+    { "name": "Thekla" },
+    { "name": "Theodora" },
+    { "name": "Theodosia" },
+    { "name": "Theofania" },
+    { "name": "Timothea" },
+    { "name": "Varvara" },
+    { "name": "Vasiliki" },
+    { "name": "Voula" },
+    { "name": "Xanthippi" },
+    { "name": "Xene" },
+    { "name": "Xenia" },
+    { "name": "Yanna" },
+    { "name": "Zenovia" },
+    { "name": "Zinovia" },
+    { "name": "Zoe" }
+  ],
+  "maleNames": [
+    { "name": "Agapios" },
+    { "name": "Akakios" },
+    { "name": "Alexandros" },
+    { "name": "Alexis" },
+    { "name": "Alkiviadis" },
+    { "name": "Anargyros" },
+    { "name": "Anastasios" },
+    { "name": "Andreas" },
+    { "name": "Angelos" },
+    { "name": "Aniketos" },
+    { "name": "Antonis" },
+    { "name": "Apostolis" },
+    { "name": "Apostolos" },
+    { "name": "Argyris" },
+    { "name": "Aristeidis" },
+    { "name": "Aristotelis" },
+    { "name": "Athanasios" },
+    { "name": "Charalampos" },
+    { "name": "Christoforos" },
+    { "name": "Chrysanthos" },
+    { "name": "Demetrios" },
+    { "name": "Dimitrios" },
+    { "name": "Dimitris" },
+    { "name": "Dimosthenis" },
+    { "name": "Dionysios" },
+    { "name": "Dorotheos" },
+    { "name": "Efstathios" },
+    { "name": "Eleftherios" },
+    { "name": "Elias" },
+    { "name": "Emmanouil" },
+    { "name": "Evangelos" },
+    { "name": "Evripidis" },
+    { "name": "Filippos" },
+    { "name": "Fotios" },
+    { "name": "Fotis" },
+    { "name": "Gavriil" },
+    { "name": "Georgios" },
+    { "name": "Gerasimos" },
+    { "name": "Gianni" },
+    { "name": "Giannis" },
+    { "name": "Giorgos" },
+    { "name": "Gregorios" },
+    { "name": "Gus" },
+    { "name": "Haris" },
+    { "name": "Iason" },
+    { "name": "Ilias" },
+    { "name": "Ioannis" },
+    { "name": "Iosif" },
+    { "name": "Konstantinos" },
+    { "name": "Kyriakos" },
+    { "name": "Lavrentios" },
+    { "name": "Lefteris" },
+    { "name": "Leonidas" },
+    { "name": "Maria" },
+    { "name": "Marinos" },
+    { "name": "Marios" },
+    { "name": "Markos" },
+    { "name": "Matthias" },
+    { "name": "Michail" },
+    { "name": "Michalis" },
+    { "name": "Mihail" },
+    { "name": "Mihalis" },
+    { "name": "Neofytos" },
+    { "name": "Nicolaos" },
+    { "name": "Nik" },
+    { "name": "Nikolaos" },
+    { "name": "Nikolas" },
+    { "name": "Panagiotakis" },
+    { "name": "Panagiotis" },
+    { "name": "Panayiotis" },
+    { "name": "Panos" },
+    { "name": "Paraskevas" },
+    { "name": "Pavlos" },
+    { "name": "Periklis" },
+    { "name": "Petros" },
+    { "name": "Photios" },
+    { "name": "Platon" },
+    { "name": "Prokopis" },
+    { "name": "Serafeim" },
+    { "name": "Silas" },
+    { "name": "Sokratis" },
+    { "name": "Sotirios" },
+    { "name": "Sotiris" },
+    { "name": "Spiridon" },
+    { "name": "Spiro" },
+    { "name": "Spiros" },
+    { "name": "Spyridon" },
+    { "name": "Spyro" },
+    { "name": "Spyros" },
+    { "name": "Stamatios" },
+    { "name": "Stamatis" },
+    { "name": "Stathis" },
+    { "name": "Stavros" },
+    { "name": "Stefanos" },
+    { "name": "Stelios" },
+    { "name": "Stephanos" },
+    { "name": "Stylianos" },
+    { "name": "Takis" },
+    { "name": "Thanasis" },
+    { "name": "Thanos" },
+    { "name": "Themistoklis" },
+    { "name": "Theodoros" },
+    { "name": "Theofanis" },
+    { "name": "Theofylaktos" },
+    { "name": "Thomas" },
+    { "name": "Tryfon" },
+    { "name": "Vangelis" },
+    { "name": "Vasilios" },
+    { "name": "Vasilis" },
+    { "name": "Vaso" },
+    { "name": "Vassilis" },
+    { "name": "Vissarion" },
+    { "name": "Vlasis" },
+    { "name": "Vlassis" },
+    { "name": "Yanni" },
+    { "name": "Yannis" },
+    { "name": "Yianni" },
+    { "name": "Yiannis" },
+    { "name": "Yiorgos" },
+    { "name": "Yorgos" },
+    { "name": "Zinon" }
+  ],
+  "surnames": [
+    {
+      "name": "Papadopoulos",
+      "weight": 69.0
+    },
+    {
+      "name": "Papadopoulou",
+      "weight": 47.0
+    },
+    {
+      "name": "Papageorgiou",
+      "weight": 29.0
+    },
+    {
+      "name": "Georgiou",
+      "weight": 26.0
+    },
+    {
+      "name": "Papaioannou",
+      "weight": 22.0
+    },
+    {
+      "name": "Papadimitriou",
+      "weight": 22.0
+    },
+    {
+      "name": "Nikolaou",
+      "weight": 22.0
+    },
+    {
+      "name": "Pappas",
+      "weight": 20.0
+    },
+    {
+      "name": "Papadakis",
+      "weight": 18.0
+    },
+    {
+      "name": "Antoniou",
+      "weight": 18.0
+    },
+    {
+      "name": "Papanikolaou",
+      "weight": 17.0
+    },
+    {
+      "name": "Ioannou",
+      "weight": 16.0
+    },
+    {
+      "name": "Dimitriou",
+      "weight": 16.0
+    },
+    {
+      "name": "Oikonomou",
+      "weight": 16.0
+    },
+    {
+      "name": "Makris",
+      "weight": 16.0
+    },
+    {
+      "name": "Ioannidis",
+      "weight": 15.0
+    },
+    {
+      "name": "Georgiadis",
+      "weight": 15.0
+    },
+    {
+      "name": "Vlachos",
+      "weight": 13.0
+    },
+    {
+      "name": "Pappa",
+      "weight": 13.0
+    },
+    {
+      "name": "Christodoulou",
+      "weight": 13.0
+    },
+    {
+      "name": "Konstantinidis",
+      "weight": 13.0
+    },
+    {
+      "name": "Karagiannis",
+      "weight": 13.0
+    },
+    {
+      "name": "Theodorou",
+      "weight": 13.0
+    },
+    {
+      "name": "Alexiou",
+      "weight": 12.0
+    },
+    {
+      "name": "Athanasiou",
+      "weight": 12.0
+    },
+    {
+      "name": "Pap",
+      "weight": 12.0
+    },
+    {
+      "name": "Dimitriadis",
+      "weight": 12.0
+    },
+    {
+      "name": "Giannopoulos",
+      "weight": 11.0
+    },
+    {
+      "name": "Nikolaidis",
+      "weight": 11.0
+    },
+    {
+      "name": "Papakonstantinou",
+      "weight": 11.0
+    },
+    {
+      "name": "Antonopoulos",
+      "weight": 10.0
+    },
+    {
+      "name": "Papadaki",
+      "weight": 10.0
+    },
+    {
+      "name": "Papas",
+      "weight": 10.0
+    },
+    {
+      "name": "Dimopoulos",
+      "weight": 10.0
+    },
+    {
+      "name": "Anastasiou",
+      "weight": 10.0
+    },
+    {
+      "name": "Petropoulos",
+      "weight": 10.0
+    },
+    {
+      "name": "Panagiotopoulos",
+      "weight": 10.0
+    },
+    {
+      "name": "Papathanasiou",
+      "weight": 10.0
+    },
+    {
+      "name": "Makri",
+      "weight": 10.0
+    },
+    {
+      "name": "Economou",
+      "weight": 10.0
+    },
+    {
+      "name": "Politis",
+      "weight": 10.0
+    },
+    {
+      "name": "Anagnostopoulos",
+      "weight": 10.0
+    },
+    {
+      "name": "Apostolou",
+      "weight": 10.0
+    },
+    {
+      "name": "Alexopoulos",
+      "weight": 10.0
+    },
+    {
+      "name": "Konstantinou",
+      "weight": 9.0
+    },
+    {
+      "name": "Markou",
+      "weight": 9.0
+    },
+    {
+      "name": "Andreou",
+      "weight": 9.0
+    },
+    {
+      "name": "Dimou",
+      "weight": 9.0
+    },
+    {
+      "name": "Papa",
+      "weight": 9.0
+    },
+    {
+      "name": "Giannakopoulos",
+      "weight": 9.0
+    },
+    {
+      "name": "Ioannidou",
+      "weight": 9.0
+    },
+    {
+      "name": "Nikolopoulos",
+      "weight": 9.0
+    },
+    {
+      "name": "Stavropoulos",
+      "weight": 9.0
+    },
+    {
+      "name": "Spanos",
+      "weight": 9.0
+    },
+    {
+      "name": "Christopoulos",
+      "weight": 8.0
+    },
+    {
+      "name": "Petrou",
+      "weight": 8.0
+    },
+    {
+      "name": "Vlachou",
+      "weight": 8.0
+    },
+    {
+      "name": "Stergiou",
+      "weight": 8.0
+    },
+    {
+      "name": "Vasileiou",
+      "weight": 8.0
+    },
+    {
+      "name": "Panagiotou",
+      "weight": 8.0
+    },
+    {
+      "name": "Panagopoulos",
+      "weight": 8.0
+    },
+    {
+      "name": "Apostolopoulos",
+      "weight": 8.0
+    },
+    {
+      "name": "Karagianni",
+      "weight": 8.0
+    },
+    {
+      "name": "Anagnostou",
+      "weight": 8.0
+    },
+    {
+      "name": "Triantafyllou",
+      "weight": 8.0
+    },
+    {
+      "name": "Georgopoulos",
+      "weight": 8.0
+    },
+    {
+      "name": "Christou",
+      "weight": 8.0
+    },
+    {
+      "name": "Samaras",
+      "weight": 8.0
+    },
+    {
+      "name": "Antoniadis",
+      "weight": 8.0
+    },
+    {
+      "name": "Lazaridis",
+      "weight": 8.0
+    },
+    {
+      "name": "Georgiadou",
+      "weight": 8.0
+    },
+    {
+      "name": "Kontos",
+      "weight": 8.0
+    },
+    {
+      "name": "Papazoglou",
+      "weight": 7.0
+    },
+    {
+      "name": "Athanasopoulos",
+      "weight": 7.0
+    },
+    {
+      "name": "Stathopoulos",
+      "weight": 7.0
+    },
+    {
+      "name": "Pavlidis",
+      "weight": 7.0
+    },
+    {
+      "name": "Michailidis",
+      "weight": 7.0
+    },
+    {
+      "name": "Roussos",
+      "weight": 7.0
+    },
+    {
+      "name": "Galanis",
+      "weight": 7.0
+    },
+    {
+      "name": "Athanasiadis",
+      "weight": 7.0
+    },
+    {
+      "name": "Spyropoulos",
+      "weight": 7.0
+    },
+    {
+      "name": "Sarris",
+      "weight": 7.0
+    },
+    {
+      "name": "Theodoropoulos",
+      "weight": 7.0
+    },
+    {
+      "name": "Kostopoulos",
+      "weight": 7.0
+    },
+    {
+      "name": "Stavrou",
+      "weight": 7.0
+    },
+    {
+      "name": "Panagiotopoulou",
+      "weight": 7.0
+    },
+    {
+      "name": "Iliopoulos",
+      "weight": 7.0
+    },
+    {
+      "name": "Petridis",
+      "weight": 7.0
+    },
+    {
+      "name": "Arvanitis",
+      "weight": 7.0
+    },
+    {
+      "name": "Dimopoulou",
+      "weight": 7.0
+    },
+    {
+      "name": "Apostolidis",
+      "weight": 7.0
+    },
+    {
+      "name": "Raptis",
+      "weight": 7.0
+    },
+    {
+      "name": "Giannopoulou",
+      "weight": 7.0
+    },
+    {
+      "name": "Sideris",
+      "weight": 7.0
+    },
+    {
+      "name": "Giannakopoulou",
+      "weight": 7.0
+    },
+    {
+      "name": "Konstantinidou",
+      "weight": 7.0
+    },
+    {
+      "name": "Theodoridis",
+      "weight": 7.0
+    },
+    {
+      "name": "Sotiriou",
+      "weight": 7.0
+    },
+    {
+      "name": "Sidiropoulos",
+      "weight": 7.0
+    },
+    {
+      "name": "Sotiropoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Paraskevopoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Anastasiadis",
+      "weight": 6.0
+    },
+    {
+      "name": "Petropoulou",
+      "weight": 6.0
+    },
+    {
+      "name": "Mavridis",
+      "weight": 6.0
+    },
+    {
+      "name": "Kostas",
+      "weight": 6.0
+    },
+    {
+      "name": "Dimitropoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Michalopoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Efstathiou",
+      "weight": 6.0
+    },
+    {
+      "name": "Antonopoulou",
+      "weight": 6.0
+    },
+    {
+      "name": "Angelopoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Anastasopoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Nikolaidou",
+      "weight": 6.0
+    },
+    {
+      "name": "Christopoulou",
+      "weight": 6.0
+    },
+    {
+      "name": "Papachristou",
+      "weight": 6.0
+    },
+    {
+      "name": "Pavlou",
+      "weight": 6.0
+    },
+    {
+      "name": "Panagopoulou",
+      "weight": 6.0
+    },
+    {
+      "name": "Grigoriadis",
+      "weight": 6.0
+    },
+    {
+      "name": "Diamantis",
+      "weight": 6.0
+    },
+    {
+      "name": "Karras",
+      "weight": 6.0
+    },
+    {
+      "name": "Sakellariou",
+      "weight": 6.0
+    },
+    {
+      "name": "Katsaros",
+      "weight": 6.0
+    },
+    {
+      "name": "Pantazis",
+      "weight": 6.0
+    },
+    {
+      "name": "Petrakis",
+      "weight": 6.0
+    },
+    {
+      "name": "Kanellopoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Diamantopoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Georgakopoulos",
+      "weight": 6.0
+    },
+    {
+      "name": "Nikolopoulou",
+      "weight": 6.0
+    },
+    {
+      "name": "Moraitis",
+      "weight": 6.0
+    },
+    {
+      "name": "Apostolopoulou",
+      "weight": 6.0
+    },
+    {
+      "name": "Kritikos",
+      "weight": 6.0
+    },
+    {
+      "name": "Stamou",
+      "weight": 6.0
+    },
+    {
+      "name": "Vasiliou",
+      "weight": 6.0
+    },
+    {
+      "name": "Alexopoulou",
+      "weight": 6.0
+    },
+    {
+      "name": "Iliadis",
+      "weight": 5.0
+    },
+    {
+      "name": "Samara",
+      "weight": 5.0
+    },
+    {
+      "name": "Fotopoulos",
+      "weight": 5.0
+    },
+    {
+      "name": "Daskalakis",
+      "weight": 5.0
+    },
+    {
+      "name": "Panagiotidis",
+      "weight": 5.0
+    },
+    {
+      "name": "Rigas",
+      "weight": 5.0
+    },
+    {
+      "name": "Doukas",
+      "weight": 5.0
+    },
+    {
+      "name": "Triantafillou",
+      "weight": 5.0
+    },
+    {
+      "name": "Fotiadis",
+      "weight": 5.0
+    },
+    {
+      "name": "Anagnostopoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Stavropoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Konstantopoulos",
+      "weight": 5.0
+    },
+    {
+      "name": "Kollias",
+      "weight": 5.0
+    },
+    {
+      "name": "Stathopoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Spanou",
+      "weight": 5.0
+    },
+    {
+      "name": "George",
+      "weight": 5.0
+    },
+    {
+      "name": "Vassiliou",
+      "weight": 5.0
+    },
+    {
+      "name": "Athanasopoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Margaritis",
+      "weight": 5.0
+    },
+    {
+      "name": "Galani",
+      "weight": 5.0
+    },
+    {
+      "name": "Vasilopoulos",
+      "weight": 5.0
+    },
+    {
+      "name": "Stefanidis",
+      "weight": 5.0
+    },
+    {
+      "name": "Dimitris",
+      "weight": 5.0
+    },
+    {
+      "name": "Mylonas",
+      "weight": 5.0
+    },
+    {
+      "name": "Papanastasiou",
+      "weight": 5.0
+    },
+    {
+      "name": "Eleftheriou",
+      "weight": 5.0
+    },
+    {
+      "name": "Kalogeropoulos",
+      "weight": 5.0
+    },
+    {
+      "name": "Sotiropoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Rapti",
+      "weight": 5.0
+    },
+    {
+      "name": "Papatheodorou",
+      "weight": 5.0
+    },
+    {
+      "name": "Adamopoulos",
+      "weight": 5.0
+    },
+    {
+      "name": "Georgopoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Kyriakou",
+      "weight": 5.0
+    },
+    {
+      "name": "Panou",
+      "weight": 5.0
+    },
+    {
+      "name": "Stefanou",
+      "weight": 5.0
+    },
+    {
+      "name": "Andreadis",
+      "weight": 5.0
+    },
+    {
+      "name": "Avramidis",
+      "weight": 5.0
+    },
+    {
+      "name": "Rizos",
+      "weight": 5.0
+    },
+    {
+      "name": "Lamprou",
+      "weight": 5.0
+    },
+    {
+      "name": "Arvaniti",
+      "weight": 5.0
+    },
+    {
+      "name": "Paraskevopoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Kostopoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Sidiropoulou",
+      "weight": 5.0
+    },
+    {
+      "name": "Vasiliadis",
+      "weight": 5.0
+    },
+    {
+      "name": "Markopoulos",
+      "weight": 5.0
+    },
+    {
+      "name": "Maria",
+      "weight": 5.0
+    },
+    {
+      "name": "Spyropoulou",
+      "weight": 4.0
+    },
+    {
+      "name": "Filippou",
+      "weight": 4.0
+    },
+    {
+      "name": "Roussou",
+      "weight": 4.0
+    },
+    {
+      "name": "Iliopoulou",
+      "weight": 4.0
+    },
+    {
+      "name": "Argyropoulos",
+      "weight": 4.0
+    },
+    {
+      "name": "Savvidis",
+      "weight": 4.0
+    },
+    {
+      "name": "Theodoropoulou",
+      "weight": 4.0
+    },
+    {
+      "name": "Dimitrakopoulos",
+      "weight": 4.0
+    },
+    {
+      "name": "Marinos",
+      "weight": 4.0
+    },
+    {
+      "name": "Stamatiou",
+      "weight": 4.0
+    },
+    {
+      "name": "Sideri",
+      "weight": 4.0
+    },
+    {
+      "name": "Kontogiannis",
+      "weight": 4.0
+    },
+    {
+      "name": "Stamatopoulos",
+      "weight": 4.0
+    },
+    {
+      "name": "Papandreou",
+      "weight": 4.0
+    },
+    {
+      "name": "Kyriakopoulos",
+      "weight": 4.0
+    },
+    {
+      "name": "Floros",
+      "weight": 4.0
+    },
+    {
+      "name": "Kokkinos",
+      "weight": 4.0
+    },
+    {
+      "name": "Manos",
+      "weight": 4.0
+    },
+    {
+      "name": "Panos",
+      "weight": 4.0
+    },
+    {
+      "name": "Pavlidou",
+      "weight": 4.0
+    },
+    {
+      "name": "Vasilakis",
+      "weight": 4.0
+    }
+  ]
+}

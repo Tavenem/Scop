@@ -1,0 +1,42 @@
+﻿<div class="timeline-container">
+    <div id="@Id"></div>
+    <div class="my-3">
+        <MudTextField @bind-Value="NewCategoryName"
+                      Immediate="true"
+                      OnKeyDown="OnCategoryKeydownAsync"
+                      Label="New Category"
+                      Class="mb-2" />
+        <MudButton OnClick="OnAddCategoryAsync"
+                   Disabled="string.IsNullOrWhiteSpace(NewCategoryName)"
+                   Variant="Variant.Filled"
+                   Color="Color.Success">Add Category</MudButton>
+    </div>
+    <div class="my-3">
+        <MudGrid>
+            <MudItem xs="12" md="6">
+                <MudDatePicker Date="Now"
+                               DateChanged="OnSetNowDateAsync"
+                               Label="Current Date"
+                               AllowKeyboardInput="true"
+                               AutoClose="true"
+                               PickerVariant="PickerVariant.Dialog" />
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTimePicker Time="NowTime"
+                               TimeChanged="OnSetNowTimeAsync"
+                               Label="Current Time"
+                               AllowKeyboardInput="true"
+                               AmPm="true"
+                               AutoClose="true"
+                               PickerVariant="PickerVariant.Dialog" />
+            </MudItem>
+        </MudGrid>
+        <MudTooltip Text="Set the story's current date and time to the actual current date and time">
+            <MudButton OnClick="OnSetNowAsync"
+                       Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Class="mt-2">Now</MudButton>
+        </MudTooltip>
+    </div>
+    @ChildContent
+</div>

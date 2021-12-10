@@ -1,0 +1,1009 @@
+{
+  "femaleNames": [
+    { "name": "Mia" },
+    { "name": "Emma" },
+    { "name": "Sara" },
+    { "name": "Lara" },
+    { "name": "Alina" },
+    { "name": "Laura" },
+    { "name": "Nina" },
+    { "name": "Julia" },
+    { "name": "Lea" },
+    { "name": "Anna" },
+    { "name": "Sofia" },
+    { "name": "Sophia" },
+    { "name": "Lena" },
+    { "name": "Leonie" },
+    { "name": "Lina" },
+    { "name": "Elin" },
+    { "name": "Giulia" },
+    { "name": "Sophie" },
+    { "name": "Elena" },
+    { "name": "Lia" },
+    { "name": "Emilia" },
+    { "name": "Lisa" },
+    { "name": "Olivia" },
+    { "name": "Alessia" },
+    { "name": "Chiara" },
+    { "name": "Livia" },
+    { "name": "Nora" },
+    { "name": "Valentina" },
+    { "name": "Luana" },
+    { "name": "Elina" },
+    { "name": "Emily" },
+    { "name": "Amélie" },
+    { "name": "Mila" },
+    { "name": "Elisa" },
+    { "name": "Noemi" },
+    { "name": "Zoé" },
+    { "name": "Jana" },
+    { "name": "Ella" },
+    { "name": "Sarah" },
+    { "name": "Alice" },
+    { "name": "Eva" },
+    { "name": "Melina" },
+    { "name": "Lorena" },
+    { "name": "Ronja" },
+    { "name": "Charlotte" },
+    { "name": "Chloé" },
+    { "name": "Emilie" },
+    { "name": "Julie" },
+    { "name": "Selina" },
+    { "name": "Alicia" },
+    { "name": "Luisa" },
+    { "name": "Melissa" },
+    { "name": "Clara" },
+    { "name": "Leana" },
+    { "name": "Mara" },
+    { "name": "Fiona" },
+    { "name": "Lynn" },
+    { "name": "Hanna" },
+    { "name": "Victoria" },
+    { "name": "Jael" },
+    { "name": "Linda" },
+    { "name": "Yara" },
+    { "name": "Aline" },
+    { "name": "Maria" },
+    { "name": "Leona" },
+    { "name": "Amelie" },
+    { "name": "Léa" },
+    { "name": "Stella" },
+    { "name": "Camille" },
+    { "name": "Milena" },
+    { "name": "Zoe" },
+    { "name": "Vanessa" },
+    { "name": "Louise" },
+    { "name": "Michelle" },
+    { "name": "Leandra" },
+    { "name": "Malin" },
+    { "name": "Amelia" },
+    { "name": "Amy" },
+    { "name": "Anaïs" },
+    { "name": "Lucie" },
+    { "name": "Anouk" },
+    { "name": "Luna" },
+    { "name": "Aurora" },
+    { "name": "Marie" },
+    { "name": "Jasmin" },
+    { "name": "Ladina" },
+    { "name": "Soraya" },
+    { "name": "Alea" },
+    { "name": "Jessica" },
+    { "name": "Eline" },
+    { "name": "Erina" },
+    { "name": "Hannah" },
+    { "name": "Jara" },
+    { "name": "Sina" },
+    { "name": "Diana" },
+    { "name": "Helena" },
+    { "name": "Lana" },
+    { "name": "Noelia" },
+    { "name": "Sarina" },
+    { "name": "Kim" },
+    { "name": "Mathilde" }
+  ],
+  "maleNames": [
+    { "name": "Noah" },
+    { "name": "Luca" },
+    { "name": "Liam" },
+    { "name": "Gabriel" },
+    { "name": "Leon" },
+    { "name": "David" },
+    { "name": "Julian" },
+    { "name": "Samuel" },
+    { "name": "Leandro" },
+    { "name": "Matteo" },
+    { "name": "Elias" },
+    { "name": "Louis" },
+    { "name": "Levin" },
+    { "name": "Jonas" },
+    { "name": "Nico" },
+    { "name": "Tim" },
+    { "name": "Dario" },
+    { "name": "Gian" },
+    { "name": "Simon" },
+    { "name": "Diego" },
+    { "name": "Robin" },
+    { "name": "Jan" },
+    { "name": "Ben" },
+    { "name": "Benjamin" },
+    { "name": "Lukas" },
+    { "name": "Nino" },
+    { "name": "Rafael" },
+    { "name": "Elia" },
+    { "name": "Leo" },
+    { "name": "Fabio" },
+    { "name": "Livio" },
+    { "name": "Lionel" },
+    { "name": "Lucas" },
+    { "name": "Loris" },
+    { "name": "Alexander" },
+    { "name": "Andrin" },
+    { "name": "Nathan" },
+    { "name": "Mattia" },
+    { "name": "Daniel" },
+    { "name": "Fabian" },
+    { "name": "Luis" },
+    { "name": "Nicolas" },
+    { "name": "Valentin" },
+    { "name": "Alessio" },
+    { "name": "Lian" },
+    { "name": "Nevio" },
+    { "name": "Thomas" },
+    { "name": "Lenny" },
+    { "name": "Finn" },
+    { "name": "Nils" },
+    { "name": "Aaron" },
+    { "name": "Joel" },
+    { "name": "Laurin" },
+    { "name": "Leonardo" },
+    { "name": "Lars" },
+    { "name": "Ethan" },
+    { "name": "Maximilian" },
+    { "name": "Théo" },
+    { "name": "Jonathan" },
+    { "name": "Colin" },
+    { "name": "Raphael" },
+    { "name": "Alessandro" },
+    { "name": "Max" },
+    { "name": "Timo" },
+    { "name": "Maxime" },
+    { "name": "Dylan" },
+    { "name": "Noé" },
+    { "name": "Janis" },
+    { "name": "Léo" },
+    { "name": "Adam" },
+    { "name": "Noel" },
+    { "name": "Arthur" },
+    { "name": "Florian" },
+    { "name": "Enzo" },
+    { "name": "Oliver" },
+    { "name": "Levi" },
+    { "name": "Jason" },
+    { "name": "Linus" },
+    { "name": "Manuel" },
+    { "name": "Kevin" },
+    { "name": "Mael" },
+    { "name": "Marco" },
+    { "name": "Rayan" },
+    { "name": "Luan" },
+    { "name": "Maël" },
+    { "name": "Marlon" },
+    { "name": "Tobias" },
+    { "name": "Ryan" },
+    { "name": "Felix" },
+    { "name": "Nick" },
+    { "name": "Adrian" },
+    { "name": "Damian" },
+    { "name": "Sebastian" },
+    { "name": "Alexandre" },
+    { "name": "Emil" },
+    { "name": "Joshua" },
+    { "name": "Kilian" },
+    { "name": "Ruben" },
+    { "name": "Lorenzo" },
+    { "name": "Tom" }
+  ],
+  "surnames": [
+    {
+      "name": "Meier",
+      "weight": 32.0
+    },
+    {
+      "name": "Schmid",
+      "weight": 26.0
+    },
+    {
+      "name": "Keller",
+      "weight": 22.0
+    },
+    {
+      "name": "Miller",
+      "weight": 21.0
+    },
+    {
+      "name": "Muller",
+      "weight": 21.0
+    },
+    {
+      "name": "Meyer",
+      "weight": 20.0
+    },
+    {
+      "name": "Weber",
+      "weight": 20.0
+    },
+    {
+      "name": "Schneider",
+      "weight": 19.0
+    },
+    {
+      "name": "Huber",
+      "weight": 17.0
+    },
+    {
+      "name": "Fischer",
+      "weight": 16.0
+    },
+    {
+      "name": "Steiner",
+      "weight": 15.0
+    },
+    {
+      "name": "Mueller",
+      "weight": 13.0
+    },
+    {
+      "name": "Baumann",
+      "weight": 13.0
+    },
+    {
+      "name": "Zimmermann",
+      "weight": 12.0
+    },
+    {
+      "name": "Brunner",
+      "weight": 12.0
+    },
+    {
+      "name": "Gerber",
+      "weight": 12.0
+    },
+    {
+      "name": "Moser",
+      "weight": 12.0
+    },
+    {
+      "name": "Frei",
+      "weight": 11.0
+    },
+    {
+      "name": "Graf",
+      "weight": 11.0
+    },
+    {
+      "name": "Widmer",
+      "weight": 11.0
+    },
+    {
+      "name": "Berger",
+      "weight": 11.0
+    },
+    {
+      "name": "Roth",
+      "weight": 10.0
+    },
+    {
+      "name": "Wyss",
+      "weight": 10.0
+    },
+    {
+      "name": "Martin",
+      "weight": 9.0
+    },
+    {
+      "name": "Suter",
+      "weight": 9.0
+    },
+    {
+      "name": "Bachmann",
+      "weight": 9.0
+    },
+    {
+      "name": "Frey",
+      "weight": 9.0
+    },
+    {
+      "name": "Baumgartner",
+      "weight": 9.0
+    },
+    {
+      "name": "Kaufmann",
+      "weight": 8.0
+    },
+    {
+      "name": "Favre",
+      "weight": 8.0
+    },
+    {
+      "name": "Studer",
+      "weight": 8.0
+    },
+    {
+      "name": "Bucher",
+      "weight": 8.0
+    },
+    {
+      "name": "Kunz",
+      "weight": 8.0
+    },
+    {
+      "name": "Koch",
+      "weight": 8.0
+    },
+    {
+      "name": "Lehmann",
+      "weight": 8.0
+    },
+    {
+      "name": "Peter",
+      "weight": 8.0
+    },
+    {
+      "name": "Hofer",
+      "weight": 8.0
+    },
+    {
+      "name": "Michel",
+      "weight": 7.0
+    },
+    {
+      "name": "Fuchs",
+      "weight": 7.0
+    },
+    {
+      "name": "Maurer",
+      "weight": 7.0
+    },
+    {
+      "name": "Pfister",
+      "weight": 7.0
+    },
+    {
+      "name": "Marti",
+      "weight": 7.0
+    },
+    {
+      "name": "Schmidt",
+      "weight": 6.0
+    },
+    {
+      "name": "Hofmann",
+      "weight": 6.0
+    },
+    {
+      "name": "Kohler",
+      "weight": 6.0
+    },
+    {
+      "name": "Schweizer",
+      "weight": 6.0
+    },
+    {
+      "name": "Vogel",
+      "weight": 6.0
+    },
+    {
+      "name": "Garcia",
+      "weight": 6.0
+    },
+    {
+      "name": "Christen",
+      "weight": 6.0
+    },
+    {
+      "name": "Egli",
+      "weight": 6.0
+    },
+    {
+      "name": "Gasser",
+      "weight": 6.0
+    },
+    {
+      "name": "Furrer",
+      "weight": 6.0
+    },
+    {
+      "name": "Wenger",
+      "weight": 6.0
+    },
+    {
+      "name": "Koller",
+      "weight": 6.0
+    },
+    {
+      "name": "Wagner",
+      "weight": 6.0
+    },
+    {
+      "name": "Rey",
+      "weight": 6.0
+    },
+    {
+      "name": "Schwarz",
+      "weight": 6.0
+    },
+    {
+      "name": "Arnold",
+      "weight": 6.0
+    },
+    {
+      "name": "Egger",
+      "weight": 6.0
+    },
+    {
+      "name": "Hauser",
+      "weight": 5.0
+    },
+    {
+      "name": "Lang",
+      "weight": 5.0
+    },
+    {
+      "name": "Ammann",
+      "weight": 5.0
+    },
+    {
+      "name": "Hess",
+      "weight": 5.0
+    },
+    {
+      "name": "Hartmann",
+      "weight": 5.0
+    },
+    {
+      "name": "Blanc",
+      "weight": 5.0
+    },
+    {
+      "name": "Bernasconi",
+      "weight": 5.0
+    },
+    {
+      "name": "Hug",
+      "weight": 5.0
+    },
+    {
+      "name": "Weiss",
+      "weight": 5.0
+    },
+    {
+      "name": "Leuenberger",
+      "weight": 5.0
+    },
+    {
+      "name": "Sutter",
+      "weight": 5.0
+    },
+    {
+      "name": "Vogt",
+      "weight": 5.0
+    },
+    {
+      "name": "Stalder",
+      "weight": 5.0
+    },
+    {
+      "name": "Rossi",
+      "weight": 5.0
+    },
+    {
+      "name": "Kuhn",
+      "weight": 5.0
+    },
+    {
+      "name": "Tanner",
+      "weight": 5.0
+    },
+    {
+      "name": "Burri",
+      "weight": 5.0
+    },
+    {
+      "name": "Nguyen",
+      "weight": 5.0
+    },
+    {
+      "name": "Rochat",
+      "weight": 5.0
+    },
+    {
+      "name": "Hunziker",
+      "weight": 5.0
+    },
+    {
+      "name": "Senn",
+      "weight": 4.0
+    },
+    {
+      "name": "Perez",
+      "weight": 4.0
+    },
+    {
+      "name": "Wolf",
+      "weight": 4.0
+    },
+    {
+      "name": "Sommer",
+      "weight": 4.0
+    },
+    {
+      "name": "Blaser",
+      "weight": 4.0
+    },
+    {
+      "name": "Rodriguez",
+      "weight": 4.0
+    },
+    {
+      "name": "Lopez",
+      "weight": 4.0
+    },
+    {
+      "name": "Zbinden",
+      "weight": 4.0
+    },
+    {
+      "name": "Seiler",
+      "weight": 4.0
+    },
+    {
+      "name": "Schuler",
+      "weight": 4.0
+    },
+    {
+      "name": "Kaiser",
+      "weight": 4.0
+    },
+    {
+      "name": "Martinez",
+      "weight": 4.0
+    },
+    {
+      "name": "Beck",
+      "weight": 4.0
+    },
+    {
+      "name": "Lüthi",
+      "weight": 4.0
+    },
+    {
+      "name": "Schumacher",
+      "weight": 4.0
+    },
+    {
+      "name": "Pereira",
+      "weight": 4.0
+    },
+    {
+      "name": "Braun",
+      "weight": 4.0
+    },
+    {
+      "name": "Gonzalez",
+      "weight": 4.0
+    },
+    {
+      "name": "Jost",
+      "weight": 4.0
+    },
+    {
+      "name": "Silva",
+      "weight": 4.0
+    },
+    {
+      "name": "Santos",
+      "weight": 4.0
+    },
+    {
+      "name": "Herzog",
+      "weight": 4.0
+    },
+    {
+      "name": "Bieri",
+      "weight": 4.0
+    },
+    {
+      "name": "Ferreira",
+      "weight": 4.0
+    },
+    {
+      "name": "Fernandez",
+      "weight": 4.0
+    },
+    {
+      "name": "Scherrer",
+      "weight": 4.0
+    },
+    {
+      "name": "Hasler",
+      "weight": 4.0
+    },
+    {
+      "name": "Haas",
+      "weight": 4.0
+    },
+    {
+      "name": "Ackermann",
+      "weight": 4.0
+    },
+    {
+      "name": "Smith",
+      "weight": 4.0
+    },
+    {
+      "name": "Staub",
+      "weight": 4.0
+    },
+    {
+      "name": "Zehnder",
+      "weight": 4.0
+    },
+    {
+      "name": "Imhof",
+      "weight": 4.0
+    },
+    {
+      "name": "Schwab",
+      "weight": 4.0
+    },
+    {
+      "name": "Richard",
+      "weight": 4.0
+    },
+    {
+      "name": "Bauer",
+      "weight": 4.0
+    },
+    {
+      "name": "Lutz",
+      "weight": 4.0
+    },
+    {
+      "name": "Schaller",
+      "weight": 4.0
+    },
+    {
+      "name": "Thomas",
+      "weight": 4.0
+    },
+    {
+      "name": "Walter",
+      "weight": 4.0
+    },
+    {
+      "name": "Ernst",
+      "weight": 4.0
+    },
+    {
+      "name": "Mayer",
+      "weight": 3.0
+    },
+    {
+      "name": "Costa",
+      "weight": 3.0
+    },
+    {
+      "name": "Pittet",
+      "weight": 3.0
+    },
+    {
+      "name": "Bianchi",
+      "weight": 3.0
+    },
+    {
+      "name": "Stucki",
+      "weight": 3.0
+    },
+    {
+      "name": "Perret",
+      "weight": 3.0
+    },
+    {
+      "name": "Kessler",
+      "weight": 3.0
+    },
+    {
+      "name": "Haller",
+      "weight": 3.0
+    },
+    {
+      "name": "Weibel",
+      "weight": 3.0
+    },
+    {
+      "name": "Stocker",
+      "weight": 3.0
+    },
+    {
+      "name": "Buhler",
+      "weight": 3.0
+    },
+    {
+      "name": "Schenk",
+      "weight": 3.0
+    },
+    {
+      "name": "Steiger",
+      "weight": 3.0
+    },
+    {
+      "name": "Ziegler",
+      "weight": 3.0
+    },
+    {
+      "name": "Perrin",
+      "weight": 3.0
+    },
+    {
+      "name": "Lee",
+      "weight": 3.0
+    },
+    {
+      "name": "Hofstetter",
+      "weight": 3.0
+    },
+    {
+      "name": "Simon",
+      "weight": 3.0
+    },
+    {
+      "name": "Maier",
+      "weight": 3.0
+    },
+    {
+      "name": "Rohner",
+      "weight": 3.0
+    },
+    {
+      "name": "Bosshard",
+      "weight": 3.0
+    },
+    {
+      "name": "Blum",
+      "weight": 3.0
+    },
+    {
+      "name": "Portmann",
+      "weight": 3.0
+    },
+    {
+      "name": "Scheidegger",
+      "weight": 3.0
+    },
+    {
+      "name": "Dubois",
+      "weight": 3.0
+    },
+    {
+      "name": "Gross",
+      "weight": 3.0
+    },
+    {
+      "name": "Schnyder",
+      "weight": 3.0
+    },
+    {
+      "name": "Giger",
+      "weight": 3.0
+    },
+    {
+      "name": "Brugger",
+      "weight": 3.0
+    },
+    {
+      "name": "Hoffmann",
+      "weight": 3.0
+    },
+    {
+      "name": "Li",
+      "weight": 3.0
+    },
+    {
+      "name": "Ulrich",
+      "weight": 3.0
+    },
+    {
+      "name": "Sigrist",
+      "weight": 3.0
+    },
+    {
+      "name": "Clerc",
+      "weight": 3.0
+    },
+    {
+      "name": "Ferrari",
+      "weight": 3.0
+    },
+    {
+      "name": "Meister",
+      "weight": 3.0
+    },
+    {
+      "name": "Walther",
+      "weight": 3.0
+    },
+    {
+      "name": "Sieber",
+      "weight": 3.0
+    },
+    {
+      "name": "Gloor",
+      "weight": 3.0
+    },
+    {
+      "name": "Zaugg",
+      "weight": 3.0
+    },
+    {
+      "name": "Ritter",
+      "weight": 3.0
+    },
+    {
+      "name": "Rossier",
+      "weight": 3.0
+    },
+    {
+      "name": "Wang",
+      "weight": 3.0
+    },
+    {
+      "name": "Wirth",
+      "weight": 3.0
+    },
+    {
+      "name": "Winkler",
+      "weight": 3.0
+    },
+    {
+      "name": "Krebs",
+      "weight": 3.0
+    },
+    {
+      "name": "Liechti",
+      "weight": 3.0
+    },
+    {
+      "name": "Benz",
+      "weight": 3.0
+    },
+    {
+      "name": "Siegenthaler",
+      "weight": 3.0
+    },
+    {
+      "name": "Knecht",
+      "weight": 3.0
+    },
+    {
+      "name": "Gisler",
+      "weight": 3.0
+    },
+    {
+      "name": "da Silva",
+      "weight": 3.0
+    },
+    {
+      "name": "Herrmann",
+      "weight": 3.0
+    },
+    {
+      "name": "Eichenberger",
+      "weight": 3.0
+    },
+    {
+      "name": "Sanchez",
+      "weight": 3.0
+    },
+    {
+      "name": "Steffen",
+      "weight": 3.0
+    },
+    {
+      "name": "Ott",
+      "weight": 3.0
+    },
+    {
+      "name": "Jaggi",
+      "weight": 3.0
+    },
+    {
+      "name": "Grob",
+      "weight": 3.0
+    },
+    {
+      "name": "Bolliger",
+      "weight": 3.0
+    },
+    {
+      "name": "Siegrist",
+      "weight": 3.0
+    },
+    {
+      "name": "Stutz",
+      "weight": 3.0
+    },
+    {
+      "name": "Reymond",
+      "weight": 3.0
+    },
+    {
+      "name": "Wild",
+      "weight": 3.0
+    },
+    {
+      "name": "Probst",
+      "weight": 3.0
+    },
+    {
+      "name": "Kuster",
+      "weight": 3.0
+    },
+    {
+      "name": "Tobler",
+      "weight": 3.0
+    },
+    {
+      "name": "Gaillard",
+      "weight": 3.0
+    },
+    {
+      "name": "Locher",
+      "weight": 3.0
+    },
+    {
+      "name": "Maillard",
+      "weight": 3.0
+    },
+    {
+      "name": "Kern",
+      "weight": 3.0
+    },
+    {
+      "name": "Lanz",
+      "weight": 3.0
+    },
+    {
+      "name": "Forster",
+      "weight": 3.0
+    },
+    {
+      "name": "Odermatt",
+      "weight": 3.0
+    },
+    {
+      "name": "Brun",
+      "weight": 3.0
+    },
+    {
+      "name": "Rohrer",
+      "weight": 3.0
+    },
+    {
+      "name": "Merz",
+      "weight": 3.0
+    },
+    {
+      "name": "Stauffer",
+      "weight": 3.0
+    },
+    {
+      "name": "Morel",
+      "weight": 3.0
+    },
+    {
+      "name": "Stettler",
+      "weight": 3.0
+    }
+  ]
+}

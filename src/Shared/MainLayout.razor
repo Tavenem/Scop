@@ -1,0 +1,46 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="_mudTheme" />
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout Class="d-flex flex-column flex-grow-1">
+    <MudAppBar Elevation="0">
+        <a href="https://tavenem.com/" title="Tavenem">
+            <img src="tavenemlogo.svg" alt="" width="60" height="60" class="d-inline-block me-2" />
+        </a>
+        <MudLink Href="/" Underline="Underline.None" Typo="Typo.h5" Class="ml-3" Color="Color.Default" style="color: var(--mud-palette-appbar-text)">Scop</MudLink>
+        <MudTooltip Text="Home">
+            <MudIconButton Link="/" Icon="@Icons.Material.Filled.Home" Color="Color.Inherit" />
+        </MudTooltip>
+        <MudTooltip Text="My Stories">
+            <MudIconButton Link="/stories" Icon="@Icons.Material.Filled.MenuBook" Color="Color.Inherit" />
+        </MudTooltip>
+        <MudSpacer />
+        <MudTooltip Text="Toggle light/dark theme">
+            <MudToggleIconButton Toggled="@(_preferredTheme == Tavenem.Blazor.MarkdownEditor.MarkdownEditorTheme.Dark)"
+                                 ToggledChanged="ToggleThemeAsync"
+                                 Icon="@Icons.Material.Filled.LightMode"
+                                 ToggledIcon="@Icons.Material.Filled.DarkMode"
+                                 Color="Color.Inherit" />
+        </MudTooltip>
+        <MudTooltip Text="Manage your data">
+            <MudIconButton Link="/managedata" Icon="@Icons.Material.Filled.Save" Color="DataService?.GDriveSync == true ? Color.Tertiary : Color.Inherit" />
+        </MudTooltip>
+    </MudAppBar>
+    <MudMainContent Class="d-flex flex-column">
+        <MudContainer MaxWidth="MaxWidth.False" Class="d-flex flex-column flex-grow-1" Style="padding: 0">
+            <CascadingValue Value="_currentTheme">
+                <CascadingValue Value="_mudTheme">
+                    @Body
+                </CascadingValue>
+            </CascadingValue>
+        </MudContainer>
+        <MudPaper Class="d-flex align-center justify-space-around mt-3 pa-2" Square="true" Elevation="0">
+            <MudText Inline="true" Typo="Typo.caption">©2021 <MudLink Href="https://tavenem.com/" Typo="Typo.caption" Target="_blank">Tavenem</MudLink></MudText>
+            <MudLink Href="/privacy" Typo="Typo.caption">Privacy</MudLink>
+            <MudLink Href="/support" Typo="Typo.caption">Support</MudLink>
+        </MudPaper>
+    </MudMainContent>
+    <AnchorNavigator />
+</MudLayout>

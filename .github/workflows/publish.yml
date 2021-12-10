@@ -1,0 +1,86 @@
+name: publish
+env:
+  VERSION: '1.0.0'
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    name: build, publish, and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup .NET 6
+        uses: actions/setup-dotnet@v1
+        with:
+          # Semantic version range syntax or exact version of a dotnet version
+          dotnet-version: '6.0.x'
+
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: ./src
+
+      - name: Build
+        run: dotnet build --configuration Release -p:Version=${{ env.VERSION }} --no-restore --nologo
+        working-directory: ./src
+
+      #- name: Test
+      #  run: dotnet test --no-restore --verbosity normal
+      #  working-directory: ./src
+
+      - name: Publish
+        run: dotnet publish --configuration Release -o publish -p:Version=${{ env.VERSION }} --no-build --nologo
+        working-directory: ./src
+
+      # change the base href in index.html to match GitHub Pages repository
+      - name: Change base href in index.html
+        run: sed -i 's/<base href="\/" \/>/<base href="\/Scop\/" \/>/g' publish/wwwroot/index.html
+
+      # fix service worker integrity checking
+      - name: Fix service-worker-assets.js hashes
+        working-directory: publish/wwwroot
+        run: |
+          jsFile=$(<service-worker-assets.js)
+          # remove JavaScript from contents so it can be interpreted as JSON
+          json=$(echo "$jsFile" | sed "s/self.assetsManifest = //g" | sed "s/;//g")
+          # grab the assets JSON array
+          assets=$(echo "$json" | jq '.assets[]' -c)
+          for asset in $assets
+          do
+            oldHash=$(echo "$asset" | jq '.hash')
+            #remove leading and trailing quotes
+            oldHash="${oldHash:1:-1}"
+            path=$(echo "$asset" | jq '.url')
+            #remove leading and trailing quotes
+            path="${path:1:-1}"
+            newHash="sha256-$(openssl dgst -sha256 -binary $path | openssl base64 -A)"
+            
+            if [ $oldHash != $newHash ]; then
+              # escape slashes for json
+              oldHash=$(echo "$oldHash" | sed 's;/;\\/;g')
+              newHash=$(echo "$newHash" | sed 's;/;\\/;g')
+              echo "Updating hash for $path from $oldHash to $newHash"
+              # escape slashes second time for sed
+              oldHash=$(echo "$oldHash" | sed 's;/;\\/;g')
+              jsFile=$(echo -n "$jsFile" | sed "s;$oldHash;$newHash;g")
+            fi
+          done
+        
+          echo -n "$jsFile" > service-worker-assets.js
+
+      # add .nojekyll file so GitHub pages will not treat this as a Jekyll project
+      - name: Add .nojekyll file
+        run: touch publish/wwwroot/.nojekyll
+
+      - name: Git tag
+        run: git tag v${{ env.VERSION }}
+
+      - name: Push tag
+        run: git push origin v${{ env.VERSION }}
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: publish/wwwroot

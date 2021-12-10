@@ -1,0 +1,931 @@
+{
+  "femaleNames": [
+    { "name": "Althea Mae" },
+    { "name": "Amihan" },
+    { "name": "Amor" },
+    { "name": "Analyn" },
+    { "name": "Annalyn" },
+    { "name": "April Joy" },
+    { "name": "Bituin" },
+    { "name": "Charito" },
+    { "name": "Cherry" },
+    { "name": "Chona" },
+    { "name": "Dalisay" },
+    { "name": "Diosa" },
+    { "name": "Divina" },
+    { "name": "Diwa" },
+    { "name": "Diwata" },
+    { "name": "Flordeliza" },
+    { "name": "Girlie" },
+    { "name": "Imarie" },
+    { "name": "Imee" },
+    { "name": "Imelda" },
+    { "name": "Irish" },
+    { "name": "Iska" },
+    { "name": "Jesusa" },
+    { "name": "Jovelyn" },
+    { "name": "Laarni" },
+    { "name": "Laarnie" },
+    { "name": "Lailani" },
+    { "name": "Leizel" },
+    { "name": "Lerma" },
+    { "name": "Liezel" },
+    { "name": "Ligaya" },
+    { "name": "Lilibeth" },
+    { "name": "Liwayway" },
+    { "name": "Liwliwa" },
+    { "name": "Lualhati" },
+    { "name": "Luningning" },
+    { "name": "Luntian" },
+    { "name": "Luzviminda" },
+    { "name": "Malaya" },
+    { "name": "Maningning" },
+    { "name": "Maricar" },
+    { "name": "Maricel" },
+    { "name": "Marichu" },
+    { "name": "Maricor" },
+    { "name": "Maricris" },
+    { "name": "Marife" },
+    { "name": "Marifel" },
+    { "name": "Marikit" },
+    { "name": "Marilag" },
+    { "name": "Marites" },
+    { "name": "Maritess" },
+    { "name": "Marivic" },
+    { "name": "Mary Rose" },
+    { "name": "Mayumi" },
+    { "name": "Mirasol" },
+    { "name": "Nenita" },
+    { "name": "Nimfa" },
+    { "name": "Perla" },
+    { "name": "Rhea Mae" },
+    { "name": "Riza" },
+    { "name": "Rizalia" },
+    { "name": "Rizalina" },
+    { "name": "Rizalyn" },
+    { "name": "Rizza" },
+    { "name": "Rubilyn" },
+    { "name": "Rubylyn" },
+    { "name": "Rutchel" },
+    { "name": "Rutchell" },
+    { "name": "Sampaguita" },
+    { "name": "Sinagtala" },
+    { "name": "Tala" },
+    { "name": "Xyriel" },
+    { "name": "Zyriel" }
+  ],
+  "maleNames": [
+    { "name": "Arnel" },
+    { "name": "Arvin" },
+    { "name": "Bagwis" },
+    { "name": "Bayani" },
+    { "name": "Benjie" },
+    { "name": "Crisanto" },
+    { "name": "Dakila" },
+    { "name": "Danilo" },
+    { "name": "Datu" },
+    { "name": "Edcel" },
+    { "name": "Efren" },
+    { "name": "Fermin" },
+    { "name": "Gani" },
+    { "name": "Gener" },
+    { "name": "Heherson" },
+    { "name": "Homobono" },
+    { "name": "Honesto" },
+    { "name": "Huwan" },
+    { "name": "Igme" },
+    { "name": "Isagani" },
+    { "name": "Isko" },
+    { "name": "Jay" },
+    { "name": "Jejomar" },
+    { "name": "John Carl" },
+    { "name": "Joriz" },
+    { "name": "Jose" },
+    { "name": "Joselito" },
+    { "name": "Kidlat" },
+    { "name": "Liberato" },
+    { "name": "Luzvimindo" },
+    { "name": "Magtanggol" },
+    { "name": "Makisig" },
+    { "name": "Melchor" },
+    { "name": "Narding" },
+    { "name": "Pacifico" },
+    { "name": "Ramil" },
+    { "name": "Restituto" },
+    { "name": "Reynante" },
+    { "name": "Rizal" },
+    { "name": "Rizaldo" },
+    { "name": "Rizalino" },
+    { "name": "Rodel" },
+    { "name": "Romel" },
+    { "name": "Rommel" },
+    { "name": "Rosauro" },
+    { "name": "Rosito" },
+    { "name": "Sherwin" },
+    { "name": "Virgilio" },
+    { "name": "Xyriel" },
+    { "name": "Zyriel" }
+  ],
+  "surnames": [
+    {
+      "name": "Tan",
+      "weight": 53.0
+    },
+    {
+      "name": "dela Cruz",
+      "weight": 52.0
+    },
+    {
+      "name": "Bautista",
+      "weight": 43.0
+    },
+    {
+      "name": "Lim",
+      "weight": 42.0
+    },
+    {
+      "name": "Villanueva",
+      "weight": 36.0
+    },
+    {
+      "name": "Chua",
+      "weight": 30.0
+    },
+    {
+      "name": "Aquino",
+      "weight": 27.0
+    },
+    {
+      "name": "de Leon",
+      "weight": 23.0
+    },
+    {
+      "name": "Ong",
+      "weight": 21.0
+    },
+    {
+      "name": "Delos",
+      "weight": 21.0
+    },
+    {
+      "name": "Francisco",
+      "weight": 20.0
+    },
+    {
+      "name": "Tolentino",
+      "weight": 20.0
+    },
+    {
+      "name": "Mercado",
+      "weight": 20.0
+    },
+    {
+      "name": "Soriano",
+      "weight": 19.0
+    },
+    {
+      "name": "Dizon",
+      "weight": 18.0
+    },
+    {
+      "name": "Sy",
+      "weight": 18.0
+    },
+    {
+      "name": "Domingo",
+      "weight": 17.0
+    },
+    {
+      "name": "del Rosario",
+      "weight": 16.0
+    },
+    {
+      "name": "Javier",
+      "weight": 15.0
+    },
+    {
+      "name": "Ocampo",
+      "weight": 15.0
+    },
+    {
+      "name": "Manalo",
+      "weight": 14.0
+    },
+    {
+      "name": "Enriquez",
+      "weight": 14.0
+    },
+    {
+      "name": "Miranda",
+      "weight": 14.0
+    },
+    {
+      "name": "Yap",
+      "weight": 14.0
+    },
+    {
+      "name": "Sarmiento",
+      "weight": 14.0
+    },
+    {
+      "name": "Yu",
+      "weight": 13.0
+    },
+    {
+      "name": "Pineda",
+      "weight": 13.0
+    },
+    {
+      "name": "Angeles",
+      "weight": 13.0
+    },
+    {
+      "name": "Evangelista",
+      "weight": 13.0
+    },
+    {
+      "name": "Cortez",
+      "weight": 12.0
+    },
+    {
+      "name": "Ang",
+      "weight": 12.0
+    },
+    {
+      "name": "Salvador",
+      "weight": 12.0
+    },
+    {
+      "name": "Salazar",
+      "weight": 12.0
+    },
+    {
+      "name": "de Jesus",
+      "weight": 12.0
+    },
+    {
+      "name": "Alcantara",
+      "weight": 11.0
+    },
+    {
+      "name": "Medina",
+      "weight": 11.0
+    },
+    {
+      "name": "Espiritu",
+      "weight": 11.0
+    },
+    {
+      "name": "Sison",
+      "weight": 11.0
+    },
+    {
+      "name": "Antonio",
+      "weight": 11.0
+    },
+    {
+      "name": "Rosales",
+      "weight": 11.0
+    },
+    {
+      "name": "Valencia",
+      "weight": 11.0
+    },
+    {
+      "name": "Padilla",
+      "weight": 10.0
+    },
+    {
+      "name": "Corpuz",
+      "weight": 10.0
+    },
+    {
+      "name": "Fajardo",
+      "weight": 10.0
+    },
+    {
+      "name": "Concepcion",
+      "weight": 10.0
+    },
+    {
+      "name": "Manuel",
+      "weight": 10.0
+    },
+    {
+      "name": "Mariano",
+      "weight": 10.0
+    },
+    {
+      "name": "Legaspi",
+      "weight": 10.0
+    },
+    {
+      "name": "Samson",
+      "weight": 10.0
+    },
+    {
+      "name": "Vergara",
+      "weight": 10.0
+    },
+    {
+      "name": "Trinidad",
+      "weight": 9.0
+    },
+    {
+      "name": "Ignacio",
+      "weight": 9.0
+    },
+    {
+      "name": "de Vera",
+      "weight": 9.0
+    },
+    {
+      "name": "Atienza",
+      "weight": 9.0
+    },
+    {
+      "name": "Peralta",
+      "weight": 9.0
+    },
+    {
+      "name": "Bernardo",
+      "weight": 9.0
+    },
+    {
+      "name": "Roxas",
+      "weight": 9.0
+    },
+    {
+      "name": "Guzman",
+      "weight": 9.0
+    },
+    {
+      "name": "Galang",
+      "weight": 8.0
+    },
+    {
+      "name": "de Castro",
+      "weight": 8.0
+    },
+    {
+      "name": "Agustin",
+      "weight": 8.0
+    },
+    {
+      "name": "Briones",
+      "weight": 8.0
+    },
+    {
+      "name": "Guevarra",
+      "weight": 8.0
+    },
+    {
+      "name": "Chavez",
+      "weight": 8.0
+    },
+    {
+      "name": "Esguerra",
+      "weight": 8.0
+    },
+    {
+      "name": "Borja",
+      "weight": 8.0
+    },
+    {
+      "name": "Luna",
+      "weight": 8.0
+    },
+    {
+      "name": "Robles",
+      "weight": 8.0
+    },
+    {
+      "name": "Roque",
+      "weight": 8.0
+    },
+    {
+      "name": "Panganiban",
+      "weight": 8.0
+    },
+    {
+      "name": "Abad",
+      "weight": 7.0
+    },
+    {
+      "name": "Mallari",
+      "weight": 7.0
+    },
+    {
+      "name": "Pangilinan",
+      "weight": 7.0
+    },
+    {
+      "name": "Estrada",
+      "weight": 7.0
+    },
+    {
+      "name": "Sevilla",
+      "weight": 7.0
+    },
+    {
+      "name": "Lao",
+      "weight": 7.0
+    },
+    {
+      "name": "Austria",
+      "weight": 7.0
+    },
+    {
+      "name": "Villegas",
+      "weight": 7.0
+    },
+    {
+      "name": "Gonzaga",
+      "weight": 7.0
+    },
+    {
+      "name": "Pascua",
+      "weight": 7.0
+    },
+    {
+      "name": "Asuncion",
+      "weight": 7.0
+    },
+    {
+      "name": "Zamora",
+      "weight": 7.0
+    },
+    {
+      "name": "Valenzuela",
+      "weight": 7.0
+    },
+    {
+      "name": "Arellano",
+      "weight": 7.0
+    },
+    {
+      "name": "Espinosa",
+      "weight": 7.0
+    },
+    {
+      "name": "Ilagan",
+      "weight": 7.0
+    },
+    {
+      "name": "Magno",
+      "weight": 7.0
+    },
+    {
+      "name": "Tamayo",
+      "weight": 7.0
+    },
+    {
+      "name": "Beltran",
+      "weight": 6.0
+    },
+    {
+      "name": "Marasigan",
+      "weight": 6.0
+    },
+    {
+      "name": "Carlos",
+      "weight": 6.0
+    },
+    {
+      "name": "Fernando",
+      "weight": 6.0
+    },
+    {
+      "name": "Gamboa",
+      "weight": 6.0
+    },
+    {
+      "name": "Estrella",
+      "weight": 6.0
+    },
+    {
+      "name": "Canlas",
+      "weight": 6.0
+    },
+    {
+      "name": "Tuazon",
+      "weight": 6.0
+    },
+    {
+      "name": "Abella",
+      "weight": 6.0
+    },
+    {
+      "name": "Rosario",
+      "weight": 6.0
+    },
+    {
+      "name": "Solis",
+      "weight": 6.0
+    },
+    {
+      "name": "de la Cruz",
+      "weight": 6.0
+    },
+    {
+      "name": "Tiu",
+      "weight": 6.0
+    },
+    {
+      "name": "Cunanan",
+      "weight": 6.0
+    },
+    {
+      "name": "Villa",
+      "weight": 6.0
+    },
+    {
+      "name": "Palma",
+      "weight": 6.0
+    },
+    {
+      "name": "Natividad",
+      "weight": 5.0
+    },
+    {
+      "name": "Nicolas",
+      "weight": 5.0
+    },
+    {
+      "name": "Galvez",
+      "weight": 5.0
+    },
+    {
+      "name": "Gabriel",
+      "weight": 5.0
+    },
+    {
+      "name": "Ledesma",
+      "weight": 5.0
+    },
+    {
+      "name": "Buenaventura",
+      "weight": 5.0
+    },
+    {
+      "name": "Villamor",
+      "weight": 5.0
+    },
+    {
+      "name": "Delacruz",
+      "weight": 5.0
+    },
+    {
+      "name": "Marcelo",
+      "weight": 5.0
+    },
+    {
+      "name": "Gregorio",
+      "weight": 5.0
+    },
+    {
+      "name": "Cordero",
+      "weight": 5.0
+    },
+    {
+      "name": "Umali",
+      "weight": 5.0
+    },
+    {
+      "name": "Carreon",
+      "weight": 5.0
+    },
+    {
+      "name": "dela Rosa",
+      "weight": 5.0
+    },
+    {
+      "name": "Andres",
+      "weight": 5.0
+    },
+    {
+      "name": "Bartolome",
+      "weight": 5.0
+    },
+    {
+      "name": "Mateo",
+      "weight": 5.0
+    },
+    {
+      "name": "Lazaro",
+      "weight": 5.0
+    },
+    {
+      "name": "Geronimo",
+      "weight": 5.0
+    },
+    {
+      "name": "Carpio",
+      "weight": 5.0
+    },
+    {
+      "name": "Baltazar",
+      "weight": 5.0
+    },
+    {
+      "name": "dela Pena",
+      "weight": 5.0
+    },
+    {
+      "name": "san Juan",
+      "weight": 5.0
+    },
+    {
+      "name": "Sales",
+      "weight": 5.0
+    },
+    {
+      "name": "Ventura",
+      "weight": 5.0
+    },
+    {
+      "name": "Avila",
+      "weight": 5.0
+    },
+    {
+      "name": "Lacson",
+      "weight": 5.0
+    },
+    {
+      "name": "Crisostomo",
+      "weight": 5.0
+    },
+    {
+      "name": "Custodio",
+      "weight": 5.0
+    },
+    {
+      "name": "Toledo",
+      "weight": 5.0
+    },
+    {
+      "name": "Ponce",
+      "weight": 5.0
+    },
+    {
+      "name": "Velasquez",
+      "weight": 5.0
+    },
+    {
+      "name": "So",
+      "weight": 5.0
+    },
+    {
+      "name": "Rey",
+      "weight": 5.0
+    },
+    {
+      "name": "Clemente",
+      "weight": 5.0
+    },
+    {
+      "name": "Salcedo",
+      "weight": 5.0
+    },
+    {
+      "name": "Ng",
+      "weight": 5.0
+    },
+    {
+      "name": "Punzalan",
+      "weight": 5.0
+    },
+    {
+      "name": "Padua",
+      "weight": 4.0
+    },
+    {
+      "name": "Ching",
+      "weight": 4.0
+    },
+    {
+      "name": "Ancheta",
+      "weight": 4.0
+    },
+    {
+      "name": "Carino",
+      "weight": 4.0
+    },
+    {
+      "name": "Sia",
+      "weight": 4.0
+    },
+    {
+      "name": "Jacinto",
+      "weight": 4.0
+    },
+    {
+      "name": "Aguirre",
+      "weight": 4.0
+    },
+    {
+      "name": "Feliciano",
+      "weight": 4.0
+    },
+    {
+      "name": "Cuevas",
+      "weight": 4.0
+    },
+    {
+      "name": "Canete",
+      "weight": 4.0
+    },
+    {
+      "name": "Manzano",
+      "weight": 4.0
+    },
+    {
+      "name": "Villar",
+      "weight": 4.0
+    },
+    {
+      "name": "Lucero",
+      "weight": 4.0
+    },
+    {
+      "name": "Constantino",
+      "weight": 4.0
+    },
+    {
+      "name": "Viray",
+      "weight": 4.0
+    },
+    {
+      "name": "Santillan",
+      "weight": 4.0
+    },
+    {
+      "name": "Miguel",
+      "weight": 4.0
+    },
+    {
+      "name": "Ronquillo",
+      "weight": 4.0
+    },
+    {
+      "name": "Borromeo",
+      "weight": 4.0
+    },
+    {
+      "name": "Bernal",
+      "weight": 4.0
+    },
+    {
+      "name": "Franco",
+      "weight": 4.0
+    },
+    {
+      "name": "Alonzo",
+      "weight": 4.0
+    },
+    {
+      "name": "Bondoc",
+      "weight": 4.0
+    },
+    {
+      "name": "Cristobal",
+      "weight": 4.0
+    },
+    {
+      "name": "Sebastian",
+      "weight": 4.0
+    },
+    {
+      "name": "Arevalo",
+      "weight": 4.0
+    },
+    {
+      "name": "Villareal",
+      "weight": 4.0
+    },
+    {
+      "name": "Alfonso",
+      "weight": 4.0
+    },
+    {
+      "name": "Camacho",
+      "weight": 4.0
+    },
+    {
+      "name": "Bernabe",
+      "weight": 4.0
+    },
+    {
+      "name": "Espina",
+      "weight": 4.0
+    },
+    {
+      "name": "Pangan",
+      "weight": 4.0
+    },
+    {
+      "name": "Calderon",
+      "weight": 4.0
+    },
+    {
+      "name": "Raymundo",
+      "weight": 4.0
+    },
+    {
+      "name": "Apostol",
+      "weight": 4.0
+    },
+    {
+      "name": "Bonifacio",
+      "weight": 4.0
+    },
+    {
+      "name": "Aguila",
+      "weight": 4.0
+    },
+    {
+      "name": "Castañeda",
+      "weight": 4.0
+    },
+    {
+      "name": "Samonte",
+      "weight": 4.0
+    },
+    {
+      "name": "Eugenio",
+      "weight": 4.0
+    },
+    {
+      "name": "dela Torre",
+      "weight": 4.0
+    },
+    {
+      "name": "Quinto",
+      "weight": 4.0
+    },
+    {
+      "name": "Ybanez",
+      "weight": 4.0
+    },
+    {
+      "name": "Roldan",
+      "weight": 4.0
+    },
+    {
+      "name": "Pablo",
+      "weight": 4.0
+    },
+    {
+      "name": "Ballesteros",
+      "weight": 4.0
+    },
+    {
+      "name": "Teves",
+      "weight": 4.0
+    },
+    {
+      "name": "Cervantes",
+      "weight": 4.0
+    },
+    {
+      "name": "Mejia",
+      "weight": 4.0
+    },
+    {
+      "name": "Bustamante",
+      "weight": 4.0
+    },
+    {
+      "name": "Nepomuceno",
+      "weight": 4.0
+    },
+    {
+      "name": "Quiambao",
+      "weight": 4.0
+    },
+    {
+      "name": "Adriano",
+      "weight": 3.0
+    },
+    {
+      "name": "Espino",
+      "weight": 3.0
+    },
+    {
+      "name": "del Mundo",
+      "weight": 3.0
+    },
+    {
+      "name": "Oliveros",
+      "weight": 3.0
+    },
+    {
+      "name": "Lozada",
+      "weight": 3.0
+    },
+    {
+      "name": "Dionisio",
+      "weight": 3.0
+    }
+  ]
+}

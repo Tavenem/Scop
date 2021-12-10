@@ -1,0 +1,581 @@
+﻿@page "/story/{id}"
+
+<PageTitle>Scop - @StoryName</PageTitle>
+
+<div class="mt-4 pa-6">
+    @if (_loading)
+    {
+        <div class="loading-icon-container">
+            <div class="loading-icon"></div>
+        </div>
+    }
+    else if (_story is null)
+    {
+        <div class="d-flex flex-column align-center">
+            <MudAlert Severity="Severity.Warning">No such story</MudAlert>
+            <MudText Class="mt-3"><MudLink Href="/">Return to the main page</MudLink> to try loading a different story.</MudText>
+        </div>
+    }
+    else
+    {
+        <MudTextField @bind-Value="_story.Name" OnBlur="OnChangeAsync" Label="Story Title" />
+
+        <div class="d-md-flex mt-2">
+            <CustomTreeView T="INote"
+                            Items="_story.Notes"
+                            SelectedValue="SelectedNote"
+                            SelectedValueChanged="OnSelectNote"
+                            Hover="true">
+                <ChildContent>
+                    <CustomTreeViewItem T="INote"
+                                        Icon="@Icons.Material.Filled.Timeline"
+                                        Text="Timeline"
+                                        Value="_timelineDummyNote" />
+                </ChildContent>
+                <ItemTemplate>
+                    <CustomTreeViewItem T="INote"
+                                        Items="context.Notes"
+                                        @bind-Expanded="context.IsExpanded"
+                                        Value="context"
+                                        Icons="_storyIcons"
+                                        IconIndex="context.IconIndex"
+                                        OnIconIndexChange="OnSwitchNoteTypeAsync"
+                                        Text="@context.DisplayName"
+                                        TextStyle="@(context.IsUnnamed ? $"color:{MudTheme?.Palette.TextDisabled?.Value ?? "#ffffff33"}" : null)"
+                                        EndIcon="@Icons.Material.Filled.Delete"
+                                        EndIconColor="Color.Error"
+                                        EndIconTooltip="Delete"
+                                        OnDrag="OnNoteDrag"
+                                        OnDrop="OnNoteDropAsync"
+                                        OnEndIconClick="OnDeleteNoteAsync">
+                        <EndContent>
+                            <CustomTreeViewItem T="INote"
+                                                Icon="@Icons.Material.Filled.NoteAdd"
+                                                OnDrop="OnChildNoteDropAsync">
+                                <Content>
+                                    <MudTextField @bind-Value="context.NewNoteValue"
+                                                  Placeholder="New Note"
+                                                  Immediate="true"
+                                                  OnBlur="@(_ => OnNewNoteSetAsync(context))"
+                                                  OnKeyDown="@(e => OnNewNoteKeydownAsync(e, context))"
+                                                  Variant="Variant.Outlined"
+                                                  Margin="Margin.Dense" />
+                                </Content>
+                            </CustomTreeViewItem>
+                        </EndContent>
+                    </CustomTreeViewItem>
+                </ItemTemplate>
+                <EndContent>
+                    <CustomTreeViewItem T="INote"
+                                        Icon="@Icons.Material.Filled.NoteAdd"
+                                        OnDrop="OnDropAsync">
+                        <Content>
+                            <MudTextField @bind-Value="NewNoteValue"
+                                          Placeholder="New Note"
+                                          Immediate="true"
+                                          OnBlur="OnNewNoteSetAsync"
+                                          OnKeyDown="OnNewNoteKeydownAsync"
+                                          Variant="Variant.Outlined"
+                                          Margin="Margin.Dense" />
+                        </Content>
+                    </CustomTreeViewItem>
+                </EndContent>
+            </CustomTreeView>
+            <div class="flex-grow-1 ms-1">
+                @if (IsTimelineSelected)
+                {
+                    <Timeline @ref="_timeline"
+                              @bind-Categories="_story.EventCategories"
+                              @bind-Events="_story.Events"
+                              @bind-Now="_story.Now"
+                              SelectedEvent="SelectedEvent"
+                              SelectedEventChanged="OnSelectedEventChanged"
+                              NowChange="OnNowChangeAsync"
+                              Change="OnChangeAsync">
+                        <div class="d-flex">
+                            @if (SelectedEvent is null)
+                            {
+                                <p>Double-tap an event to view/edit its description.</p>
+                            }
+                            else
+                            {
+                                <div style="width:100%">
+                                    <MudTextField @bind-Value="SelectedEvent.Content"
+                                                  Label="Title"
+                                                  Immediate="true"
+                                                  OnBlur="OnSelectedEventChangedAsync"
+                                                  OnKeyDown="OnTimelineEventKeydownAsync" />
+                                    <MudDatePicker @ref="_timelineDateStartPicker"
+                                                   @bind-Date="SelectedEvent.Start"
+                                                   PickerClosed="OnSelectedEventStartDateChangedAsync"
+                                                   Label="Start"
+                                                   AllowKeyboardInput="true"
+                                                   AutoClose="true" />
+                                    <MudSwitch @bind-Checked="IsTimelineEventStartTimeDisplayed" Color="Color.Tertiary">Show Time</MudSwitch>
+                                    @if (IsTimelineEventStartTimeDisplayed)
+                                    {
+                                        <MudTimePicker @ref="_timelineTimeStartPicker"
+                                                       @bind-Time="TimelineEventStartTime"
+                                                       PickerClosed="OnSelectedEventStartTimeChangedAsync"
+                                                       Label="Start Time"
+                                                       AllowKeyboardInput="true"
+                                                       AmPm="true"
+                                                       AutoClose="true" />
+                                    }
+                                    @if (SelectedEvent.End.HasValue)
+                                    {
+                                        <MudDatePicker @ref="_timelineDateEndPicker"
+                                                       @bind-Date="SelectedEvent.End"
+                                                       PickerClosed="OnSelectedEventEndDateChangedAsync"
+                                                       Label="End"
+                                                       AllowKeyboardInput="true"
+                                                       AutoClose="true" />
+                                        <MudSwitch @bind-Checked="IsTimelineEventEndTimeDisplayed" Color="Color.Primary">Show Time</MudSwitch>
+                                        @if (IsTimelineEventEndTimeDisplayed)
+                                        {
+                                            <MudTimePicker @ref="_timelineTimeEndPicker"
+                                                           @bind-Time="TimelineEventEndTime"
+                                                           PickerClosed="OnSelectedEventEndTimeChangedAsync"
+                                                           Label="End Time"
+                                                           AllowKeyboardInput="true"
+                                                           AmPm="true"
+                                                           AutoClose="true" />
+                                        }
+                                    }
+                                    <MarkdownEditor @bind-Value="SelectedEvent.Markdown"
+                                                    AfterChange="OnChangeAsync"
+                                                    EditMode="EditMode.WYSIWYG"
+                                                    Placeholder="Enter a description for the event here..."
+                                                    Theme="Theme" />
+                                </div>
+                            }
+                        </div>
+                    </Timeline>
+                }
+                else if (SelectedNote is not null)
+                {
+                    <MudTextField @bind-Value="SelectedNote.Name"
+                                  Placeholder="@($"New {SelectedNote.Type}")"
+                                  OnBlur="OnChangeAsync" />
+                    if (SelectedNote is Character character)
+                    {
+                        <div class="my-2">
+                            <MudTooltip Text="Randomize">
+                                <MudIconButton OnClick="@(_ => OnRandomizeCharacterAsync(character))"
+                                               Icon="@Icons.Material.Filled.Casino" />
+                            </MudTooltip>
+                            <MudExpansionPanels>
+                                <MudExpansionPanel Text="@($"Name: {character.CharacterName}")">
+                                    <MudText Inline="true" Typo="Typo.h4">@character.CharacterName</MudText>
+                                    <MudTooltip Text="Randomize full name">
+                                        <MudIconButton OnClick="@(_ => OnRandomizeCharacterFullNameAsync(character))"
+                                                        Icon="@Icons.Material.Filled.Casino" />
+                                    </MudTooltip>
+                                    <MudAutocomplete @bind-Value="character.Title"
+                                                     OnBlur="OnChangeAsync"
+                                                     SearchFunc="GetTitles"
+                                                     Label="Title"
+                                                     CoerceText="true"
+                                                     CoerceValue="true"
+                                                     Immediate="true"
+                                                     ResetValueOnEmptyText="true" />
+                                    <MudCard Outlined="true" Elevation="2" Class="my-3">
+                                        <MudCardHeader>
+                                            <CardHeaderContent>
+                                                <MudText Typo="Typo.h6">Given Name(s)</MudText>
+                                            </CardHeaderContent>
+                                            <CardHeaderActions>
+                                                <MudTooltip Text="Randomize given name">
+                                                    <MudIconButton OnClick="@(_ => OnRandomizeCharacterNameAsync(character))"
+                                                                    Icon="@Icons.Material.Filled.Casino" />
+                                                </MudTooltip>
+                                            </CardHeaderActions>
+                                        </MudCardHeader>
+                                        <MudCardContent>
+                                            @if (character.Names is not null)
+                                            {
+                                                for (var i = 0; i < character.Names.Count; i++)
+                                                {
+                                                    <MudAutocomplete @bind-Value="character.Names[i]"
+                                                                     OnBlur="OnChangeAsync"
+                                                                     SearchFunc="@(v => GetGivenNames(character, v))"
+                                                                     CoerceText="true"
+                                                                     CoerceValue="true"
+                                                                     Immediate="true"
+                                                                     ResetValueOnEmptyText="true"
+                                                                     Adornment="Adornment.End"
+                                                                     AdornmentIcon="@Icons.Material.Filled.Casino"
+                                                                     OnAdornmentClick="@(_ => OnRandomizeCharacterNameAsync(character, i))" />
+                                                }
+                                            }
+                                            <MudAutocomplete @bind-Value="NewCharacterName"
+                                                             OnBlur="@(_ => OnNewCharacterNameAsync(character))"
+                                                             SearchFunc="@(v => GetNewGivenNames(character, v))"
+                                                             CoerceText="true"
+                                                             CoerceValue="true"
+                                                             Immediate="true"
+                                                             ResetValueOnEmptyText="true"
+                                                             Adornment="Adornment.End"
+                                                             AdornmentIcon="@Icons.Material.Filled.Casino"
+                                                             OnAdornmentClick="@(_ => OnRandomizeCharacterNameAsync(character, character.Names?.Count ?? 0))" />
+                                        </MudCardContent>
+                                    </MudCard>
+                                    <MudCard Outlined="true" Elevation="2" Class="my-3">
+                                        <MudCardHeader>
+                                            <CardHeaderContent>
+                                                <MudText Typo="Typo.h6">Surname(s)</MudText>
+                                            </CardHeaderContent>
+                                            <CardHeaderActions>
+                                                @if (character.RelationshipMap?.Count > 0)
+                                                {
+                                                    <MudTooltip Text="Inherit from relative(s)">
+                                                        <MudIconButton OnClick="@(_ => OnCopyCharacterSurnameAsync(character))"
+                                                                   Icon="@Icons.Material.Filled.ContentCopy" />
+                                                    </MudTooltip>
+                                                }
+                                                <MudTooltip Text="Randomize surname">
+                                                    <MudIconButton OnClick="@(_ => OnRandomizeCharacterSurnameAsync(character))"
+                                                                   Icon="@Icons.Material.Filled.Casino" />
+                                                </MudTooltip>
+                                            </CardHeaderActions>
+                                        </MudCardHeader>
+                                        <MudCardContent>
+                                            @if (character.Surnames is not null)
+                                            {
+                                                for (var i = 0; i < character.Surnames.Count; i++)
+                                                {
+                                                    <MudAutocomplete @bind-Value="character.Surnames[i]"
+                                                                     OnBlur="OnChangeAsync"
+                                                                     SearchFunc="@(v => GetSurnames(character, v))"
+                                                                     CoerceText="true"
+                                                                     CoerceValue="true"
+                                                                     Immediate="true"
+                                                                     ResetValueOnEmptyText="true"
+                                                                     Adornment="Adornment.End"
+                                                                     AdornmentIcon="@Icons.Material.Filled.Casino"
+                                                                     OnAdornmentClick="@(_ => OnRandomizeCharacterSurnameAsync(character, i))" />
+                                                }
+                                            }
+                                            <MudAutocomplete @bind-Value="NewCharacterSurname"
+                                                             OnBlur="@(_ => OnNewCharacterSurnameAsync(character))"
+                                                             SearchFunc="@(v => GetNewSurnames(character, v))"
+                                                             CoerceText="true"
+                                                             CoerceValue="true"
+                                                             Immediate="true"
+                                                             ResetValueOnEmptyText="true"
+                                                             Adornment="Adornment.End"
+                                                             AdornmentIcon="@Icons.Material.Filled.Casino"
+                                                             OnAdornmentClick="@(_ => OnRandomizeCharacterSurnameAsync(character, character.Surnames?.Count ?? 0))" />
+                                            @if (character.Surnames?.Count > 1)
+                                            {
+                                                <MudSwitch @bind-Checked="character.HyphenatedSurname"
+                                                           Label="Hyphenated"
+                                                           Color="Color.Primary" />
+                                            }
+                                        </MudCardContent>
+                                    </MudCard>
+                                    <MudAutocomplete @bind-Value="character.Suffix"
+                                                     OnBlur="OnChangeAsync"
+                                                     SearchFunc="GetSuffixes"
+                                                     Label="Suffix"
+                                                     CoerceText="true"
+                                                     CoerceValue="true"
+                                                     Immediate="true"
+                                                     ResetValueOnEmptyText="true" />
+                                </MudExpansionPanel>
+                                <MudExpansionPanel Text="@($"Age{character.DisplayAge}")">
+                                    <MudTooltip Text="Randomize age">
+                                        <MudIconButton OnClick="@(_ => OnRandomizeCharacterAgeAsync(character))"
+                                                       Icon="@Icons.Material.Filled.Casino" />
+                                    </MudTooltip>
+                                    <MudDatePicker Date="SelectedBirthdate"
+                                                   DateChanged="OnBirthdayChangedAsync"
+                                                   Label="Birthdate"
+                                                   AllowKeyboardInput="true"
+                                                   AutoClose="true"
+                                                   PickerVariant="PickerVariant.Dialog" />
+                                    <MudGrid Spacing="2" Justify="Justify.SpaceBetween">
+                                        <MudItem xs="12" md="4">
+                                            <MudNumericField Label="Years"
+                                                             T="int?"
+                                                             Value="character.DisplayAgeYears"
+                                                             ValueChanged="@(v => OnAgeYearsChangedAsync(character, v))"
+                                                             Min="0" />
+                                        </MudItem>
+                                        <MudItem xs="12" md="4">
+                                            <MudNumericField Label="Months"
+                                                             T="int?"
+                                                             Value="character.DisplayAgeMonths"
+                                                             ValueChanged="@(v => OnAgeMonthsChangedAsync(character, v))"
+                                                             Min="0"
+                                                             Max="11" />
+                                        </MudItem>
+                                        <MudItem xs="12" md="4">
+                                            <MudNumericField Label="Days"
+                                                             T="int?"
+                                                             Value="character.DisplayAgeDays"
+                                                             ValueChanged="@(v => OnAgeDaysChangedAsync(character, v))"
+                                                             Min="0"
+                                                             Max="30" />
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudExpansionPanel>
+                                <MudExpansionPanel Text="@($"Gender{character.DisplayGender}")">
+                                    <div class="d-flex" style="width:100%">
+                                        <MudAutocomplete @bind-Value="character.Gender"
+                                                         OnBlur="@(_ => OnChangeGenderAsync(character))"
+                                                         SearchFunc="GetGenders"
+                                                         Label="Gender"
+                                                         CoerceText="true"
+                                                         CoerceValue="true"
+                                                         Immediate="true"
+                                                         ResetValueOnEmptyText="true"
+                                                         Class="flex-grow-1" />
+                                        <MudTooltip Text="Randomize gender">
+                                            <MudIconButton OnClick="@(_ => OnRandomizeCharacterGenderAsync(character))"
+                                                           Icon="@Icons.Material.Filled.Casino" />
+                                        </MudTooltip>
+                                    </div>
+                                    <MudSelect Label="Pronouns"
+                                               T="Pronouns"
+                                               Value="character.Pronouns"
+                                               ValueChanged="@(v => OnPronounsChangedAsync(character, v))"
+                                               AnchorOrigin="Origin.BottomCenter">
+                                        @foreach (var pronouns in Enum.GetValues<Pronouns>())
+                                        {
+                                            <MudSelectItem @key="@pronouns" Value="@pronouns">@pronouns.GetDescription()</MudSelectItem>
+                                        }
+                                    </MudSelect>
+                                </MudExpansionPanel>
+                                <MudExpansionPanel Text="@($"Ethnicity{character.DisplayEthnicity}")" @bind-IsExpanded="EthnicitiesVisible">
+                                    @if (character.RelationshipMap?.Count > 0)
+                                    {
+                                        <MudTooltip Text="Inherit from relative(s)">
+                                            <MudIconButton OnClick="@(_ => OnCopyCharacterEthnicitiesAsync(character))"
+                                                       Icon="@Icons.Material.Filled.ContentCopy" />
+                                        </MudTooltip>
+                                    }
+                                    <MudTooltip Text="Randomize ethnicity">
+                                        <MudIconButton OnClick="@(_ => OnRandomizeCharacterEthnicitiesAsync(character))"
+                                                       Icon="@Icons.Material.Filled.Casino" />
+                                    </MudTooltip>
+                                    <CustomTreeView T="Ethnicity"
+                                                    Items="DataService.Ethnicities"
+                                                    MultiSelection="true"
+                                                    Visible="EthnicitiesVisible">
+                                        <ItemTemplate>
+                                            <CustomTreeViewItem T="Ethnicity"
+                                                                @bind-Expanded="context.IsExpanded"
+                                                                Items="context.Types"
+                                                                Selected="character.HasEthnicity(context)"
+                                                                SelectedChanged="@(v => OnEthnicitySelectAsync(v, context, character))"
+                                                                Text="@context.Type.ToTitle()"
+                                                                ShowText="!context.IsEditing">
+                                                <Content>
+                                                    @if (context.IsEditing)
+                                                    {
+                                                        <MudTextField @bind-Value="context.Type"
+                                                                      OnBlur="@(_ => OnEditEthnicity(context))"
+                                                                      Placeholder="Type" />
+                                                    }
+                                                </Content>
+                                                <EndIcons>
+                                                    @if (!context.IsEditing)
+                                                    {
+                                                        @if (context.Types?.Count > 0)
+                                                        {
+                                                            <MudTooltip Text="Select random child">
+                                                                <MudIconButton OnClick="@(_ => OnAddRandomEthnicityAsync(context, character))"
+                                                                               Icon="@Icons.Material.Filled.Casino"
+                                                                               Size="Size.Small" />
+                                                            </MudTooltip>
+                                                        }
+                                                        @if (context.UserDefined)
+                                                        {
+                                                            <MudTooltip Text="Edit" Delay="600">
+                                                                <MudIconButton OnClick="@(_ => context.IsEditing = true)"
+                                                                               Icon="@Icons.Material.Filled.Edit"
+                                                                               Size="Size.Small" />
+                                                            </MudTooltip>
+                                                            <MudTooltip Text="Delete" Delay="600">
+                                                                <MudIconButton OnClick="@(_ => OnDeleteEthnicityAsync(context))"
+                                                                               Icon="@Icons.Material.Filled.Delete"
+                                                                               Size="Size.Small" />
+                                                            </MudTooltip>
+                                                        }
+                                                    }
+                                                </EndIcons>
+                                                <EndContent>
+                                                    <CustomTreeViewItem T="Ethnicity"
+                                                                        Icon="@Icons.Material.Filled.NoteAdd"
+                                                                        Selectable="false">
+                                                        <Content>
+                                                            <MudTextField @bind-Value="context.NewEthnicityValue"
+                                                                          Placeholder="New Ethnicity"
+                                                                          Immediate="true"
+                                                                          OnBlur="@(_ => OnNewEthnicityAsync(context))"
+                                                                          OnKeyDown="@(e => OnNewEthnicityKeydownAsync(e, context))"
+                                                                          Variant="Variant.Outlined"
+                                                                          Margin="Margin.Dense" />
+                                                        </Content>
+                                                    </CustomTreeViewItem>
+                                                </EndContent>
+                                            </CustomTreeViewItem>
+                                        </ItemTemplate>
+                                        <EndContent>
+                                            <CustomTreeViewItem T="Ethnicity"
+                                                                Icon="@Icons.Material.Filled.NoteAdd"
+                                                                Selectable="false">
+                                                <Content>
+                                                    <MudTextField @bind-Value="NewEthnicityValue"
+                                                                  Placeholder="New Ethnicity"
+                                                                  Immediate="true"
+                                                                  OnBlur="OnNewEthnicityAsync"
+                                                                  OnKeyDown="OnNewEthnicityKeydownAsync"
+                                                                  Variant="Variant.Outlined"
+                                                                  Margin="Margin.Dense" />
+                                                </Content>
+                                            </CustomTreeViewItem>
+                                        </EndContent>
+                                    </CustomTreeView>
+                                </MudExpansionPanel>
+                                <MudExpansionPanel Text="Traits" @bind-IsExpanded="TraitsVisible">
+                                    <MudTooltip Text="Randomize traits">
+                                        <MudIconButton OnClick="@(_ => OnRandomizeCharacterTraitsAsync(character))"
+                                                       Icon="@Icons.Material.Filled.Casino" />
+                                    </MudTooltip>
+                                    <MudTooltip Text="Add additional random traits without clearing the current set">
+                                        <MudIconButton OnClick="@(_ => OnRandomizeCharacterTraitsAsync(character, false))"
+                                                       Icon="@Icons.Material.Filled.PlaylistAdd" />
+                                    </MudTooltip>
+                                    <CustomTreeView T="Trait"
+                                                    Items="DataService.Traits"
+                                                    MultiSelection="true"
+                                                    Visible="TraitsVisible">
+                                        <ItemTemplate>
+                                            <CustomTreeViewItem T="Trait"
+                                                                @bind-Expanded="context.IsExpanded"
+                                                                Items="context.Children"
+                                                                Selected="character.HasTrait(context)"
+                                                                OnSelect="@(e => OnTraitSelectAsync(e.Value, context, character))"
+                                                                Text="@context.Name">
+                                                <EndIcons>
+                                                    @if (context.Children?.Count > 0)
+                                                    {
+                                                        <MudTooltip Text="Select random children without clearing any">
+                                                            <MudIconButton OnClick="@(_ => OnTraitSelectAsync(true, context, character))"
+                                                                            Icon="@Icons.Material.Filled.PlaylistAdd"
+                                                                            Size="Size.Small" />
+                                                        </MudTooltip>
+                                                    }
+                                                    @if (context.UserDefined)
+                                                    {
+                                                        <MudTooltip Text="Edit" Delay="600">
+                                                            <MudIconButton OnClick="@(_ => OnEditTrait(context))"
+                                                                            Icon="@Icons.Material.Filled.Edit"
+                                                                            Size="Size.Small" />
+                                                        </MudTooltip>
+                                                        <MudTooltip Text="Delete" Delay="600">
+                                                            <MudIconButton OnClick="@(_ => OnDeleteTraitAsync(context))"
+                                                                            Icon="@Icons.Material.Filled.Delete"
+                                                                            Size="Size.Small" />
+                                                        </MudTooltip>
+                                                    }
+                                                </EndIcons>
+                                                <EndContent>
+                                                    <CustomTreeViewItem T="Trait"
+                                                                        Icon="@Icons.Material.Filled.NoteAdd"
+                                                                        Selectable="false">
+                                                        <Content>
+                                                            <MudTextField @bind-Value="context.NewTraitValue"
+                                                                          Placeholder="New Trait"
+                                                                          Immediate="true"
+                                                                          OnBlur="@(_ => OnNewTraitAsync(context))"
+                                                                          OnKeyDown="@(e => OnNewTraitKeydownAsync(e, context))"
+                                                                          Variant="Variant.Outlined"
+                                                                          Margin="Margin.Dense" />
+                                                        </Content>
+                                                    </CustomTreeViewItem>
+                                                </EndContent>
+                                            </CustomTreeViewItem>
+                                        </ItemTemplate>
+                                        <EndContent>
+                                            <CustomTreeViewItem T="Trait"
+                                                                Icon="@Icons.Material.Filled.NoteAdd"
+                                                                Selectable="false">
+                                                <Content>
+                                                    <MudTextField @bind-Value="NewTraitValue"
+                                                                  Placeholder="New Trait"
+                                                                  Immediate="true"
+                                                                  OnBlur="OnNewTraitAsync"
+                                                                  OnKeyDown="OnNewTraitKeydownAsync"
+                                                                  Variant="Variant.Outlined"
+                                                                  Margin="Margin.Dense" />
+                                                </Content>
+                                            </CustomTreeViewItem>
+                                        </EndContent>
+                                    </CustomTreeView>
+                                    @if (!string.IsNullOrEmpty(character.DisplayTraits))
+                                    {
+                                        <MudText Typo="Typo.h6">Summary</MudText>
+                                        <MudText Typo="Typo.body2">@(new MarkupString(character.DisplayTraits))</MudText>
+                                    }
+                                </MudExpansionPanel>
+                                <MudExpansionPanel Text="@($"Relationships ({character.RelationshipMap?.Count ?? 0})")">
+                                    @if (character.RelationshipMap is not null)
+                                    {
+                                        <MudExpansionPanels>
+                                            @foreach (var relationship in character.RelationshipMap)
+                                            {
+                                                <MudExpansionPanel Text="@relationship.DisplayName" Disabled="relationship.Synthetic">
+                                                    <MudAutocomplete @bind-Value="relationship.EditedRelativeName"
+                                                                     SearchFunc="@(v => GetCharacterNames(character, v))"
+                                                                     Label="Relative Name"
+                                                                     CoerceText="true"
+                                                                     CoerceValue="true"
+                                                                     ResetValueOnEmptyText="true" />
+                                                    <MudAutocomplete @bind-Value="relationship.EditedType"
+                                                                     SearchFunc="@(v => GetRelationshipTypes(v))"
+                                                                     Label="Type"
+                                                                     CoerceText="true"
+                                                                     CoerceValue="true"
+                                                                     ResetValueOnEmptyText="true" />
+                                                    <MudTextField @bind-Value="relationship.EditedRelationshipName"
+                                                                  Label="Relationship" />
+                                                    <MudTextField @bind-Value="relationship.EditedInverseType"
+                                                                  Label="Inverse Relationship"
+                                                                  Class="mb-3" />
+                                                    <MudTooltip Text="Undo unsaved changes" Delay="600">
+                                                        <MudButton OnClick="@(_ => OnCancelEditingRelationship(relationship))"
+                                                                   Variant="Variant.Filled">Reset</MudButton>
+                                                    </MudTooltip>
+                                                    <MudButton OnClick="@(_ => OnDoneEditingRelationship(relationship, character))"
+                                                               Variant="Variant.Filled"
+                                                               Color="Color.Primary"
+                                                               StartIcon="@Icons.Material.Filled.Save">Update</MudButton>
+                                                    <MudButton OnClick="@(_ => OnDeleteRelationshipAsync(character, relationship))"
+                                                               Variant="Variant.Filled"
+                                                               Color="Color.Error"
+                                                               StartIcon="@Icons.Material.Filled.Delete">Remove</MudButton>
+                                                </MudExpansionPanel>
+                                            }
+                                        </MudExpansionPanels>
+                                    }
+                                    <MudTooltip Text="Add new relationship">
+                                        <MudIconButton OnClick="@(_ => OnAddRelationship(character))"
+                                                       Icon="@Icons.Material.Filled.Add" />
+                                    </MudTooltip>
+                                </MudExpansionPanel>
+                            </MudExpansionPanels>
+                        </div>
+                    }
+                    <MarkdownEditor Id="note-editor"
+                                    @bind-Value="SelectedNote.Content"
+                                    AfterChange="OnChangeAsync"
+                                    EditMode="EditMode.WYSIWYG"
+                                    Theme="Theme" />
+                }
+            </div>
+        </div>
+    }
+</div>
