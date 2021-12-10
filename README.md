@@ -7,7 +7,7 @@ Scop is a story organization tool for authors. It provides hierarchical note man
 
 ## Installation
 
-Scop is available at <website>, and can optionally be installed as a Progressive Web App for offline use.
+Scop is available at https://tavenem.github.io/scop, and can optionally be installed as a [progressive web app](https://en.wikipedia.org/wiki/Progressive_web_application) for offline use.
 
 ## Data
 
@@ -17,9 +17,7 @@ To prevent data loss and enable automatic synchronization between different devi
 
 ## Roadmap
 
-Scop is currently in early development. Most features are unimplemented, or unstable.
-
-No release date is currently set for v1.0 of Scop. It will be released when it's ready.
+No specific feature updates are planned for Scop, but changes and bugfixes are always possible.
 
 ## Contributing
 

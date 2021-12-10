@@ -36,10 +36,11 @@ jobs:
       # change the base href in index.html to match GitHub Pages repository
       - name: Change base href in index.html
         run: sed -i 's/<base href="\/" \/>/<base href="\/Scop\/" \/>/g' publish/wwwroot/index.html
+        working-directory: ./src
 
       # fix service worker integrity checking
       - name: Fix service-worker-assets.js hashes
-        working-directory: publish/wwwroot
+        working-directory: ./src/publish/wwwroot
         run: |
           jsFile=$(<service-worker-assets.js)
           # remove JavaScript from contents so it can be interpreted as JSON
@@ -72,6 +73,7 @@ jobs:
       # add .nojekyll file so GitHub pages will not treat this as a Jekyll project
       - name: Add .nojekyll file
         run: touch publish/wwwroot/.nojekyll
+        working-directory: ./src
 
       - name: Git tag
         run: git tag v${{ env.VERSION }}
