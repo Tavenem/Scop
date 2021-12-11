@@ -1,6 +1,6 @@
 name: publish
 env:
-  VERSION: '1.0.1'
+  VERSION: '1.0.2'
 on:
   push:
     branches: [ main ]
@@ -37,6 +37,12 @@ jobs:
       - name: Change base href in index.html
         run: sed -i 's/<base href="\/" \/>/<base href="\/Scop\/" \/>/g' publish/wwwroot/index.html
         working-directory: ./src
+
+      # copy index.html to 404.html to fix GitHub Pages SPA navigation
+      - name: copy index.html to 404.html
+        run: |
+          cp index.html 404.html
+        working-directory: ./src/publish/wwwroot
 
       # fix service worker integrity checking
       - name: Fix service-worker-assets.js hashes
@@ -75,14 +81,14 @@ jobs:
         run: touch publish/wwwroot/.nojekyll
         working-directory: ./src
 
-      - name: Git tag
-        run: git tag v${{ env.VERSION }}
-
-      - name: Push tag
-        run: git push origin v${{ env.VERSION }}
-
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
           folder: src/publish/wwwroot
+
+      - name: Git tag
+        run: git tag v${{ env.VERSION }}
+
+      - name: Push tag
+        run: git push origin v${{ env.VERSION }}
