@@ -1,10 +1,6 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-fqsrwa7SxuLacaf5ktOBgoX+F+IUa9L\/lox3VNA4VHk=",
-      "url": "404.html"
-    },
-    {
       "hash": "sha256-sMGenjzWTeLYxhpi1AaqUt4ps\/HW88QIG879piRadaM=",
       "url": "android-chrome-192x192.png"
     },
@@ -45,7 +41,7 @@
       "url": "gdrive.js"
     },
     {
-      "hash": "sha256-HNWKI8la3id7x9YFtSTVLN7JNN+vRua4LULVZ0rFj70=",
+      "hash": "sha256-eUdycAMYGpn3Z/aeUrfWngz9eK4fKvMlI0MYUq7jlVQ=",
       "url": "index.html"
     },
     {
@@ -317,7 +313,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-Vt+TJE9DIcoBm3XLiCFOePsNyeVvoS6nJPpI+K2gSpI=",
+      "hash": "sha256-0qQFtZ3NiQNu6t4DJ+uw+hpeZi8zVTpOpT8KPNy0MLs=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -385,7 +381,7 @@
       "url": "_framework\/MudBlazor.dll"
     },
     {
-      "hash": "sha256-QlIvbRDySt\/Q+XJB9LClkYvv0M5HnfnOSyvfGxFw1PA=",
+      "hash": "sha256-4qKz1KLhR0IlBBZyArRS6IPPJJURpZRAbAqKQ3Z2z5U=",
       "url": "_framework\/Scop.dll"
     },
     {
@@ -557,5 +553,5 @@
       "url": "_content\/Tavenem.Blazor.MarkdownEditor\/Tavenem.Blazor.MarkdownEditor.bundle.scp.css"
     }
   ],
-  "version": "593X4nQ4"
+  "version": "B90+PncS"
 };
