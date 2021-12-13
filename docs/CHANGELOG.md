@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7
+### Fixed
+- Fix image URL
+
 ## 1.0.6
 ### Fixed
 - Fix relative links and image URLs
