@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.14
+### Changed
+- Save on edit custom trait
+
 ## 1.0.13
 ### Fixed
 - Fix custom traits
