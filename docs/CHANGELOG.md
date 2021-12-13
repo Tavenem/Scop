@@ -1,7 +1,12 @@
 # Changelog
 
+## 1.0.4
+### Changed
+- Better Not Found
+- Attempt to fix relative root links
+
 ## 1.0.3
-### Updated
+### Changed
 - Update README
 
 ## 1.0.2

@@ -6,7 +6,12 @@
     <NotFound>
         <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
+            <div class="mt-4 pa-6" role="alert">
+                <div class="d-flex flex-column">
+                    <MudAlert Severity="Severity.Warning" Variant="Variant.Outlined">Page not found</MudAlert>
+                    <MudText Class="mt-3"><MudLink Href="">Return to the main page</MudLink></MudText>
+                </div>
+            </div>
         </LayoutView>
     </NotFound>
 </Router>
