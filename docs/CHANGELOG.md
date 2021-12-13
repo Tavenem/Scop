@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.17
+### Fixed
+- Fix custom adding
+
 ## 1.0.16
 ### Fixed
 - Fix loading logic

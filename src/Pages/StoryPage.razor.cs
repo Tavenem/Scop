@@ -874,16 +874,19 @@ public partial class StoryPage : IDisposable
         {
             return;
         }
+
+        var trimmed = NewEthnicityValue.Trim();
         if (DataService
             .Ethnicities
-            .Any(x => string.Equals(x.Type, NewEthnicityValue, StringComparison.OrdinalIgnoreCase)))
+            .Any(x => string.Equals(x.Type, trimmed, StringComparison.OrdinalIgnoreCase)))
         {
             NewEthnicityValue = string.Empty;
             return;
         }
         var newEthnicity = new Ethnicity()
         {
-            Type = NewEthnicityValue,
+            Hierarchy = new string[] { trimmed },
+            Type = trimmed,
             UserDefined = true,
         };
         (DataService.Data.Ethnicities ??= new()).Add(newEthnicity);
@@ -898,19 +901,31 @@ public partial class StoryPage : IDisposable
         {
             return;
         }
-        var newEthnicity = new Ethnicity
-        {
-            Type = parent.NewEthnicityValue.Trim(),
-            Parent = parent,
-            UserDefined = true,
-        };
+
+        var trimmed = parent.NewEthnicityValue.Trim();
         if (parent
             .Types?
-            .Any(x => string.Equals(x.Type, newEthnicity.Type, StringComparison.OrdinalIgnoreCase)) == true)
+            .Any(x => string.Equals(x.Type, trimmed, StringComparison.OrdinalIgnoreCase)) == true)
         {
             parent.NewEthnicityValue = string.Empty;
             return;
         }
+
+        var hierarchy = new string[(parent.Hierarchy?.Length ?? 0) + 1];
+        if (parent.Hierarchy is not null)
+        {
+            Array.Copy(parent.Hierarchy, hierarchy, parent.Hierarchy.Length);
+        }
+        hierarchy[^1] = trimmed;
+
+        var newEthnicity = new Ethnicity
+        {
+            Hierarchy = hierarchy,
+            Parent = parent,
+            Type = parent.NewEthnicityValue.Trim(),
+            UserDefined = true,
+        };
+
         (parent.Types ??= new()).Add(newEthnicity);
         var top = parent;
         while (top.Parent is not null)
@@ -987,23 +1002,27 @@ public partial class StoryPage : IDisposable
         {
             return;
         }
-        var newTrait = new Trait
-        {
-            Name = NewTraitValue.Trim(),
-            UserDefined = true,
-        };
 
+        var trimmed = NewTraitValue.Trim();
+        var newName = trimmed;
         var i = 0;
         while (DataService
             .Traits
-            .Any(x => string.Equals(x.Name, newTrait.Name, StringComparison.OrdinalIgnoreCase))
+            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase))
             || DataService
             .Data
             .Traits?
-            .Any(x => string.Equals(x.Name, newTrait.Name, StringComparison.OrdinalIgnoreCase)) == true)
+            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)) == true)
         {
-            newTrait.Name = $"{newTrait.Name} ({i++})";
+            newName = $"{trimmed} ({i++})";
         }
+
+        var newTrait = new Trait
+        {
+            Hierarchy = new string[] { newName },
+            Name = newName,
+            UserDefined = true,
+        };
 
         (DataService.Data.Traits ??= new()).Add(newTrait);
         DataService.Traits.Add(newTrait);
@@ -1018,24 +1037,33 @@ public partial class StoryPage : IDisposable
         {
             return;
         }
+
+        var trimmed = parent.NewTraitValue.Trim();
+        var newName = trimmed;
+        var i = 0;
+        while (parent
+            .Children?
+            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)) == true)
+        {
+            newName = $"{trimmed} ({i++})";
+        }
+
+        var hierarchy = new string[(parent.Hierarchy?.Length ?? 0) + 1];
+        if (parent.Hierarchy is not null)
+        {
+            Array.Copy(parent.Hierarchy, hierarchy, parent.Hierarchy.Length);
+        }
+        hierarchy[^1] = newName;
+
         var newTrait = new Trait
         {
-            Name = parent.NewTraitValue.Trim(),
+            Hierarchy = hierarchy,
+            Name = newName,
             Parent = parent,
             UserDefined = true,
         };
 
-        var i = 0;
-        while (parent
-            .Children?
-            .Any(x => string.Equals(x.Name, newTrait.Name, StringComparison.OrdinalIgnoreCase)) == true)
-        {
-            newTrait.Name = $"{newTrait.Name} ({i++})";
-            Console.WriteLine($"trying {newTrait.Name}");
-        }
-
         (parent.Children ??= new()).Add(newTrait);
-        Console.WriteLine("added");
         var top = parent;
         while (top.Parent is not null)
         {
