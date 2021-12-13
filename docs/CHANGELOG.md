@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.15
+### Fixed
+- Fix infinite loop
+
 ## 1.0.14
 ### Changed
 - Save on edit custom trait

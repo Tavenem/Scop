@@ -913,9 +913,9 @@ public partial class StoryPage : IDisposable
         }
         (parent.Types ??= new()).Add(newEthnicity);
         var top = parent;
-        while (parent.Parent is not null)
+        while (top.Parent is not null)
         {
-            top = parent.Parent;
+            top = top.Parent;
         }
         if (DataService.Data.Ethnicities?.Any(x => x == newEthnicity) != true)
         {
@@ -1031,13 +1031,15 @@ public partial class StoryPage : IDisposable
             .Any(x => string.Equals(x.Name, newTrait.Name, StringComparison.OrdinalIgnoreCase)) == true)
         {
             newTrait.Name = $"{newTrait.Name} ({i++})";
+            Console.WriteLine($"trying {newTrait.Name}");
         }
 
         (parent.Children ??= new()).Add(newTrait);
+        Console.WriteLine("added");
         var top = parent;
-        while (parent.Parent is not null)
+        while (top.Parent is not null)
         {
-            top = parent.Parent;
+            top = top.Parent;
         }
         if (DataService.Data.Traits?.Any(x => x == newTrait) != true)
         {
