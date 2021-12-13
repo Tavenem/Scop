@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.18
+### Fixed
+- Fix trait modifier dialog
+
 ## 1.0.17
 ### Fixed
 - Fix custom adding
