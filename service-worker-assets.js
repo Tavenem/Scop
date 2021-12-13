@@ -1,36 +1,16 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-sMGenjzWTeLYxhpi1AaqUt4ps\/HW88QIG879piRadaM=",
-      "url": "android-chrome-192x192.png"
-    },
-    {
-      "hash": "sha256-qPILYQqwj3zhKHynssSnhhmWWb6B6+YCAeIsvPt0IK4=",
-      "url": "android-chrome-256x256.png"
-    },
-    {
       "hash": "sha256-oo9hrkP0+NfqU6liGdUWHxzB7hE3kSFjk31wDo6yw5A=",
       "url": "app.css"
     },
     {
-      "hash": "sha256-37IdUE7Bq1UzaEsqpcg2psDfjl7RIhDfsSrUTC5B5ho=",
-      "url": "apple-touch-icon.png"
-    },
-    {
-      "hash": "sha256-xleDQvNFlzQdmCKXVk6VMm4HA+5fWDWtRy3gzeBT88A=",
+      "hash": "sha256-KKEwguGQ9VZGpsR\/zttNg4VjNwAUBIqZwovy6V4TMQA=",
       "url": "browserconfig.xml"
     },
     {
       "hash": "sha256-4LoX2fbsCqbWIUShoX4iaVt7WN\/x0ArY7WI0afTMSjI=",
       "url": "ethnicities.json"
-    },
-    {
-      "hash": "sha256-z0TCVQAD37B3KJEPC8lmEILRtaxaph3SagT7bl+tito=",
-      "url": "favicon-16x16.png"
-    },
-    {
-      "hash": "sha256-DIWR5hAnasfNI8ujN8blY0J1YgKKkuACj4VICFj8Xjo=",
-      "url": "favicon-32x32.png"
     },
     {
       "hash": "sha256-YK\/Tt0FDlDaUvJwLUajXPeT4RM8\/iUsmknUoVdm+sH4=",
@@ -41,16 +21,44 @@
       "url": "gdrive.js"
     },
     {
+      "hash": "sha256-sMGenjzWTeLYxhpi1AaqUt4ps\/HW88QIG879piRadaM=",
+      "url": "images\/android-chrome-192x192.png"
+    },
+    {
+      "hash": "sha256-qPILYQqwj3zhKHynssSnhhmWWb6B6+YCAeIsvPt0IK4=",
+      "url": "images\/android-chrome-256x256.png"
+    },
+    {
+      "hash": "sha256-37IdUE7Bq1UzaEsqpcg2psDfjl7RIhDfsSrUTC5B5ho=",
+      "url": "images\/apple-touch-icon.png"
+    },
+    {
+      "hash": "sha256-z0TCVQAD37B3KJEPC8lmEILRtaxaph3SagT7bl+tito=",
+      "url": "images\/favicon-16x16.png"
+    },
+    {
+      "hash": "sha256-DIWR5hAnasfNI8ujN8blY0J1YgKKkuACj4VICFj8Xjo=",
+      "url": "images\/favicon-32x32.png"
+    },
+    {
+      "hash": "sha256-201qaWO7eSQqqEkX5q0FQma3CAVigYZjufKk4vHkIZw=",
+      "url": "images\/mstile-150x150.png"
+    },
+    {
+      "hash": "sha256-jML25FFlLjnNS6fM5uFYcRwzAs5Zps\/4ouZUE+\/TnoQ=",
+      "url": "images\/safari-pinned-tab.svg"
+    },
+    {
+      "hash": "sha256-LJljMQkRtw8BY1ihaWQWoulr94tcGmUyFj3oCJD2at8=",
+      "url": "images\/tavenemlogo.svg"
+    },
+    {
       "hash": "sha256-eUdycAMYGpn3Z\/aeUrfWngz9eK4fKvMlI0MYUq7jlVQ=",
       "url": "index.html"
     },
     {
-      "hash": "sha256-U9lOCzjJcfSWNxD6zbqXFP6Ig4X99\/AMPFxlxFQTEd0=",
+      "hash": "sha256-wI3K+EU6Dtq1F9WVLUrZbr+0ufBSxFUrUMXA5wxIyA4=",
       "url": "manifest.json"
-    },
-    {
-      "hash": "sha256-201qaWO7eSQqqEkX5q0FQma3CAVigYZjufKk4vHkIZw=",
-      "url": "mstile-150x150.png"
     },
     {
       "hash": "sha256-+lfpkSPjPT457Dlc9I86FCF5WyJ0pX6PwhIh7XmkTVc=",
@@ -261,16 +269,8 @@
       "url": "names\/middle_eastern.json"
     },
     {
-      "hash": "sha256-jML25FFlLjnNS6fM5uFYcRwzAs5Zps\/4ouZUE+\/TnoQ=",
-      "url": "safari-pinned-tab.svg"
-    },
-    {
       "hash": "sha256-pkXnthelBjc+U+pXSSkq\/3sT0uA7TRZ4YUCe2AH3\/3Q=",
       "url": "script.js"
-    },
-    {
-      "hash": "sha256-LJljMQkRtw8BY1ihaWQWoulr94tcGmUyFj3oCJD2at8=",
-      "url": "tavenemlogo.svg"
     },
     {
       "hash": "sha256-LlKjddwiQZn3GxWIhKhnLudDBF4VTmxLaBeC6bIEFKQ=",
@@ -313,7 +313,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-WlI7OCwNhrzwPm7QJuhoDEsrbGbgToGU7EAdWblbq\/I=",
+      "hash": "sha256-vHapLfx74yVh98L0M\/Ulzbt6IOZtH8PMQA9aR4BRImE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -381,7 +381,7 @@
       "url": "_framework\/MudBlazor.dll"
     },
     {
-      "hash": "sha256-cgjV1K\/oZ0pInNvUHz8p2J4ck+a1URX6owQ1rWWnAd4=",
+      "hash": "sha256-8n4mSBs1d4DRiY2IO7BYiJzRZyldc8L8LkccIbSEWvI=",
       "url": "_framework\/Scop.dll"
     },
     {
@@ -553,5 +553,5 @@
       "url": "_content\/Tavenem.Blazor.MarkdownEditor\/Tavenem.Blazor.MarkdownEditor.bundle.scp.css"
     }
   ],
-  "version": "qGHiJ0ei"
+  "version": "Lveix7dY"
 };
