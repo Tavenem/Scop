@@ -53,7 +53,7 @@
       "url": "images\/tavenemlogo.svg"
     },
     {
-      "hash": "sha256-eUdycAMYGpn3Z\/aeUrfWngz9eK4fKvMlI0MYUq7jlVQ=",
+      "hash": "sha256-dzkdvEjLZgUXBqyYEwkkLArHeqzy3Vt\/AXdjr0Gn6zE=",
       "url": "index.html"
     },
     {
@@ -313,7 +313,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-N\/1ggHr\/28kJH9Pqo\/XQSB\/N2RkK2e3+0J2ccyxcS+k=",
+      "hash": "sha256-Smmk93ZWn0LoezHbnHbMZOF1yrNOojusU6YamGqy0y8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -381,7 +381,7 @@
       "url": "_framework\/MudBlazor.dll"
     },
     {
-      "hash": "sha256-lkIx0YES04rcmUzEO9MirPNfO7IzZ6DtVqtUe0tRGU8=",
+      "hash": "sha256-d8vh2gX7GbekhUm1mewuTgq3uBQuWGQTxO7U3JN4V+4=",
       "url": "_framework\/Scop.dll"
     },
     {
@@ -553,5 +553,5 @@
       "url": "_content\/Tavenem.Blazor.MarkdownEditor\/Tavenem.Blazor.MarkdownEditor.bundle.scp.css"
     }
   ],
-  "version": "XjZHSQKd"
+  "version": "wpio+UBi"
 };
