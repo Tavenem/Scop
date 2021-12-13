@@ -92,7 +92,6 @@ public class DataService : IDisposable
             {
                 Data = scopData;
                 UpdateData();
-                DataLoaded?.Invoke(this, EventArgs.Empty);
             }
         }
         return Task.CompletedTask;
@@ -409,12 +408,19 @@ public class DataService : IDisposable
         {
             foreach (var trait in Data.Traits)
             {
-                if (Traits.Contains(trait))
+                var index = Traits.FindIndex(x => x == trait);
+                if (index >= 0)
                 {
-                    Traits.Remove(trait);
+                    Traits.RemoveAt(index);
+                    Traits.Insert(index, trait);
                 }
-                Traits.Add(trait);
+                else
+                {
+                    Traits.Add(trait);
+                }
             }
         }
+
+        DataLoaded?.Invoke(this, EventArgs.Empty);
     }
 }

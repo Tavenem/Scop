@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.0.12
+## 1.0.13
 ### Fixed
-- Fix new child trait
+- Fix custom traits
 
 ## 1.0.11
 ### Fixed

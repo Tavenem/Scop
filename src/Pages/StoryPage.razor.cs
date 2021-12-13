@@ -106,6 +106,7 @@ public partial class StoryPage : IDisposable
             && JsInterop is not null
             && DataService is not null)
         {
+            DataService.DataLoaded += OnDataLoaded;
             _dotNetObjectRef ??= DotNetObjectReference.Create(this);
             DataService.GDriveSync = await JsInterop
                 .GetDriveSignedIn(_dotNetObjectRef);
@@ -128,6 +129,11 @@ public partial class StoryPage : IDisposable
             {
                 _dotNetObjectRef?.Dispose();
                 _dotNetObjectRef = null;
+
+                if (DataService is not null)
+                {
+                    DataService.DataLoaded -= OnDataLoaded;
+                }
             }
 
             _disposedValue = true;
@@ -527,6 +533,8 @@ public partial class StoryPage : IDisposable
             await OnChangeAsync();
         }
     }
+
+    private async void OnDataLoaded(object? sender, EventArgs e) => await InvokeAsync(StateHasChanged);
 
     private async Task OnDeleteEthnicityAsync(Ethnicity ethnicity)
     {

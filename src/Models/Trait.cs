@@ -43,7 +43,7 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
 
     [JsonIgnore] public Trait? Parent { get; set; }
 
-    [JsonIgnore] public bool UserDefined { get; set; }
+    public bool UserDefined { get; set; }
 
     public double? Weight { get; set; }
 
