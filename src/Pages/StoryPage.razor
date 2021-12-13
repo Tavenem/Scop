@@ -196,16 +196,17 @@
                                             {
                                                 for (var i = 0; i < character.Names.Count; i++)
                                                 {
-                                                    <MudAutocomplete @bind-Value="character.Names[i]"
-                                                                     OnBlur="OnChangeAsync"
+                                                    var index = i;
+                                                    <MudAutocomplete T="string"
+                                                                     Value="character.Names[index]"
+                                                                     ValueChanged="@(v => OnNameChangeAsync(character, index, v))"
                                                                      SearchFunc="@(v => GetGivenNames(character, v))"
                                                                      CoerceText="true"
                                                                      CoerceValue="true"
-                                                                     Immediate="true"
                                                                      ResetValueOnEmptyText="true"
                                                                      Adornment="Adornment.End"
                                                                      AdornmentIcon="@Icons.Material.Filled.Casino"
-                                                                     OnAdornmentClick="@(_ => OnRandomizeCharacterNameAsync(character, i))" />
+                                                                     OnAdornmentClick="@(_ => OnRandomizeCharacterNameAsync(character, index))" />
                                                 }
                                             }
                                             <MudAutocomplete @bind-Value="NewCharacterName"
@@ -244,16 +245,17 @@
                                             {
                                                 for (var i = 0; i < character.Surnames.Count; i++)
                                                 {
-                                                    <MudAutocomplete @bind-Value="character.Surnames[i]"
-                                                                     OnBlur="OnChangeAsync"
+                                                    var index = i;
+                                                    <MudAutocomplete T="string"
+                                                                     Value="character.Surnames[index]"
+                                                                     ValueChanged="@(v => OnSurnameChangeAsync(character, index, v))"
                                                                      SearchFunc="@(v => GetSurnames(character, v))"
                                                                      CoerceText="true"
                                                                      CoerceValue="true"
-                                                                     Immediate="true"
                                                                      ResetValueOnEmptyText="true"
                                                                      Adornment="Adornment.End"
                                                                      AdornmentIcon="@Icons.Material.Filled.Casino"
-                                                                     OnAdornmentClick="@(_ => OnRandomizeCharacterSurnameAsync(character, i))" />
+                                                                     OnAdornmentClick="@(_ => OnRandomizeCharacterSurnameAsync(character, index))" />
                                                 }
                                             }
                                             <MudAutocomplete @bind-Value="NewCharacterSurname"

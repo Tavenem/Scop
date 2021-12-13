@@ -67,10 +67,11 @@
                         {
                             for (var i = 0; i < Modifier.Ethnicities.Count; i++)
                             {
+                                var index = i;
                                 <MudListItem Class="d-flex justify-space-between">
-                                    <MudTextField @bind-Value="Modifier.Ethnicities[i]" OnBlur="OnEditEthnicity" Margin="Margin.Dense" />
+                                    <MudTextField @bind-Value="Modifier.Ethnicities[index]" OnBlur="OnEditEthnicity" Margin="Margin.Dense" />
                                     <div>
-                                        <MudIconButton OnClick="@(_ => OnRemoveEthnicity(i))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
+                                        <MudIconButton OnClick="@(_ => OnRemoveEthnicity(index))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
                                     </div>
                                 </MudListItem>
                             }
@@ -100,10 +101,11 @@
                         {
                             for (var i = 0; i < Modifier.TargetPaths.Count; i++)
                             {
+                                var index = i;
                                 <MudListItem Class="d-flex justify-space-between">
-                                    <MudTextField @bind-Value="Modifier.TargetPaths[i]" OnBlur="OnEditTargetPath" Margin="Margin.Dense" />
+                                    <MudTextField @bind-Value="Modifier.TargetPaths[index]" OnBlur="OnEditTargetPath" Margin="Margin.Dense" />
                                     <div>
-                                        <MudIconButton OnClick="@(_ => OnRemoveTargetPath(i))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
+                                        <MudIconButton OnClick="@(_ => OnRemoveTargetPath(index))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
                                     </div>
                                 </MudListItem>
                             }

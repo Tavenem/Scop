@@ -97,11 +97,12 @@
                         {
                             for (var i = 0; i < Trait.Modifiers.Count; i++)
                             {
+                                var index = i;
                                 <MudListItem Class="d-flex justify-space-between">
-                                    <MudText>Modifier @(i.ToString())</MudText>
+                                    <MudText>Modifier @(index.ToString())</MudText>
                                     <div>
-                                        <MudIconButton OnClick="@(_ => OnEditModifierAsync(Trait.Modifiers[i]))" Icon="@Icons.Material.Filled.Edit" Color="Color.Primary" />
-                                        <MudIconButton OnClick="@(_ => OnDeleteModifier(i))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
+                                        <MudIconButton OnClick="@(_ => OnEditModifierAsync(Trait.Modifiers[index]))" Icon="@Icons.Material.Filled.Edit" Color="Color.Primary" />
+                                        <MudIconButton OnClick="@(_ => OnDeleteModifier(index))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
                                     </div>
                                 </MudListItem>
                             }

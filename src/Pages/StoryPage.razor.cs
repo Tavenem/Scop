@@ -184,10 +184,17 @@ public partial class StoryPage : IDisposable
         }
 
         var trimmed = value.Trim();
-        return Task.FromResult(new string?[] { trimmed }
-            .Concat(Strings.Genders
-                .Where(x => x
-                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))));
+
+        var list = Strings.Genders
+            .Where(x => x
+                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        if (!list.Contains(trimmed))
+        {
+            list.Insert(0, trimmed);
+        }
+
+        return Task.FromResult<IEnumerable<string?>>(list);
     }
 
     private static Task<IEnumerable<string?>> GetRelationshipTypes(string? value)
@@ -198,10 +205,17 @@ public partial class StoryPage : IDisposable
         }
 
         var trimmed = value.Trim();
-        var list = new[] { trimmed };
 
-        return Task.FromResult<IEnumerable<string?>>(list.Concat(Strings.RelationshipTypes
-            .Where(x => x.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))));
+        var list = Strings.RelationshipTypes
+            .Where(x => x
+                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        if (!list.Contains(trimmed))
+        {
+            list.Insert(0, trimmed);
+        }
+
+        return Task.FromResult<IEnumerable<string?>>(list);
     }
 
     private static Task<IEnumerable<string?>> GetSuffixes(string? value)
@@ -212,10 +226,17 @@ public partial class StoryPage : IDisposable
         }
 
         var trimmed = value.Trim();
-        return Task.FromResult(new string?[] { trimmed }
-            .Concat(Strings.Suffixes
-                .Where(x => x
-                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))));
+
+        var list = Strings.Suffixes
+            .Where(x => x
+                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        if (!list.Contains(trimmed))
+        {
+            list.Insert(0, trimmed);
+        }
+
+        return Task.FromResult<IEnumerable<string?>>(list);
     }
 
     private static Task<IEnumerable<string?>> GetTitles(string? value)
@@ -226,10 +247,17 @@ public partial class StoryPage : IDisposable
         }
 
         var trimmed = value.Trim();
-        return Task.FromResult(new string?[] { trimmed }
-            .Concat(Strings.Titles
-                .Where(x => x
-                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))));
+
+        var list = Strings.Titles
+            .Where(x => x
+                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        if (!list.Contains(trimmed))
+        {
+            list.Insert(0, trimmed);
+        }
+
+        return Task.FromResult<IEnumerable<string?>>(list);
     }
 
     private static void OnAddRelationship(Character character)
@@ -269,17 +297,20 @@ public partial class StoryPage : IDisposable
 
         var trimmed = value.Trim();
 
-        var list = string.IsNullOrEmpty(trimmed)
-            ? Enumerable.Empty<string?>()
-            : new[] { trimmed };
-
-        return Task.FromResult(list.Concat(_story?.Notes?
+        var list = _story?.Notes?
             .OfType<Character>()
             .Where(x => x != character)
             .Select(x => x.CharacterName)
             .Where(x => !string.IsNullOrEmpty(x)
                 && x.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
-            ?? Enumerable.Empty<string?>()));
+            .ToList() ?? new();
+
+        if (!list.Contains(trimmed))
+        {
+            list.Insert(0, trimmed);
+        }
+
+        return Task.FromResult<IEnumerable<string?>>(list);
     }
 
     private async Task<IEnumerable<string>> GetGivenNames(Character character, string? value)
@@ -294,37 +325,50 @@ public partial class StoryPage : IDisposable
     {
         var trimmed = value?.Trim();
 
-        var list = string.IsNullOrEmpty(trimmed)
-            ? Enumerable.Empty<string?>()
-            : new[] { trimmed };
-
         if (DataService is null)
         {
-            return list;
+            return string.IsNullOrWhiteSpace(trimmed)
+                ? Enumerable.Empty<string?>()
+                : new[] { trimmed };
         }
 
-        var nameList = await DataService
-            .GetNameListAsync(character.GetNameGender(), character.EthnicityPaths);
-        return list.Concat(nameList.Select(x => x.Name));
+        var nameList = (await DataService
+            .GetNameListAsync(character.GetNameGender(), character.EthnicityPaths))
+            .Select(x => x.Name)
+            .Where(x => string.IsNullOrWhiteSpace(trimmed)
+                || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
+            .ToList();
+        if (!string.IsNullOrWhiteSpace(trimmed)
+            && !nameList.Contains(trimmed))
+        {
+            nameList.Insert(0, trimmed);
+        }
+        return nameList;
     }
 
     private async Task<IEnumerable<string?>> GetNewSurnames(Character character, string? value)
     {
         var trimmed = value?.Trim();
 
-        var list = string.IsNullOrEmpty(trimmed)
-            ? Enumerable.Empty<string?>()
-            : new[] { trimmed };
-
         if (DataService is null)
         {
-            return list;
+            return string.IsNullOrWhiteSpace(trimmed)
+                ? Enumerable.Empty<string?>()
+                : new[] { trimmed };
         }
 
-        var nameList = await DataService
-            .GetSurnameListAsync(character.EthnicityPaths);
-        return list.Concat(nameList
-            .Select(x => x.Name));
+        var nameList = (await DataService
+            .GetSurnameListAsync(character.EthnicityPaths))
+            .Select(x => x.Name)
+            .Where(x => string.IsNullOrWhiteSpace(trimmed)
+                || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
+            .ToList();
+        if (!string.IsNullOrWhiteSpace(trimmed)
+            && !nameList.Contains(trimmed))
+        {
+            nameList.Insert(0, trimmed);
+        }
+        return nameList;
     }
 
     private async Task<IEnumerable<string>> GetSurnames(Character character, string? value)
@@ -745,6 +789,32 @@ public partial class StoryPage : IDisposable
             character.SelectEthnicity(ethnicity, value);
             await OnChangeAsync();
         }
+    }
+
+    private async Task OnNameChangeAsync(Character character, int index, string? value)
+    {
+        if (character.Names is null
+            || character.Names.Count <= index
+            || string.Equals(character.Names[index], value, StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            character.Names.RemoveAt(index);
+            if (character.Names.Count == 0)
+            {
+                character.Names = null;
+            }
+            return;
+        }
+        else
+        {
+            character.Names[index] = value;
+        }
+
+        await OnChangeAsync();
     }
 
     private async Task OnNewCharacterNameAsync(Character character)
@@ -1547,6 +1617,32 @@ public partial class StoryPage : IDisposable
         SelectedBirthdate = note is Character character
             ? character.Birthdate
             : null;
+    }
+
+    private async Task OnSurnameChangeAsync(Character character, int index, string? value)
+    {
+        if (character.Surnames is null
+            || character.Surnames.Count <= index
+            || string.Equals(character.Surnames[index], value, StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            character.Surnames.RemoveAt(index);
+            if (character.Surnames.Count == 0)
+            {
+                character.Surnames = null;
+            }
+            return;
+        }
+        else
+        {
+            character.Surnames[index] = value;
+        }
+
+        await OnChangeAsync();
     }
 
     private async Task OnSwitchNoteTypeAsync(CustomTreeViewIntEventArgs<INote> e)
