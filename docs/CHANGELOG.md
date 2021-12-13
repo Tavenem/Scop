@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.10
+### Fixed
+- Fix adding surname
+
 ## 1.0.9
 ### Fixed
 - Fix autocomplete

@@ -836,7 +836,7 @@ public partial class StoryPage : IDisposable
             return;
         }
 
-        (character.Names ??= new()).Add(NewCharacterSurname.Trim());
+        (character.Surnames ??= new()).Add(NewCharacterSurname.Trim());
         NewCharacterSurname = null;
         await OnChangeAsync();
     }
