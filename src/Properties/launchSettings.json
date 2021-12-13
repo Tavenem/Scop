@@ -10,9 +10,10 @@
   "profiles": {
     "Scop": {
       "commandName": "Project",
+      "commandLineArgs": "--pathbase=/Scop",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/Scop/_framework/debug/ws-proxy?browser={browserInspectUri}",
       "applicationUrl": "https://localhost:7226;http://localhost:5226",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -20,8 +21,9 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
+      "commandLineArgs": "--pathbase=/Scop",
       "launchBrowser": true,
-      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/Scop/_framework/debug/ws-proxy?browser={browserInspectUri}",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

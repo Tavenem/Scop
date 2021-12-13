@@ -14,7 +14,7 @@
             <MudIconButton Link="./" Icon="@Icons.Material.Filled.Home" Color="Color.Inherit" />
         </MudTooltip>
         <MudTooltip Text="My Stories">
-            <MudIconButton Link="/stories" Icon="@Icons.Material.Filled.MenuBook" Color="Color.Inherit" />
+            <MudIconButton Link="./stories" Icon="@Icons.Material.Filled.MenuBook" Color="Color.Inherit" />
         </MudTooltip>
         <MudSpacer />
         <MudTooltip Text="Toggle light/dark theme">
@@ -25,7 +25,7 @@
                                  Color="Color.Inherit" />
         </MudTooltip>
         <MudTooltip Text="Manage your data">
-            <MudIconButton Link="/managedata" Icon="@Icons.Material.Filled.Save" Color="DataService?.GDriveSync == true ? Color.Tertiary : Color.Inherit" />
+            <MudIconButton Link="./managedata" Icon="@Icons.Material.Filled.Save" Color="DataService?.GDriveSync == true ? Color.Tertiary : Color.Inherit" />
         </MudTooltip>
     </MudAppBar>
     <MudMainContent Class="d-flex flex-column">
@@ -38,8 +38,8 @@
         </MudContainer>
         <MudPaper Class="d-flex align-center justify-space-around mt-3 pa-2" Square="true" Elevation="0">
             <MudText Inline="true" Typo="Typo.caption">©2021 <MudLink Href="https://tavenem.com/" Typo="Typo.caption" Target="_blank">Tavenem</MudLink></MudText>
-            <MudLink Href="/privacy" Typo="Typo.caption">Privacy</MudLink>
-            <MudLink Href="/support" Typo="Typo.caption">Support</MudLink>
+            <MudLink Href="./privacy" Typo="Typo.caption">Privacy</MudLink>
+            <MudLink Href="./support" Typo="Typo.caption">Support</MudLink>
         </MudPaper>
     </MudMainContent>
     <AnchorNavigator />

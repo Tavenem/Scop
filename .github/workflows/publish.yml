@@ -1,6 +1,6 @@
 name: publish
 env:
-  VERSION: '1.0.4'
+  VERSION: '1.0.5'
 on:
   push:
     branches: [ main ]
@@ -33,48 +33,11 @@ jobs:
         run: dotnet publish --configuration Release -o publish -p:Version=${{ env.VERSION }} --no-build --nologo
         working-directory: ./src
 
-      # change the base href in index.html to match GitHub Pages repository
-      - name: Change base href in index.html
-        run: sed -i 's/<base href="\/" \/>/<base href="\/Scop\/" \/>/g' publish/wwwroot/index.html
-        working-directory: ./src
-
       # copy index.html to 404.html to fix GitHub Pages SPA navigation
       - name: copy index.html to 404.html
         run: |
           cp index.html 404.html
         working-directory: ./src/publish/wwwroot
-
-      # fix service worker integrity checking
-      - name: Fix service-worker-assets.js hashes
-        working-directory: ./src/publish/wwwroot
-        run: |
-          jsFile=$(<service-worker-assets.js)
-          # remove JavaScript from contents so it can be interpreted as JSON
-          json=$(echo "$jsFile" | sed "s/self.assetsManifest = //g" | sed "s/;//g")
-          # grab the assets JSON array
-          assets=$(echo "$json" | jq '.assets[]' -c)
-          for asset in $assets
-          do
-            oldHash=$(echo "$asset" | jq '.hash')
-            #remove leading and trailing quotes
-            oldHash="${oldHash:1:-1}"
-            path=$(echo "$asset" | jq '.url')
-            #remove leading and trailing quotes
-            path="${path:1:-1}"
-            newHash="sha256-$(openssl dgst -sha256 -binary $path | openssl base64 -A)"
-            
-            if [ $oldHash != $newHash ]; then
-              # escape slashes for json
-              oldHash=$(echo "$oldHash" | sed 's;/;\\/;g')
-              newHash=$(echo "$newHash" | sed 's;/;\\/;g')
-              echo "Updating hash for $path from $oldHash to $newHash"
-              # escape slashes second time for sed
-              oldHash=$(echo "$oldHash" | sed 's;/;\\/;g')
-              jsFile=$(echo -n "$jsFile" | sed "s;$oldHash;$newHash;g")
-            fi
-          done
-        
-          echo -n "$jsFile" > service-worker-assets.js
 
       # add .nojekyll file so GitHub pages will not treat this as a Jekyll project
       - name: Add .nojekyll file
