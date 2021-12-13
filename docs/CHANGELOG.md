@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.12
+### Fixed
+- Fix new child trait
+
 ## 1.0.11
 ### Fixed
 - Fix hierarchy parent selection

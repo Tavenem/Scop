@@ -884,21 +884,21 @@ public partial class StoryPage : IDisposable
 
     private async Task OnNewEthnicityAsync(Ethnicity parent)
     {
-        if (string.IsNullOrEmpty(NewEthnicityValue))
+        if (string.IsNullOrEmpty(parent.NewEthnicityValue))
         {
             return;
         }
         if (parent
             .Types?
-            .Any(x => string.Equals(x.Type, NewEthnicityValue, StringComparison.OrdinalIgnoreCase)) == true)
+            .Any(x => string.Equals(x.Type, parent.NewEthnicityValue, StringComparison.OrdinalIgnoreCase)) == true)
         {
-            NewEthnicityValue = string.Empty;
+            parent.NewEthnicityValue = string.Empty;
             return;
         }
         (parent.Types ??= new()).Add(new Ethnicity()
         {
             Parent = parent,
-            Type = NewEthnicityValue,
+            Type = parent.NewEthnicityValue,
             UserDefined = true,
         });
         var top = parent;
@@ -907,7 +907,7 @@ public partial class StoryPage : IDisposable
             top = parent.Parent;
         }
         (DataService.Data.Ethnicities ??= new()).Add(top);
-        NewEthnicityValue = string.Empty;
+        parent.NewEthnicityValue = string.Empty;
         await DataService.SaveAsync();
     }
 
@@ -1000,20 +1000,20 @@ public partial class StoryPage : IDisposable
 
     private async Task OnNewTraitAsync(Trait parent)
     {
-        if (string.IsNullOrEmpty(NewTraitValue))
+        if (string.IsNullOrEmpty(parent.NewTraitValue))
         {
             return;
         }
         var newTrait = new Trait
         {
-            Name = NewTraitValue.Trim(),
+            Name = parent.NewTraitValue.Trim(),
             UserDefined = true,
         };
 
         var i = 0;
         while (parent
             .Children?
-            .Any(x => string.Equals(x.Name, NewTraitValue, StringComparison.OrdinalIgnoreCase)) == true)
+            .Any(x => string.Equals(x.Name, parent.NewTraitValue, StringComparison.OrdinalIgnoreCase)) == true)
         {
             newTrait.Name = $"{newTrait.Name} ({i++})";
         }
@@ -1021,7 +1021,7 @@ public partial class StoryPage : IDisposable
         (parent.Children ??= new()).Add(new Trait()
         {
             Parent = parent,
-            Name = NewTraitValue,
+            Name = parent.NewTraitValue,
             UserDefined = true,
         });
         var top = parent;
@@ -1031,7 +1031,7 @@ public partial class StoryPage : IDisposable
         }
         (DataService.Data.Traits ??= new()).Add(top);
 
-        NewTraitValue = string.Empty;
+        parent.NewTraitValue = string.Empty;
         await DataService.SaveAsync();
     }
 
