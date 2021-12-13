@@ -395,7 +395,7 @@ public partial class CustomTreeViewItem<T> : MudComponentBase
         _isChecked = value;
         if (value)
         {
-            if (source == this && Parent is not null)
+            if (Parent is not null)
             {
                 await Parent.SelectItem(value, source);
             }

@@ -264,6 +264,10 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         return any;
     }
 
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
+    public override string? ToString() => Name ?? base.ToString();
+
     public static bool operator ==(Trait? left, Trait? right) => left?.Equals(right) ?? (right is null);
     public static bool operator !=(Trait? left, Trait? right) => !(left == right);
 }

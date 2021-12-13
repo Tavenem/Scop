@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.11
+### Fixed
+- Fix hierarchy parent selection
+
 ## 1.0.10
 ### Fixed
 - Fix adding surname
