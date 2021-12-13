@@ -18,6 +18,7 @@ public class DataService : IDisposable
     private NameSet? _defaultNameSet;
     private bool _disposedValue;
     private DotNetObjectReference<DataService>? _dotNetObjectRef;
+    private bool _loaded = false;
     private Ethnicity? _nameSetEthnicity;
     private NameSet? _nameSet;
 
@@ -138,8 +139,13 @@ public class DataService : IDisposable
         return set?.Surnames ?? new();
     }
 
-    public async Task LoadAsync()
+    public async ValueTask LoadAsync()
     {
+        if (_loaded)
+        {
+            return;
+        }
+
         Ethnicities = await _httpClient
             .GetFromJsonAsync<List<Ethnicity>>("./ethnicities.json")
             .ConfigureAwait(false)
@@ -176,6 +182,8 @@ public class DataService : IDisposable
             await LoadGDriveAsync()
                 .ConfigureAwait(false);
         }
+
+        _loaded = true;
     }
 
     public async Task SaveAsync()
