@@ -142,12 +142,12 @@ public class DataService : IDisposable
     public async Task LoadAsync()
     {
         Ethnicities = await _httpClient
-            .GetFromJsonAsync<List<Ethnicity>>("/ethnicities.json")
+            .GetFromJsonAsync<List<Ethnicity>>("./ethnicities.json")
             .ConfigureAwait(false)
             ?? new();
 
         Traits = await _httpClient
-            .GetFromJsonAsync<List<Trait>>("/traits.json")
+            .GetFromJsonAsync<List<Trait>>("./traits.json")
             .ConfigureAwait(false)
             ?? new();
 
@@ -340,7 +340,7 @@ public class DataService : IDisposable
             return _nameSet;
         }
 
-        var url = new StringBuilder("/names/")
+        var url = new StringBuilder("./names/")
             .AppendJoin('_', ethnicity.Hierarchy)
             .Replace(' ', '_')
             .Append(".json")

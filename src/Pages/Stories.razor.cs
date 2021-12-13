@@ -77,7 +77,7 @@ public partial class Stories : IDisposable
 
     private async void OnDataLoaded(object? sender, EventArgs e) => await InvokeAsync(StateHasChanged);
 
-    private void OnOpenStory(Story story) => NavigationManager?.NavigateTo($"/story/{story.Id}");
+    private void OnOpenStory(Story story) => NavigationManager?.NavigateTo($"./story/{story.Id}");
 
     private void OnDeleteStory(Story story)
     {
