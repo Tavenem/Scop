@@ -1883,6 +1883,8 @@ public class Character : INote
                             case "sibling":
                             case "spouse":
                             case "ex-spouse":
+                            case "sweetheart":
+                            case "ex-sweetheart":
                                 inverted = true;
                                 break;
                             case "pibling":

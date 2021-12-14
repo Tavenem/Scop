@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.24
+### Changed
+- Automatically invert sweethearts
+
 ## 1.0.23
 ### Added
 - Add relationship type names
