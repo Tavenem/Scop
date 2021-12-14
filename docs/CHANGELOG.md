@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.26
+### Fixed
+- Fix relationship expansion on switch
+- Add default inverse relationships
+
 ## 1.0.25
 ### Changed
 - Show full name on section heading

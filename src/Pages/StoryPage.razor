@@ -523,7 +523,9 @@
                                         <MudExpansionPanels>
                                             @foreach (var relationship in character.RelationshipMap)
                                             {
-                                                <MudExpansionPanel Text="@relationship.DisplayName" Disabled="relationship.Synthetic">
+                                                <MudExpansionPanel Text="@relationship.DisplayName"
+                                                                   @bind-IsExpanded="relationship.IsExpanded"
+                                                                   Disabled="relationship.Synthetic">
                                                     <MudAutocomplete @bind-Value="relationship.EditedRelativeName"
                                                                      SearchFunc="@(v => GetCharacterNames(character, v))"
                                                                      Label="Relative Name"

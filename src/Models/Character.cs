@@ -1907,23 +1907,20 @@ public class Character : INote
                         }
                     }
                 }
-                if (inverted)
+                var relationshipName = GetRelationshipName(inverseType, gender);
+                relativeMap.Add(new Relationship
                 {
-                    var relationshipName = GetRelationshipName(inverseType, gender);
-                    relativeMap.Add(new Relationship
-                    {
-                        EditedInverseType = relationship.Type,
-                        EditedRelationshipName = relationshipName,
-                        EditedRelativeName = CharacterName,
-                        EditedType = inverseType,
-                        Id = Id,
-                        InverseType = relationship.Type,
-                        RelationshipName = relationshipName,
-                        Relative = this,
-                        Synthetic = true,
-                        Type = inverseType,
-                    });
-                }
+                    EditedInverseType = relationship.Type,
+                    EditedRelationshipName = relationshipName,
+                    EditedRelativeName = CharacterName,
+                    EditedType = inverseType,
+                    Id = Id,
+                    InverseType = relationship.Type,
+                    RelationshipName = relationshipName,
+                    Relative = this,
+                    Synthetic = true,
+                    Type = inverseType,
+                });
             }
             relative.RelationshipMap = relativeMap;
 

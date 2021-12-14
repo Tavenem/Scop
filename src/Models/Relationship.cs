@@ -37,6 +37,8 @@ public class Relationship : IJsonOnDeserialized
 
     [JsonIgnore] public bool IsEditing { get; set; }
 
+    [JsonIgnore] public bool IsExpanded { get; set; }
+
     public string? RelationshipName { get; set; }
 
     [JsonIgnore] public Character? Relative { get; set; }
