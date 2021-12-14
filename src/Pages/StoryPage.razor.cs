@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using MudBlazor;
 using Scop.Shared;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 using Tavenem.Blazor.MarkdownEditor;
 using Tavenem.Randomize;
 
@@ -682,10 +683,13 @@ public partial class StoryPage : IDisposable
         var name = relationship.EditedRelativeName?.Trim();
         var relative = _story?
             .AllCharacters()
-            .OrderByDescending(x => x.GetNameMatchScore(name))
-            .ThenBy(x => character.Relationships?.Any(y => y.Id == x.Id) == true
+            .Select(x => (character: x, score: x.GetNameMatchScore(name)))
+            .Where(x => x.score > 0)
+            .OrderByDescending(x => x.score)
+            .ThenBy(x => character.Relationships?.Any(y => y.Id == x.character.Id) == true
                 ? 1
                 : 0)
+            .Select(x => x.character)
             .FirstOrDefault();
         if (relative is null)
         {

@@ -1488,6 +1488,10 @@ public class Character : INote
             : null;
     }
 
+    /// <summary>Returns a string that represents the current object.</summary>
+    /// <returns>A string that represents the current object.</returns>
+    public override string ToString() => CharacterFullName ?? Name ?? Type;
+
     private static List<Relationship>? AdjustRelationshipMap(
         List<Relationship>? relationshipMap,
         Func<Relationship, Relationship?> func)
