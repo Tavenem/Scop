@@ -195,10 +195,13 @@ public partial class StoryPage : IDisposable
             .Where(x => x
                 .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
             .ToList();
-        if (!list.Contains(trimmed))
+
+        var index = list.IndexOf(trimmed);
+        if (index != -1)
         {
-            list.Insert(0, trimmed);
+            list.RemoveAt(index);
         }
+        list.Insert(0, trimmed);
 
         return Task.FromResult<IEnumerable<string?>>(list);
     }
@@ -216,10 +219,13 @@ public partial class StoryPage : IDisposable
             .Where(x => x
                 .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
             .ToList();
-        if (!list.Contains(trimmed))
+
+        var index = list.IndexOf(trimmed);
+        if (index != -1)
         {
-            list.Insert(0, trimmed);
+            list.RemoveAt(index);
         }
+        list.Insert(0, trimmed);
 
         return Task.FromResult<IEnumerable<string?>>(list);
     }
@@ -237,10 +243,13 @@ public partial class StoryPage : IDisposable
             .Where(x => x
                 .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
             .ToList();
-        if (!list.Contains(trimmed))
+
+        var index = list.IndexOf(trimmed);
+        if (index != -1)
         {
-            list.Insert(0, trimmed);
+            list.RemoveAt(index);
         }
+        list.Insert(0, trimmed);
 
         return Task.FromResult<IEnumerable<string?>>(list);
     }
@@ -258,10 +267,13 @@ public partial class StoryPage : IDisposable
             .Where(x => x
                 .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
             .ToList();
-        if (!list.Contains(trimmed))
+
+        var index = list.IndexOf(trimmed);
+        if (index != -1)
         {
-            list.Insert(0, trimmed);
+            list.RemoveAt(index);
         }
+        list.Insert(0, trimmed);
 
         return Task.FromResult<IEnumerable<string?>>(list);
     }
@@ -309,10 +321,12 @@ public partial class StoryPage : IDisposable
                 && x.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
             .ToList() ?? new();
 
-        if (!list.Contains(trimmed))
+        var index = list.IndexOf(trimmed);
+        if (index != -1)
         {
-            list.Insert(0, trimmed);
+            list.RemoveAt(index);
         }
+        list.Insert(0, trimmed);
 
         return Task.FromResult<IEnumerable<string?>>(list);
     }
@@ -343,9 +357,13 @@ public partial class StoryPage : IDisposable
                 || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
             .Distinct()
             .ToList();
-        if (!string.IsNullOrWhiteSpace(trimmed)
-            && !nameList.Contains(trimmed))
+        if (!string.IsNullOrWhiteSpace(trimmed))
         {
+            var index = nameList.IndexOf(trimmed);
+            if (index != -1)
+            {
+                nameList.RemoveAt(index);
+            }
             nameList.Insert(0, trimmed);
         }
         return nameList;
@@ -369,9 +387,13 @@ public partial class StoryPage : IDisposable
                 || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
             .Distinct()
             .ToList();
-        if (!string.IsNullOrWhiteSpace(trimmed)
-            && !nameList.Contains(trimmed))
+        if (!string.IsNullOrWhiteSpace(trimmed))
         {
+            var index = nameList.IndexOf(trimmed);
+            if (index != -1)
+            {
+                nameList.RemoveAt(index);
+            }
             nameList.Insert(0, trimmed);
         }
         return nameList;

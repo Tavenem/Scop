@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.27
+### Fixed
+- Fix autocomplete
+
 ## 1.0.26
 ### Fixed
 - Fix relationship expansion on switch
