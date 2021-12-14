@@ -24,4 +24,6 @@ public interface INote
     string Type { get; }
 
     NoteTypeDiscriminator TypeDiscriminator { get; }
+
+    void LoadCharacters(Story story);
 }

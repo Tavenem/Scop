@@ -4,9 +4,9 @@
             <MudGrid>
                 <MudItem xs="12" sm="7">
                     <MudNumericField @bind-Value="Modifier.Weight"
-                                        Label="Weight"
-                                        Disabled="Modifier.Force"
-                                        Min="0.0" />
+                                     Label="Weight"
+                                     Disabled="Modifier.Force"
+                                     Min="0.0" />
                 </MudItem>
                 <MudItem xs="12" sm="5">
                     <MudTooltip Text="Trait is always selected if the modifier applies" Delay="600">
@@ -16,30 +16,30 @@
                 <MudItem xs="12">
                     <MudTooltip Text="Highest priority wins when multiple modifiers apply" Delay="600">
                         <MudNumericField @bind-Value="Modifier.Priority"
-                                            Label="Priority" />
+                                         Label="Priority" />
                     </MudTooltip>
                 </MudItem>
                 <MudItem xs="12" sm="6">
                     <MudNumericField @bind-Value="Modifier.MinAge"
-                                        Label="Min Age"
-                                        Min="0" />
+                                     Label="Min Age"
+                                     Min="0" />
                 </MudItem>
                 <MudItem xs="12" sm="6">
                     <MudNumericField @bind-Value="Modifier.MaxAge"
-                                        Label="Max Age"
-                                        Min="0" />
+                                     Label="Max Age"
+                                     Min="0" />
                 </MudItem>
                 <MudItem xs="12">
-                    <MudTooltip Delay="600">
+                    <MudTooltip Delay="600" Style="width: 100%">
                         <TooltipContent>
                             <MudText Typo="Typo.body2">The affected gender</MudText>
                             <MudText Typo="Typo.body2">Determined by the character's pronouns</MudText>
                         </TooltipContent>
                         <ChildContent>
                             <MudSelect T="NameGender"
-                                        @bind-Value="Modifier.Gender"
-                                        Label="Gender"
-                                        AnchorOrigin="Origin.BottomCenter">
+                                       @bind-Value="Modifier.Gender"
+                                       Label="Gender"
+                                       AnchorOrigin="Origin.BottomCenter">
                                 <MudSelectItem Value="NameGender.None">Any</MudSelectItem>
                                 <MudSelectItem Value="NameGender.Female">Female</MudSelectItem>
                                 <MudSelectItem Value="NameGender.Male">Male</MudSelectItem>
@@ -68,16 +68,16 @@
                             for (var i = 0; i < Modifier.Ethnicities.Count; i++)
                             {
                                 var index = i;
-                                <MudListItem Class="d-flex justify-space-between">
-                                    <MudTextField @bind-Value="Modifier.Ethnicities[index]" OnBlur="OnEditEthnicity" Margin="Margin.Dense" />
-                                    <div>
+                                <MudListItem @key="Modifier.Ethnicities[index]">
+                                    <div class="d-flex">
+                                        <MudTextField @bind-Value="Modifier.Ethnicities[index]" OnBlur="OnEditEthnicity" Margin="Margin.Dense" />
                                         <MudIconButton OnClick="@(_ => OnRemoveEthnicity(index))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
                                     </div>
                                 </MudListItem>
                             }
                         }
                         <MudListItem>
-                            <MudTextField @bind-Value="NewEthnicity" OnBlur="OnSetNewEthnicity" Margin="Margin.Dense" />
+                            <MudTextField @bind-Value="NewEthnicity" OnBlur="OnSetNewEthnicity" OnKeyDown="OnNewEthnicityKeydown" Margin="Margin.Dense" />
                         </MudListItem>
                     </MudList>
                 </MudCardContent>
@@ -99,19 +99,25 @@
                     <MudList>
                         @if (Modifier.TargetPaths is not null)
                         {
-                            for (var i = 0; i < Modifier.TargetPaths.Count; i++)
+                            foreach (var path in Modifier.TargetPaths)
                             {
-                                var index = i;
-                                <MudListItem Class="d-flex justify-space-between">
-                                    <MudTextField @bind-Value="Modifier.TargetPaths[index]" OnBlur="OnEditTargetPath" Margin="Margin.Dense" />
-                                    <div>
-                                        <MudIconButton OnClick="@(_ => OnRemoveTargetPath(index))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
+                                <MudListItem @key="path">
+                                    <div class="d-flex">
+                                        <MudTextField T="string"
+                                                      Value="path"
+                                                      ValueChanged="@(v => OnTargetPathValueChanged(path, v))"
+                                                      Margin="Margin.Dense" />
+                                        <MudIconButton OnClick="@(_ => OnRemoveTargetPath(path))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
                                     </div>
                                 </MudListItem>
                             }
                         }
                         <MudListItem>
-                            <MudTextField @bind-Value="NewTargetPath" OnBlur="OnSetNewTargetPath" Margin="Margin.Dense" />
+                            <MudTextField @bind-Value="NewTargetPath"
+                                          Immediate="true"
+                                          OnBlur="OnSetNewTargetPath"
+                                          OnKeyDown="OnNewTargetPathKeydown"
+                                          Margin="Margin.Dense" />
                         </MudListItem>
                     </MudList>
                 </MudCardContent>
@@ -120,5 +126,6 @@
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="@(_ => MudDialog?.Close(Modifier))" Color="Color.Primary">Done</MudButton>
+        <MudButton OnClick="@(_ => MudDialog?.Close())" Color="Color.Secondary">Cancel</MudButton>
     </DialogActions>
 </MudDialog>

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using MudBlazor;
 
 namespace Scop.Shared;
@@ -25,15 +26,19 @@ public partial class TraitModifierDialog
         }
     }
 
-    private void OnEditTargetPath()
+    private void OnNewEthnicityKeydown(KeyboardEventArgs e)
     {
-        if (Modifier.TargetPaths is not null)
+        if (e.Key == "Enter")
         {
-            Modifier.TargetPaths.RemoveAll(x => string.IsNullOrWhiteSpace(x));
-            if (Modifier.TargetPaths.Count == 0)
-            {
-                Modifier.TargetPaths = null;
-            }
+            OnSetNewEthnicity();
+        }
+    }
+
+    private void OnNewTargetPathKeydown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            OnSetNewTargetPath();
         }
     }
 
@@ -49,11 +54,11 @@ public partial class TraitModifierDialog
         }
     }
 
-    private void OnRemoveTargetPath(int index)
+    private void OnRemoveTargetPath(string path)
     {
         if (Modifier.TargetPaths is not null)
         {
-            Modifier.TargetPaths.RemoveAt(index);
+            Modifier.TargetPaths.Remove(path);
             if (Modifier.TargetPaths.Count == 0)
             {
                 Modifier.TargetPaths = null;
@@ -81,5 +86,30 @@ public partial class TraitModifierDialog
 
         (Modifier.TargetPaths ??= new()).Add(NewTargetPath.Trim());
         NewTargetPath = null;
+    }
+
+    private void OnTargetPathValueChanged(string oldPath, string newPath)
+    {
+        if (Modifier.TargetPaths is null)
+        {
+            return;
+        }
+
+        var index = Modifier.TargetPaths.IndexOf(oldPath);
+        if (index == -1)
+        {
+            return;
+        }
+
+        Modifier.TargetPaths.RemoveAt(index);
+        if (!string.IsNullOrWhiteSpace(newPath))
+        {
+            Modifier.TargetPaths.Insert(index, newPath);
+        }
+
+        if (Modifier.TargetPaths.Count == 0)
+        {
+            Modifier.TargetPaths = null;
+        }
     }
 }

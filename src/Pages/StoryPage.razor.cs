@@ -398,11 +398,12 @@ public partial class StoryPage : IDisposable
 
         if (_story?.Notes is not null)
         {
-            foreach (var character in _story.Notes.OfType<Character>())
+            foreach (var note in _story.Notes)
             {
-                character.LoadCharacter(_story);
+                note.LoadCharacters(_story);
             }
         }
+
         _loading = false;
         await InvokeAsync(StateHasChanged);
     }
@@ -963,8 +964,10 @@ public partial class StoryPage : IDisposable
         {
             return;
         }
-        (_story.Notes ??= new()).Add(new Note() { Name = NewNoteValue });
+        var newNote = new Note() { Name = NewNoteValue };
+        (_story.Notes ??= new()).Add(newNote);
         NewNoteValue = string.Empty;
+        SelectedNote = newNote;
         await DataService.SaveAsync();
     }
 
@@ -974,8 +977,10 @@ public partial class StoryPage : IDisposable
         {
             return;
         }
-        (parent.Notes ??= new()).Add(new Note() { Name = parent.NewNoteValue });
+        var newNote = new Note() { Name = parent.NewNoteValue };
+        (parent.Notes ??= new()).Add(newNote);
         parent.NewNoteValue = string.Empty;
+        SelectedNote = newNote;
         await DataService.SaveAsync();
     }
 

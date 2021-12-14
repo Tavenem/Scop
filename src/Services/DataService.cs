@@ -89,7 +89,7 @@ public class DataService : IDisposable
         if (scopData is not null)
         {
             LastGDriveSync = scopData.LastSync;
-            if (scopData.LastSync > Data.LastSync)
+            if (scopData.LastSync >= Data.LastSync)
             {
                 Data = scopData;
                 UpdateData();

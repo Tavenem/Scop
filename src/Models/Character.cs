@@ -880,7 +880,7 @@ public class Character : INote
     public bool HasTrait(Trait trait) => trait.Hierarchy is not null
         && TraitPaths?.Any(x => x.StartsWith(trait.Hierarchy)) == true;
 
-    public void LoadCharacter(Story story)
+    public void LoadCharacters(Story story)
     {
         SetDisplayAge(story);
         SetDisplayEthnicity();
@@ -889,9 +889,9 @@ public class Character : INote
 
         if (Notes is not null)
         {
-            foreach (var child in Notes.OfType<Character>())
+            foreach (var child in Notes)
             {
-                child.LoadCharacter(story);
+                child.LoadCharacters(story);
             }
         }
     }
