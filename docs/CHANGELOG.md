@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.33
+### Fixed
+- Fix timeline event localization
+
 ## 1.0.32
 ### Fixed
 - Fix timeline event edit

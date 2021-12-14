@@ -102,7 +102,7 @@
                                                   Value="SelectedEvent.Content"
                                                   ValueChanged="OnSelectedEventChangedAsync"
                                                   Label="Title" />
-                                    <MudDatePicker Date="SelectedEvent.Start"
+                                    <MudDatePicker Date="SelectedEvent.EffectiveStart"
                                                    DateChanged="OnSelectedEventStartDateChangedAsync"
                                                    Label="Start"
                                                    AllowKeyboardInput="true"
@@ -121,7 +121,7 @@
                                     }
                                     @if (SelectedEvent.End.HasValue)
                                     {
-                                        <MudDatePicker Date="SelectedEvent.End"
+                                        <MudDatePicker Date="SelectedEvent.EffectiveEnd"
                                                        DateChanged="OnSelectedEventEndDateChangedAsync"
                                                        Label="End"
                                                        AllowKeyboardInput="true"

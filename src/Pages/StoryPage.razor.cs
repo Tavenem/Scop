@@ -1565,12 +1565,12 @@ public partial class StoryPage : IDisposable
     {
         SelectedEvent = selectedEvent;
 
-        TimelineEventEndDate = SelectedEvent?.End;
-        TimelineEventEndTime = SelectedEvent?.End?.TimeOfDay;
+        TimelineEventEndDate = SelectedEvent?.EffectiveEnd;
+        TimelineEventEndTime = SelectedEvent?.EffectiveEnd?.TimeOfDay;
         IsTimelineEventEndTimeDisplayed = TimelineEventEndTime.HasValue && TimelineEventEndTime.Value.Ticks > 0;
 
-        TimelineEventStartDate = SelectedEvent?.Start;
-        TimelineEventStartTime = SelectedEvent?.Start?.TimeOfDay;
+        TimelineEventStartDate = SelectedEvent?.EffectiveStart;
+        TimelineEventStartTime = SelectedEvent?.EffectiveStart?.TimeOfDay;
         IsTimelineEventStartTimeDisplayed = TimelineEventStartTime.HasValue && TimelineEventStartTime.Value.Ticks > 0;
     }
 
@@ -1593,7 +1593,7 @@ public partial class StoryPage : IDisposable
         TimelineEventEndDate = value;
         if (SelectedEvent is not null)
         {
-            SelectedEvent.End = TimelineEventEndDate?.Date;
+            SelectedEvent.End = TimelineEventEndDate?.Date.ToUniversalTime();
             if (SelectedEvent.End.HasValue && TimelineEventEndTime.HasValue)
             {
                 SelectedEvent.End = SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
@@ -1610,7 +1610,7 @@ public partial class StoryPage : IDisposable
         TimelineEventEndTime = value;
         if (SelectedEvent is not null)
         {
-            SelectedEvent.End = TimelineEventEndDate?.Date;
+            SelectedEvent.End = TimelineEventEndDate?.Date.ToUniversalTime();
             if (SelectedEvent.End.HasValue && TimelineEventEndTime.HasValue)
             {
                 SelectedEvent.End = SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
@@ -1627,7 +1627,7 @@ public partial class StoryPage : IDisposable
         TimelineEventStartDate = value;
         if (SelectedEvent is not null)
         {
-            SelectedEvent.Start = TimelineEventStartDate?.Date;
+            SelectedEvent.Start = TimelineEventStartDate?.Date.ToUniversalTime();
             if (SelectedEvent.Start.HasValue && TimelineEventStartTime.HasValue)
             {
                 SelectedEvent.Start = SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
@@ -1644,7 +1644,7 @@ public partial class StoryPage : IDisposable
         TimelineEventStartTime = value;
         if (SelectedEvent is not null)
         {
-            SelectedEvent.Start = TimelineEventStartDate?.Date;
+            SelectedEvent.Start = TimelineEventStartDate?.Date.ToUniversalTime();
             if (SelectedEvent.Start.HasValue && TimelineEventStartTime.HasValue)
             {
                 SelectedEvent.Start = SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);

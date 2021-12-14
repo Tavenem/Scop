@@ -242,6 +242,7 @@ public partial class Timeline : IAsyncDisposable
         {
             return;
         }
+        Console.WriteLine(value.Id);
 
         Events?.RemoveAll(x => x.Id == value.Id);
         (Events ??= new()).Add(value);
