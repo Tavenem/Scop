@@ -162,7 +162,7 @@
                                                Icon="@Icons.Material.Filled.Casino" />
                             </MudTooltip>
                             <MudExpansionPanels>
-                                <MudExpansionPanel Text="@($"Name: {character.CharacterName}")">
+                                <MudExpansionPanel Text="@($"Name: {character.CharacterFullName}")">
                                     <MudText Inline="true" Typo="Typo.h4">@character.CharacterName</MudText>
                                     <MudTooltip Text="Randomize full name">
                                         <MudIconButton OnClick="@(_ => OnRandomizeCharacterFullNameAsync(character))"

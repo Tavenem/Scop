@@ -14,6 +14,8 @@ public class Character : INote
 
     public DateTime? Birthdate { get; set; }
 
+    [JsonIgnore] public string? CharacterFullName => GetName(true);
+
     [JsonIgnore] public string? CharacterName => GetName();
 
     public string? Content { get; set; }
@@ -1739,7 +1741,7 @@ public class Character : INote
         return newRelationship;
     }
 
-    private void BuildName(StringBuilder sb)
+    private void BuildName(StringBuilder sb, bool full = false)
     {
         sb.Append(Title);
         if (Names is not null)
@@ -1748,7 +1750,14 @@ public class Character : INote
             {
                 sb.Append(' ');
             }
-            sb.Append(Names[0]);
+            if (full)
+            {
+                sb.AppendJoin(' ', Names);
+            }
+            else
+            {
+                sb.Append(Names[0]);
+            }
         }
         if (Surnames is not null)
         {
@@ -1760,7 +1769,7 @@ public class Character : INote
             {
                 sb.AppendJoin('-', Surnames);
             }
-            else if (GetNameGender() == NameGender.Female)
+            else if (!full && GetNameGender() == NameGender.Female)
             {
                 sb.Append(Surnames[^1]);
             }
@@ -1779,10 +1788,10 @@ public class Character : INote
         }
     }
 
-    private string? GetName()
+    private string? GetName(bool full = false)
     {
         var sb = new StringBuilder();
-        BuildName(sb);
+        BuildName(sb, full);
         return sb.Length == 0 ? null : sb.ToString();
     }
 

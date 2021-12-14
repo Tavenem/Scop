@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.0.24
+## 1.0.25
 ### Changed
-- Automatically invert sweethearts
+- Show full name on section heading
 
 ## 1.0.23
 ### Added
