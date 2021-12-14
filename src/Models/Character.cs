@@ -879,24 +879,41 @@ public class Character : INote
         parts = parts[0].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         length += parts.Length;
 
+        string[]? titleParts = null;
+        if (!string.IsNullOrWhiteSpace(Title)
+            && Title.Contains(' '))
+        {
+            titleParts = Title.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        }
+
         for (var i = 0; i < parts.Length; i++)
         {
             if (Names?.Any(x =>
-                string.Equals(parts[0], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true
+                string.Equals(parts[i], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true
                 || Surnames?.Any(x =>
-                string.Equals(parts[0], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true)
+                string.Equals(parts[i], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true)
             {
                 matches++;
                 continue;
             }
-            if (!string.IsNullOrWhiteSpace(Title)
-                && string.Equals(parts[0], Title.Trim(), StringComparison.InvariantCultureIgnoreCase))
+            if (!string.IsNullOrWhiteSpace(Title))
             {
-                matches++;
+                if (string.Equals(parts[i], Title.Trim(), StringComparison.InvariantCultureIgnoreCase))
+                {
+                    matches++;
+                }
+                else if (titleParts is not null)
+                {
+                    if (titleParts.Any(x =>
+                        string.Equals(parts[i], x, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        matches++;
+                    }
+                }
             }
         }
 
-        return matches / length;
+        return Math.Min(matches, length) / length;
     }
 
     public string? GetRelationshipName(string? type, NameGender? gender = null)

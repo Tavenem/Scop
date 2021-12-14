@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.29
+### Fixed
+- Fix name matching
+
 ## 1.0.28
 ### Fixed
 - Fix relative match
