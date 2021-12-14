@@ -24,6 +24,20 @@ public class Note : INote
 
     [JsonPropertyOrder(-1)] public virtual NoteTypeDiscriminator TypeDiscriminator => NoteTypeDiscriminator.Note;
 
+    public IEnumerable<Character> AllCharacters()
+    {
+        if (Notes is not null)
+        {
+            foreach (var note in Notes)
+            {
+                foreach (var child in note.AllCharacters())
+                {
+                    yield return child;
+                }
+            }
+        }
+    }
+
     public void LoadCharacters(Story story)
     {
         if (Notes is not null)

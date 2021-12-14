@@ -270,7 +270,7 @@ public class Character : INote
         yield return this;
         if (Notes is not null)
         {
-            foreach (var note in Notes.OfType<Character>())
+            foreach (var note in Notes)
             {
                 foreach (var child in note.AllCharacters())
                 {
@@ -858,59 +858,45 @@ public class Character : INote
             return 0;
         }
 
-        var nameValue = 1.0;
+        var length = 0;
+        var matches = 0;
+
         var parts = name.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        if (parts.Length > 1
-            && (string.IsNullOrWhiteSpace(Suffix)
-            || !string.Equals(
-                Suffix.Trim(),
-                string.Join(", ", parts[1..]),
-                StringComparison.OrdinalIgnoreCase)))
+        if (parts.Length > 1)
         {
-            nameValue = 0.9;
+            length++;
+
+            if (!string.IsNullOrWhiteSpace(Suffix)
+                && string.Equals(
+                    Suffix.Trim(),
+                    string.Join(", ", parts[1..]),
+                    StringComparison.InvariantCultureIgnoreCase))
+            {
+                matches++;
+            }
         }
 
         parts = parts[0].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        if (!string.IsNullOrWhiteSpace(Title)
-            && string.Equals(parts[0], Title.Trim(), StringComparison.OrdinalIgnoreCase))
+        length += parts.Length;
+
+        for (var i = 0; i < parts.Length; i++)
         {
-            parts = parts[1..];
+            if (Names?.Any(x =>
+                string.Equals(parts[0], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true
+                || Surnames?.Any(x =>
+                string.Equals(parts[0], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true)
+            {
+                matches++;
+                continue;
+            }
+            if (!string.IsNullOrWhiteSpace(Title)
+                && string.Equals(parts[0], Title.Trim(), StringComparison.InvariantCultureIgnoreCase))
+            {
+                matches++;
+            }
         }
 
-        var p = 0;
-        if (Names is not null)
-        {
-            var n = 0;
-            while (p < parts.Length
-                && n < Names.Count
-                && string.Equals(
-                    Names[n].Trim(),
-                    parts[p],
-                    StringComparison.OrdinalIgnoreCase))
-            {
-                n++;
-                p++;
-            }
-        }
-        var matched = p;
-        if (Surnames is not null)
-        {
-            var s = 0;
-            while (p < parts.Length
-                && s < Surnames.Count)
-            {
-                if (string.Equals(
-                    Surnames[s].Trim(),
-                    parts[p],
-                    StringComparison.OrdinalIgnoreCase))
-                {
-                    matched++;
-                    s++;
-                }
-                p++;
-            }
-        }
-        return nameValue * (matched / parts.Length);
+        return matches / length;
     }
 
     public string? GetRelationshipName(string? type, NameGender? gender = null)

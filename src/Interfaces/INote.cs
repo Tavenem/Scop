@@ -25,5 +25,7 @@ public interface INote
 
     NoteTypeDiscriminator TypeDiscriminator { get; }
 
+    IEnumerable<Character> AllCharacters();
+
     void LoadCharacters(Story story);
 }

@@ -679,14 +679,14 @@ public partial class StoryPage : IDisposable
         var originalId = relationship.Id;
         var originalName = relationship.RelativeName;
 
+        var name = relationship.EditedRelativeName?.Trim();
         var relative = _story?
             .AllCharacters()
-            .OrderBy(x => character.Relationships?.Any(y => y.Id == x.Id) == true
+            .OrderByDescending(x => x.GetNameMatchScore(name))
+            .ThenBy(x => character.Relationships?.Any(y => y.Id == x.Id) == true
                 ? 1
                 : 0)
-            .ThenByDescending(x => x.GetNameMatchScore(relationship.EditedRelativeName))
             .FirstOrDefault();
-        var name = relationship.EditedRelativeName?.Trim();
         if (relative is null)
         {
             if (!string.IsNullOrEmpty(relationship.Id)

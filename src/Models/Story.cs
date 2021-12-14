@@ -22,7 +22,7 @@ public class Story
     {
         if (Notes is not null)
         {
-            foreach (var note in Notes.OfType<Character>())
+            foreach (var note in Notes)
             {
                 foreach (var child in note.AllCharacters())
                 {

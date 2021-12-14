@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.28
+### Fixed
+- Fix relative match
+
 ## 1.0.27
 ### Fixed
 - Fix autocomplete
