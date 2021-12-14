@@ -77,7 +77,10 @@
                             }
                         }
                         <MudListItem>
-                            <MudTextField @bind-Value="NewEthnicity" OnBlur="OnSetNewEthnicity" OnKeyDown="OnNewEthnicityKeydown" Margin="Margin.Dense" />
+                            <MudTextField T="string"
+                                          Value="NewEthnicity"
+                                          ValueChanged="OnSetNewEthnicity"
+                                          Margin="Margin.Dense" />
                         </MudListItem>
                     </MudList>
                 </MudCardContent>
@@ -113,10 +116,9 @@
                             }
                         }
                         <MudListItem>
-                            <MudTextField @bind-Value="NewTargetPath"
-                                          Immediate="true"
-                                          OnBlur="OnSetNewTargetPath"
-                                          OnKeyDown="OnNewTargetPathKeydown"
+                            <MudTextField T="string"
+                                          Value="NewTargetPath"
+                                          ValueChanged="OnSetNewTargetPath"
                                           Margin="Margin.Dense" />
                         </MudListItem>
                     </MudList>

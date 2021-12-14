@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.20
+### Changed
+- Performance improvements
+
 ## 1.0.19
 ### Changed
 - UI improvements

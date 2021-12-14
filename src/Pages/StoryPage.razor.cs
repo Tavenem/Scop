@@ -852,24 +852,9 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private async Task OnNewEthnicityKeydownAsync(KeyboardEventArgs e)
+    private async Task OnNewEthnicityAsync(string? newValue)
     {
-        if (e.Key == "Enter")
-        {
-            await OnNewEthnicityAsync();
-        }
-    }
-
-    private async Task OnNewEthnicityKeydownAsync(KeyboardEventArgs e, Ethnicity parent)
-    {
-        if (e.Key == "Enter")
-        {
-            await OnNewEthnicityAsync(parent);
-        }
-    }
-
-    private async Task OnNewEthnicityAsync()
-    {
+        NewEthnicityValue = newValue;
         if (_story is null
             || string.IsNullOrEmpty(NewEthnicityValue))
         {
@@ -896,8 +881,9 @@ public partial class StoryPage : IDisposable
         await DataService.SaveAsync();
     }
 
-    private async Task OnNewEthnicityAsync(Ethnicity parent)
+    private async Task OnNewEthnicityAsync(Ethnicity parent, string? newValue)
     {
+        parent.NewEthnicityValue = newValue;
         if (string.IsNullOrEmpty(parent.NewEthnicityValue))
         {
             return;
@@ -941,24 +927,9 @@ public partial class StoryPage : IDisposable
         await DataService.SaveAsync();
     }
 
-    private async Task OnNewNoteKeydownAsync(KeyboardEventArgs e)
+    private async Task OnNewNoteSetAsync(string? newValue)
     {
-        if (e.Key == "Enter")
-        {
-            await OnNewNoteSetAsync();
-        }
-    }
-
-    private async Task OnNewNoteKeydownAsync(KeyboardEventArgs e, INote parent)
-    {
-        if (e.Key == "Enter")
-        {
-            await OnNewNoteSetAsync(parent);
-        }
-    }
-
-    private async Task OnNewNoteSetAsync()
-    {
+        NewNoteValue = newValue;
         if (_story is null
             || string.IsNullOrEmpty(NewNoteValue))
         {
@@ -971,8 +942,9 @@ public partial class StoryPage : IDisposable
         await DataService.SaveAsync();
     }
 
-    private async Task OnNewNoteSetAsync(INote parent)
+    private async Task OnNewNoteSetAsync(INote parent, string? newValue)
     {
+        parent.NewNoteValue = newValue;
         if (string.IsNullOrEmpty(parent.NewNoteValue))
         {
             return;
@@ -984,24 +956,9 @@ public partial class StoryPage : IDisposable
         await DataService.SaveAsync();
     }
 
-    private async Task OnNewTraitKeydownAsync(KeyboardEventArgs e)
+    private async Task OnNewTraitAsync(string? newValue)
     {
-        if (e.Key == "Enter")
-        {
-            await OnNewTraitAsync();
-        }
-    }
-
-    private async Task OnNewTraitKeydownAsync(KeyboardEventArgs e, Trait parent)
-    {
-        if (e.Key == "Enter")
-        {
-            await OnNewTraitAsync(parent);
-        }
-    }
-
-    private async Task OnNewTraitAsync()
-    {
+        NewTraitValue = newValue;
         if (_story is null
             || string.IsNullOrEmpty(NewTraitValue))
         {
@@ -1036,8 +993,9 @@ public partial class StoryPage : IDisposable
         await DataService.SaveAsync();
     }
 
-    private async Task OnNewTraitAsync(Trait parent)
+    private async Task OnNewTraitAsync(Trait parent, string? newValue)
     {
+        parent.NewTraitValue = newValue;
         if (string.IsNullOrEmpty(parent.NewTraitValue))
         {
             return;
@@ -1594,8 +1552,13 @@ public partial class StoryPage : IDisposable
         IsTimelineEventStartTimeDisplayed = TimelineEventStartTime.HasValue && TimelineEventStartTime.Value.Ticks > 0;
     }
 
-    private async Task OnSelectedEventChangedAsync()
+    private async Task OnSelectedEventChangedAsync(string? newValue)
     {
+        if (SelectedEvent is null)
+        {
+            return;
+        }
+        SelectedEvent.Content = newValue;
         if (_timeline is not null)
         {
             await _timeline.UpdateSelectedEventAsync();
@@ -1614,7 +1577,11 @@ public partial class StoryPage : IDisposable
                 SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
             }
         }
-        await OnSelectedEventChangedAsync();
+        if (_timeline is not null)
+        {
+            await _timeline.UpdateSelectedEventAsync();
+            await OnChangeAsync();
+        }
     }
 
     private async Task OnSelectedEventEndTimeChangedAsync()
@@ -1628,7 +1595,11 @@ public partial class StoryPage : IDisposable
                 SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
             }
         }
-        await OnSelectedEventChangedAsync();
+        if (_timeline is not null)
+        {
+            await _timeline.UpdateSelectedEventAsync();
+            await OnChangeAsync();
+        }
     }
 
     private async Task OnSelectedEventStartDateChangedAsync()
@@ -1642,7 +1613,11 @@ public partial class StoryPage : IDisposable
                 SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
             }
         }
-        await OnSelectedEventChangedAsync();
+        if (_timeline is not null)
+        {
+            await _timeline.UpdateSelectedEventAsync();
+            await OnChangeAsync();
+        }
     }
 
     private async Task OnSelectedEventStartTimeChangedAsync()
@@ -1656,7 +1631,11 @@ public partial class StoryPage : IDisposable
                 SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
             }
         }
-        await OnSelectedEventChangedAsync();
+        if (_timeline is not null)
+        {
+            await _timeline.UpdateSelectedEventAsync();
+            await OnChangeAsync();
+        }
     }
 
     private void OnSelectNote(INote note)
@@ -1736,14 +1715,6 @@ public partial class StoryPage : IDisposable
             parentCollection.Insert(index, newNote);
             SelectedNote = newNote;
             await DataService.SaveAsync();
-        }
-    }
-
-    private async Task OnTimelineEventKeydownAsync(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            await OnSelectedEventChangedAsync();
         }
     }
 

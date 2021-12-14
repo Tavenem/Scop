@@ -26,22 +26,6 @@ public partial class TraitModifierDialog
         }
     }
 
-    private void OnNewEthnicityKeydown(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            OnSetNewEthnicity();
-        }
-    }
-
-    private void OnNewTargetPathKeydown(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            OnSetNewTargetPath();
-        }
-    }
-
     private void OnRemoveEthnicity(int index)
     {
         if (Modifier.Ethnicities is not null)
@@ -66,8 +50,9 @@ public partial class TraitModifierDialog
         }
     }
 
-    private void OnSetNewEthnicity()
+    private void OnSetNewEthnicity(string? newValue)
     {
+        NewEthnicity = newValue;
         if (string.IsNullOrWhiteSpace(NewEthnicity))
         {
             return;
@@ -77,8 +62,9 @@ public partial class TraitModifierDialog
         NewEthnicity = null;
     }
 
-    private void OnSetNewTargetPath()
+    private void OnSetNewTargetPath(string? newValue)
     {
+        NewTargetPath = newValue;
         if (string.IsNullOrWhiteSpace(NewTargetPath))
         {
             return;

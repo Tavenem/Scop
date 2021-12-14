@@ -53,11 +53,10 @@
                                                 Icon="@Icons.Material.Filled.NoteAdd"
                                                 OnDrop="OnChildNoteDropAsync">
                                 <Content>
-                                    <MudTextField @bind-Value="context.NewNoteValue"
+                                    <MudTextField T="string"
+                                                  Value="context.NewNoteValue"
+                                                  ValueChanged="@(v => OnNewNoteSetAsync(context, v))"
                                                   Placeholder="New Note"
-                                                  Immediate="true"
-                                                  OnBlur="@(_ => OnNewNoteSetAsync(context))"
-                                                  OnKeyDown="@(e => OnNewNoteKeydownAsync(e, context))"
                                                   Variant="Variant.Outlined"
                                                   Margin="Margin.Dense" />
                                 </Content>
@@ -70,11 +69,10 @@
                                         Icon="@Icons.Material.Filled.NoteAdd"
                                         OnDrop="OnDropAsync">
                         <Content>
-                            <MudTextField @bind-Value="NewNoteValue"
+                            <MudTextField T="string"
+                                          Value="NewNoteValue"
+                                          ValueChanged="OnNewNoteSetAsync"
                                           Placeholder="New Note"
-                                          Immediate="true"
-                                          OnBlur="OnNewNoteSetAsync"
-                                          OnKeyDown="OnNewNoteKeydownAsync"
                                           Variant="Variant.Outlined"
                                           Margin="Margin.Dense" />
                         </Content>
@@ -100,11 +98,10 @@
                             else
                             {
                                 <div style="width:100%">
-                                    <MudTextField @bind-Value="SelectedEvent.Content"
-                                                  Label="Title"
-                                                  Immediate="true"
-                                                  OnBlur="OnSelectedEventChangedAsync"
-                                                  OnKeyDown="OnTimelineEventKeydownAsync" />
+                                    <MudTextField T="string"
+                                                  Value="SelectedEvent.Content"
+                                                  ValueChanged="OnSelectedEventChangedAsync"
+                                                  Label="Title" />
                                     <MudDatePicker @ref="_timelineDateStartPicker"
                                                    @bind-Date="SelectedEvent.Start"
                                                    PickerClosed="OnSelectedEventStartDateChangedAsync"
@@ -412,11 +409,10 @@
                                                                         Icon="@Icons.Material.Filled.NoteAdd"
                                                                         Selectable="false">
                                                         <Content>
-                                                            <MudTextField @bind-Value="context.NewEthnicityValue"
+                                                            <MudTextField T="string"
+                                                                          Value="context.NewEthnicityValue"
+                                                                          ValueChanged="@(v => OnNewEthnicityAsync(context, v))"
                                                                           Placeholder="New Ethnicity"
-                                                                          Immediate="true"
-                                                                          OnBlur="@(_ => OnNewEthnicityAsync(context))"
-                                                                          OnKeyDown="@(e => OnNewEthnicityKeydownAsync(e, context))"
                                                                           Variant="Variant.Outlined"
                                                                           Margin="Margin.Dense" />
                                                         </Content>
@@ -429,11 +425,10 @@
                                                                 Icon="@Icons.Material.Filled.NoteAdd"
                                                                 Selectable="false">
                                                 <Content>
-                                                    <MudTextField @bind-Value="NewEthnicityValue"
+                                                    <MudTextField T="string"
+                                                                  Value="NewEthnicityValue"
+                                                                  ValueChanged="OnNewEthnicityAsync"
                                                                   Placeholder="New Ethnicity"
-                                                                  Immediate="true"
-                                                                  OnBlur="OnNewEthnicityAsync"
-                                                                  OnKeyDown="OnNewEthnicityKeydownAsync"
                                                                   Variant="Variant.Outlined"
                                                                   Margin="Margin.Dense" />
                                                 </Content>
@@ -466,21 +461,21 @@
                                                     {
                                                         <MudTooltip Text="Select random children without clearing any">
                                                             <MudIconButton OnClick="@(_ => OnTraitSelectAsync(true, context, character))"
-                                                                            Icon="@Icons.Material.Filled.PlaylistAdd"
-                                                                            Size="Size.Small" />
+                                                                           Icon="@Icons.Material.Filled.PlaylistAdd"
+                                                                           Size="Size.Small" />
                                                         </MudTooltip>
                                                     }
                                                     @if (context.UserDefined)
                                                     {
                                                         <MudTooltip Text="Edit" Delay="600">
                                                             <MudIconButton OnClick="@(_ => OnEditTraitAsync(context))"
-                                                                            Icon="@Icons.Material.Filled.Edit"
-                                                                            Size="Size.Small" />
+                                                                           Icon="@Icons.Material.Filled.Edit"
+                                                                           Size="Size.Small" />
                                                         </MudTooltip>
                                                         <MudTooltip Text="Delete" Delay="600">
                                                             <MudIconButton OnClick="@(_ => OnDeleteTraitAsync(context))"
-                                                                            Icon="@Icons.Material.Filled.Delete"
-                                                                            Size="Size.Small" />
+                                                                           Icon="@Icons.Material.Filled.Delete"
+                                                                           Size="Size.Small" />
                                                         </MudTooltip>
                                                     }
                                                 </EndIcons>
@@ -489,11 +484,10 @@
                                                                         Icon="@Icons.Material.Filled.NoteAdd"
                                                                         Selectable="false">
                                                         <Content>
-                                                            <MudTextField @bind-Value="context.NewTraitValue"
+                                                            <MudTextField T="string"
+                                                                          Value="context.NewTraitValue"
+                                                                          ValueChanged="@(v => OnNewTraitAsync(context, v))"
                                                                           Placeholder="New Trait"
-                                                                          Immediate="true"
-                                                                          OnBlur="@(_ => OnNewTraitAsync(context))"
-                                                                          OnKeyDown="@(e => OnNewTraitKeydownAsync(e, context))"
                                                                           Variant="Variant.Outlined"
                                                                           Margin="Margin.Dense" />
                                                         </Content>
@@ -506,11 +500,10 @@
                                                                 Icon="@Icons.Material.Filled.NoteAdd"
                                                                 Selectable="false">
                                                 <Content>
-                                                    <MudTextField @bind-Value="NewTraitValue"
+                                                    <MudTextField T="string"
+                                                                  Value="NewTraitValue"
+                                                                  ValueChanged="OnNewTraitAsync"
                                                                   Placeholder="New Trait"
-                                                                  Immediate="true"
-                                                                  OnBlur="OnNewTraitAsync"
-                                                                  OnKeyDown="OnNewTraitKeydownAsync"
                                                                   Variant="Variant.Outlined"
                                                                   Margin="Margin.Dense" />
                                                 </Content>
