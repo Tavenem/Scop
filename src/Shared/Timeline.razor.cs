@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
+using static MudBlazor.Colors;
 
 namespace Scop.Shared;
 
@@ -338,12 +339,12 @@ public partial class Timeline : IAsyncDisposable
     /// </summary>
     /// <param name="value">The selected event.</param>
     [JSInvokable]
-    public Task SelectEvent(TimelineEvent? value)
+    public async Task SelectEvent(TimelineEvent? value)
     {
         SelectedEvent = string.IsNullOrEmpty(value?.Id)
             ? null
             : Events?.Find(x => x.Id == value.Id);
-        return Task.CompletedTask;
+        await SelectedEventChanged.InvokeAsync(SelectedEvent);
     }
 
     /// <summary>
@@ -448,7 +449,11 @@ public partial class Timeline : IAsyncDisposable
     {
         if (SelectedEvent is not null)
         {
+            var id = SelectedEvent.Id;
             await SetEventsAsync(Events);
+            SelectedEvent = Events?.Find(x => x.Id == id);
+            await SelectedEventChanged.InvokeAsync(SelectedEvent);
+            await Change.InvokeAsync();
         }
     }
 

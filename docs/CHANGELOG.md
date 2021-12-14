@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.32
+### Fixed
+- Fix timeline event edit
+
 ## 1.0.31
 ### Fixed
 - Use dialogs for date and time

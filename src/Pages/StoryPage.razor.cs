@@ -26,10 +26,6 @@ public partial class StoryPage : IDisposable
     private bool _loading = true;
     private Story? _story;
     private Timeline? _timeline;
-    private MudDatePicker? _timelineDateEndPicker;
-    private MudDatePicker? _timelineDateStartPicker;
-    private MudTimePicker? _timelineTimeEndPicker;
-    private MudTimePicker? _timelineTimeStartPicker;
 
     [Parameter] public string? Id { get; set; }
 
@@ -1592,75 +1588,71 @@ public partial class StoryPage : IDisposable
         }
     }
 
-    private async Task OnSelectedEventEndDateChangedAsync()
+    private async Task OnSelectedEventEndDateChangedAsync(DateTime? value)
     {
-        _timelineDateEndPicker?.Close();
+        TimelineEventEndDate = value;
         if (SelectedEvent is not null)
         {
             SelectedEvent.End = TimelineEventEndDate?.Date;
             if (SelectedEvent.End.HasValue && TimelineEventEndTime.HasValue)
             {
-                SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
+                SelectedEvent.End = SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
             }
         }
         if (_timeline is not null)
         {
             await _timeline.UpdateSelectedEventAsync();
-            await OnChangeAsync();
         }
     }
 
-    private async Task OnSelectedEventEndTimeChangedAsync()
+    private async Task OnSelectedEventEndTimeChangedAsync(TimeSpan? value)
     {
-        _timelineTimeEndPicker?.Close();
+        TimelineEventEndTime = value;
         if (SelectedEvent is not null)
         {
             SelectedEvent.End = TimelineEventEndDate?.Date;
             if (SelectedEvent.End.HasValue && TimelineEventEndTime.HasValue)
             {
-                SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
+                SelectedEvent.End = SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
             }
         }
         if (_timeline is not null)
         {
             await _timeline.UpdateSelectedEventAsync();
-            await OnChangeAsync();
         }
     }
 
-    private async Task OnSelectedEventStartDateChangedAsync()
+    private async Task OnSelectedEventStartDateChangedAsync(DateTime? value)
     {
-        _timelineDateStartPicker?.Close();
+        TimelineEventStartDate = value;
         if (SelectedEvent is not null)
         {
             SelectedEvent.Start = TimelineEventStartDate?.Date;
             if (SelectedEvent.Start.HasValue && TimelineEventStartTime.HasValue)
             {
-                SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
+                SelectedEvent.Start = SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
             }
         }
         if (_timeline is not null)
         {
             await _timeline.UpdateSelectedEventAsync();
-            await OnChangeAsync();
         }
     }
 
-    private async Task OnSelectedEventStartTimeChangedAsync()
+    private async Task OnSelectedEventStartTimeChangedAsync(TimeSpan? value)
     {
-        _timelineTimeStartPicker?.Close();
+        TimelineEventStartTime = value;
         if (SelectedEvent is not null)
         {
             SelectedEvent.Start = TimelineEventStartDate?.Date;
             if (SelectedEvent.Start.HasValue && TimelineEventStartTime.HasValue)
             {
-                SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
+                SelectedEvent.Start = SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
             }
         }
         if (_timeline is not null)
         {
             await _timeline.UpdateSelectedEventAsync();
-            await OnChangeAsync();
         }
     }
 

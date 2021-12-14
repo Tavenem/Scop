@@ -102,9 +102,8 @@
                                                   Value="SelectedEvent.Content"
                                                   ValueChanged="OnSelectedEventChangedAsync"
                                                   Label="Title" />
-                                    <MudDatePicker @ref="_timelineDateStartPicker"
-                                                   @bind-Date="SelectedEvent.Start"
-                                                   PickerClosed="OnSelectedEventStartDateChangedAsync"
+                                    <MudDatePicker Date="SelectedEvent.Start"
+                                                   DateChanged="OnSelectedEventStartDateChangedAsync"
                                                    Label="Start"
                                                    AllowKeyboardInput="true"
                                                    AutoClose="true"
@@ -112,9 +111,8 @@
                                     <MudSwitch @bind-Checked="IsTimelineEventStartTimeDisplayed" Color="Color.Tertiary">Show Time</MudSwitch>
                                     @if (IsTimelineEventStartTimeDisplayed)
                                     {
-                                        <MudTimePicker @ref="_timelineTimeStartPicker"
-                                                       @bind-Time="TimelineEventStartTime"
-                                                       PickerClosed="OnSelectedEventStartTimeChangedAsync"
+                                        <MudTimePicker Time="TimelineEventStartTime"
+                                                       TimeChanged="OnSelectedEventStartTimeChangedAsync"
                                                        Label="Start Time"
                                                        AllowKeyboardInput="true"
                                                        AmPm="true"
@@ -123,9 +121,8 @@
                                     }
                                     @if (SelectedEvent.End.HasValue)
                                     {
-                                        <MudDatePicker @ref="_timelineDateEndPicker"
-                                                       @bind-Date="SelectedEvent.End"
-                                                       PickerClosed="OnSelectedEventEndDateChangedAsync"
+                                        <MudDatePicker Date="SelectedEvent.End"
+                                                       DateChanged="OnSelectedEventEndDateChangedAsync"
                                                        Label="End"
                                                        AllowKeyboardInput="true"
                                                        AutoClose="true"
@@ -133,9 +130,8 @@
                                         <MudSwitch @bind-Checked="IsTimelineEventEndTimeDisplayed" Color="Color.Primary">Show Time</MudSwitch>
                                         @if (IsTimelineEventEndTimeDisplayed)
                                         {
-                                            <MudTimePicker @ref="_timelineTimeEndPicker"
-                                                           @bind-Time="TimelineEventEndTime"
-                                                           PickerClosed="OnSelectedEventEndTimeChangedAsync"
+                                            <MudTimePicker Time="TimelineEventEndTime"
+                                                           TimeChanged="OnSelectedEventEndTimeChangedAsync"
                                                            Label="End Time"
                                                            AllowKeyboardInput="true"
                                                            AmPm="true"
