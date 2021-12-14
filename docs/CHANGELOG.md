@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.23
+### Added
+- Add relationship type names
+
 ## 1.0.22
 ### Fixed
 - Fix ethnicity selection

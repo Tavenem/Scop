@@ -213,6 +213,46 @@ public class Character : INote
                     return "nephew";
                 }
                 break;
+            case "spouse":
+                if (gender == NameGender.Female)
+                {
+                    return "wife";
+                }
+                if (gender == NameGender.Male)
+                {
+                    return "husband";
+                }
+                break;
+            case "ex-spouse":
+                if (gender == NameGender.Female)
+                {
+                    return "ex-wife";
+                }
+                if (gender == NameGender.Male)
+                {
+                    return "ex-husband";
+                }
+                break;
+            case "sweetheart":
+                if (gender == NameGender.Female)
+                {
+                    return "girlfriend";
+                }
+                if (gender == NameGender.Male)
+                {
+                    return "boyfriend";
+                }
+                break;
+            case "ex-sweetheart":
+                if (gender == NameGender.Female)
+                {
+                    return "ex-girlfriend";
+                }
+                if (gender == NameGender.Male)
+                {
+                    return "ex-boyfriend";
+                }
+                break;
         }
         return type;
     }

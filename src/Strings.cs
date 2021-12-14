@@ -23,6 +23,8 @@ public static class Strings
         "Sibling-in-law",
         "Spouse",
         "Ex-Spouse",
+        "Sweetheart",
+        "Ex-Sweetheart",
     };
     public static readonly string[] Suffixes = new[]
     {
