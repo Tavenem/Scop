@@ -282,11 +282,9 @@ public partial class StoryPage : IDisposable
         relationship.IsEditing = false;
     }
 
-    private static void OnEditEthnicity(Ethnicity ethnicity)
+    private static void OnEditEthnicity(Ethnicity ethnicity, string? newValue)
     {
-        ethnicity.Type = string.IsNullOrWhiteSpace(ethnicity.Type)
-            ? "unknown"
-            : ethnicity.Type.Trim();
+        ethnicity.Type = newValue?.Trim();
         ethnicity.IsEditing = false;
     }
 

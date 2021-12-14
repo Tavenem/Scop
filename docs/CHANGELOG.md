@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.22
+### Fixed
+- Fix ethnicity selection
+
 ## 1.0.21
 ### Fixed
 - Fix autocomplete bug

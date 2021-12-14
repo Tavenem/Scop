@@ -367,14 +367,15 @@
                                                                 @bind-Expanded="context.IsExpanded"
                                                                 Items="context.Types"
                                                                 Selected="character.HasEthnicity(context)"
-                                                                SelectedChanged="@(v => OnEthnicitySelectAsync(v, context, character))"
+                                                                OnSelect="@(v => OnEthnicitySelectAsync(v.Value, context, character))"
                                                                 Text="@context.Type.ToTitle()"
                                                                 ShowText="!context.IsEditing">
                                                 <Content>
                                                     @if (context.IsEditing)
                                                     {
-                                                        <MudTextField @bind-Value="context.Type"
-                                                                      OnBlur="@(_ => OnEditEthnicity(context))"
+                                                        <MudTextField T="string"
+                                                                      Value="context.Type"
+                                                                      ValueChanged="@(v => OnEditEthnicity(context, v))"
                                                                       Placeholder="Type" />
                                                     }
                                                 </Content>
