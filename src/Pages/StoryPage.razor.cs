@@ -343,6 +343,7 @@ public partial class StoryPage : IDisposable
             .Select(x => x.Name)
             .Where(x => string.IsNullOrWhiteSpace(trimmed)
                 || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
+            .Distinct()
             .ToList();
         if (!string.IsNullOrWhiteSpace(trimmed)
             && !nameList.Contains(trimmed))
@@ -368,6 +369,7 @@ public partial class StoryPage : IDisposable
             .Select(x => x.Name)
             .Where(x => string.IsNullOrWhiteSpace(trimmed)
                 || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
+            .Distinct()
             .ToList();
         if (!string.IsNullOrWhiteSpace(trimmed)
             && !nameList.Contains(trimmed))

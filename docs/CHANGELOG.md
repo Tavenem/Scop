@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.21
+### Fixed
+- Fix autocomplete bug
+
 ## 1.0.20
 ### Changed
 - Performance improvements
