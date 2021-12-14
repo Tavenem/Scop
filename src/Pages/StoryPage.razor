@@ -107,7 +107,8 @@
                                                    PickerClosed="OnSelectedEventStartDateChangedAsync"
                                                    Label="Start"
                                                    AllowKeyboardInput="true"
-                                                   AutoClose="true" />
+                                                   AutoClose="true"
+                                                   PickerVariant="PickerVariant.Dialog" />
                                     <MudSwitch @bind-Checked="IsTimelineEventStartTimeDisplayed" Color="Color.Tertiary">Show Time</MudSwitch>
                                     @if (IsTimelineEventStartTimeDisplayed)
                                     {
@@ -117,7 +118,8 @@
                                                        Label="Start Time"
                                                        AllowKeyboardInput="true"
                                                        AmPm="true"
-                                                       AutoClose="true" />
+                                                       AutoClose="true"
+                                                       PickerVariant="PickerVariant.Dialog" />
                                     }
                                     @if (SelectedEvent.End.HasValue)
                                     {
@@ -126,7 +128,8 @@
                                                        PickerClosed="OnSelectedEventEndDateChangedAsync"
                                                        Label="End"
                                                        AllowKeyboardInput="true"
-                                                       AutoClose="true" />
+                                                       AutoClose="true"
+                                                       PickerVariant="PickerVariant.Dialog" />
                                         <MudSwitch @bind-Checked="IsTimelineEventEndTimeDisplayed" Color="Color.Primary">Show Time</MudSwitch>
                                         @if (IsTimelineEventEndTimeDisplayed)
                                         {
@@ -136,7 +139,8 @@
                                                            Label="End Time"
                                                            AllowKeyboardInput="true"
                                                            AmPm="true"
-                                                           AutoClose="true" />
+                                                           AutoClose="true"
+                                                           PickerVariant="PickerVariant.Dialog" />
                                         }
                                     }
                                     <MarkdownEditor @bind-Value="SelectedEvent.Markdown"

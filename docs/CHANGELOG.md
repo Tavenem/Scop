@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.31
+### Fixed
+- Use dialogs for date and time
+
 ## 1.0.30
 ### Fixed
 - Fix name matching
