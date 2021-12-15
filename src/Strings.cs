@@ -14,6 +14,7 @@ public static class Strings
     {
         "Child",
         "Child-in-law",
+        "Cousin",
         "Grandparent",
         "Nibling",
         "Parent",

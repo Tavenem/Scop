@@ -49,14 +49,5 @@ public class Story
     }
 
     public void ResetCharacterRelationshipMaps()
-    {
-        if (Notes is null)
-        {
-            return;
-        }
-        foreach (var character in Notes.OfType<Character>())
-        {
-            character.ResetRelationshipMap(this);
-        }
-    }
+        => Character.SetRelationshipMaps(this, AllCharacters().ToList());
 }

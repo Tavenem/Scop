@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Scop;
 
-public class Character : INote
+public class Character : INote, IEquatable<Character>
 {
     public int? AgeYears { get; set; }
 
@@ -83,6 +83,8 @@ public class Character : INote
     public List<INote>? Notes { get; set; }
 
     public Pronouns Pronouns { get; set; }
+
+    [JsonIgnore] public HashSet<string>? RelationshipIds { get; set; }
 
     [JsonIgnore] public List<Relationship>? RelationshipMap { get; set; }
 
@@ -259,6 +261,213 @@ public class Character : INote
         return type;
     }
 
+    public static void SetRelationshipMaps(Story story, List<Character> characters)
+    {
+        foreach (var character in characters)
+        {
+            character.RelationshipIds = new() { character.Id };
+            character.RelationshipMap = new()
+            {
+                new()
+                {
+                    Id = character.Id,
+                    Type = "self",
+                }
+            };
+        }
+
+        foreach (var character in characters
+            .Where(x => x.Relationships is not null))
+        {
+            var name = character.GetName();
+            var gender = character.GetNameGender();
+
+            foreach (var relationship in character.Relationships!)
+            {
+                if (relationship.Id is not null
+                    && character.RelationshipIds!.Contains(relationship.Id))
+                {
+                    continue;
+                }
+
+                character.RelationshipMap!.Add(relationship);
+
+                if (relationship.Id is null)
+                {
+                    continue;
+                }
+
+                var relative = characters.Find(x => x.Id == relationship.Id);
+                if (relative is null)
+                {
+                    relationship.Id = null;
+                    continue;
+                }
+
+                character.RelationshipIds!.Add(relationship.Id);
+                relationship.Relative = relative;
+                relationship.EditedRelativeName = relative.CharacterName;
+
+                if (relative.RelationshipMap?.Any(x => x.Id == character.Id) != true
+                    && relative.Relationships?.Any(x => x.Id == character.Id) != true)
+                {
+                    var inverseType = relationship.InverseType ?? relationship.Type;
+                    var inverted = !string.IsNullOrEmpty(relationship.InverseType);
+                    if (!string.IsNullOrEmpty(relationship.Type)
+                        && !inverted)
+                    {
+                        if (relationship.Type.EndsWith("grandchild"))
+                        {
+                            inverseType = relationship.Type[..^5] + "parent";
+                            inverted = true;
+                        }
+                        else if (relationship.Type.EndsWith("grandparent"))
+                        {
+                            inverseType = relationship.Type[..^6] + "child";
+                            inverted = true;
+                        }
+                        else
+                        {
+                            switch (relationship.Type)
+                            {
+                                case "child":
+                                    inverseType = "parent";
+                                    inverted = true;
+                                    break;
+                                case "child-in-law":
+                                    inverseType = "parent-in-law";
+                                    inverted = true;
+                                    break;
+                                case "parent":
+                                    inverseType = "child";
+                                    inverted = true;
+                                    break;
+                                case "parent-in-law":
+                                    inverseType = "child-in-law";
+                                    inverted = true;
+                                    break;
+                                case "sibling":
+                                case "spouse":
+                                case "ex-spouse":
+                                case "sweetheart":
+                                case "ex-sweetheart":
+                                    inverted = true;
+                                    break;
+                                case "pibling":
+                                    inverseType = "nibling";
+                                    inverted = true;
+                                    break;
+                                case "nibling":
+                                    inverseType = "pibling";
+                                    inverted = true;
+                                    break;
+                            }
+                        }
+                    }
+                    var relationshipName = GetRelationshipName(inverseType, gender);
+                    relative.RelationshipMap!.Add(new Relationship
+                    {
+                        EditedInverseType = relationship.Type,
+                        EditedRelationshipName = relationshipName,
+                        EditedRelativeName = name,
+                        EditedType = inverseType,
+                        Id = character.Id,
+                        InverseType = relationship.Type,
+                        RelationshipName = relationshipName,
+                        Relative = character,
+                        Synthetic = true,
+                        Type = inverseType,
+                    });
+                    relative.RelationshipIds!.Add(character.Id);
+                }
+            }
+        }
+
+        void AdjustRelativeMap(
+            Character character,
+            Relationship relationship,
+            HashSet<Character> queue)
+        {
+            var adjustedMap = AdjustRelationshipMap(
+                relationship.Relative!.RelationshipMap,
+                relationship.Type switch
+                {
+                    "child" => AdjustRelationshipForChild,
+                    "parent" => AdjustRelationshipForParent,
+                    "sibling" => AdjustRelationshipForSibling,
+                    "spouse" => AdjustRelationshipForSpouse,
+                    _ => _ => null,
+                });
+            if (adjustedMap is null)
+            {
+                return;
+            }
+
+            var anyAdded = false;
+            foreach (var relativeRelationship in adjustedMap)
+            {
+                if (!string.IsNullOrEmpty(relativeRelationship.Id)
+                    && character.RelationshipIds!
+                    .Contains(relativeRelationship.Id))
+                {
+                    continue;
+                }
+                else if (string.IsNullOrEmpty(relativeRelationship.Id)
+                    && character.RelationshipMap!
+                    .Any(x => string.IsNullOrEmpty(x.Id)
+                    && x.RelativeName == relativeRelationship.RelativeName))
+                {
+                    continue;
+                }
+
+                character.RelationshipMap!.Add(relativeRelationship);
+                if (!string.IsNullOrEmpty(relativeRelationship.Id))
+                {
+                    character.RelationshipIds!.Add(relativeRelationship.Id);
+                }
+                anyAdded = true;
+
+                if (relationship.Type == "parent"
+                    && relativeRelationship.Type == "parent")
+                {
+                    AdjustRelativeMap(character, relativeRelationship, queue);
+                }
+            }
+
+            if (anyAdded)
+            {
+                foreach (var relationship2 in character.RelationshipMap!
+                    .Where(x => x.Id != character.Id
+                    && x.Relative is not null))
+                {
+                    queue.Add(relationship2.Relative!);
+                }
+            }
+        }
+
+        var queue = new HashSet<Character>(characters
+            .Where(x => x.RelationshipMap!.Count > 1));
+        while (queue.Count > 0)
+        {
+            var character = queue.First();
+            queue.Remove(character);
+
+            foreach (var relationship in character.RelationshipMap!
+                .Where(x => x.Id != character.Id
+                    && x.Relative is not null)
+                .ToList())
+            {
+                AdjustRelativeMap(character, relationship, queue);
+            }
+        }
+
+        foreach (var character in characters)
+        {
+            character.RelationshipIds = null;
+            character.RelationshipMap!.RemoveAll(x => x.Id == character.Id);
+        }
+    }
+
     public void AddTrait(string[] trait)
     {
         (TraitPaths ??= new()).Add(trait);
@@ -285,6 +494,27 @@ public class Character : INote
         TraitPaths = null;
         SetDisplayTraits();
     }
+
+    /// <summary>
+    /// Indicates whether the current object is equal to another object of the
+    /// same type.
+    /// </summary>
+    /// <param name="other">An object to compare with this object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the current object is equal to the <paramref
+    /// name="other" /> parameter; otherwise, <see langword="false" />.
+    /// </returns>
+    public bool Equals(Character? other) => other is not null && other.Id == Id;
+
+    /// <summary>
+    /// Determines whether the specified object is equal to the current object.
+    /// </summary>
+    /// <param name="obj">The object to compare with the current object.</param>
+    /// <returns>
+    /// <see langword="true" /> if the specified object  is equal to the current
+    /// object; otherwise, <see langword="false" />.
+    /// </returns>
+    public override bool Equals(object? obj) => Equals(obj as Character);
 
     public Character? FindCharacter(string id)
     {
@@ -844,6 +1074,10 @@ public class Character : INote
         return familyNames;
     }
 
+    /// <summary>Serves as the default hash function.</summary>
+    /// <returns>A hash code for the current object.</returns>
+    public override int GetHashCode() => HashCode.Combine(Id);
+
     public NameGender GetNameGender() => Pronouns switch
     {
         Pronouns.SheHer => NameGender.Female,
@@ -930,7 +1164,6 @@ public class Character : INote
         SetDisplayAge(story);
         SetDisplayEthnicity();
         SetDisplayTraits();
-        SetRelationshipMap(story);
 
         if (Notes is not null)
         {
@@ -945,19 +1178,6 @@ public class Character : INote
     {
         TraitPaths?.RemoveAll(x => x.StartsWith(trait));
         SetDisplayTraits();
-    }
-
-    public void ResetRelationshipMap(Story story)
-    {
-        RelationshipMap = null;
-        SetRelationshipMap(story);
-        if (Notes is not null)
-        {
-            foreach (var child in Notes.OfType<Character>())
-            {
-                child.ResetRelationshipMap(story);
-            }
-        }
     }
 
     public void SelectEthnicity(Ethnicity ethnicity, bool value)
@@ -1357,12 +1577,6 @@ public class Character : INote
         SetDisplayEthnicity();
     }
 
-    public void SetRelationshipMap(Story story)
-    {
-        RelationshipMap = GetRelationshipMap(story, new HashSet<string>());
-        RelationshipMap.RemoveAll(x => x.Id == Id);
-    }
-
     public string? ToContent()
     {
         var sb = new StringBuilder();
@@ -1516,7 +1730,7 @@ public class Character : INote
             : null;
     }
 
-    private Relationship? AdjustRelationshipForChild(Relationship relationship)
+    private static Relationship? AdjustRelationshipForChild(Relationship relationship)
     {
         var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
         if (newRelationship is null
@@ -1524,6 +1738,8 @@ public class Character : INote
         {
             return null;
         }
+        newRelationship.Relative = relationship.Relative;
+        newRelationship.Synthetic = true;
 
         if (relationship.Type == "child")
         {
@@ -1539,11 +1755,10 @@ public class Character : INote
             return newRelationship;
         }
 
-        var gender = GetNameGender();
+        var gender = relationship.Relative?.GetNameGender();
 
         switch (relationship.Type)
         {
-            case "self":
             case "sibling":
                 newRelationship.Type = "child";
                 if (gender == NameGender.Female)
@@ -1576,10 +1791,10 @@ public class Character : INote
                 return newRelationship;
         }
 
-        return newRelationship;
+        return null;
     }
 
-    private Relationship? AdjustRelationshipForParent(Relationship relationship)
+    private static Relationship? AdjustRelationshipForParent(Relationship relationship)
     {
         var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
         if (newRelationship is null
@@ -1587,6 +1802,8 @@ public class Character : INote
         {
             return null;
         }
+        newRelationship.Relative = relationship.Relative;
+        newRelationship.Synthetic = true;
 
         if (relationship.Type == "cousin")
         {
@@ -1608,25 +1825,10 @@ public class Character : INote
             return newRelationship;
         }
 
-        var gender = GetNameGender();
+        var gender = relationship.Relative?.GetNameGender();
 
         switch (relationship.Type)
         {
-            case "self":
-                newRelationship.Type = "parent";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "mother";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "father";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "parent";
-                }
-                return newRelationship;
             case "child":
                 newRelationship.Type = "sibling";
                 if (gender == NameGender.Female)
@@ -1672,12 +1874,27 @@ public class Character : INote
                     newRelationship.RelationshipName = "pibling";
                 }
                 return newRelationship;
+            case "spouse":
+                newRelationship.Type = "parent";
+                if (gender == NameGender.Female)
+                {
+                    newRelationship.RelationshipName = "mother";
+                }
+                else if (gender == NameGender.Male)
+                {
+                    newRelationship.RelationshipName = "father";
+                }
+                else
+                {
+                    newRelationship.RelationshipName = "parent";
+                }
+                return newRelationship;
         }
 
-        return newRelationship;
+        return null;
     }
 
-    private Relationship? AdjustRelationshipForSibling(Relationship relationship)
+    private static Relationship? AdjustRelationshipForSibling(Relationship relationship)
     {
         var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
         if (newRelationship is null
@@ -1685,6 +1902,8 @@ public class Character : INote
         {
             return null;
         }
+        newRelationship.Relative = relationship.Relative;
+        newRelationship.Synthetic = true;
 
         if (relationship.Type == "cousin"
             || relationship.Type == "sibling"
@@ -1694,25 +1913,10 @@ public class Character : INote
             return newRelationship;
         }
 
-        var gender = GetNameGender();
+        var gender = relationship.Relative?.GetNameGender();
 
         switch (relationship.Type)
         {
-            case "self":
-                newRelationship.Type = "sibling";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "sister";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "brother";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "sibling";
-                }
-                return newRelationship;
             case "child":
                 newRelationship.Type = "nibling";
                 if (gender == NameGender.Female)
@@ -1745,7 +1949,91 @@ public class Character : INote
                 return newRelationship;
         }
 
-        return newRelationship;
+        return null;
+    }
+
+    private static Relationship? AdjustRelationshipForSpouse(Relationship relationship)
+    {
+        var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
+        if (newRelationship is null
+            || relationship.Type is null)
+        {
+            return null;
+        }
+        newRelationship.Relative = relationship.Relative;
+        newRelationship.Synthetic = true;
+
+        var gender = relationship.Relative?.GetNameGender();
+
+        switch (relationship.Type)
+        {
+            case "child":
+            case "child-in-law":
+            case "spouse":
+                return newRelationship;
+            case "parent":
+                newRelationship.Type = "parent-in-law";
+                if (gender == NameGender.Female)
+                {
+                    newRelationship.RelationshipName = "mother-in-law";
+                }
+                else if (gender == NameGender.Male)
+                {
+                    newRelationship.RelationshipName = "father-in-law";
+                }
+                else
+                {
+                    newRelationship.RelationshipName = "parent-in-law";
+                }
+                return newRelationship;
+            case "parent-in-law":
+                newRelationship.Type = "parent";
+                if (gender == NameGender.Female)
+                {
+                    newRelationship.RelationshipName = "mother";
+                }
+                else if (gender == NameGender.Male)
+                {
+                    newRelationship.RelationshipName = "father";
+                }
+                else
+                {
+                    newRelationship.RelationshipName = "parent";
+                }
+                return newRelationship;
+            case "sibling":
+                newRelationship.Type = "sibling-in-law";
+                if (gender == NameGender.Female)
+                {
+                    newRelationship.RelationshipName = "sister-in-law";
+                }
+                else if (gender == NameGender.Male)
+                {
+                    newRelationship.RelationshipName = "brother-in-law";
+                }
+                else
+                {
+                    newRelationship.RelationshipName = "sibling-in-law";
+                }
+                return newRelationship;
+            case "sibling-in-law":
+                newRelationship.Type = "sibling";
+                if (gender == NameGender.Female)
+                {
+                    newRelationship.RelationshipName = "sister";
+                }
+                else if (gender == NameGender.Male)
+                {
+                    newRelationship.RelationshipName = "brother";
+                }
+                else
+                {
+                    newRelationship.RelationshipName = "sibling";
+                }
+                return newRelationship;
+        }
+
+        return null;
     }
 
     private void BuildName(StringBuilder sb, bool full = false)
@@ -1802,166 +2090,6 @@ public class Character : INote
         return sb.Length == 0 ? null : sb.ToString();
     }
 
-    private List<Relationship> GetRelationshipMap(Story story, HashSet<string> allIds)
-    {
-        if (RelationshipMap is not null)
-        {
-            foreach (var relationship in RelationshipMap
-                .Where(x => !string.IsNullOrEmpty(x.Id)))
-            {
-                allIds.Add(relationship.Id!);
-            }
-            return RelationshipMap;
-        }
-
-        var relationshipMap = new List<Relationship>
-        {
-            new()
-            {
-                Id = Id,
-                Type = "self",
-            }
-        };
-        allIds.Add(Id);
-
-        if (Relationships is null)
-        {
-            return relationshipMap;
-        }
-
-        var name = GetName();
-        var gender = GetNameGender();
-
-        foreach (var relationship in Relationships)
-        {
-            if (relationship.Id is not null
-                && allIds.Contains(relationship.Id))
-            {
-                continue;
-            }
-
-            relationshipMap.Add(relationship);
-
-            if (relationship.Id is null)
-            {
-                continue;
-            }
-
-            var relative = story.FindCharacter(relationship.Id);
-            if (relative is null)
-            {
-                relationship.Id = null;
-                continue;
-            }
-
-            allIds.Add(relationship.Id);
-            relationship.Relative = relative;
-            relationship.EditedRelativeName = relative.CharacterName;
-
-            var relativeMap = relative.GetRelationshipMap(story, allIds);
-            if (!relativeMap.Any(x => x.Id == Id))
-            {
-                var inverseType = relationship.InverseType ?? relationship.Type;
-                var inverted = !string.IsNullOrEmpty(relationship.InverseType);
-                if (!string.IsNullOrEmpty(relationship.Type)
-                    && !inverted)
-                {
-                    if (relationship.Type.EndsWith("grandchild"))
-                    {
-                        inverseType = relationship.Type[..^5] + "parent";
-                        inverted = true;
-                    }
-                    else if (relationship.Type.EndsWith("grandparent"))
-                    {
-                        inverseType = relationship.Type[..^6] + "child";
-                        inverted = true;
-                    }
-                    else
-                    {
-                        switch (relationship.Type)
-                        {
-                            case "child":
-                                inverseType = "parent";
-                                inverted = true;
-                                break;
-                            case "child-in-law":
-                                inverseType = "parent-in-law";
-                                inverted = true;
-                                break;
-                            case "parent":
-                                inverseType = "child";
-                                inverted = true;
-                                break;
-                            case "parent-in-law":
-                                inverseType = "child-in-law";
-                                inverted = true;
-                                break;
-                            case "sibling":
-                            case "spouse":
-                            case "ex-spouse":
-                            case "sweetheart":
-                            case "ex-sweetheart":
-                                inverted = true;
-                                break;
-                            case "pibling":
-                                inverseType = "nibling";
-                                inverted = true;
-                                break;
-                            case "nibling":
-                                inverseType = "pibling";
-                                inverted = true;
-                                break;
-                        }
-                    }
-                }
-                var relationshipName = GetRelationshipName(inverseType, gender);
-                relativeMap.Add(new Relationship
-                {
-                    EditedInverseType = relationship.Type,
-                    EditedRelationshipName = relationshipName,
-                    EditedRelativeName = CharacterName,
-                    EditedType = inverseType,
-                    Id = Id,
-                    InverseType = relationship.Type,
-                    RelationshipName = relationshipName,
-                    Relative = this,
-                    Synthetic = true,
-                    Type = inverseType,
-                });
-            }
-            relative.RelationshipMap = relativeMap;
-
-            var adjustedMap = AdjustRelationshipMap(
-                relativeMap,
-                relationship.Type switch
-                {
-                    "child" => AdjustRelationshipForChild,
-                    "parent" => AdjustRelationshipForParent,
-                    "sibling" => AdjustRelationshipForSibling,
-                    _ => _ => null,
-                });
-            if (adjustedMap is not null)
-            {
-                foreach (var relativeRelationship in adjustedMap)
-                {
-                    if (relationshipMap.Any(x => x.Id == relativeRelationship.Id))
-                    {
-                        continue;
-                    }
-
-                    var copy = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relativeRelationship));
-                    if (copy is null)
-                    {
-                        continue;
-                    }
-
-                    copy.Relative = relativeRelationship.Relative;
-                    copy.Synthetic = true;
-                    relationshipMap.Add(copy);
-                }
-            }
-        }
-
-        return relationshipMap;
-    }
+    public static bool operator ==(Character? left, Character? right) => EqualityComparer<Character>.Default.Equals(left, right);
+    public static bool operator !=(Character? left, Character? right) => !(left == right);
 }

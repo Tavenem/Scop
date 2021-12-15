@@ -421,6 +421,7 @@ public partial class StoryPage : IDisposable
             {
                 note.LoadCharacters(_story);
             }
+            Character.SetRelationshipMaps(_story, _story.AllCharacters().ToList());
         }
 
         _loading = false;

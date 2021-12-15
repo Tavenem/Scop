@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.34
+### Changed
+- Improve character relationship mapping
+
 ## 1.0.33
 ### Fixed
 - Fix timeline event localization
