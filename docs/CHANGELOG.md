@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.35
+### Changed
+- Wrap stories
+
 ## 1.0.34
 ### Changed
 - Improve character relationship mapping
