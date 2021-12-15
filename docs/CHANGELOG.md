@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.36
+### Changed
+- Reorganize traits
+
 ## 1.0.35
 ### Changed
 - Wrap stories
