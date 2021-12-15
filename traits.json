@@ -330,6 +330,195 @@
         "name": "Hair",
         "children": [
           {
+            "name": "Color",
+            "choiceType": 3,
+            "children": [
+              {
+                "name": "Black",
+                "weight": 10,
+                "modifiers": [
+                  {
+                    "ethnicities": [
+                      "asian",
+                      "black"
+                    ],
+                    "weight": 30
+                  }
+                ]
+              },
+              {
+                "name": "Blond",
+                "canChooseNone": true,
+                "choiceType": 2,
+                "isChosenOnNone": true,
+                "weight": 5,
+                "modifiers": [
+                  {
+                    "ethnicities": [
+                      "asian",
+                      "black",
+                      "hispanic",
+                      "indigenous peoples",
+                      "middle eastern"
+                    ],
+                    "weight": 0
+                  },
+                  {
+                    "ethnicities": [
+                      "caucasian;european;northern european"
+                    ],
+                    "weight": 35
+                  }
+                ],
+                "children": [
+                  {
+                    "name": "Ash"
+                  },
+                  {
+                    "name": "Dirty"
+                  },
+                  {
+                    "name": "Flaxen"
+                  },
+                  {
+                    "name": "Golden"
+                  },
+                  {
+                    "name": "Platinum"
+                  },
+                  {
+                    "name": "Sandy"
+                  },
+                  {
+                    "name": "Strawberry"
+                  },
+                  {
+                    "name": "Yellow"
+                  }
+                ]
+              },
+              {
+                "name": "Brown",
+                "canChooseNone": true,
+                "choiceType": 2,
+                "isChosenOnNone": true,
+                "weight": 10,
+                "children": [
+                  {
+                    "name": "Light"
+                  },
+                  {
+                    "name": "Dark"
+                  }
+                ]
+              },
+              {
+                "name": "Gray",
+                "canChooseNone": true,
+                "choiceType": 2,
+                "isChosenOnNone": true,
+                "weight": 0,
+                "modifiers": [
+                  {
+                    "gender": 2,
+                    "maxAge": 49,
+                    "minAge": 40,
+                    "weight": 10
+                  },
+                  {
+                    "maxAge": 59,
+                    "minAge": 50,
+                    "weight": 5
+                  },
+                  {
+                    "gender": 2,
+                    "maxAge": 59,
+                    "minAge": 50,
+                    "priority": 1,
+                    "weight": 30
+                  },
+                  {
+                    "maxAge": 69,
+                    "minAge": 60,
+                    "weight": 10
+                  },
+                  {
+                    "gender": 2,
+                    "maxAge": 69,
+                    "minAge": 60,
+                    "priority": 1,
+                    "weight": 60
+                  },
+                  {
+                    "maxAge": 79,
+                    "minAge": 70,
+                    "weight": 30
+                  },
+                  {
+                    "gender": 2,
+                    "minAge": 70,
+                    "force": true
+                  },
+                  {
+                    "minAge": 80,
+                    "weight": 60
+                  }
+                ],
+                "children": [
+                  {
+                    "name": "Salt and Pepper",
+                    "modifiers": [
+                      {
+                        "maxAge": 49,
+                        "minAge": 40,
+                        "weight": 3
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Silver"
+                  },
+                  {
+                    "name": "White"
+                  }
+                ]
+              },
+              {
+                "name": "Red",
+                "canChooseNone": true,
+                "choiceType": 2,
+                "isChosenOnNone": true,
+                "modifiers": [
+                  {
+                    "ethnicities": [
+                      "asian",
+                      "black",
+                      "indigenous peoples"
+                    ],
+                    "weight": 0
+                  },
+                  {
+                    "ethnicities": [
+                      "caucasian;european;northern european"
+                    ],
+                    "weight": 5
+                  }
+                ],
+                "children": [
+                  {
+                    "name": "Auburn"
+                  },
+                  {
+                    "name": "Copper"
+                  },
+                  {
+                    "name": "Ginger"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "name": "Facial Hair",
             "choiceType": 4,
             "modifiers": [
@@ -397,195 +586,6 @@
           {
             "name": "Head Hair",
             "children": [
-              {
-                "name": "Color",
-                "choiceType": 3,
-                "children": [
-                  {
-                    "name": "Black",
-                    "weight": 10,
-                    "modifiers": [
-                      {
-                        "ethnicities": [
-                          "asian",
-                          "black"
-                        ],
-                        "weight": 30
-                      }
-                    ]
-                  },
-                  {
-                    "name": "Blond",
-                    "canChooseNone": true,
-                    "choiceType": 2,
-                    "isChosenOnNone": true,
-                    "weight": 5,
-                    "modifiers": [
-                      {
-                        "ethnicities": [
-                          "asian",
-                          "black",
-                          "hispanic",
-                          "indigenous peoples",
-                          "middle eastern"
-                        ],
-                        "weight": 0
-                      },
-                      {
-                        "ethnicities": [
-                          "caucasian;european;northern european"
-                        ],
-                        "weight": 35
-                      }
-                    ],
-                    "children": [
-                      {
-                        "name": "Ash"
-                      },
-                      {
-                        "name": "Dirty"
-                      },
-                      {
-                        "name": "Flaxen"
-                      },
-                      {
-                        "name": "Golden"
-                      },
-                      {
-                        "name": "Platinum"
-                      },
-                      {
-                        "name": "Sandy"
-                      },
-                      {
-                        "name": "Strawberry"
-                      },
-                      {
-                        "name": "Yellow"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "Brown",
-                    "canChooseNone": true,
-                    "choiceType": 2,
-                    "isChosenOnNone": true,
-                    "weight": 10,
-                    "children": [
-                      {
-                        "name": "Light"
-                      },
-                      {
-                        "name": "Dark"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "Gray",
-                    "canChooseNone": true,
-                    "choiceType": 2,
-                    "isChosenOnNone": true,
-                    "weight": 0,
-                    "modifiers": [
-                      {
-                        "gender": 2,
-                        "maxAge": 49,
-                        "minAge": 40,
-                        "weight": 10
-                      },
-                      {
-                        "maxAge": 59,
-                        "minAge": 50,
-                        "weight": 5
-                      },
-                      {
-                        "gender": 2,
-                        "maxAge": 59,
-                        "minAge": 50,
-                        "priority": 1,
-                        "weight": 30
-                      },
-                      {
-                        "maxAge": 69,
-                        "minAge": 60,
-                        "weight": 10
-                      },
-                      {
-                        "gender": 2,
-                        "maxAge": 69,
-                        "minAge": 60,
-                        "priority": 1,
-                        "weight": 60
-                      },
-                      {
-                        "maxAge": 79,
-                        "minAge": 70,
-                        "weight": 30
-                      },
-                      {
-                        "gender": 2,
-                        "minAge": 70,
-                        "force": true
-                      },
-                      {
-                        "minAge": 80,
-                        "weight": 60
-                      }
-                    ],
-                    "children": [
-                      {
-                        "name": "Salt and Pepper",
-                        "modifiers": [
-                          {
-                            "maxAge": 49,
-                            "minAge": 40,
-                            "weight": 3
-                          }
-                        ]
-                      },
-                      {
-                        "name": "Silver"
-                      },
-                      {
-                        "name": "White"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "Red",
-                    "canChooseNone": true,
-                    "choiceType": 2,
-                    "isChosenOnNone": true,
-                    "modifiers": [
-                      {
-                        "ethnicities": [
-                          "asian",
-                          "black",
-                          "indigenous peoples"
-                        ],
-                        "weight": 0
-                      },
-                      {
-                        "ethnicities": [
-                          "caucasian;european;northern european"
-                        ],
-                        "weight": 5
-                      }
-                    ],
-                    "children": [
-                      {
-                        "name": "Auburn"
-                      },
-                      {
-                        "name": "Copper"
-                      },
-                      {
-                        "name": "Ginger"
-                      }
-                    ]
-                  }
-                ]
-              },
               {
                 "name": "Length",
                 "canChooseNone": true,
