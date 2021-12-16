@@ -199,6 +199,10 @@ public partial class Timeline
         {
             latest = DateTime.Now;
         }
+        if (Now > latest)
+        {
+            latest = Now;
+        }
 
         (Events ??= new()).Add(new()
         {
