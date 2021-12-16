@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using MudBlazor;
 using Scop.Shared;
 using System.Diagnostics.CodeAnalysis;
-using System.Text.Json;
 using Tavenem.Blazor.MarkdownEditor;
 using Tavenem.Randomize;
 
@@ -25,7 +23,6 @@ public partial class StoryPage : IDisposable
     private bool _initialized;
     private bool _loading = true;
     private Story? _story;
-    private Timeline? _timeline;
 
     [Parameter] public string? Id { get; set; }
 
@@ -36,10 +33,6 @@ public partial class StoryPage : IDisposable
     private CustomTreeViewEventArgs<INote>? DragData { get; set; }
 
     private bool EthnicitiesVisible { get; set; }
-
-    private bool IsTimelineEventEndTimeDisplayed { get; set; }
-
-    private bool IsTimelineEventStartTimeDisplayed { get; set; }
 
     private bool IsTimelineSelected => SelectedNote == _timelineDummyNote;
 
@@ -59,21 +52,11 @@ public partial class StoryPage : IDisposable
 
     public DateTime? SelectedBirthdate { get; set; }
 
-    private TimelineEvent? SelectedEvent { get; set; }
-
     private INote? SelectedNote { get; set; }
 
     private string StoryName => _story?.Name ?? "Story";
 
     [CascadingParameter] private MarkdownEditorTheme Theme { get; set; }
-
-    private DateTime? TimelineEventEndDate { get; set; }
-
-    private TimeSpan? TimelineEventEndTime { get; set; }
-
-    private DateTime? TimelineEventStartDate { get; set; }
-
-    private TimeSpan? TimelineEventStartTime { get; set; }
 
     private bool TraitsVisible { get; set; }
 
@@ -1151,7 +1134,7 @@ public partial class StoryPage : IDisposable
             return;
         }
 
-        foreach (var character in _story.Notes.OfType<Character>())
+        foreach (var character in _story.AllCharacters())
         {
             if (_story.Now.HasValue)
             {
@@ -1559,101 +1542,6 @@ public partial class StoryPage : IDisposable
         if (!deferSave)
         {
             await OnChangeAsync();
-        }
-    }
-
-    private void OnSelectedEventChanged(TimelineEvent? selectedEvent)
-    {
-        SelectedEvent = selectedEvent;
-
-        TimelineEventEndDate = SelectedEvent?.EffectiveEnd;
-        TimelineEventEndTime = SelectedEvent?.EffectiveEnd?.TimeOfDay;
-        IsTimelineEventEndTimeDisplayed = TimelineEventEndTime.HasValue && TimelineEventEndTime.Value.Ticks > 0;
-
-        TimelineEventStartDate = SelectedEvent?.EffectiveStart;
-        TimelineEventStartTime = SelectedEvent?.EffectiveStart?.TimeOfDay;
-        IsTimelineEventStartTimeDisplayed = TimelineEventStartTime.HasValue && TimelineEventStartTime.Value.Ticks > 0;
-    }
-
-    private async Task OnSelectedEventChangedAsync(string? newValue)
-    {
-        if (SelectedEvent is null)
-        {
-            return;
-        }
-        SelectedEvent.Content = newValue;
-        if (_timeline is not null)
-        {
-            await _timeline.UpdateSelectedEventAsync();
-            await OnChangeAsync();
-        }
-    }
-
-    private async Task OnSelectedEventEndDateChangedAsync(DateTime? value)
-    {
-        TimelineEventEndDate = value;
-        if (SelectedEvent is not null)
-        {
-            SelectedEvent.End = TimelineEventEndDate?.Date.ToUniversalTime();
-            if (SelectedEvent.End.HasValue && TimelineEventEndTime.HasValue)
-            {
-                SelectedEvent.End = SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
-            }
-        }
-        if (_timeline is not null)
-        {
-            await _timeline.UpdateSelectedEventAsync();
-        }
-    }
-
-    private async Task OnSelectedEventEndTimeChangedAsync(TimeSpan? value)
-    {
-        TimelineEventEndTime = value;
-        if (SelectedEvent is not null)
-        {
-            SelectedEvent.End = TimelineEventEndDate?.Date.ToUniversalTime();
-            if (SelectedEvent.End.HasValue && TimelineEventEndTime.HasValue)
-            {
-                SelectedEvent.End = SelectedEvent.End.Value.Add(TimelineEventEndTime.Value);
-            }
-        }
-        if (_timeline is not null)
-        {
-            await _timeline.UpdateSelectedEventAsync();
-        }
-    }
-
-    private async Task OnSelectedEventStartDateChangedAsync(DateTime? value)
-    {
-        TimelineEventStartDate = value;
-        if (SelectedEvent is not null)
-        {
-            SelectedEvent.Start = TimelineEventStartDate?.Date.ToUniversalTime();
-            if (SelectedEvent.Start.HasValue && TimelineEventStartTime.HasValue)
-            {
-                SelectedEvent.Start = SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
-            }
-        }
-        if (_timeline is not null)
-        {
-            await _timeline.UpdateSelectedEventAsync();
-        }
-    }
-
-    private async Task OnSelectedEventStartTimeChangedAsync(TimeSpan? value)
-    {
-        TimelineEventStartTime = value;
-        if (SelectedEvent is not null)
-        {
-            SelectedEvent.Start = TimelineEventStartDate?.Date.ToUniversalTime();
-            if (SelectedEvent.Start.HasValue && TimelineEventStartTime.HasValue)
-            {
-                SelectedEvent.Start = SelectedEvent.Start.Value.Add(TimelineEventStartTime.Value);
-            }
-        }
-        if (_timeline is not null)
-        {
-            await _timeline.UpdateSelectedEventAsync();
         }
     }
 

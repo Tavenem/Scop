@@ -1,19 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
-using static MudBlazor.Colors;
+using MudBlazor;
+using Tavenem.Blazor.MarkdownEditor;
 
 namespace Scop.Shared;
 
-public partial class Timeline : IAsyncDisposable
+public partial class Timeline
 {
-    private bool _disposed;
-    private DotNetObjectReference<Timeline>? _dotNetObjectRef;
-    private bool _initialized;
-    private bool _pendingCategories;
-    private bool _pendingEvents;
-    private bool _pendingNow;
-
     /// <summary>
     /// The categories.
     /// </summary>
@@ -40,16 +33,6 @@ public partial class Timeline : IAsyncDisposable
     /// Invoked when the events change.
     /// </summary>
     [Parameter] public EventCallback<List<TimelineEvent>?> EventsChanged { get; set; }
-
-    /// <summary>
-    /// <para>
-    /// The id of the HTML element.
-    /// </para>
-    /// <para>
-    /// Will be set to a random GUID if left unset.
-    /// </para>
-    /// </summary>
-    [Parameter] public string Id { get; set; } = Guid.NewGuid().ToString();
 
     private DateTime? _now;
     /// <summary>
@@ -89,17 +72,59 @@ public partial class Timeline : IAsyncDisposable
     /// </summary>
     [Parameter] public EventCallback<DateTime?> NowChange { get; set; }
 
-    /// <summary>
-    /// The currently selected event.
-    /// </summary>
-    [Parameter] public TimelineEvent? SelectedEvent { get; set; }
+    private IEnumerable<TimelineEvent> DisplayedEvents
+    {
+        get
+        {
+            if (Now.HasValue)
+            {
+                var nowEvent = new TimelineEvent()
+                {
+                    IsReadonly = true,
+                    Markdown = "The current time",
+                    Start = Now.Value,
+                    Title = "Now",
+                };
+                if (FilteredEvents is null)
+                {
+                    return new TimelineEvent[] { nowEvent };
+                }
+                else
+                {
+                    return FilteredEvents
+                        .Concat(new TimelineEvent[] { nowEvent })
+                        .OrderBy(x => x.Start)
+                        .ThenBy(x => x.End ?? x.Start);
+                }
+            }
+            else
+            {
+                return FilteredEvents?
+                    .OrderBy(x => x.Start)
+                    .ThenBy(x => x.End ?? x.Start)
+                    ?? Enumerable.Empty<TimelineEvent>();
+            }
+        }
+    }
 
-    /// <summary>
-    /// Invoked when the currently selected event changes.
-    /// </summary>
-    [Parameter] public EventCallback<TimelineEvent?> SelectedEventChanged { get; set; }
+    private TimelineEvent? EditedEvent { get; set; }
 
-    [Inject] private ScopJsInterop? JsInterop { get; set; }
+    private HashSet<string> EditedEventCategories { get; set; } = new();
+
+    private DateTime? EditedEventEnd { get; set; }
+
+    private TimeSpan? EditedEventEndTime { get; set; }
+
+    private DateTime? EditedEventStart { get; set; }
+
+    private TimeSpan? EditedEventStartTime { get; set; }
+
+    private IEnumerable<TimelineEvent>? FilteredEvents => Events?
+        .Where(x => SelectedCategories?.Any() != true
+        || (x.Categories is not null
+        && SelectedCategories?.Any(y => x.Categories.Contains(y.Id)) == true));
+
+    [CascadingParameter] private MudTheme? MudTheme { get; set; }
 
     private string? NewCategoryName { get; set; }
 
@@ -129,347 +154,56 @@ public partial class Timeline : IAsyncDisposable
         }
     }
 
-    public async ValueTask DisposeAsync()
-    {
-        if (!_disposed)
-        {
-            if (JsInterop is not null)
-            {
-                await JsInterop.DisposeTimeline();
-            }
-            _dotNetObjectRef?.Dispose();
-            _dotNetObjectRef = null;
-            _disposed = true;
-        }
-        GC.SuppressFinalize(this);
-    }
+    private IEnumerable<TimelineCategory>? SelectedCategories => SelectedCategoryChips?
+        .Where(x => x.Tag is TimelineCategory)
+        .Select(x => (x.Tag as TimelineCategory)!);
 
-    public override async Task SetParametersAsync(ParameterView parameters)
-    {
-        List<TimelineEvent>? newEvents = null;
-        List<TimelineCategory>? newCategories = null;
-        DateTime? newNow = null;
-        if (_initialized)
-        {
-            if (parameters.TryGetValue<List<TimelineCategory>>(nameof(Categories), out newCategories)
-                && (Categories is null
-                || Categories.Count != newCategories.Count
-                || (Categories.Count > 0
-                && Categories[0].Id != newCategories[0].Id)))
-            {
-                _pendingCategories = true;
-            }
-            if (parameters.TryGetValue<List<TimelineEvent>>(nameof(Events), out newEvents)
-                && (Events is null
-                || Events.Count != newEvents.Count
-                || (Events.Count > 0
-                && Events[0].Id != newEvents[0].Id)))
-            {
-                _pendingEvents = true;
-            }
-            if (parameters.TryGetValue(nameof(Now), out newNow)
-                && Now != newNow)
-            {
-                _pendingNow = true;
-            }
-        }
-        await base.SetParametersAsync(parameters);
+    private MudChip[]? SelectedCategoryChips { get; set; }
 
-        if (_pendingEvents)
-        {
-            _pendingEvents = false;
-            await SetEventsAsync(newEvents);
-        }
-        if (_pendingCategories)
-        {
-            _pendingCategories = false;
-            await SetCategoriesAsync(newCategories);
-        }
-        if (_pendingNow)
-        {
-            _pendingNow = false;
-            await SetNowAsync(newNow);
-        }
-    }
+    private bool ShowEditedEventEnd { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && JsInterop is not null)
-        {
-            _dotNetObjectRef ??= DotNetObjectReference.Create(this);
-            await JsInterop
-                .InitializeTimeline(_dotNetObjectRef, Id, Now, Events, Categories);
-            _initialized = true;
-        }
-    }
+    private bool ShowEditedEventEndTime { get; set; }
 
-    /// <summary>
-    /// <para>
-    /// Adds a new category.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The new category.</param>
-    [JSInvokable]
-    public async Task AddCategory(TimelineCategory? value)
-    {
-        if (value is null || value.Id <= 0)
-        {
-            return;
-        }
+    private bool ShowEditedEventStartTime { get; set; }
 
-        Categories?.RemoveAll(x => x.Id == value.Id);
-        (Categories ??= new()).Add(value);
-        await CategoriesChanged.InvokeAsync(Categories);
-        await Change.InvokeAsync();
-    }
-
-    /// <summary>
-    /// <para>
-    /// Adds a new event.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The new event.</param>
-    [JSInvokable]
-    public async Task AddEvent(TimelineEvent? value)
-    {
-        if (string.IsNullOrEmpty(value?.Id))
-        {
-            return;
-        }
-        Console.WriteLine(value.Id);
-
-        Events?.RemoveAll(x => x.Id == value.Id);
-        (Events ??= new()).Add(value);
-        SelectedEvent = value;
-        await EventsChanged.InvokeAsync(Events);
-        await SelectedEventChanged.InvokeAsync(SelectedEvent);
-        await Change.InvokeAsync();
-    }
-
-    /// <summary>
-    /// <para>
-    /// Updates the current time.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The new current time.</param>
-    [JSInvokable]
-    public async Task OnNowChanged(DateTime value)
-    {
-        if (Now != value)
-        {
-            var old = Now;
-            Now = value.ToLocalTime();
-            await NowChanged.InvokeAsync(Now);
-            await NowChange.InvokeAsync(old);
-        }
-    }
-
-    /// <summary>
-    /// <para>
-    /// Removes a category.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The new category.</param>
-    [JSInvokable]
-    public async Task RemoveCategory(int value)
-    {
-        if (value <= 0)
-        {
-            return;
-        }
-
-        var numRemoved = Categories?.RemoveAll(x => x.Id == value);
-        if (numRemoved > 0)
-        {
-            await CategoriesChanged.InvokeAsync(Categories);
-            await Change.InvokeAsync();
-        }
-    }
-
-    /// <summary>
-    /// <para>
-    /// Removes an event.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The new event.</param>
-    [JSInvokable]
-    public async Task RemoveEvent(string? value)
-    {
-        if (string.IsNullOrEmpty(value))
-        {
-            return;
-        }
-
-        var numRemoved = Events?.RemoveAll(x => x.Id == value);
-
-        if (SelectedEvent?.Id == value)
-        {
-            SelectedEvent = null;
-            await SelectedEventChanged.InvokeAsync(SelectedEvent);
-        }
-
-        if (numRemoved > 0)
-        {
-            await EventsChanged.InvokeAsync(Events);
-            await Change.InvokeAsync();
-        }
-    }
-
-    /// <summary>
-    /// <para>
-    /// Selects an event.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The selected event.</param>
-    [JSInvokable]
-    public async Task SelectEvent(TimelineEvent? value)
-    {
-        SelectedEvent = string.IsNullOrEmpty(value?.Id)
-            ? null
-            : Events?.Find(x => x.Id == value.Id);
-        await SelectedEventChanged.InvokeAsync(SelectedEvent);
-    }
-
-    /// <summary>
-    /// Sets the categories.
-    /// </summary>
-    /// <param name="categories">The categories.</param>
-    public async Task SetCategoriesAsync(List<TimelineCategory>? categories)
-    {
-        if (!_initialized || JsInterop is null)
-        {
-            return;
-        }
-
-        await JsInterop.SetTimelineCategories(categories);
-    }
-
-    /// <summary>
-    /// Sets the events.
-    /// </summary>
-    /// <param name="events">The events.</param>
-    public async Task SetEventsAsync(List<TimelineEvent>? events)
-    {
-        if (!_initialized || JsInterop is null)
-        {
-            return;
-        }
-
-        await JsInterop.SetTimelineEvents(events);
-    }
-
-    /// <summary>
-    /// Sets the current time.
-    /// </summary>
-    /// <param name="now">The current time.</param>
-    public async Task SetNowAsync(DateTime? now)
-    {
-        if (!_initialized || JsInterop is null)
-        {
-            return;
-        }
-
-        await JsInterop.SetCurrentTime(now?.ToUniversalTime());
-    }
-
-    /// <summary>
-    /// <para>
-    /// Updates a category.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The altered category.</param>
-    [JSInvokable]
-    public async Task UpdateCategory(TimelineCategory? value)
-    {
-        if (value is null || value.Id <= 0)
-        {
-            return;
-        }
-
-        Categories?.RemoveAll(x => x.Id == value.Id);
-        (Categories ??= new()).Add(value);
-        await CategoriesChanged.InvokeAsync(Categories);
-        await Change.InvokeAsync();
-    }
-
-    /// <summary>
-    /// <para>
-    /// Updates an event.
-    /// </para>
-    /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
-    /// </para>
-    /// </summary>
-    /// <param name="value">The altered event.</param>
-    [JSInvokable]
-    public async Task UpdateEvent(TimelineEvent? value)
-    {
-        if (string.IsNullOrEmpty(value?.Id))
-        {
-            return;
-        }
-
-        Events?.RemoveAll(x => x.Id == value.Id);
-        (Events ??= new()).Add(value);
-
-        if (SelectedEvent?.Id == value.Id)
-        {
-            SelectedEvent = Events?.Find(x => x.Id == value.Id);
-            await SelectedEventChanged.InvokeAsync(SelectedEvent);
-        }
-
-        await EventsChanged.InvokeAsync(Events);
-        await Change.InvokeAsync();
-    }
-
-    /// <summary>
-    /// Synchronize the display with the stored values.
-    /// </summary>
-    public async Task UpdateSelectedEventAsync()
-    {
-        if (SelectedEvent is not null)
-        {
-            var id = SelectedEvent.Id;
-            await SetEventsAsync(Events);
-            SelectedEvent = Events?.Find(x => x.Id == id);
-            await SelectedEventChanged.InvokeAsync(SelectedEvent);
-            await Change.InvokeAsync();
-        }
-    }
+    [CascadingParameter] private MarkdownEditorTheme Theme { get; set; }
 
     private async Task OnAddCategoryAsync()
     {
-        if (!_initialized
-            || JsInterop is null
-            || string.IsNullOrWhiteSpace(NewCategoryName))
+        if (string.IsNullOrWhiteSpace(NewCategoryName))
         {
             return;
         }
-
-        await JsInterop.AddTimelineCategory(NewCategoryName);
-
+        (Categories ??= new()).Add(new() { Name = NewCategoryName.Trim() });
         NewCategoryName = null;
+
+        await CategoriesChanged.InvokeAsync();
+        await Change.InvokeAsync();
+    }
+
+    private void OnAddEvent()
+    {
+        var latest = Events?.Max(x => x.End ?? x.Start) ?? Now;
+        if (latest.HasValue)
+        {
+            if (latest.Value.TimeOfDay > TimeSpan.Zero)
+            {
+                latest = latest.Value.AddHours(1);
+            }
+            else
+            {
+                latest = latest.Value.AddDays(1);
+            }
+        }
+        else
+        {
+            latest = DateTime.Now;
+        }
+
+        (Events ??= new()).Add(new()
+        {
+            Start = latest.Value,
+        });
     }
 
     private async Task OnCategoryKeydownAsync(KeyboardEventArgs e)
@@ -480,21 +214,165 @@ public partial class Timeline : IAsyncDisposable
         }
     }
 
+    private Task OnChangeAsync() => Change.InvokeAsync();
+
+    private async Task OnDeleteCategoryAsync(MudChip chip)
+    {
+        if (chip.Tag is TimelineCategory category)
+        {
+            Categories?.Remove(category);
+            if (Categories?.Count == 0)
+            {
+                Categories = null;
+            }
+            await CategoriesChanged.InvokeAsync();
+
+            if (Events is not null)
+            {
+                foreach (var item in Events)
+                {
+                    item.Categories?.Remove(category.Id);
+                }
+            }
+            await Change.InvokeAsync();
+        }
+    }
+
+    private async Task OnDeleteEventAsync(TimelineEvent item)
+    {
+        Events?.Remove(item);
+        await Change.InvokeAsync();
+    }
+
+    private async Task OnEditEventAsync(TimelineEvent? item = null)
+    {
+        if (EditedEvent is not null)
+        {
+            EditedEvent.Categories = EditedEventCategories;
+            EditedEvent.Start = EditedEventStart
+                ?? (EditedEventEnd.HasValue
+                    && EditedEvent.Start > EditedEventEnd
+                ? EditedEventEnd.Value
+                : EditedEvent.Start);
+            EditedEvent.End = EditedEventEnd;
+            await Change.InvokeAsync();
+        }
+
+        EditedEvent = item;
+        EditedEventCategories = EditedEvent?.Categories ?? new();
+        EditedEventEnd = EditedEvent?.End;
+        EditedEventEndTime = EditedEvent?.End?.TimeOfDay;
+        EditedEventStart = EditedEvent?.Start;
+        EditedEventStartTime = EditedEvent?.Start.TimeOfDay;
+        ShowEditedEventEnd = EditedEventEnd.HasValue;
+        ShowEditedEventEndTime = EditedEventEndTime > TimeSpan.Zero;
+        ShowEditedEventStartTime = EditedEventStartTime > TimeSpan.Zero;
+    }
+
+    private void OnEditEventEndDateChanged(DateTime? value)
+    {
+        EditedEventEnd = value;
+        if (EditedEventEnd.HasValue
+            && EditedEventEndTime.HasValue
+            && EditedEventEnd.Value.TimeOfDay != EditedEventEndTime.Value)
+        {
+            EditedEventEnd = EditedEventEnd.Value.Date.Add(EditedEventEndTime.Value);
+        }
+        if (EditedEventEnd < EditedEventStart)
+        {
+            EditedEventStart = EditedEventEnd;
+            EditedEventStartTime = EditedEventEndTime;
+        }
+    }
+
+    private void OnEditEventEndTimeChanged(TimeSpan? value)
+    {
+        EditedEventEndTime = value;
+        if (EditedEventEnd.HasValue
+            && EditedEventEndTime.HasValue
+            && EditedEventEnd.Value.TimeOfDay != EditedEventEndTime.Value)
+        {
+            EditedEventEnd = EditedEventEnd.Value.Date.Add(EditedEventEndTime.Value);
+        }
+        if (EditedEventEnd < EditedEventStart)
+        {
+            EditedEventStart = EditedEventEnd;
+            EditedEventStartTime = EditedEventEndTime;
+        }
+    }
+
+    private void OnEditEventStartDateChanged(DateTime? value)
+    {
+        EditedEventStart = value;
+        if (EditedEventStart.HasValue
+            && EditedEventStartTime.HasValue
+            && EditedEventStart.Value.TimeOfDay != EditedEventStartTime.Value)
+        {
+            EditedEventStart = EditedEventStart.Value.Date.Add(EditedEventStartTime.Value);
+        }
+        if (EditedEventStart > EditedEventEnd)
+        {
+            EditedEventEnd = EditedEventStart;
+            EditedEventEndTime = EditedEventStartTime;
+        }
+    }
+
+    private void OnEditEventStartTimeChanged(TimeSpan? value)
+    {
+        EditedEventStartTime = value;
+        if (EditedEventStart.HasValue
+            && EditedEventStartTime.HasValue
+            && EditedEventStart.Value.TimeOfDay != EditedEventStartTime.Value)
+        {
+            EditedEventStart = EditedEventStart.Value.Date.Add(EditedEventStartTime.Value);
+        }
+        if (EditedEventStart > EditedEventEnd)
+        {
+            EditedEventEnd = EditedEventStart;
+            EditedEventEndTime = EditedEventStartTime;
+        }
+    }
+
     private async Task OnSetNowAsync()
     {
+        var old = Now;
         Now = DateTime.Now;
-        await SetNowAsync(Now);
+        await SetNowAsync(old);
     }
 
     private async Task OnSetNowDateAsync(DateTime? date)
     {
+        var old = Now;
         Now = date;
-        await SetNowAsync(Now);
+        await SetNowAsync(old);
     }
 
     private async Task OnSetNowTimeAsync(TimeSpan? time)
     {
+        var old = Now;
         NowTime = time;
-        await SetNowAsync(Now);
+        await SetNowAsync(old);
+    }
+
+    private void OnToggleShowEditedEventEnd(bool value)
+    {
+        ShowEditedEventEnd = value;
+        if (value)
+        {
+            EditedEventEnd = EditedEventStart;
+            EditedEventEndTime = EditedEventStartTime;
+            ShowEditedEventEndTime = EditedEventEndTime > TimeSpan.Zero;
+        }
+        else
+        {
+            EditedEventEnd = null;
+            EditedEventEndTime = null;
+        }
+    }
+
+    private async Task SetNowAsync(DateTime? old)
+    {
+        await NowChanged.InvokeAsync(Now);
+        await NowChange.InvokeAsync(old);
     }
 }

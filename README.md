@@ -180,21 +180,19 @@ When the inverse isn't supplied automatically by Scop, and isn't the same as the
 
 Each story has a special Timeline note (at the top).
 
-The timeline can be zoomed in and out to show more or less detail.
+The timeline shows events in chronological order.
+Tap the plus icon at the bottom to add a new event.
 
-You can double-tap to add an event with a specific time, or hold and drag to create an event that goes on for a period of time.
-Events that have been added to the timeline can be dragged to change their date/time.
-They will snap to the nearest tickmark displayed on the timeline.
-You can zoom in or out to change the spacing of the tickmarks.
+Tap the edit icon on the timeline's central axis to edit an event.
+Events can be given a title and a rich text description.
 
-If you zoom out far enough that events get pushed too close together, they'll merge into a combined marker that identifies how many events take place at that point in the timeline. Zoom back in to see the events separately again.
+In addition to their beginning, events can also be assigned an ending to create ongoing events.
+Both the start and end can be assigned specific times, as well as dates.
 
-When you select an event, a rich text editor appears where you can take notes about that event.
-You can also fine-tune the exact date and time of the event (both start and end, for events that span a range of time).
-
-You can also set your story's "current" time. This might represent the date and time as of the story's beginnning, during the chapter where you're currently working, or any other point you want.
-When you add a current time, it defaults to the actual current time and date.
-After setting a current time for your story, it appears on the timeline as a vertical line, which can be dragged along the timeline to update the value.
+You can also set your story's "current" time.
+This might represent the date and time as of the story's beginnning, during the chapter where you're currently working, or any other point you want.
+After setting a current time for your story, it appears on the timeline in chronological order with the other events, but it cannot be edited.
+To change the current time, just assign a new one, and the original will be updated automatically.
 
 ## Roadmap
 

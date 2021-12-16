@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+### Changed
+- Simplify timelines
+
 ## 1.0.36
 ### Changed
 - Reorganize traits

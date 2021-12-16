@@ -82,72 +82,11 @@
             <div class="flex-grow-1 ms-1">
                 @if (IsTimelineSelected)
                 {
-                    <Timeline @ref="_timeline"
-                              @bind-Categories="_story.EventCategories"
+                    <Timeline @bind-Categories="_story.EventCategories"
                               @bind-Events="_story.Events"
                               @bind-Now="_story.Now"
-                              SelectedEvent="SelectedEvent"
-                              SelectedEventChanged="OnSelectedEventChanged"
                               NowChange="OnNowChangeAsync"
-                              Change="OnChangeAsync">
-                        <div class="d-flex">
-                            @if (SelectedEvent is null)
-                            {
-                                <p>Double-tap an event to view/edit its description.</p>
-                            }
-                            else
-                            {
-                                <div style="width:100%">
-                                    <MudTextField T="string"
-                                                  Value="SelectedEvent.Content"
-                                                  ValueChanged="OnSelectedEventChangedAsync"
-                                                  Label="Title" />
-                                    <MudDatePicker Date="SelectedEvent.EffectiveStart"
-                                                   DateChanged="OnSelectedEventStartDateChangedAsync"
-                                                   Label="Start"
-                                                   AllowKeyboardInput="true"
-                                                   AutoClose="true"
-                                                   PickerVariant="PickerVariant.Dialog" />
-                                    <MudSwitch @bind-Checked="IsTimelineEventStartTimeDisplayed" Color="Color.Tertiary">Show Time</MudSwitch>
-                                    @if (IsTimelineEventStartTimeDisplayed)
-                                    {
-                                        <MudTimePicker Time="TimelineEventStartTime"
-                                                       TimeChanged="OnSelectedEventStartTimeChangedAsync"
-                                                       Label="Start Time"
-                                                       AllowKeyboardInput="true"
-                                                       AmPm="true"
-                                                       AutoClose="true"
-                                                       PickerVariant="PickerVariant.Dialog" />
-                                    }
-                                    @if (SelectedEvent.End.HasValue)
-                                    {
-                                        <MudDatePicker Date="SelectedEvent.EffectiveEnd"
-                                                       DateChanged="OnSelectedEventEndDateChangedAsync"
-                                                       Label="End"
-                                                       AllowKeyboardInput="true"
-                                                       AutoClose="true"
-                                                       PickerVariant="PickerVariant.Dialog" />
-                                        <MudSwitch @bind-Checked="IsTimelineEventEndTimeDisplayed" Color="Color.Primary">Show Time</MudSwitch>
-                                        @if (IsTimelineEventEndTimeDisplayed)
-                                        {
-                                            <MudTimePicker Time="TimelineEventEndTime"
-                                                           TimeChanged="OnSelectedEventEndTimeChangedAsync"
-                                                           Label="End Time"
-                                                           AllowKeyboardInput="true"
-                                                           AmPm="true"
-                                                           AutoClose="true"
-                                                           PickerVariant="PickerVariant.Dialog" />
-                                        }
-                                    }
-                                    <MarkdownEditor @bind-Value="SelectedEvent.Markdown"
-                                                    AfterChange="OnChangeAsync"
-                                                    EditMode="EditMode.WYSIWYG"
-                                                    Placeholder="Enter a description for the event here..."
-                                                    Theme="Theme" />
-                                </div>
-                            }
-                        </div>
-                    </Timeline>
+                              Change="OnChangeAsync" />
                 }
                 else if (SelectedNote is not null)
                 {

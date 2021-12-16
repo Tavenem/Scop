@@ -1264,7 +1264,7 @@ public class Character : INote, IEquatable<Character>
                 AgeDays = null;
             }
         }
-        else if (Birthdate.HasValue && story?.Now.HasValue == true)
+        else if (story?.Now.HasValue == true)
         {
             try
             {
@@ -1310,7 +1310,7 @@ public class Character : INote, IEquatable<Character>
                 AgeMonths = null;
             }
         }
-        else if (Birthdate.HasValue && story?.Now.HasValue == true)
+        else if (story?.Now.HasValue == true)
         {
             try
             {
@@ -1356,7 +1356,7 @@ public class Character : INote, IEquatable<Character>
                 AgeYears = null;
             }
         }
-        else if (Birthdate.HasValue && story?.Now.HasValue == true)
+        else if (story?.Now.HasValue == true)
         {
             try
             {

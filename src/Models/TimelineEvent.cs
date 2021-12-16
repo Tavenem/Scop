@@ -4,12 +4,37 @@ namespace Scop;
 
 public class TimelineEvent
 {
-    public string? Content { get; set; }
-    [JsonIgnore] public DateTime? EffectiveEnd => End?.ToLocalTime();
-    [JsonIgnore] public DateTime? EffectiveStart => Start?.ToLocalTime();
+    public HashSet<string>? Categories { get; set; }
+
+    [JsonIgnore] public string? DisplayTime
+    {
+        get
+        {
+            if (End.HasValue)
+            {
+                if (End.Value.Date == Start.Date)
+                {
+                    return $"{Start:f} - {End.Value:t}";
+                }
+                else
+                {
+                    return $"{Start:f} - {End.Value:f}";
+                }
+            }
+            else
+            {
+                return Start.ToString("f");
+            }
+        }
+    }
+
     public DateTime? End { get; set; }
-    public int? Group { get; set; }
-    public string? Id { get; set; }
+
+    [JsonIgnore] public bool IsReadonly { get; set; }
+
     public string? Markdown { get; set; }
-    public DateTime? Start { get; set; }
+
+    public DateTime Start { get; set; }
+
+    public string? Title { get; set; }
 }

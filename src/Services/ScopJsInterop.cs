@@ -29,9 +29,6 @@ public class ScopJsInterop : IAsyncDisposable
             if (_moduleTask.IsValueCreated)
             {
                 var module = await _moduleTask.Value.ConfigureAwait(false);
-                await module
-                    .InvokeVoidAsync("disposeTimeline")
-                    .ConfigureAwait(false);
                 await module.DisposeAsync().ConfigureAwait(false);
             }
             _disposed = true;
@@ -49,31 +46,12 @@ public class ScopJsInterop : IAsyncDisposable
         return id;
     }
 
-    public async ValueTask AddTimelineCategory(string name)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("addTimelineCategory", name)
-            .ConfigureAwait(false);
-    }
-
     public async ValueTask DisposeColorSchemeListener(string id)
     {
         var module = await _moduleTask.Value.ConfigureAwait(false);
         await module
             .InvokeVoidAsync("disposeColorSchemeListener", id)
             .ConfigureAwait(false);
-    }
-
-    public async ValueTask DisposeTimeline()
-    {
-        if (_moduleTask.IsValueCreated)
-        {
-            var module = await _moduleTask.Value.ConfigureAwait(false);
-            await module
-                .InvokeVoidAsync("disposeTimeline")
-                .ConfigureAwait(false);
-        }
     }
 
     public async ValueTask DownloadText(string filename, string text)
@@ -132,19 +110,6 @@ public class ScopJsInterop : IAsyncDisposable
             .ConfigureAwait(false);
     }
 
-    public async ValueTask InitializeTimeline(
-        DotNetObjectReference<Timeline> dotNetObjectRef,
-        string elementId,
-        DateTime? now,
-        List<TimelineEvent>? events,
-        List<TimelineCategory>? categories)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("initializeTimeline", dotNetObjectRef, elementId, now, events, categories)
-            .ConfigureAwait(false);
-    }
-
     public async ValueTask LoadDriveData(DotNetObjectReference<DataService> dotNetObjectRef)
     {
         var module = await _moduleTask.Value.ConfigureAwait(false);
@@ -174,30 +139,6 @@ public class ScopJsInterop : IAsyncDisposable
         var module = await _moduleTask.Value.ConfigureAwait(false);
         await module
             .InvokeVoidAsync("setColorScheme", theme)
-            .ConfigureAwait(false);
-    }
-
-    public async ValueTask SetCurrentTime(DateTime? now)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("setCurrentTime", now)
-            .ConfigureAwait(false);
-    }
-
-    public async ValueTask SetTimelineCategories(List<TimelineCategory>? categories)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("setTimelineCategories", categories)
-            .ConfigureAwait(false);
-    }
-
-    public async ValueTask SetTimelineEvents(List<TimelineEvent>? events)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("setTimelineEvents", events)
             .ConfigureAwait(false);
     }
 }
