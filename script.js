@@ -6,50 +6,9 @@ export function addColorSchemeListener(dotNetObjectRef, id) {
     window.tavenem.scop._colorSchemeListeners[id] = dotNetObjectRef;
 }
 
-export function addTimelineCategory(name) {
-    if (window.tavenem.scop._timelineGroupsDataSet) {
-        const next = window.tavenem.scop._timelineGroupsDataSet.getIds().length + 1;
-        const group = { id: next, content: name, value: next };
-        window.tavenem.scop._timelineGroupsDataSet.add([group]);
-    } else {
-        const group = { id: 1, content: name, value: 1 };
-        window.tavenem.scop._timelineGroupsDataSet = new vis.DataSet([group]);
-        window.tavenem.scop._timelineGroupsDataSet.on('*', function (event, properties) {
-            if (properties.items
-                && properties.items.length) {
-                let item = window.tavenem.scop._timelineGroupsDataSet.get(properties.items[0]);
-                if (event === 'add') {
-                    window.tavenem.scop._timelineRef.invokeMethodAsync("AddCategory", item);
-                } else if (event === 'remove') {
-                    window.tavenem.scop._timelineRef.invokeMethodAsync("RemoveCategory", properties.items[0]);
-                } else if (event === 'update') {
-                    window.tavenem.scop._timelineRef.invokeMethodAsync("UpdateCategory", item);
-                }
-            }
-        });
-        window.tavenem.scop._timelineDataSet.update(
-            window.tavenem.scop._timelineDataSet.getIds().map(function (e) {
-                return {
-                    id: e,
-                    group: 1,
-                };
-            }));
-        if (window.tavenem.scop._timeline) {
-            window.tavenem.scop._timeline.setGroups(window.tavenem.scop._timelineGroupsDataSet);
-            window.tavenem.scop._timelineRef.invokeMethodAsync("AddCategory", group);
-        }
-    }
-}
-
 export function disposeColorSchemeListener(id) {
     if (window.tavenem.scop._colorSchemeListeners) {
         delete window.tavenem.scop._colorSchemeListeners[id];
-    }
-}
-
-export function disposeTimeline() {
-    if (window.tavenem.scop._timeline) {
-        window.tavenem.scop._timeline.destroy();
     }
 }
 
@@ -102,118 +61,6 @@ export function getPreferredColorScheme() {
         }
     }
     return 1;
-}
-
-export function initializeTimeline(dotNetObjectRef, elementId, now, events, categories) {
-    window.tavenem.scop._timelineRef = dotNetObjectRef;
-
-    if (window.tavenem.scop._timelineDataSet) {
-        window.tavenem.scop._timelineDataSet.clear();
-        if (events) {
-            window.tavenem.scop._timelineDataSet.update(events);
-        }
-    } else {
-        window.tavenem.scop._timelineDataSet = new vis.DataSet(events || []);
-        window.tavenem.scop._timelineDataSet.on('*', function (event, properties) {
-            if (properties.items
-                && properties.items.length) {
-                let item = window.tavenem.scop._timelineDataSet.get(properties.items[0]);
-                if (event === 'add') {
-                    window.tavenem.scop._timelineRef.invokeMethodAsync("AddEvent", item);
-                } else if (event === 'remove') {
-                    window.tavenem.scop._timelineRef.invokeMethodAsync("RemoveEvent", properties.items[0]);
-                } else if (event === 'update') {
-                    window.tavenem.scop._timelineRef.invokeMethodAsync("UpdateEvent", item);
-                }
-            }
-        });
-    }
-
-    if (window.tavenem.scop._timelineGroupsDataSet) {
-        window.tavenem.scop._timelineGroupsDataSet.clear();
-    }
-    if (categories && categories.length) {
-        if (window.tavenem.scop._timelineGroupsDataSet) {
-            window.tavenem.scop._timelineGroupsDataSet.update(categories);
-        } else {
-            window.tavenem.scop._timelineGroupsDataSet = new vis.DataSet(categories || []);
-            window.tavenem.scop._timelineGroupsDataSet.on('*', function (event, properties) {
-                if (properties.items
-                    && properties.items.length) {
-                    let item = window.tavenem.scop._timelineGroupsDataSet.get(properties.items[0]);
-                    if (event === 'add') {
-                        window.tavenem.scop._timelineRef.invokeMethodAsync("AddCategory", item);
-                    } else if (event === 'remove') {
-                        window.tavenem.scop._timelineRef.invokeMethodAsync("RemoveCategory", properties.items[0]);
-                    } else if (event === 'update') {
-                        window.tavenem.scop._timelineRef.invokeMethodAsync("UpdateCategory", item);
-                    }
-                }
-            });
-        }
-    } else {
-        window.tavenem.scop._timelineGroupsDataSet = null;
-    }
-
-    window.tavenem.scop._timeline = new vis.Timeline(
-        document.getElementById(elementId),
-        window.tavenem.scop._timelineDataSet,
-        window.tavenem.scop._timelineGroupsDataSet,
-        {
-            editable: true,
-            groupEditable: true,
-            groupOrder: function (a, b) {
-                return a.value - b.value;
-            },
-            groupOrderSwap: function (a, b, groups) {
-                let v = a.value;
-                a.value = b.value;
-                b.value = v;
-            },
-            groupTemplate: function (group) {
-                if (!group) {
-                    return null;
-                }
-                let container = document.createElement('div');
-                let label = document.createElement('span');
-                label.innerHTML = group.content || '';
-                container.appendChild(label);
-                let deleteButton = document.createElement('button');
-                deleteButton.classList = "mud-button-root mud-icon-button mud-icon-button-color-error mud-ripple mud-ripple-icon ms-1";
-                deleteButton.type = 'button';
-                deleteButton.addEventListener('click', function () {
-                    window.tavenem.scop._timelineGroupsDataSet.remove(group.id);
-                });
-                container.appendChild(deleteButton);
-                let iconLabel = document.createElement('span');
-                iconLabel.classList = "mud-icon-button-label";
-                iconLabel.textContent = "×";
-                deleteButton.appendChild(iconLabel);
-                return container;
-            },
-            itemsAlwaysDraggable: true,
-            cluster: {
-                titleTemplate: "{count} events"
-            }
-        }
-    );
-    window.tavenem.scop._timeline.on('select', function (properties) {
-        if (properties.items
-            && properties.items.length) {
-            let item = window.tavenem.scop._timelineDataSet.get(properties.items[0]);
-            window.tavenem.scop._timelineRef.invokeMethodAsync("SelectEvent", item);
-        }
-    });
-    window.tavenem.scop._timeline.on('timechanged', function (properties) {
-        if (properties.time) {
-            window.tavenem.scop._timelineRef.invokeMethodAsync("OnNowChanged", properties.time);
-        }
-    });
-    if (now) {
-        window.tavenem.scop._timeline.hasNow = true;
-        window.tavenem.scop._timeline.addCustomTime(now, 1);
-        window.tavenem.scop._timeline.setCustomTimeMarker("Now", 1);
-    }
 }
 
 export async function loadDriveData(dotNetObjectRef) {
@@ -329,38 +176,6 @@ export function setColorScheme(theme, manual) {
             if (ref) {
                 ref.invokeMethodAsync("UpdateComponentTheme", theme);
             }
-        }
-    }
-}
-
-export function setCurrentTime(now) {
-    if (window.tavenem.scop._timeline) {
-        if (window.tavenem.scop._timeline.hasNow) {
-            window.tavenem.scop._timeline.removeCustomTime(1);
-            window.tavenem.scop._timeline.hasNow = false;
-        }
-        if (now) {
-            window.tavenem.scop._timeline.addCustomTime(now, 1);
-            window.tavenem.scop._timeline.setCustomTimeMarker("Now", 1);
-            window.tavenem.scop._timeline.hasNow = true;
-        }
-    }
-}
-
-export function setTimelineCategories(categories) {
-    if (window.tavenem.scop._timelineGroupsDataSet) {
-        window.tavenem.scop._timelineGroupsDataSet.clear();
-        if (categories) {
-            window.tavenem.scop._timelineGroupsDataSet.update(categories);
-        }
-    }
-}
-
-export function setTimelineEvents(events) {
-    if (window.tavenem.scop._timelineDataSet) {
-        window.tavenem.scop._timelineDataSet.clear();
-        if (events) {
-            window.tavenem.scop._timelineDataSet.update(events);
         }
     }
 }

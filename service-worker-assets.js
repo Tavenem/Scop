@@ -53,7 +53,7 @@
       "url": "images\/tavenemlogo.svg"
     },
     {
-      "hash": "sha256-dzkdvEjLZgUXBqyYEwkkLArHeqzy3Vt\/AXdjr0Gn6zE=",
+      "hash": "sha256-7q9olpvo71YFeWvCbXjGiQpbGtJaPE1K\/JlVPnrntAs=",
       "url": "index.html"
     },
     {
@@ -269,7 +269,7 @@
       "url": "names\/middle_eastern.json"
     },
     {
-      "hash": "sha256-pkXnthelBjc+U+pXSSkq\/3sT0uA7TRZ4YUCe2AH3\/3Q=",
+      "hash": "sha256-1\/+3BIOQXx8Yc37CVDYukgrGyx23c39r6Jzjoqd77IM=",
       "url": "script.js"
     },
     {
@@ -313,11 +313,11 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-NXN\/kyAdiEzp3LQE5q29pBqWqMGvIupxMXBwmB+riGg=",
+      "hash": "sha256-TRKNRA0qWwopvK2zicLQDo+xlJEJ6gHbYQi8rTCo88U=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-y8NOGeg71VAsYHK1rSu3l8KckVkwWGndQ5a\/xTTM13k=",
+      "hash": "sha256-HPeqVjYQ16RX1tyw26ljwrctcSPK7Y3SwQ15feg+JKw=",
       "url": "_framework\/Microsoft.AspNetCore.Components.dll"
     },
     {
@@ -381,7 +381,7 @@
       "url": "_framework\/MudBlazor.dll"
     },
     {
-      "hash": "sha256-BOZEF1ETpOmtGrW8ndVBVIvYQ9whQy7lFlTV+9\/vINU=",
+      "hash": "sha256-fE1mcveAwS4SoOczg5onEScyPX94hu3LCwysWa3D6kE=",
       "url": "_framework\/Scop.dll"
     },
     {
@@ -425,7 +425,7 @@
       "url": "_framework\/System.Drawing.Primitives.dll"
     },
     {
-      "hash": "sha256-sgrQuBpo\/7INJscOg86hNpIzepss5vwgu+VwGhhcv7w=",
+      "hash": "sha256-AN\/IA\/2nc\/KaGTby\/jvN7O3lZfqIDYdcX1BCdgxk84U=",
       "url": "_framework\/System.Linq.dll"
     },
     {
@@ -461,7 +461,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-Fwo0n+IwzT6uuV1X0n6IKFNsSDd6f7uSvj5LyQmM3kY=",
+      "hash": "sha256-bXSx4RkKH73smf1rDvK+IYcPS22MzG\/mhAem3NyTWSw=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -553,5 +553,5 @@
       "url": "_content\/Tavenem.Blazor.MarkdownEditor\/Tavenem.Blazor.MarkdownEditor.bundle.scp.css"
     }
   ],
-  "version": "PdkDwIkx"
+  "version": "VoGBxGv9"
 };
