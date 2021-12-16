@@ -457,6 +457,7 @@ public partial class StoryPage : IDisposable
         if (value != character.DisplayAgeDays)
         {
             character.SetAgeDays(_story, value);
+            SelectedBirthdate = character.Birthdate;
             await OnChangeAsync();
         }
     }
@@ -466,6 +467,7 @@ public partial class StoryPage : IDisposable
         if (value != character.DisplayAgeMonths)
         {
             character.SetAgeMonths(_story, value);
+            SelectedBirthdate = character.Birthdate;
             await OnChangeAsync();
         }
     }
@@ -475,6 +477,7 @@ public partial class StoryPage : IDisposable
         if (value != character.DisplayAgeYears)
         {
             character.SetAgeYears(_story, value);
+            SelectedBirthdate = character.Birthdate;
             await OnChangeAsync();
         }
     }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+### Fixed
+- Update displayed birthdate when setting age
+
 ## 1.1.1
 ### Changed
 - New events start no earlier than current time
