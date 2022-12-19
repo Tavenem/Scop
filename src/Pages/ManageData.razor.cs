@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-using Scop.Shared;
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace Scop.Pages;
@@ -82,17 +79,11 @@ public partial class ManageData : IDisposable
         }
     }
 
-    private void OnCancelLocalDelete() => DeleteLocalDialogOpen = false;
-
-    private void OnCancelUpload() => UploadDialogOpen = false;
-
     private void OnConfirmLocalDelete()
     {
         DeleteLocalDialogOpen = false;
         DataService?.DeleteLocal();
     }
-
-    private void OnDeleteLocalData() => DeleteLocalDialogOpen = true;
 
     private async Task OnDownloadDataAsync()
     {
@@ -124,8 +115,6 @@ public partial class ManageData : IDisposable
                 .DriveSignout(_dotNetObjectRef);
         }
     }
-
-    private void OnUploadData() => UploadDialogOpen = true;
 
     private async Task OnUploadFileAsync(InputFileChangeEventArgs e)
     {

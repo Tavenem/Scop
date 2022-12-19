@@ -2,57 +2,58 @@
 
 <PageTitle>Scop - Stories</PageTitle>
 
-<div class="d-flex flex-column mt-4 pa-6">
-    <MudText Typo="Typo.h4" Class="mb-4">Stories</MudText>
+<h1 Class="mb-4">Stories</h1>
 
-    @if (_loading || DataService is null)
+@if (_loading)
+{
+    <div class="d-flex justify-content-center">
+        <tf-progress-circle class="primary"></tf-progress-circle>
+    </div>
+}
+else
+{
+    if (DataService.Data.Stories.Count == 0)
     {
-        <div class="loading-icon-container my-2">
-            <div class="loading-icon"></div>
-        </div>
+        <p>You don't have any stories yet.</p>
     }
     else
     {
-        if (DataService.Data.Stories.Count == 0)
-        {
-            <p>You don't have any stories yet.</p>
-        }
-        else
-        {
-            <div class="d-flex flex-wrap justify-space-around my-2">
-                @foreach (var story in DataService.Data.Stories)
-                {
-                    <MudCard Class="ma-2">
-                        <MudCardContent>
-                            <MudText Style="@(story.IsUnnamed ? $"color: {Theme?.Palette.TextDisabled ?? "#ffffff33"}" : null)">@story.DisplayName</MudText>
-                        </MudCardContent>
-                        <MudCardActions>
-                            <MudButton OnClick="@(_ => OnOpenStory(story))" Color="Color.Primary">Open</MudButton>
-                            <MudButton OnClick="@(_ => OnDeleteStory(story))" Color="Color.Error">Delete</MudButton>
-                        </MudCardActions>
-                    </MudCard>
-                }
-            </div>
-        }
-
-        <div class="d-flex justify-center mt-4">
-            <MudTooltip Text="Add new story" Delay="600">
-                <MudFab OnClick="OnAddStory" Icon="@Icons.Material.Filled.Add" Color="Color.Success" Size="Size.Small" />
-            </MudTooltip>
+        <div class="d-flex flex-wrap justify-content-space-around my-2 gap-2">
+            @foreach (var story in DataService.Data.Stories)
+            {
+                <div class="card">
+                    <div class="body">
+                        <p class="@(story.IsUnnamed ? "text-muted" : null)">@story.DisplayName</p>
+                    </div>
+                    <div class="footer">
+                        <button class="btn danger ms-auto" @onclick="@(_ => OnDeleteStory(story))">Delete</button>
+                        <button class="btn primary ms-1" @onclick="@(_ => OnOpenStory(story))">Open</button>
+                    </div>
+                </div>
+            }
         </div>
     }
-</div>
 
-<MudDialog @bind-IsVisible="DeleteDialogOpen">
+    <div class="d-flex justify-content-center mt-4">
+        <Tooltip TooltipText="Add new story" Delay="750">
+            <button class="btn btn-icon primary" @onclick="OnAddStory"><tf-icon>add</tf-icon></button>
+        </Tooltip>
+    </div>
+}
+
+<Dialog @bind-IsVisible="DeleteDialogOpen">
     <TitleContent>
-        <MudText Typo="Typo.h6">Delete</MudText>
+        <h6>Delete</h6>
     </TitleContent>
-    <DialogContent>
+    <ChildContent>
         <p>Are you sure you want to delete this story?</p>
-        <p>This is <MudText Inline="true" Color="Color.Error"><em>permanent</em></MudText> and cannot be undone (other than by restoring a backup data file).</p>
-    </DialogContent>
-    <DialogActions>
-        <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="OnCancelDelete" Class="px-10">Cancel</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="OnConfirmDeleteAsync" Class="ms-2 px-10">Yes, Delete</MudButton>
-    </DialogActions>
-</MudDialog>
+        <p>
+            This is <em class="danger">permanent</em> and cannot be undone
+            (other than by restoring a backup data file).
+        </p>
+    </ChildContent>
+    <FooterContent>
+        <button class="btn btn-text danger" @onclick="OnConfirmDeleteAsync">Yes, Delete</button>
+        <button class="btn btn-text" @onclick="@(_ => DeleteDialogOpen = false)">Cancel</button>
+    </FooterContent>
+</Dialog>

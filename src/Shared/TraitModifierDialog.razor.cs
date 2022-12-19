@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using MudBlazor;
+using Tavenem.Blazor.Framework;
 
 namespace Scop.Shared;
 
@@ -8,20 +7,27 @@ public partial class TraitModifierDialog
 {
     [Parameter] public TraitModifier Modifier { get; set; } = new();
 
-    [CascadingParameter] private MudDialogInstance? MudDialog { get; set; }
+    [CascadingParameter] private DialogInstance? Dialog { get; set; }
 
     private string? NewEthnicity { get; set; }
 
     private string? NewTargetPath { get; set; }
 
-    private void OnEditEthnicity()
+    private void OnEditEthnicity(int index, string? value)
     {
         if (Modifier.Ethnicities is not null)
         {
-            Modifier.Ethnicities.RemoveAll(x => string.IsNullOrWhiteSpace(x));
-            if (Modifier.Ethnicities.Count == 0)
+            if (string.IsNullOrWhiteSpace(value))
             {
-                Modifier.Ethnicities = null;
+                Modifier.Ethnicities.RemoveAt(index);
+                if (Modifier.Ethnicities.Count == 0)
+                {
+                    Modifier.Ethnicities = null;
+                }
+            }
+            else
+            {
+                Modifier.Ethnicities[index] = value;
             }
         }
     }

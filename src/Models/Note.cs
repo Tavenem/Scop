@@ -20,6 +20,8 @@ public class Note : INote
 
     public List<INote>? Notes { get; set; }
 
+    [JsonIgnore] public INote? Parent { get; set; }
+
     [JsonIgnore] public string Type => "Note";
 
     [JsonPropertyOrder(-1)] public virtual NoteTypeDiscriminator TypeDiscriminator => NoteTypeDiscriminator.Note;
@@ -34,6 +36,18 @@ public class Note : INote
                 {
                     yield return child;
                 }
+            }
+        }
+    }
+
+    public void Initialize()
+    {
+        if (Notes is not null)
+        {
+            foreach (var child in Notes)
+            {
+                child.Parent = this;
+                child.Initialize();
             }
         }
     }

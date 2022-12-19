@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Scop.Pages;
-using Scop.Shared;
-using Tavenem.Blazor.MarkdownEditor;
 
 namespace Scop;
 
@@ -34,24 +32,6 @@ public class ScopJsInterop : IAsyncDisposable
             _disposed = true;
         }
         GC.SuppressFinalize(this);
-    }
-
-    public async ValueTask<string> AddColorSchemeListener(DotNetObjectReference<MainLayout> dotNetObjectRef)
-    {
-        var id = Guid.NewGuid().ToString();
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("addColorSchemeListener", dotNetObjectRef, id)
-            .ConfigureAwait(false);
-        return id;
-    }
-
-    public async ValueTask DisposeColorSchemeListener(string id)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("disposeColorSchemeListener", id)
-            .ConfigureAwait(false);
     }
 
     public async ValueTask DownloadText(string filename, string text)
@@ -102,14 +82,6 @@ public class ScopJsInterop : IAsyncDisposable
             .ConfigureAwait(false);
     }
 
-    public async ValueTask<MarkdownEditorTheme> GetPreferredColorScheme()
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        return await module
-            .InvokeAsync<MarkdownEditorTheme>("getPreferredColorScheme")
-            .ConfigureAwait(false);
-    }
-
     public async ValueTask LoadDriveData(DotNetObjectReference<DataService> dotNetObjectRef)
     {
         var module = await _moduleTask.Value.ConfigureAwait(false);
@@ -123,22 +95,6 @@ public class ScopJsInterop : IAsyncDisposable
         var module = await _moduleTask.Value.ConfigureAwait(false);
         await module
             .InvokeVoidAsync("saveDriveData", data)
-            .ConfigureAwait(false);
-    }
-
-    public async ValueTask ScrollToId(string elementId)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("scrollToId", elementId)
-            .ConfigureAwait(false);
-    }
-
-    public async ValueTask SetColorScheme(MarkdownEditorTheme theme)
-    {
-        var module = await _moduleTask.Value.ConfigureAwait(false);
-        await module
-            .InvokeVoidAsync("setColorScheme", theme)
             .ConfigureAwait(false);
     }
 }

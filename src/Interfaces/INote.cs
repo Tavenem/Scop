@@ -2,7 +2,8 @@
 
 namespace Scop;
 
-[JsonConverter(typeof(NoteConverter))]
+[JsonDerivedType(typeof(Note), nameof(TypeDiscriminator))]
+[JsonDerivedType(typeof(Character), nameof(TypeDiscriminator))]
 public interface INote
 {
     string? Content { get; set; }
@@ -21,11 +22,15 @@ public interface INote
 
     List<INote>? Notes { get; set; }
 
+    INote? Parent { get; set; }
+
     string Type { get; }
 
     NoteTypeDiscriminator TypeDiscriminator { get; }
 
     IEnumerable<Character> AllCharacters();
+
+    void Initialize();
 
     void LoadCharacters(Story story);
 }

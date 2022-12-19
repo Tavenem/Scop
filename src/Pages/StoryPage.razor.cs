@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using MudBlazor;
 using Scop.Shared;
 using System.Diagnostics.CodeAnalysis;
-using Tavenem.Blazor.MarkdownEditor;
+using Tavenem.Blazor.Framework;
 using Tavenem.Randomize;
 
 namespace Scop.Pages;
@@ -12,11 +11,9 @@ public partial class StoryPage : IDisposable
 {
     private static readonly List<string> _storyIcons = new()
     {
-        Icons.Material.Filled.Note,
-        Icons.Material.Filled.Person,
+        "note",
+        "person",
     };
-
-    private readonly Note _timelineDummyNote = new();
 
     private bool _disposedValue;
     private DotNetObjectReference<StoryPage>? _dotNetObjectRef;
@@ -28,17 +25,13 @@ public partial class StoryPage : IDisposable
 
     [Inject, NotNull] private DataService? DataService { get; set; }
 
-    [Inject] private IDialogService? DialogService { get; set; }
-
-    private CustomTreeViewEventArgs<INote>? DragData { get; set; }
+    [Inject] private DialogService DialogService { get; set; } = default!;
 
     private bool EthnicitiesVisible { get; set; }
 
-    private bool IsTimelineSelected => SelectedNote == _timelineDummyNote;
+    private bool IsTimelineSelected { get; set; }
 
-    [Inject] private ScopJsInterop? JsInterop { get; set; }
-
-    [CascadingParameter] private MudTheme? MudTheme { get; set; }
+    [Inject] private ScopJsInterop JsInterop { get; set; } = default!;
 
     private string? NewCharacterName { get; set; }
 
@@ -50,13 +43,11 @@ public partial class StoryPage : IDisposable
 
     private string? NewTraitValue { get; set; }
 
-    public DateTime? SelectedBirthdate { get; set; }
+    public DateTimeOffset? SelectedBirthdate { get; set; }
 
     private INote? SelectedNote { get; set; }
 
     private string StoryName => _story?.Name ?? "Story";
-
-    [CascadingParameter] private MarkdownEditorTheme Theme { get; set; }
 
     private bool TraitsVisible { get; set; }
 
@@ -82,9 +73,7 @@ public partial class StoryPage : IDisposable
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender
-            && JsInterop is not null
-            && DataService is not null)
+        if (firstRender)
         {
             DataService.DataLoaded += OnDataLoaded;
             _dotNetObjectRef ??= DotNetObjectReference.Create(this);
@@ -110,10 +99,7 @@ public partial class StoryPage : IDisposable
                 _dotNetObjectRef?.Dispose();
                 _dotNetObjectRef = null;
 
-                if (DataService is not null)
-                {
-                    DataService.DataLoaded -= OnDataLoaded;
-                }
+                DataService.DataLoaded -= OnDataLoaded;
             }
 
             _disposedValue = true;
@@ -138,124 +124,111 @@ public partial class StoryPage : IDisposable
     [JSInvokable]
     public async Task UpdateDriveStatus(bool isSignedIn, string? userName)
     {
-        if (DataService is not null)
+        DataService.GDriveSync = isSignedIn;
+        DataService.GDriveUserName = userName;
+        if (!isSignedIn)
         {
-            DataService.GDriveSync = isSignedIn;
-            DataService.GDriveUserName = userName;
-            if (isSignedIn)
+            return;
+        }
+
+        _loading = true;
+        await InvokeAsync(StateHasChanged);
+
+        await DataService.LoadAsync();
+
+        if (_story is null
+            && !string.IsNullOrEmpty(Id))
+        {
+            await LoadStoryAsync();
+        }
+        else
+        {
+            await DataService.SaveAsync();
+        }
+    }
+
+    private static bool Contains(INote dropTarget, INote dropped)
+    {
+        if (dropTarget.Notes is null)
+        {
+            return false;
+        }
+        if (dropTarget.Notes.Contains(dropped))
+        {
+            return true;
+        }
+        foreach (var child in dropTarget.Notes)
+        {
+            if (Contains(child, dropped))
             {
-                _loading = true;
-                await InvokeAsync(StateHasChanged);
-
-                await DataService.LoadAsync();
-
-                if (_story is null
-                    && !string.IsNullOrEmpty(Id))
-                {
-                    await LoadStoryAsync();
-                }
-                else
-                {
-                    await DataService.SaveAsync();
-                }
+                return true;
             }
         }
+        return false;
     }
 
-    private static Task<IEnumerable<string?>> GetGenders(string? value)
+    private static Task<IEnumerable<KeyValuePair<string, object>>> GetGenders(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            return Task.FromResult<IEnumerable<string?>>(Strings.Genders);
+            return Task.FromResult(Strings.Genders
+                .Select(x => new KeyValuePair<string, object>(x, x)));
         }
 
         var trimmed = value.Trim();
 
-        var list = Strings.Genders
-            .Where(x => x
-                .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
-            .ToList();
-
-        var index = list.IndexOf(trimmed);
-        if (index != -1)
-        {
-            list.RemoveAt(index);
-        }
-        list.Insert(0, trimmed);
-
-        return Task.FromResult<IEnumerable<string?>>(list);
+        return Task.FromResult(Strings.Genders
+            .Where(x => !string.IsNullOrEmpty(x)
+                && x.Contains(trimmed, StringComparison.OrdinalIgnoreCase))
+            .Select(x => new KeyValuePair<string, object>(x!, x!)));
     }
 
-    private static Task<IEnumerable<string?>> GetRelationshipTypes(string? value)
+    private static Task<IEnumerable<KeyValuePair<string, object>>> GetRelationshipTypes(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            return Task.FromResult<IEnumerable<string?>>(Strings.RelationshipTypes);
+            return Task.FromResult(Strings.RelationshipTypes
+                .Select(x => new KeyValuePair<string, object>(x, x)));
         }
 
         var trimmed = value.Trim();
 
-        var list = Strings.RelationshipTypes
+        return Task.FromResult(Strings.RelationshipTypes
             .Where(x => x
                 .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
-            .ToList();
-
-        var index = list.IndexOf(trimmed);
-        if (index != -1)
-        {
-            list.RemoveAt(index);
-        }
-        list.Insert(0, trimmed);
-
-        return Task.FromResult<IEnumerable<string?>>(list);
+            .Select(x => new KeyValuePair<string, object>(x, x)));
     }
 
-    private static Task<IEnumerable<string?>> GetSuffixes(string? value)
+    private static Task<IEnumerable<KeyValuePair<string, object>>> GetSuffixes(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            return Task.FromResult<IEnumerable<string?>>(Strings.Suffixes);
+            return Task.FromResult(Strings.Suffixes
+                .Select(x => new KeyValuePair<string, object>(x, x)));
         }
 
         var trimmed = value.Trim();
 
-        var list = Strings.Suffixes
+        return Task.FromResult(Strings.Suffixes
             .Where(x => x
                 .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
-            .ToList();
-
-        var index = list.IndexOf(trimmed);
-        if (index != -1)
-        {
-            list.RemoveAt(index);
-        }
-        list.Insert(0, trimmed);
-
-        return Task.FromResult<IEnumerable<string?>>(list);
+            .Select(x => new KeyValuePair<string, object>(x, x)));
     }
 
-    private static Task<IEnumerable<string?>> GetTitles(string? value)
+    private static Task<IEnumerable<KeyValuePair<string, object>>> GetTitles(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            return Task.FromResult<IEnumerable<string?>>(Strings.Titles);
+            return Task.FromResult(Strings.Titles
+                .Select(x => new KeyValuePair<string, object>(x, x)));
         }
 
         var trimmed = value.Trim();
 
-        var list = Strings.Titles
+        return Task.FromResult(Strings.Titles
             .Where(x => x
                 .Contains(trimmed, StringComparison.OrdinalIgnoreCase))
-            .ToList();
-
-        var index = list.IndexOf(trimmed);
-        if (index != -1)
-        {
-            list.RemoveAt(index);
-        }
-        list.Insert(0, trimmed);
-
-        return Task.FromResult<IEnumerable<string?>>(list);
+            .Select(x => new KeyValuePair<string, object>(x, x)));
     }
 
     private static void OnAddRelationship(Character character)
@@ -280,111 +253,72 @@ public partial class StoryPage : IDisposable
         ethnicity.IsEditing = false;
     }
 
-    private Task<IEnumerable<string?>> GetCharacterNames(Character character, string? value)
+    private Task<IEnumerable<KeyValuePair<string, object>>> GetCharacterNames(Character character, string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
             return Task.FromResult(_story?
                 .AllCharacters()
-                .Where(x => x != character)
-                .Select(x => x.CharacterName)
-                ?? Enumerable.Empty<string?>());
+                .Where(x => x != character
+                    && !string.IsNullOrEmpty(x.CharacterName))
+                .Select(x => new KeyValuePair<string, object>(
+                    x.CharacterName!,
+                    x.CharacterName!))
+                ?? Enumerable.Empty<KeyValuePair<string, object>>());
         }
 
         var trimmed = value.Trim();
 
-        var list = _story?.Notes?
+        return Task.FromResult(_story?.Notes?
             .OfType<Character>()
-            .Where(x => x != character)
-            .Select(x => x.CharacterName)
-            .Where(x => !string.IsNullOrEmpty(x)
-                && x.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
-            .ToList() ?? new();
-
-        var index = list.IndexOf(trimmed);
-        if (index != -1)
-        {
-            list.RemoveAt(index);
-        }
-        list.Insert(0, trimmed);
-
-        return Task.FromResult<IEnumerable<string?>>(list);
+            .Where(x => x != character
+                    && !string.IsNullOrEmpty(x.CharacterName)
+                    && x.CharacterName
+                        .Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
+            .Select(x => new KeyValuePair<string, object>(x.CharacterName!, x.CharacterName!))
+            ?? Enumerable.Empty<KeyValuePair<string, object>>());
     }
 
-    private async Task<IEnumerable<string>> GetGivenNames(Character character, string? value)
-    {
-        var list = await GetNewGivenNames(character, value);
-        return list
-             .Where(x => !string.IsNullOrEmpty(x))
-             .Select(x => x!);
-    }
-
-    private async Task<IEnumerable<string?>> GetNewGivenNames(Character character, string? value)
+    private async Task<IEnumerable<KeyValuePair<string, object>>> GetGivenNames(Character character, string? value)
     {
         var trimmed = value?.Trim();
 
         if (DataService is null)
         {
             return string.IsNullOrWhiteSpace(trimmed)
-                ? Enumerable.Empty<string?>()
-                : new[] { trimmed };
+                ? Enumerable.Empty<KeyValuePair<string, object>>()
+                : new[] { new KeyValuePair<string, object>(trimmed, trimmed) };
         }
 
-        var nameList = (await DataService
+        return (await DataService
             .GetNameListAsync(character.GetNameGender(), character.EthnicityPaths))
             .Select(x => x.Name)
-            .Where(x => string.IsNullOrWhiteSpace(trimmed)
-                || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
+            .Where(x => !string.IsNullOrEmpty(x)
+                && (string.IsNullOrWhiteSpace(trimmed)
+                || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase)))
             .Distinct()
-            .ToList();
-        if (!string.IsNullOrWhiteSpace(trimmed))
-        {
-            var index = nameList.IndexOf(trimmed);
-            if (index != -1)
-            {
-                nameList.RemoveAt(index);
-            }
-            nameList.Insert(0, trimmed);
-        }
-        return nameList;
+            .Select(x => new KeyValuePair<string, object>(x!, x!));
     }
 
-    private async Task<IEnumerable<string?>> GetNewSurnames(Character character, string? value)
+    private async Task<IEnumerable<KeyValuePair<string, object>>> GetSurnames(Character character, string? value)
     {
         var trimmed = value?.Trim();
 
         if (DataService is null)
         {
             return string.IsNullOrWhiteSpace(trimmed)
-                ? Enumerable.Empty<string?>()
-                : new[] { trimmed };
+                ? Enumerable.Empty<KeyValuePair<string, object>>()
+                : new[] { new KeyValuePair<string, object>(trimmed, trimmed) };
         }
 
-        var nameList = (await DataService
+        return (await DataService
             .GetSurnameListAsync(character.EthnicityPaths))
             .Select(x => x.Name)
-            .Where(x => string.IsNullOrWhiteSpace(trimmed)
-                || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
+            .Where(x => !string.IsNullOrEmpty(x)
+                && (string.IsNullOrWhiteSpace(trimmed)
+                || x!.Contains(trimmed, StringComparison.InvariantCultureIgnoreCase)))
             .Distinct()
-            .ToList();
-        if (!string.IsNullOrWhiteSpace(trimmed))
-        {
-            var index = nameList.IndexOf(trimmed);
-            if (index != -1)
-            {
-                nameList.RemoveAt(index);
-            }
-            nameList.Insert(0, trimmed);
-        }
-        return nameList;
-    }
-
-    private async Task<IEnumerable<string>> GetSurnames(Character character, string? value)
-    {
-        var names = await GetNewSurnames(character, value);
-        return names
-            .Where(x => !string.IsNullOrEmpty(x))
-            .Select(x => x!);
+            .Select(x => new KeyValuePair<string, object>(x!, x!));
     }
 
     private async Task LoadStoryAsync()
@@ -398,14 +332,7 @@ public partial class StoryPage : IDisposable
             ? null
             : DataService.Data.Stories.Find(x => x.Id == Id);
 
-        if (_story?.Notes is not null)
-        {
-            foreach (var note in _story.Notes)
-            {
-                note.LoadCharacters(_story);
-            }
-            Character.SetRelationshipMaps(_story, _story.AllCharacters().ToList());
-        }
+        _story?.Initialize();
 
         _loading = false;
         await InvokeAsync(StateHasChanged);
@@ -482,13 +409,13 @@ public partial class StoryPage : IDisposable
         }
     }
 
-    private async Task OnBirthdayChangedAsync(DateTime? value)
+    private async Task OnBirthdayChangedAsync(DateTimeOffset? value)
     {
+        SelectedBirthdate = value;
         if (SelectedNote is not Character character)
         {
             return;
         }
-        SelectedBirthdate = value;
         if (character.Birthdate != value)
         {
             character.SetBirthdate(_story, value);
@@ -498,9 +425,10 @@ public partial class StoryPage : IDisposable
 
     private Task OnChangeAsync() => DataService.SaveAsync();
 
-    private async Task OnChangeGenderAsync(Character character)
+    private async Task OnChangeGenderAsync(Character character, string? value)
     {
-        var gender = character.Gender?.Trim().ToLowerInvariant() ?? string.Empty;
+        character.Gender = value?.Trim();
+        var gender = character.Gender?.ToLowerInvariant() ?? string.Empty;
         if (gender.EndsWith("female")
             || gender.EndsWith("woman"))
         {
@@ -516,10 +444,37 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private Task OnChildNoteDropAsync(CustomTreeViewEventArgs<INote> e) => OnNoteDropAsync(new()
+    private async Task OnChangeStoryNameAsync(string? name)
     {
-        NodeValue = e.ParentValue,
-    }, true);
+        if (_story is null)
+        {
+            return;
+        }
+        _story.Name = name;
+        await OnChangeAsync();
+    }
+
+    private async Task OnCharacterSuffixChangedAsync(Character character, string? value)
+    {
+        character.Suffix = value;
+        await DataService.SaveAsync();
+    }
+
+    private async Task OnCharacterTitleChangedAsync(Character character, string? value)
+    {
+        character.Title = value;
+        await DataService.SaveAsync();
+    }
+
+    private async Task OnContentChangedAsync(string? value)
+    {
+        if (SelectedNote is null)
+        {
+            return;
+        }
+        SelectedNote.Content = value;
+        await DataService.SaveAsync();
+    }
 
     private async Task OnCopyCharacterEthnicitiesAsync(Character character)
     {
@@ -580,17 +535,12 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private async Task OnDeleteNoteAsync(CustomTreeViewEventArgs<INote> e)
+    private async Task OnDeleteNoteAsync(INote note)
     {
-        if (e.NodeValue is null)
-        {
-            return;
-        }
-
         List<INote>? notes = null;
-        if (e.ParentValue is not null)
+        if (note.Parent is not null)
         {
-            notes = e.ParentValue.Notes;
+            notes = note.Parent.Notes;
         }
         else if (_story is not null)
         {
@@ -601,8 +551,8 @@ public partial class StoryPage : IDisposable
             return;
         }
 
-        notes.Remove(e.NodeValue);
-        if (SelectedNote == e.NodeValue)
+        notes.Remove(note);
+        if (SelectedNote == note)
         {
             SelectedNote = null;
         }
@@ -764,24 +714,100 @@ public partial class StoryPage : IDisposable
         }
     }
 
-    private async Task OnDropAsync()
+    private Task OnDropAsync(DropEventArgs e)
+        => OnDropAsync(e, null);
+
+    private async Task OnDropAsync(DropEventArgs e, INote? targetParent)
     {
         if (_story is null
-            || DragData?.NodeValue is null)
+            || e.Data is null)
         {
             return;
         }
 
-        if (DragData.ParentValue is null)
+        var note = DragDropService.TryGetData<INote>(e.Data);
+        if (note is null)
         {
-            _story.Notes?.Remove(DragData.NodeValue);
+            return;
+        }
+
+        if (note.Parent is null)
+        {
+            _story.Notes?.Remove(note);
         }
         else
         {
-            DragData.ParentValue.Notes?.Remove(DragData.NodeValue);
+            note.Parent.Notes?.Remove(note);
         }
 
-        (_story.Notes ??= new()).Add(DragData.NodeValue);
+        if (targetParent is null)
+        {
+            (_story.Notes ??= new()).Add(note);
+        }
+        else
+        {
+            (targetParent.Notes ??= new()).Add(note);
+        }
+        await OnChangeAsync();
+    }
+
+    private static void OnDropped(DragEffect e) { }
+
+    private Task OnDropIndexAsync(DropIndexEventArgs e)
+        => OnDropIndexAsync(e, null);
+
+    private async Task OnDropIndexAsync(DropIndexEventArgs e, INote? targetParent)
+    {
+        if (_story is null
+            || e.Data is null)
+        {
+            return;
+        }
+
+        var note = DragDropService.TryGetData<INote>(e.Data);
+        if (note is null)
+        {
+            return;
+        }
+
+        var targetList = targetParent is null
+            ? _story.Notes
+            : targetParent.Notes;
+
+        var target = !e.Index.HasValue
+            || targetList is null
+            || targetList.Count <= e.Index
+            ? null
+            : targetList[e.Index.Value];
+        if (target is null)
+        {
+            await OnDropAsync(e, targetParent);
+            return;
+        }
+
+        // avoid dropping into the note's own child tree
+        if (Contains(target, note))
+        {
+            return;
+        }
+
+        if (note.Parent is null)
+        {
+            _story.Notes?.Remove(note);
+        }
+        else
+        {
+            note.Parent.Notes?.Remove(note);
+        }
+
+        if (targetParent is null)
+        {
+            (_story.Notes ??= new()).Add(note);
+        }
+        else
+        {
+            (targetParent.Notes ??= new()).Add(note);
+        }
         await OnChangeAsync();
     }
 
@@ -837,8 +863,9 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private async Task OnNewCharacterNameAsync(Character character)
+    private async Task OnNewCharacterNameAsync(Character character, string? value)
     {
+        NewCharacterName = value;
         if (string.IsNullOrWhiteSpace(NewCharacterName))
         {
             return;
@@ -1050,87 +1077,7 @@ public partial class StoryPage : IDisposable
         await DataService.SaveAsync();
     }
 
-    private void OnNoteDrag(CustomTreeViewEventArgs<INote> e) => DragData = e;
-
-    private async Task OnNoteDropAsync(CustomTreeViewEventArgs<INote> e, bool child)
-    {
-        if (_story is null
-            || DragData?.NodeValue is null
-            || e.NodeValue is null
-            || DragData.NodeValue == e.NodeValue)
-        {
-            return;
-        }
-
-        // avoid dropping into the note's own child tree
-        static bool Contains(INote note, INote target)
-        {
-            if (note.Notes is null)
-            {
-                return false;
-            }
-            if (note.Notes.Contains(target))
-            {
-                return true;
-            }
-            foreach (var child in note.Notes)
-            {
-                if (Contains(child, target))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        if (Contains(DragData.NodeValue, e.NodeValue))
-        {
-            return;
-        }
-
-        if (DragData.ParentValue is null)
-        {
-            _story.Notes?.Remove(DragData.NodeValue);
-        }
-        else
-        {
-            DragData.ParentValue.Notes?.Remove(DragData.NodeValue);
-        }
-
-        if (child)
-        {
-            (e.NodeValue.Notes ??= new()).Add(DragData.NodeValue);
-        }
-        else if (e.ParentValue is null)
-        {
-            var index = _story.Notes?.IndexOf(e.NodeValue) ?? -1;
-            if (index == -1)
-            {
-                (_story.Notes ??= new()).Add(DragData.NodeValue);
-            }
-            else
-            {
-                (_story.Notes ??= new()).Insert(index, DragData.NodeValue);
-            }
-        }
-        else
-        {
-            var index = e.ParentValue.Notes?.IndexOf(e.NodeValue) ?? -1;
-            if (index == -1)
-            {
-                (e.ParentValue.Notes ??= new()).Add(DragData.NodeValue);
-            }
-            else
-            {
-                (e.ParentValue.Notes ??= new()).Insert(index, DragData.NodeValue);
-            }
-        }
-        await OnChangeAsync();
-    }
-
-    private Task OnNoteDropAsync(CustomTreeViewEventArgs<INote> e)
-        => OnNoteDropAsync(e, false);
-
-    private async Task OnNowChangeAsync(DateTime? old)
+    private async Task OnNowChangeAsync(DateTimeOffset? old)
     {
         if (_story?.Notes is null)
         {
@@ -1548,12 +1495,31 @@ public partial class StoryPage : IDisposable
         }
     }
 
-    private void OnSelectNote(INote note)
+    private async Task OnSelectedNoteNameChangedAsync(string? value)
     {
+        if (SelectedNote is null)
+        {
+            return;
+        }
+
+        SelectedNote.Name = value;
+        await DataService.SaveAsync();
+    }
+
+    private void OnSelectNote(INote? note)
+    {
+        IsTimelineSelected = false;
         SelectedNote = note;
         SelectedBirthdate = note is Character character
             ? character.Birthdate
             : null;
+    }
+
+    private void OnSelectTimeline()
+    {
+        SelectedNote = null;
+        SelectedBirthdate = null;
+        IsTimelineSelected = true;
     }
 
     private async Task OnSurnameChangeAsync(Character character, int index, string? value)
@@ -1582,17 +1548,12 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private async Task OnSwitchNoteTypeAsync(CustomTreeViewIntEventArgs<INote> e)
+    private async Task OnSwitchNoteTypeAsync(INote note, int iconIndex)
     {
-        if (e.NodeValue is null)
-        {
-            return;
-        }
-
         List<INote>? parentCollection = null;
-        if (e.ParentValue is not null)
+        if (note.Parent is not null)
         {
-            parentCollection = e.ParentValue.Notes;
+            parentCollection = note.Parent.Notes;
         }
         else if (_story is not null)
         {
@@ -1603,7 +1564,7 @@ public partial class StoryPage : IDisposable
             return;
         }
 
-        var index = parentCollection.IndexOf(e.NodeValue);
+        var index = parentCollection.IndexOf(note);
         if (index == -1)
         {
             return;
@@ -1612,13 +1573,13 @@ public partial class StoryPage : IDisposable
         parentCollection.RemoveAt(index);
 
         INote? newNote;
-        if (e.Value == 1)
+        if (iconIndex == 1)
         {
-            newNote = SwitchToCharacter(e.NodeValue);
+            newNote = SwitchToCharacter(note);
         }
         else
         {
-            newNote = SwitchToNote(e.NodeValue);
+            newNote = SwitchToNote(note);
         }
         if (newNote is not null)
         {

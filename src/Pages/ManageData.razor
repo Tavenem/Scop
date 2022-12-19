@@ -2,168 +2,164 @@
 
 <PageTitle>Scop - Data</PageTitle>
 
-<div class="d-flex flex-column mt-4 pa-6">
-    <MudText Typo="Typo.h3" Class="mb-4">Data</MudText>
+<h1 class="mb-4">Data</h1>
 
-    @if (_loading || DataService is null)
+@if (_loading || DataService is null)
+{
+    <div class="d-flex justify-content-center">
+        <tf-progress-circle class="primary"></tf-progress-circle>
+    </div>
+}
+else
+{
+    if (DataService.Data.LastSync == DateTime.MinValue)
     {
-        <div class="d-flex justify-center">
-            <MudProgressCircular Color="Color.Primary" Indeterminate="true" aria-label="loading" />
-        </div>
+        <h2 class="mt-4 align-self-stretch align-center">You don't have any saved data.</h2>
     }
     else
     {
-        if (DataService.Data.LastSync == DateTime.MinValue)
-        {
-            <MudText Align="Align.Center" Typo="Typo.h4" Class="mt-4">You don't have any saved data.</MudText>
-        }
-        else
-        {
-            <div class="d-flex justify-space-around my-2" style="gap: .5rem">
-                <MudCard Class="d-flex flex-column flex-grow-1" Style="max-width: 500px">
-                    <MudCardHeader>
-                        <CardHeaderContent>
-                            <MudText Typo="Typo.h6">Local Data</MudText>
-                        </CardHeaderContent>
-                    </MudCardHeader>
-                    <MudCardContent Class="flex-grow-1">
-                        <MudText>Local data is saved on this device.</MudText>
-                        <MudText Color="Color.Warning">
-                            <MudIcon Icon="@Icons.Material.Filled.Warning" />
-                            Clearing your browser data may delete this information without warning. You should keep a backup.
-                        </MudText>
-                        <MudText>Last saved: @DataService.LastLocalSync.ToLocalTime().ToString("f")</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton OnClick="OnDeleteLocalData" Color="Color.Error">Delete</MudButton>
-                    </MudCardActions>
-                </MudCard>
-                <MudCard Class="d-flex flex-column flex-grow-1" Style="max-width: 500px">
-                    <MudCardHeader>
-                        <CardHeaderContent>
-                            <MudText Typo="Typo.h6">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="1.6rem" style="vertical-align: text-bottom" viewBox="0 0 512 116" version="1.1">
-                                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>Google Drive Lockup</title>
-                                    <desc>Created with Sketch.</desc>
-                                    <defs />
-                                    <g id="Google-Drive-Lockup" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <g id="Group-3">
-                                            <g id="Group-2" transform="translate(10.130017, 18.939592)">
-                                                <g id="Group" transform="translate(0.000000, -0.000000)">
-                                                    <g id="XMLID_21_" transform="translate(135.500000, 44.393131) scale(-1, 1) rotate(-180.000000) translate(-135.500000, -44.393131) translate(0.000000, 0.238292)">
-                                                        <g id="logo_x5F_dark_2">
-                                                            <path d="M0.468875071,54.1672388 C0.468875071,72.9501493 16.306433,88.2400746 35.1460938,88.2400746 C45.5655399,88.2400746 52.982883,84.1692537 58.5703109,78.8518657 L51.9865235,72.2879104 C47.9880611,76.0276119 42.5699491,78.9362687 35.1460938,78.9362687 C21.3924251,78.9362687 10.6408592,67.8859701 10.6408592,54.1672388 C10.6408592,40.455 21.3924251,29.398209 35.1460938,29.398209 C44.0677445,29.398209 49.1472244,32.9691045 52.4033013,36.2153731 C55.0732843,38.8773134 56.8185415,42.6949254 57.4892934,47.934403 L35.1460938,47.934403 L35.1460938,57.2447015 L66.5737479,57.2447015 C66.9058677,55.5826119 67.0751837,53.589403 67.0751837,51.4273881 C67.0751837,44.4479104 65.1606105,35.8063433 58.9870888,29.6514179 C52.982883,23.4185821 45.318078,20.094403 35.1460938,20.094403 C16.306433,20.094403 0.468875071,35.3908209 0.468875071,54.1672388 Z" id="XMLID_165_" fill="#4285F4" fill-rule="nonzero" />
-                                                            <path d="M92.4725834,63.9774627 C80.301368,63.9774627 70.3833578,54.7515672 70.3833578,42.0391791 C70.3833578,29.4047015 80.301368,20.1008955 92.4725834,20.1008955 C104.643799,20.1008955 114.561809,29.411194 114.561809,42.0391791 C114.561809,54.7515672 104.643799,63.9774627 92.4725834,63.9774627 Z M92.4725834,28.7359701 C85.8041379,28.7359701 80.0539062,34.2221642 80.0539062,42.0326866 C80.0539062,49.9276119 85.8041379,55.329403 92.4725834,55.329403 C99.1410288,55.329403 104.891261,49.9276119 104.891261,42.0326866 C104.891261,34.2221642 99.1410288,28.7359701 92.4725834,28.7359701 Z" id="XMLID_79_" fill="#EA4335" fill-rule="nonzero" />
-                                                            <path d="M140.662521,63.9774627 C128.491306,63.9774627 118.573296,54.7515672 118.573296,42.0391791 C118.573296,29.4047015 128.491306,20.1008955 140.662521,20.1008955 C152.833737,20.1008955 162.751747,29.411194 162.751747,42.0391791 C162.751747,54.7515672 152.833737,63.9774627 140.662521,63.9774627 Z M140.662521,28.7359701 C133.994076,28.7359701 128.243844,34.2221642 128.243844,42.0326866 C128.243844,49.9276119 133.994076,55.329403 140.662521,55.329403 C147.330967,55.329403 153.081198,49.9276119 153.081198,42.0326866 C153.081198,34.2221642 147.330967,28.7359701 140.662521,28.7359701 Z" id="XMLID_68_" fill="#FBBC05" fill-rule="nonzero" />
-                                                            <path d="M199.812414,62.6464925 L199.812414,59.075597 L199.480294,59.075597 C197.311747,61.6531343 193.143968,63.9774627 187.895172,63.9774627 C176.889633,63.9774627 166.802306,54.3360448 166.802306,41.9547761 C166.802306,29.6514179 176.889633,20.094403 187.895172,20.094403 C193.143968,20.094403 197.311747,22.4187313 199.480294,25.0806716 L199.812414,25.0806716 L199.812414,21.9252985 C199.812414,13.5304478 195.312516,9.04410448 188.057976,9.04410448 C182.138428,9.04410448 178.472086,13.2837313 176.974291,16.8546269 L168.554076,13.3616418 C170.970085,7.54432836 177.391068,0.396044776 188.057976,0.396044776 C199.395636,0.396044776 208.981526,7.04440299 208.981526,23.2497761 L208.981526,62.6464925 L199.812414,62.6464925 Z M188.728728,28.7359701 C182.060283,28.7359701 176.472855,34.3065672 176.472855,41.9482836 C176.472855,49.674403 182.060283,55.329403 188.728728,55.329403 C195.312516,55.329403 200.483166,49.6808955 200.483166,41.9482836 C200.476653,34.3065672 195.312516,28.7359701 188.728728,28.7359701 Z" id="XMLID_65_" fill="#4285F4" fill-rule="nonzero" />
-                                                            <polygon id="XMLID_64_" fill="#34A853" fill-rule="nonzero" points="225.32052 21.4253731 215.649972 21.4253731 215.649972 85.9157463 225.32052 85.9157463" />
-                                                            <path d="M251.831498,28.7359701 C246.914822,28.7359701 243.411283,30.9823881 241.16459,35.3843284 L270.593013,47.5188806 L269.590141,50.0120149 C267.753714,54.9138806 262.172798,63.9709701 250.75048,63.9709701 C239.412821,63.9709701 229.996246,55.076194 229.996246,42.0326866 C229.996246,29.7358209 239.334675,20.094403 251.83801,20.094403 C261.925336,20.094403 267.760226,26.2428358 270.176235,29.8202239 L262.674234,34.8064925 C260.167055,31.151194 256.748174,28.7359701 251.831498,28.7359701 Z M251.076088,55.498209 C254.911747,55.498209 258.161311,53.589403 259.242329,50.8430597 L239.569112,42.7014179 C239.321651,51.1806716 246.159412,55.498209 251.076088,55.498209 Z" id="XMLID_51_" fill="#EA4335" fill-rule="nonzero" />
-                                                            <polygon id="XMLID_50_" points="0 0 270.905596 0 270.905596 88.2985075 0 88.2985075" />
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                                <path d="M304.692387,67.4832932 L304.692387,7.98048724 L322.947256,7.98048724 C332.116414,7.98048724 339.451631,10.7367582 344.953126,16.2493828 C350.454621,21.7620073 353.205327,28.9227716 353.205327,37.7318902 C353.205327,46.5410089 350.454621,53.7017731 344.953126,59.2143977 C339.451631,64.7270223 332.116414,67.4832932 322.947256,67.4832932 L304.692387,67.4832932 Z M312.361099,60.1700992 L322.947256,60.1700992 C329.838017,60.1700992 335.297753,58.2033129 339.326625,54.2696813 C343.355498,50.3360497 345.369904,44.8235078 345.369904,37.7318902 C345.369904,30.6956759 343.355498,25.1969847 339.326625,21.2356514 C335.297753,17.2743182 329.838017,15.2936813 322.947256,15.2936813 L312.361099,15.2936813 L312.361099,60.1700992 Z M368.163021,67.4832932 L360.494309,67.4832932 L360.494309,26.7620992 L367.829599,26.7620992 L367.829599,33.4104574 L368.163021,33.4104574 C368.94101,31.1943269 370.538643,29.3660467 372.955966,27.9255619 C375.37329,26.4850771 377.721115,25.7648455 379.999512,25.7648455 C382.277909,25.7648455 384.195067,26.09726 385.751046,26.7620992 L382.833601,33.9090843 C381.833329,33.5212614 380.471869,33.3273529 378.749178,33.3273529 C375.970645,33.3273529 373.511681,34.4215509 371.37221,36.6099798 C369.23274,38.7984086 368.163021,41.6654844 368.163021,45.2112932 L368.163021,67.4832932 Z M396.457606,18.1192335 C394.957198,18.1192335 393.679092,17.5929104 392.623249,16.5402484 C391.567407,15.4875865 391.039494,14.2133305 391.039494,12.7174425 C391.039494,11.2215544 391.567407,9.94729847 392.623249,8.89463649 C393.679092,7.84197452 394.957198,7.31565142 396.457606,7.31565142 C397.958013,7.31565142 399.236119,7.84197452 400.291962,8.89463649 C401.347804,9.94729847 401.875718,11.2215544 401.875718,12.7174425 C401.875718,14.2133305 401.347804,15.4875865 400.291962,16.5402484 C399.236119,17.5929104 397.958013,18.1192335 396.457606,18.1192335 Z M400.291962,67.4832932 L392.623249,67.4832932 L392.623249,26.7620992 L400.291962,26.7620992 L400.291962,67.4832932 Z M423.668568,67.4832932 L407.164165,26.7620992 L415.499722,26.7620992 L427.502924,58.3418007 L427.669635,58.3418007 L439.839548,26.7620992 L448.008394,26.7620992 L431.33728,67.4832932 L423.668568,67.4832932 Z M471.468355,68.8129649 C465.300012,68.8129649 460.284836,66.7630749 456.422675,62.6632335 C452.560515,58.5633921 450.629463,53.3832648 450.629463,47.1226962 C450.629463,41.1945472 452.504945,36.0975235 456.255964,31.8314723 C460.006984,27.5654211 464.799881,25.4324275 470.6348,25.4324275 C476.692001,25.4324275 481.540468,27.3992138 485.180346,31.3328455 C488.820224,35.2664771 490.640136,40.529708 490.640136,47.1226962 L490.55678,48.5354723 L458.298176,48.5354723 C458.520458,52.6353137 459.895811,55.8763559 462.424276,58.2586962 C464.952741,60.6410365 467.911834,61.8321887 471.301644,61.8321887 C476.803139,61.8321887 480.526317,59.5052866 482.47129,54.8514126 L489.306447,57.6769649 C487.972751,60.8349508 485.777743,63.4804169 482.721357,65.6134425 C479.664971,67.7464681 475.914008,68.8129649 471.468355,68.8129649 Z M482.47129,42.219532 C482.304578,39.892595 481.234859,37.6764978 479.262101,35.5711738 C477.289343,33.4658498 474.358035,32.4132037 470.468089,32.4132037 C467.633985,32.4132037 465.17502,33.2996426 463.091121,35.0725469 C461.007221,36.8454513 459.576298,39.2277559 458.798309,42.219532 L482.47129,42.219532 Z" id="Drive" fill="#757575" />
-                                            </g>
-                                            <rect id="Rectangle-2" x="0" y="0" width="512" height="116" />
-                                        </g>
-                                    </g>
-                                </svg>
-                                Data
-                            </MudText>
-                        </CardHeaderContent>
-                    </MudCardHeader>
-                    <MudCardContent Class="flex-grow-1">
-                        @if (DataService.GDriveSync)
-                        {
-                            <MudText>Your data is backed up in Google Drive™.</MudText>
-                            <MudText>Account: @DataService.GDriveUserName.</MudText>
-                            <MudText>Last saved: @DataService.LastGDriveSync.ToLocalTime().ToString("f")</MudText>
-                        }
-                        else
-                        {
-                            <MudText>
-                                Sign into your Google Drive™ account to back up your data,
-                                and synchronize between devices.
-                            </MudText>
-                        }
-                    </MudCardContent>
-                    <MudCardActions>
-                        @if (DataService.GDriveSync)
-                        {
-                            <MudButton OnClick="OnUnlinkGDrive" Color="Color.Error">Sign out</MudButton>
-                        }
-                        else
-                        {
-                            <MudButton OnClick="OnLinkGDrive" Color="Color.Primary">Sign In</MudButton>
-                        }
-                    </MudCardActions>
-                </MudCard>
+        <div class="d-flex justify-content-space-around my-2" style="gap: .5rem">
+            <div class="card" style="max-width: 500px">
+                <div class="header">
+                    <h6>Local Data</h6>
+                </div>
+                <div class="body">
+                    <p>Local data is saved on this device.</p>
+                    <Alert ThemeColor="ThemeColor.Warning">
+                        Clearing your browser data may delete this information
+                        without warning. You should keep a backup.
+                    </Alert>
+                    <p>Last saved: @DataService.LastLocalSync.ToLocalTime().ToString("f")</p>
+                </div>
+                <div class="footer">
+                    <button class="btn danger ms-auto" @onclick="@(_ => DeleteLocalDialogOpen = true)">Delete</button>
+                </div>
             </div>
-        }
-
-        <div class="d-flex justify-space-around my-2" style="gap: .5rem">
-            @if (DataService.Data.LastSync != DateTime.MinValue)
-            {
-                <MudCard Class="d-flex flex-column flex-grow-1" Style="max-width: 500px">
-                    <MudCardContent Class="flex-grow-1">
-                        <MudText>You can download your data as a JSON file.</MudText>
-                        <MudText>This file can be uploaded later if you need to restore a snapshot of your data.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton OnClick="OnDownloadDataAsync" StartIcon="@Icons.Material.Filled.CloudDownload" Color="Color.Primary">Download</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            }
-            <MudCard Class="d-flex flex-column flex-grow-1" Style="max-width: 500px">
-                <MudCardContent Class="flex-grow-1">
-                    <MudText>You can upload a JSON file you previously downloaded to restore your data to a previous state, or from a different device.</MudText>
-                </MudCardContent>
-                <MudCardActions>
-                    <MudButton OnClick="OnUploadData" StartIcon="@Icons.Material.Filled.CloudUpload" Color="Color.Primary">Upload</MudButton>
-                </MudCardActions>
-            </MudCard>
+            <div class="card" style="max-width: 500px">
+                <div class="header">
+                    <div class="avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="1.6rem" style="vertical-align: text-bottom" viewBox="0 0 512 116" version="1.1">
+                            <title>Google Drive Lockup</title>
+                            <defs />
+                            <g id="Google-Drive-Lockup" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Group-3">
+                                    <g id="Group-2" transform="translate(10.130017, 18.939592)">
+                                        <g id="Group" transform="translate(0.000000, -0.000000)">
+                                            <g id="XMLID_21_" transform="translate(135.500000, 44.393131) scale(-1, 1) rotate(-180.000000) translate(-135.500000, -44.393131) translate(0.000000, 0.238292)">
+                                                <g id="logo_x5F_dark_2">
+                                                    <path d="M0.468875071,54.1672388 C0.468875071,72.9501493 16.306433,88.2400746 35.1460938,88.2400746 C45.5655399,88.2400746 52.982883,84.1692537 58.5703109,78.8518657 L51.9865235,72.2879104 C47.9880611,76.0276119 42.5699491,78.9362687 35.1460938,78.9362687 C21.3924251,78.9362687 10.6408592,67.8859701 10.6408592,54.1672388 C10.6408592,40.455 21.3924251,29.398209 35.1460938,29.398209 C44.0677445,29.398209 49.1472244,32.9691045 52.4033013,36.2153731 C55.0732843,38.8773134 56.8185415,42.6949254 57.4892934,47.934403 L35.1460938,47.934403 L35.1460938,57.2447015 L66.5737479,57.2447015 C66.9058677,55.5826119 67.0751837,53.589403 67.0751837,51.4273881 C67.0751837,44.4479104 65.1606105,35.8063433 58.9870888,29.6514179 C52.982883,23.4185821 45.318078,20.094403 35.1460938,20.094403 C16.306433,20.094403 0.468875071,35.3908209 0.468875071,54.1672388 Z" id="XMLID_165_" fill="#4285F4" fill-rule="nonzero" />
+                                                    <path d="M92.4725834,63.9774627 C80.301368,63.9774627 70.3833578,54.7515672 70.3833578,42.0391791 C70.3833578,29.4047015 80.301368,20.1008955 92.4725834,20.1008955 C104.643799,20.1008955 114.561809,29.411194 114.561809,42.0391791 C114.561809,54.7515672 104.643799,63.9774627 92.4725834,63.9774627 Z M92.4725834,28.7359701 C85.8041379,28.7359701 80.0539062,34.2221642 80.0539062,42.0326866 C80.0539062,49.9276119 85.8041379,55.329403 92.4725834,55.329403 C99.1410288,55.329403 104.891261,49.9276119 104.891261,42.0326866 C104.891261,34.2221642 99.1410288,28.7359701 92.4725834,28.7359701 Z" id="XMLID_79_" fill="#EA4335" fill-rule="nonzero" />
+                                                    <path d="M140.662521,63.9774627 C128.491306,63.9774627 118.573296,54.7515672 118.573296,42.0391791 C118.573296,29.4047015 128.491306,20.1008955 140.662521,20.1008955 C152.833737,20.1008955 162.751747,29.411194 162.751747,42.0391791 C162.751747,54.7515672 152.833737,63.9774627 140.662521,63.9774627 Z M140.662521,28.7359701 C133.994076,28.7359701 128.243844,34.2221642 128.243844,42.0326866 C128.243844,49.9276119 133.994076,55.329403 140.662521,55.329403 C147.330967,55.329403 153.081198,49.9276119 153.081198,42.0326866 C153.081198,34.2221642 147.330967,28.7359701 140.662521,28.7359701 Z" id="XMLID_68_" fill="#FBBC05" fill-rule="nonzero" />
+                                                    <path d="M199.812414,62.6464925 L199.812414,59.075597 L199.480294,59.075597 C197.311747,61.6531343 193.143968,63.9774627 187.895172,63.9774627 C176.889633,63.9774627 166.802306,54.3360448 166.802306,41.9547761 C166.802306,29.6514179 176.889633,20.094403 187.895172,20.094403 C193.143968,20.094403 197.311747,22.4187313 199.480294,25.0806716 L199.812414,25.0806716 L199.812414,21.9252985 C199.812414,13.5304478 195.312516,9.04410448 188.057976,9.04410448 C182.138428,9.04410448 178.472086,13.2837313 176.974291,16.8546269 L168.554076,13.3616418 C170.970085,7.54432836 177.391068,0.396044776 188.057976,0.396044776 C199.395636,0.396044776 208.981526,7.04440299 208.981526,23.2497761 L208.981526,62.6464925 L199.812414,62.6464925 Z M188.728728,28.7359701 C182.060283,28.7359701 176.472855,34.3065672 176.472855,41.9482836 C176.472855,49.674403 182.060283,55.329403 188.728728,55.329403 C195.312516,55.329403 200.483166,49.6808955 200.483166,41.9482836 C200.476653,34.3065672 195.312516,28.7359701 188.728728,28.7359701 Z" id="XMLID_65_" fill="#4285F4" fill-rule="nonzero" />
+                                                    <polygon id="XMLID_64_" fill="#34A853" fill-rule="nonzero" points="225.32052 21.4253731 215.649972 21.4253731 215.649972 85.9157463 225.32052 85.9157463" />
+                                                    <path d="M251.831498,28.7359701 C246.914822,28.7359701 243.411283,30.9823881 241.16459,35.3843284 L270.593013,47.5188806 L269.590141,50.0120149 C267.753714,54.9138806 262.172798,63.9709701 250.75048,63.9709701 C239.412821,63.9709701 229.996246,55.076194 229.996246,42.0326866 C229.996246,29.7358209 239.334675,20.094403 251.83801,20.094403 C261.925336,20.094403 267.760226,26.2428358 270.176235,29.8202239 L262.674234,34.8064925 C260.167055,31.151194 256.748174,28.7359701 251.831498,28.7359701 Z M251.076088,55.498209 C254.911747,55.498209 258.161311,53.589403 259.242329,50.8430597 L239.569112,42.7014179 C239.321651,51.1806716 246.159412,55.498209 251.076088,55.498209 Z" id="XMLID_51_" fill="#EA4335" fill-rule="nonzero" />
+                                                    <polygon id="XMLID_50_" points="0 0 270.905596 0 270.905596 88.2985075 0 88.2985075" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <path d="M304.692387,67.4832932 L304.692387,7.98048724 L322.947256,7.98048724 C332.116414,7.98048724 339.451631,10.7367582 344.953126,16.2493828 C350.454621,21.7620073 353.205327,28.9227716 353.205327,37.7318902 C353.205327,46.5410089 350.454621,53.7017731 344.953126,59.2143977 C339.451631,64.7270223 332.116414,67.4832932 322.947256,67.4832932 L304.692387,67.4832932 Z M312.361099,60.1700992 L322.947256,60.1700992 C329.838017,60.1700992 335.297753,58.2033129 339.326625,54.2696813 C343.355498,50.3360497 345.369904,44.8235078 345.369904,37.7318902 C345.369904,30.6956759 343.355498,25.1969847 339.326625,21.2356514 C335.297753,17.2743182 329.838017,15.2936813 322.947256,15.2936813 L312.361099,15.2936813 L312.361099,60.1700992 Z M368.163021,67.4832932 L360.494309,67.4832932 L360.494309,26.7620992 L367.829599,26.7620992 L367.829599,33.4104574 L368.163021,33.4104574 C368.94101,31.1943269 370.538643,29.3660467 372.955966,27.9255619 C375.37329,26.4850771 377.721115,25.7648455 379.999512,25.7648455 C382.277909,25.7648455 384.195067,26.09726 385.751046,26.7620992 L382.833601,33.9090843 C381.833329,33.5212614 380.471869,33.3273529 378.749178,33.3273529 C375.970645,33.3273529 373.511681,34.4215509 371.37221,36.6099798 C369.23274,38.7984086 368.163021,41.6654844 368.163021,45.2112932 L368.163021,67.4832932 Z M396.457606,18.1192335 C394.957198,18.1192335 393.679092,17.5929104 392.623249,16.5402484 C391.567407,15.4875865 391.039494,14.2133305 391.039494,12.7174425 C391.039494,11.2215544 391.567407,9.94729847 392.623249,8.89463649 C393.679092,7.84197452 394.957198,7.31565142 396.457606,7.31565142 C397.958013,7.31565142 399.236119,7.84197452 400.291962,8.89463649 C401.347804,9.94729847 401.875718,11.2215544 401.875718,12.7174425 C401.875718,14.2133305 401.347804,15.4875865 400.291962,16.5402484 C399.236119,17.5929104 397.958013,18.1192335 396.457606,18.1192335 Z M400.291962,67.4832932 L392.623249,67.4832932 L392.623249,26.7620992 L400.291962,26.7620992 L400.291962,67.4832932 Z M423.668568,67.4832932 L407.164165,26.7620992 L415.499722,26.7620992 L427.502924,58.3418007 L427.669635,58.3418007 L439.839548,26.7620992 L448.008394,26.7620992 L431.33728,67.4832932 L423.668568,67.4832932 Z M471.468355,68.8129649 C465.300012,68.8129649 460.284836,66.7630749 456.422675,62.6632335 C452.560515,58.5633921 450.629463,53.3832648 450.629463,47.1226962 C450.629463,41.1945472 452.504945,36.0975235 456.255964,31.8314723 C460.006984,27.5654211 464.799881,25.4324275 470.6348,25.4324275 C476.692001,25.4324275 481.540468,27.3992138 485.180346,31.3328455 C488.820224,35.2664771 490.640136,40.529708 490.640136,47.1226962 L490.55678,48.5354723 L458.298176,48.5354723 C458.520458,52.6353137 459.895811,55.8763559 462.424276,58.2586962 C464.952741,60.6410365 467.911834,61.8321887 471.301644,61.8321887 C476.803139,61.8321887 480.526317,59.5052866 482.47129,54.8514126 L489.306447,57.6769649 C487.972751,60.8349508 485.777743,63.4804169 482.721357,65.6134425 C479.664971,67.7464681 475.914008,68.8129649 471.468355,68.8129649 Z M482.47129,42.219532 C482.304578,39.892595 481.234859,37.6764978 479.262101,35.5711738 C477.289343,33.4658498 474.358035,32.4132037 470.468089,32.4132037 C467.633985,32.4132037 465.17502,33.2996426 463.091121,35.0725469 C461.007221,36.8454513 459.576298,39.2277559 458.798309,42.219532 L482.47129,42.219532 Z" id="Drive" fill="#757575" />
+                                    </g>
+                                    <rect id="Rectangle-2" x="0" y="0" width="512" height="116" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <h6>Data</h6>
+                </div>
+                <div class="body">
+                    @if (DataService.GDriveSync)
+                    {
+                        <p>Your data is backed up in Google Drive™.</p>
+                        <p>Account: @DataService.GDriveUserName.</p>
+                        <p>Last saved: @DataService.LastGDriveSync.ToLocalTime().ToString("f")</p>
+                    }
+                    else
+                    {
+                        <p>
+                            Sign into your Google Drive™ account to back up your
+                            data, and synchronize between devices.
+                        </p>
+                    }
+                </div>
+                <div class="footer">
+                    @if (DataService.GDriveSync)
+                    {
+                        <button class="btn danger ms-auto" @onclick="OnUnlinkGDrive">Sign out</button>
+                    }
+                    else
+                    {
+                        <button class="btn primary ms-auto" @onclick="OnLinkGDrive">Sign In</button>
+                    }
+                </div>
+            </div>
         </div>
     }
-</div>
 
-<MudDialog @bind-IsVisible="DeleteLocalDialogOpen">
+    <div class="d-flex justify-content-space-around my-2" style="gap: .5rem">
+        @if (DataService.Data.LastSync != DateTime.MinValue)
+        {
+            <div class="card" style="max-width: 500px">
+                <div class="body">
+                    <p>You can download your data as a JSON file.</p>
+                    <p>
+                        This file can be uploaded later if you need to restore a
+                        snapshot of your data.
+                    </p>
+                </div>
+                <div class="footer">
+                    <button class="btn primary ms-auto" @onclick="OnDownloadDataAsync"><tf-icon class="me-2">cloud_download</tf-icon>Download</button>
+                </div>
+            </div>
+        }
+        <div class="card" style="max-width: 500px">
+            <div class="body">
+                <p>
+                    You can upload a JSON file you previously downloaded to
+                    restore your data to a previous state, or from a different
+                    device.
+                </p>
+            </div>
+            <div class="footer">
+                <button class="btn primary ms-auto" @onclick="@(_ => UploadDialogOpen = true)"><tf-icon class="me-2">cloud_upload</tf-icon>Upload</button>
+            </div>
+        </div>
+    </div>
+}
+
+<Dialog @bind-IsVisible="DeleteLocalDialogOpen">
     <TitleContent>
-        <MudText Typo="Typo.h6">Delete</MudText>
+        <h6>Delete</h6>
     </TitleContent>
-    <DialogContent>
+    <ChildContent>
         <p>Are you sure you want to delete your local data?</p>
-        <p>This is <MudText Inline="true" Color="Color.Error"><em>permanent</em></MudText> and cannot be undone (other than by restoring a backup data file).</p>
-    </DialogContent>
-    <DialogActions>
-        <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="OnCancelLocalDelete" Class="px-10">Cancel</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="OnConfirmLocalDelete" Class="ms-2 px-10">Yes, Delete</MudButton>
-    </DialogActions>
-</MudDialog>
+        <p>
+            This is <em class="danger">permanent</em> and cannot be undone
+            (other than by restoring a backup data file).
+        </p>
+    </ChildContent>
+    <FooterContent>
+        <button class="btn btn-text danger" @onclick="OnConfirmLocalDelete">Yes, Delete</button>
+        <button class="btn btn-text" @onclick="@(_ => DeleteLocalDialogOpen = false)">Cancel</button>
+    </FooterContent>
+</Dialog>
 
-<MudDialog @bind-IsVisible="UploadDialogOpen">
+<Dialog @bind-IsVisible="UploadDialogOpen">
     <TitleContent>
-        <MudText Typo="Typo.h6">Upload</MudText>
+        <h6>Upload</h6>
     </TitleContent>
-    <DialogContent>
+    <ChildContent>
         <p>Upload a Scop JSON file</p>
-        <MudText Inline="true" Color="Color.Warning">
-            <MudIcon Icon="@Icons.Material.Filled.Warning" Class="me-3" />
-            This will overwrite all currently saved data.
-            Uploading a badly-formed JSON file can result in complete data loss.
-            Make sure you have a backup copy of your data in a known good state.
-        </MudText>
+        <Alert ThemeColor="ThemeColor.Warning">
+            This will overwrite all currently saved data. Uploading a
+            badly-formed JSON file can result in complete data loss. Make sure
+            you have a backup copy of your data in a known good state.
+        </Alert>
         <InputFile id="fileInput" OnChange="OnUploadFileAsync" hidden />
-        <MudButton HtmlTag="label"
-                   Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   Class="d-flex mt-1"
-                   StartIcon="@Icons.Material.Filled.CloudUpload"
-                   for="fileInput">
-            Upload Files
-        </MudButton>
-    </DialogContent>
-    <DialogActions>
-        <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="OnCancelUpload" Class="px-10">Cancel</MudButton>
-    </DialogActions>
-</MudDialog>
+        <label for="fileInput">
+            <button class="btn primary"><tf-icon class="me-2">cloud_upload</tf-icon>Upload Files</button>
+        </label>
+    </ChildContent>
+    <FooterContent>
+        <button class="btn btn-text" @onclick="@(_ => UploadDialogOpen = false)">Cancel</button>
+    </FooterContent>
+</Dialog>

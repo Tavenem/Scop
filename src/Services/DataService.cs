@@ -12,7 +12,7 @@ public class DataService : IDisposable
     private static string[] DefaultEthnicityHierarchy { get; } = new[] { "caucasian", "american" };
 
     private readonly HttpClient _httpClient;
-    private readonly IndexedDbService<string> _indexedDb;
+    private readonly IndexedDbService _indexedDb;
     private readonly ScopJsInterop _jsInterop;
 
     private NameSet? _defaultNameSet;
@@ -40,7 +40,7 @@ public class DataService : IDisposable
 
     public DataService(
         HttpClient httpClient,
-        IndexedDbService<string> indexedDb,
+        IndexedDbService indexedDb,
         ScopJsInterop jsInterop)
     {
         _httpClient = httpClient;
@@ -157,7 +157,7 @@ public class DataService : IDisposable
             ?? new();
 
         var localData = await _indexedDb
-            .GetValueAsync<LocalData>(LocalData.IdValue)
+            .GetItemAsync<LocalData>(LocalData.IdValue)
             .ConfigureAwait(false);
         if (localData?.Data is not null)
         {
@@ -194,7 +194,7 @@ public class DataService : IDisposable
 
         var localData = new LocalData { Data = serializedData };
         await _indexedDb
-            .PutValueAsync(localData)
+            .StoreItemAsync(localData)
             .ConfigureAwait(false);
         LastLocalSync = Data.LastSync;
 

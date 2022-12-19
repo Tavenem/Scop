@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using MudBlazor;
 
 namespace Scop.Pages;
 
@@ -9,17 +8,15 @@ public partial class Stories : IDisposable
     private bool _disposedValue;
     private bool _loading = true;
 
-    [Inject] private DataService? DataService { get; set; }
+    [Inject] private DataService DataService { get; set; } = default!;
 
     private bool DeleteDialogOpen { get; set; }
 
-    [Inject] private NavigationManager? NavigationManager { get; set; }
-
-    [CascadingParameter] private MudTheme? Theme { get; set; }
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && DataService is not null)
+        if (firstRender)
         {
             DataService.DataLoaded += OnDataLoaded;
             await DataService.LoadAsync();
@@ -32,7 +29,7 @@ public partial class Stories : IDisposable
     {
         if (!_disposedValue)
         {
-            if (disposing && DataService is not null)
+            if (disposing)
             {
                 DataService.DataLoaded -= OnDataLoaded;
             }
@@ -49,11 +46,6 @@ public partial class Stories : IDisposable
 
     private void OnAddStory()
     {
-        if (DataService is null)
-        {
-            return;
-        }
-
         var story = new Story
         {
             Id = Guid.NewGuid().ToString(),
@@ -63,21 +55,20 @@ public partial class Stories : IDisposable
         OnOpenStory(story);
     }
 
-    private void OnCancelDelete() => DeleteDialogOpen = false;
-
     private async Task OnConfirmDeleteAsync()
     {
         DeleteDialogOpen = false;
-        if (DataService is not null && _deleteStory is not null)
+        if (_deleteStory is not null)
         {
             DataService.Data.Stories.Remove(_deleteStory);
             await DataService.SaveAsync();
         }
     }
 
-    private async void OnDataLoaded(object? sender, EventArgs e) => await InvokeAsync(StateHasChanged);
+    private async void OnDataLoaded(object? sender, EventArgs e)
+        => await InvokeAsync(StateHasChanged);
 
-    private void OnOpenStory(Story story) => NavigationManager?.NavigateTo($"./story/{story.Id}");
+    private void OnOpenStory(Story story) => NavigationManager.NavigateTo($"./story/{story.Id}");
 
     private void OnDeleteStory(Story story)
     {

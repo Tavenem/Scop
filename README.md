@@ -83,8 +83,8 @@ If you don't see the option, try searching for "how to install a progressive web
 
 While working with Scop as a PWA, if you are offline (with no internet access), Scop will only save your data locally, even if you normally sync to a Google Drive account.
 Once your device is back online, open Scop to sync your changes with Google Drive.
-Be careful not to make offline changes with Scop on different devices, because the last one to go online will overwrite anything saved to Google Drive.
-If you accidentally overwrite changes made with a different device, you can use Google Drive's document history features to recover your lost data.
+Be careful not to make different offline changes with Scop on different devices at the same time, because the last offline device to go online will overwrite anything saved to Google Drive, erasing any changes previously synced from other devices.
+If you do accidentally overwrite changes, you can use Google Drive's document history features to recover your lost data.
 
 ## Characters
 
