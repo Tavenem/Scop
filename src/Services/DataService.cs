@@ -12,7 +12,7 @@ public class DataService : IDisposable
     private static string[] DefaultEthnicityHierarchy { get; } = new[] { "caucasian", "american" };
 
     private readonly HttpClient _httpClient;
-    private readonly IndexedDbService<string> _indexedDb;
+    private readonly IndexedDbService _indexedDb;
     private readonly ScopJsInterop _jsInterop;
 
     private NameSet? _defaultNameSet;
@@ -40,7 +40,7 @@ public class DataService : IDisposable
 
     public DataService(
         HttpClient httpClient,
-        IndexedDbService<string> indexedDb,
+        IndexedDbService indexedDb,
         ScopJsInterop jsInterop)
     {
         _httpClient = httpClient;
@@ -68,10 +68,18 @@ public class DataService : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    public void DeleteLocal()
+    public async Task DeleteLocalAsync()
     {
-        _indexedDb.ClearAsync();
+        await _indexedDb.ClearAsync();
         LastLocalSync = DateTime.MinValue;
+
+        if (LastGDriveSync == DateTime.MinValue)
+        {
+            Data = new();
+            await LoadInitialDataAsync()
+                .ConfigureAwait(false);
+            DataLoaded?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     /// <summary>
@@ -146,18 +154,11 @@ public class DataService : IDisposable
             return;
         }
 
-        Ethnicities = await _httpClient
-            .GetFromJsonAsync<List<Ethnicity>>("./ethnicities.json")
-            .ConfigureAwait(false)
-            ?? new();
-
-        Traits = await _httpClient
-            .GetFromJsonAsync<List<Trait>>("./traits.json")
-            .ConfigureAwait(false)
-            ?? new();
+        await LoadInitialDataAsync()
+            .ConfigureAwait(false);
 
         var localData = await _indexedDb
-            .GetValueAsync<LocalData>(LocalData.IdValue)
+            .GetItemAsync<LocalData>(LocalData.IdValue)
             .ConfigureAwait(false);
         if (localData?.Data is not null)
         {
@@ -188,21 +189,29 @@ public class DataService : IDisposable
 
     public async Task SaveAsync()
     {
-        Data.LastSync = DateTime.UtcNow;
-
-        var serializedData = JsonSerializer.Serialize(Data);
-
-        var localData = new LocalData { Data = serializedData };
-        await _indexedDb
-            .PutValueAsync(localData)
+        var serializedData = await SaveLocalAsync()
             .ConfigureAwait(false);
-        LastLocalSync = Data.LastSync;
 
         if (GDriveSync)
         {
             await SaveGDriveAsync(serializedData)
                 .ConfigureAwait(false);
         }
+    }
+
+    public async Task<string> SaveLocalAsync()
+    {
+        Data.LastSync = DateTime.UtcNow;
+
+        var serializedData = JsonSerializer.Serialize(Data);
+
+        var localData = new LocalData { Data = serializedData };
+        await _indexedDb
+            .StoreItemAsync(localData)
+            .ConfigureAwait(false);
+        LastLocalSync = Data.LastSync;
+
+        return serializedData;
     }
 
     public async Task UploadAsync(string? json)
@@ -382,6 +391,19 @@ public class DataService : IDisposable
         await _jsInterop
             .LoadDriveData(_dotNetObjectRef)
             .ConfigureAwait(false);
+    }
+
+    private async Task LoadInitialDataAsync()
+    {
+        Ethnicities = await _httpClient
+            .GetFromJsonAsync<List<Ethnicity>>("./ethnicities.json")
+            .ConfigureAwait(false)
+            ?? new();
+
+        Traits = await _httpClient
+            .GetFromJsonAsync<List<Trait>>("./traits.json")
+            .ConfigureAwait(false)
+            ?? new();
     }
 
     private async Task SaveGDriveAsync(string data)

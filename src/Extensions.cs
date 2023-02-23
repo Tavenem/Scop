@@ -33,6 +33,36 @@ public static class Extensions
             : items.LastOrDefault();
     }
 
+    public static async Task SetSelectionAsync(this INote note, INote? value)
+    {
+        if (note.Notes is null)
+        {
+            return;
+        }
+        if (note.List is null)
+        {
+            return;
+        }
+        if (value is null)
+        {
+            await note.List.SetSelectionAsync((INote?)null);
+        }
+        var found = false;
+        foreach (var child in note.Notes)
+        {
+            if (child.Equals(value))
+            {
+                found = true;
+                await note.List.SetSelectionAsync(child);
+            }
+            await child.SetSelectionAsync(value);
+        }
+        if (!found)
+        {
+            await note.List.SetSelectionAsync((INote?)null);
+        }
+    }
+
     public static bool StartsWith<T>(this IEnumerable<T> candidate, IEnumerable<T> target) where T : IEquatable<T>
     {
         var candidateEnumerator = candidate.GetEnumerator();

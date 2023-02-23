@@ -6,11 +6,9 @@
     <NotFound>
         <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <div class="mt-4 pa-6" role="alert">
-                <div class="d-flex flex-column">
-                    <MudAlert Severity="Severity.Warning" Variant="Variant.Outlined">Page not found</MudAlert>
-                    <MudText Class="mt-3"><MudLink Href="">Return to the main page</MudLink></MudText>
-                </div>
+            <div class="d-flex flex-column mt-4 p-6" role="alert">
+                <Alert Class="outlined" ThemeColor="ThemeColor.Warning">Page not found</Alert>
+                <p class="mt-3"><a href="./">Return to the main page</a></p>
             </div>
         </LayoutView>
     </NotFound>

@@ -1,6 +1,8 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Tavenem.Blazor.Framework;
 
 namespace Scop;
 
@@ -12,7 +14,7 @@ public class Character : INote, IEquatable<Character>
 
     public int? AgeDays { get; set; }
 
-    public DateTime? Birthdate { get; set; }
+    public DateTimeOffset? Birthdate { get; set; }
 
     [JsonIgnore] public string? CharacterFullName => GetName(true);
 
@@ -74,6 +76,8 @@ public class Character : INote, IEquatable<Character>
         && (Surnames is null
         || Surnames.Count == 0);
 
+    [JsonIgnore] public ElementList<INote>? List { get; set; }
+
     public string? Name { get; set; }
 
     public List<string>? Names { get; set; }
@@ -81,6 +85,8 @@ public class Character : INote, IEquatable<Character>
     [JsonIgnore] public string? NewNoteValue { get; set; }
 
     public List<INote>? Notes { get; set; }
+
+    [JsonIgnore] public INote? Parent { get; set; }
 
     public Pronouns Pronouns { get; set; }
 
@@ -99,8 +105,6 @@ public class Character : INote, IEquatable<Character>
     public List<string[]>? TraitPaths { get; set; }
 
     [JsonIgnore] public string Type => "Character";
-
-    [JsonPropertyOrder(-1)] public NoteTypeDiscriminator TypeDiscriminator => NoteTypeDiscriminator.Character;
 
     public static string? GetRelationshipName(string? type, NameGender gender)
     {
@@ -261,7 +265,7 @@ public class Character : INote, IEquatable<Character>
         return type;
     }
 
-    public static void SetRelationshipMaps(Story story, List<Character> characters)
+    public static void SetRelationshipMaps(List<Character> characters)
     {
         foreach (var character in characters)
         {
@@ -536,7 +540,7 @@ public class Character : INote, IEquatable<Character>
         return null;
     }
 
-    public (int? years, int? months, int? days) GetAge(DateTime? now)
+    public (int? years, int? months, int? days) GetAge(DateTimeOffset? now)
     {
         if (!now.HasValue || !Birthdate.HasValue)
         {
@@ -1159,6 +1163,18 @@ public class Character : INote, IEquatable<Character>
     public bool HasTrait(Trait trait) => trait.Hierarchy is not null
         && TraitPaths?.Any(x => x.StartsWith(trait.Hierarchy)) == true;
 
+    public void Initialize()
+    {
+        if (Notes is not null)
+        {
+            foreach (var child in Notes)
+            {
+                child.Parent = this;
+                child.Initialize();
+            }
+        }
+    }
+
     public void LoadCharacters(Story story)
     {
         SetDisplayAge(story);
@@ -1389,7 +1405,7 @@ public class Character : INote, IEquatable<Character>
         SetDisplayAge(story);
     }
 
-    public void SetBirthdate(Story? story, DateTime? value)
+    public void SetBirthdate(Story? story, DateTimeOffset? value)
     {
         Birthdate = value;
         SetDisplayAge(story);
@@ -1403,7 +1419,7 @@ public class Character : INote, IEquatable<Character>
         }
         else if (Birthdate.HasValue && !AgeYears.HasValue)
         {
-            (DisplayAgeYears, DisplayAgeMonths, DisplayAgeDays) = GetAge(DateTime.Now);
+            (DisplayAgeYears, DisplayAgeMonths, DisplayAgeDays) = GetAge(DateTimeOffset.Now);
         }
         else
         {
@@ -1602,7 +1618,7 @@ public class Character : INote, IEquatable<Character>
             if (Birthdate.HasValue)
             {
                 sb.AppendLine("# Birthdate");
-                sb.AppendLine(Birthdate.Value.ToLongDateString());
+                sb.AppendLine(Birthdate.Value.ToString("D", CultureInfo.CurrentCulture));
             }
             else
             {

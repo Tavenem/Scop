@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using MudBlazor.Services;
 using Scop;
 using Tavenem.Blazor.IndexedDB;
 
@@ -10,10 +9,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-builder.Services.AddIndexedDb(new IndexedDb<string>("scop", 1));
+builder.Services.AddTavenemFramework();
 
-builder.Services.AddMudServices();
-builder.Services.AddMarkdownEditor();
+builder.Services.AddIndexedDb(new IndexedDb("scop", 1));
+
 builder.Services.AddScoped<ScopJsInterop>();
 builder.Services.AddScoped<DataService>();
 

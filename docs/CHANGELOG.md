@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+### Changed
+- Target .NET 7
+- Replace previous UI framework with [Tavenem.Blazor.Framework](https://github.com/Tavenem/Blazor.Framework)
+
 ## 1.1.2
 ### Fixed
 - Update displayed birthdate when setting age

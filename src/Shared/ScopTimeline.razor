@@ -1,0 +1,93 @@
+﻿<div class="timeline-container">
+    <DateTimeInput Label="Current Date and Time"
+                   Class="my-3"
+                   TValue="DateTimeOffset?"
+                   Value="Now"
+                   ValueChanged="OnSetNowAsync"
+                   ShowTime="true"
+                   ShowTimeZone="true" />
+    <h6>Categories</h6>
+    <ChipSet SelectionType="SelectionType.Multiple"
+             TChip="TimelineCategory"
+             @bind-Items="Categories"
+             @bind-SelectedItems="SelectedCategories"
+             OnChipClosed="OnDeleteCategoryAsync">
+        <Template>
+            @(context.Name ?? "Category")
+        </Template>
+    </ChipSet>
+    <TextInput Label="New Category"
+               Class="mb-2"
+               @bind-Value="NewCategoryName"
+               UpdateOnInput="true"
+               OnValidEnter="OnAddCategoryAsync" />
+    <button @onclick="OnAddCategoryAsync"
+            class="btn primary"
+            disabled="@string.IsNullOrWhiteSpace(NewCategoryName)">Add Category</button>
+    <Timeline>
+        @foreach (var item in DisplayedEvents)
+        {
+            <TimelineItem ThemeColor="item == EditedEvent ? ThemeColor.Primary : ThemeColor.None"
+                          Icon="@GetIcon(item)"
+                          Clicked="@(_ => OnEditEventAsync(item))">
+                <OppositeContent>
+                    @if (item == EditedEvent)
+                    {
+                        <button @onclick="@(_ => OnDeleteEventAsync(item))"
+                                class="btn danger">Delete</button>
+                        <DateTimeInput Label="Start"
+                                       TValue="DateTimeOffset?"
+                                       Value="EditedEventStart"
+                                       ValueChanged="OnEditEventStartDateChanged"
+                                       ShowTime="true"
+                                       ShowTimeZone="true" />
+                        <Checkbox TValue="bool"
+                                  Value="ShowEditedEventEnd"
+                                  ValueChanged="OnToggleShowEditedEventEnd"
+                                  ThemeColor="ThemeColor.Primary">Range?</Checkbox>
+                        @if (ShowEditedEventEnd)
+                        {
+                            <DateTimeInput Label="End"
+                                           TValue="DateTimeOffset?"
+                                           Value="EditedEventEnd"
+                                           ValueChanged="OnEditEventEndDateChanged"
+                                           ShowTime="true"
+                                           ShowTimeZone="true" />
+                        }
+                    }
+                    else
+                    {
+                        <h6 class="primary">@item.DisplayTime</h6>
+                    }
+                </OppositeContent>
+                <ChildContent>
+                    @if (item == EditedEvent)
+                    {
+                        <TextInput Label="Title" @bind-Value="EditedEvent.Title" />
+                        <Editor Value="EditedEvent.Markdown"
+                                ValueChanged="OnEditedMarkdownChangedAsync"
+                                EditorMode="EditorMode.WYSIWYG"
+                                Syntax="EditorSyntax.Markdown"
+                                Placeholder="Enter a description for the event here..." />
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(item.Title))
+                        {
+                            <h6 class="primary">@item.Title</h6>
+                        }
+                        if (!string.IsNullOrEmpty(item.Markdown))
+                        {
+                            @GetHtml(item)
+                        }
+                    }
+                </ChildContent>
+            </TimelineItem>
+        }
+        <TimelineItem ThemeColor="ThemeColor.Primary" Icon="add" Clicked="OnAddEventAsync">
+            <ChildContent>
+                <h6 class="text-disabled">New Event</h6>
+            </ChildContent>
+        </TimelineItem>
+    </Timeline>
+</div>

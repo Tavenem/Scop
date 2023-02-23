@@ -1,10 +1,15 @@
-﻿namespace Scop;
+﻿using Tavenem.DataStorage;
 
-public class LocalData
+namespace Scop;
+
+public class LocalData : IIdItem
 {
     internal const string IdValue = "data";
 
     public string Id { get; set; } = IdValue;
 
     public string? Data { get; set; }
+
+    public bool Equals(IIdItem? other) => other is LocalData
+        && Id?.Equals(Id) == true;
 }

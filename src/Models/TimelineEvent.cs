@@ -6,7 +6,8 @@ public class TimelineEvent
 {
     public HashSet<string>? Categories { get; set; }
 
-    [JsonIgnore] public string? DisplayTime
+    [JsonIgnore]
+    public string? DisplayTime
     {
         get
         {
@@ -28,13 +29,13 @@ public class TimelineEvent
         }
     }
 
-    public DateTime? End { get; set; }
+    public DateTimeOffset? End { get; set; }
 
     [JsonIgnore] public bool IsReadonly { get; set; }
 
     public string? Markdown { get; set; }
 
-    public DateTime Start { get; set; }
+    public DateTimeOffset Start { get; set; }
 
     public string? Title { get; set; }
 }

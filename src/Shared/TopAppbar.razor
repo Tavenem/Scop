@@ -1,0 +1,11 @@
+﻿@inject NavigationManager NavigationManager
+
+<AppBar Side="VerticalSide.Top" ControlsDrawerSide="Side.Left">
+    <a href="https://tavenem.com/" title="Tavenem">
+        <img src="./images/tavenemlogo.svg" alt="" width="60" height="60" class="d-inline-block me-1" />
+    </a>
+    <span class="title-font" style="color:#a03dff;font-size:2em;font-weight:900;cursor:pointer" @onclick="Home">Scop</span>
+    <a href="./stories" title="My Stories" class="ms-auto"><tf-icon>menu_book</tf-icon></a>
+    <a href="./managedata" title="Manage your data" class="@(DataService.GDriveSync ? "primary ms-2" : "ms-2")"><tf-icon>save</tf-icon></a>
+    <LightDarkToggle class="ms-2" />
+</AppBar>

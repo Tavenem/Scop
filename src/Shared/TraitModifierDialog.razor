@@ -1,133 +1,110 @@
-﻿<MudDialog>
-    <DialogContent>
-        <MudContainer Style="max-height: 400px; overflow-y: scroll">
-            <MudGrid>
-                <MudItem xs="12" sm="7">
-                    <MudNumericField @bind-Value="Modifier.Weight"
-                                     Label="Weight"
-                                     Disabled="Modifier.Force"
-                                     Min="0.0" />
-                </MudItem>
-                <MudItem xs="12" sm="5">
-                    <MudTooltip Text="Trait is always selected if the modifier applies" Delay="600">
-                        <MudSwitch Label="Force" @bind-Checked="Modifier.Force" Color="Color.Primary" />
-                    </MudTooltip>
-                </MudItem>
-                <MudItem xs="12">
-                    <MudTooltip Text="Highest priority wins when multiple modifiers apply" Delay="600">
-                        <MudNumericField @bind-Value="Modifier.Priority"
-                                         Label="Priority" />
-                    </MudTooltip>
-                </MudItem>
-                <MudItem xs="12" sm="6">
-                    <MudNumericField @bind-Value="Modifier.MinAge"
-                                     Label="Min Age"
-                                     Min="0" />
-                </MudItem>
-                <MudItem xs="12" sm="6">
-                    <MudNumericField @bind-Value="Modifier.MaxAge"
-                                     Label="Max Age"
-                                     Min="0" />
-                </MudItem>
-                <MudItem xs="12">
-                    <MudTooltip Delay="600" Style="width: 100%">
-                        <TooltipContent>
-                            <MudText Typo="Typo.body2">The affected gender</MudText>
-                            <MudText Typo="Typo.body2">Determined by the character's pronouns</MudText>
-                        </TooltipContent>
-                        <ChildContent>
-                            <MudSelect T="NameGender"
-                                       @bind-Value="Modifier.Gender"
-                                       Label="Gender"
-                                       AnchorOrigin="Origin.BottomCenter">
-                                <MudSelectItem Value="NameGender.None">Any</MudSelectItem>
-                                <MudSelectItem Value="NameGender.Female">Female</MudSelectItem>
-                                <MudSelectItem Value="NameGender.Male">Male</MudSelectItem>
-                            </MudSelect>
-                        </ChildContent>
-                    </MudTooltip>
-                </MudItem>
-            </MudGrid>
-            <MudCard Class="my-3">
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h6">Ethnicities</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudText>
-                        A collection of semicolon-delimited strings indicating the full paths of
-                        the ethnicities referenced by this modifier.
-                    </MudText>
-                    <MudText>
-                        The modifier is active if any ethnicity is present.
-                    </MudText>
-                    <MudList>
-                        @if (Modifier.Ethnicities is not null)
+﻿<Dialog>
+    <ChildContent>
+        <div class="row fill">
+            <NumericInput Label="Weight"
+                          Class="flex-grow-5"
+                          @bind-Value="Modifier.Weight"
+                          Disabled="Modifier.Force"
+                          Min="0.0" />
+            <Tooltip TooltipText="Trait is always selected if the modifier applies"
+                        Delay="750"
+                        Class="flex-grow-4">
+                <Checkbox Label="Force" @bind-Value="Modifier.Force" />
+            </Tooltip>
+        </div>
+        <Tooltip TooltipText="Highest priority wins when multiple modifiers apply"
+                 Delay="750">
+            <NumericInput Label="Priority" @bind-Value="Modifier.Priority" />
+        </Tooltip>
+        <div class="row fill">
+            <NumericInput Label="Min Age" @bind-Value="Modifier.MinAge" Min="0" />
+            <NumericInput Label="Max Age" @bind-Value="Modifier.MaxAge" Min="0" />
+            <Tooltip Delay="750" Style="width: 100%">
+                <TooltipContent>
+                    <p>The affected gender</p>
+                    <p>Determined by the character's pronouns</p>
+                </TooltipContent>
+                <ChildContent>
+                    <Select Label="Gender"
+                            TValue="NameGender"
+                            @bind-Value="Modifier.Gender">
+                        <Option Label="Any" Value="NameGender.None" />
+                        <Option Label="Female" Value="NameGender.Female" />
+                        <Option Label="Male" Value="NameGender.Male" />
+                    </Select>
+                </ChildContent>
+            </Tooltip>
+        </div>
+        <div class="card my-3">
+            <div class="header">
+                <h6>Ethnicities</h6>
+            </div>
+            <div class="body">
+                <p>
+                    A collection of semicolon-delimited strings indicating the full paths of
+                    the ethnicities referenced by this modifier.
+                </p>
+                <p>
+                    The modifier is active if any ethnicity is present.
+                </p>
+                <ul class="list">
+                    @if (Modifier.Ethnicities is not null)
+                    {
+                        for (var i = 0; i < Modifier.Ethnicities.Count; i++)
                         {
-                            for (var i = 0; i < Modifier.Ethnicities.Count; i++)
-                            {
-                                var index = i;
-                                <MudListItem @key="Modifier.Ethnicities[index]">
-                                    <div class="d-flex">
-                                        <MudTextField @bind-Value="Modifier.Ethnicities[index]" OnBlur="OnEditEthnicity" Margin="Margin.Dense" />
-                                        <MudIconButton OnClick="@(_ => OnRemoveEthnicity(index))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
-                                    </div>
-                                </MudListItem>
-                            }
+                            var index = i;
+                            <li @key="Modifier.Ethnicities[index]">
+                                <div class="d-flex">
+                                    <TextInput Class="dense"
+                                               Value="@Modifier.Ethnicities[index]"
+                                               ValueChanged="@(v => OnEditEthnicity(index, v))" />
+                                    <button class="btn danger" @onclick="@(_ => OnRemoveEthnicity(index))"><tf-icon>delete</tf-icon></button>
+                                </div>
+                            </li>
                         }
-                        <MudListItem>
-                            <MudTextField T="string"
-                                          Value="NewEthnicity"
-                                          ValueChanged="OnSetNewEthnicity"
-                                          Margin="Margin.Dense" />
-                        </MudListItem>
-                    </MudList>
-                </MudCardContent>
-            </MudCard>
-            <MudCard>
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h6">Traits</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudText>
-                        A collection of semicolon-delimited strings indicating the full paths of
-                        the traits referenced by this modifier.
-                    </MudText>
-                    <MudText>
-                        The modifier is active if any trait is present.
-                    </MudText>
-                    <MudList>
-                        @if (Modifier.TargetPaths is not null)
+                    }
+                    <li>
+                        <TextInput Class="dense"
+                                   Value="@NewEthnicity"
+                                   ValueChanged="OnSetNewEthnicity" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="header">
+                <h6>Traits</h6>
+            </div>
+            <div class="body">
+                <p>
+                    A collection of semicolon-delimited strings indicating the full paths of
+                    the traits referenced by this modifier.
+                </p>
+                <p>The modifier is active if any trait is present.</p>
+                <ul class="list">
+                    @if (Modifier.TargetPaths is not null)
+                    {
+                        foreach (var path in Modifier.TargetPaths)
                         {
-                            foreach (var path in Modifier.TargetPaths)
-                            {
-                                <MudListItem @key="path">
-                                    <div class="d-flex">
-                                        <MudTextField T="string"
-                                                      Value="path"
-                                                      ValueChanged="@(v => OnTargetPathValueChanged(path, v))"
-                                                      Margin="Margin.Dense" />
-                                        <MudIconButton OnClick="@(_ => OnRemoveTargetPath(path))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
-                                    </div>
-                                </MudListItem>
-                            }
+                            <li @key="path" class="d-flex">
+                                <TextInput Class="dense"
+                                           Value="@path"
+                                           ValueChanged="@(v => OnTargetPathValueChanged(path, v))" />
+                                <button class="btn danger" @onclick="@(_ => OnRemoveTargetPath(path))"><tf-icon>delete</tf-icon></button>
+                            </li>
                         }
-                        <MudListItem>
-                            <MudTextField T="string"
-                                          Value="NewTargetPath"
-                                          ValueChanged="OnSetNewTargetPath"
-                                          Margin="Margin.Dense" />
-                        </MudListItem>
-                    </MudList>
-                </MudCardContent>
-            </MudCard>
-        </MudContainer>
-    </DialogContent>
-    <DialogActions>
-        <MudButton OnClick="@(_ => MudDialog?.Close(Modifier))" Color="Color.Primary">Done</MudButton>
-        <MudButton OnClick="@(_ => MudDialog?.Close())" Color="Color.Secondary">Cancel</MudButton>
-    </DialogActions>
-</MudDialog>
+                    }
+                    <li>
+                        <TextInput Class="dense"
+                                   Value="@NewTargetPath"
+                                   ValueChanged="OnSetNewTargetPath" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ChildContent>
+    <FooterContent>
+        <button class="btn btn-text" @onclick="@(_ => Dialog?.Close())">Cancel</button>
+        <button class="btn btn-text primary" @onclick="@(_ => Dialog?.Close(Modifier))">Done</button>
+    </FooterContent>
+</Dialog>

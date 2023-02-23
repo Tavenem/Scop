@@ -1,25 +1,24 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace Scop.Shared;
 
-public partial class MainLayout : IDisposable
+public partial class TopAppbar : IDisposable
 {
-    private DotNetObjectReference<MainLayout>? _dotNetObjectRef;
+    private DotNetObjectReference<TopAppbar>? _dotNetObjectRef;
     private bool _disposedValue;
 
-    [Inject] private DataService? DataService { get; set; }
+    [Inject] private DataService DataService { get; set; } = default!;
 
-    [Inject] private ScopJsInterop? JsInterop { get; set; }
+    [Inject] private ScopJsInterop JsInterop { get; set; } = default!;
+
+    private void Home() => NavigationManager?.NavigateTo("./");
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender
-            && JsInterop is not null
-            && DataService is not null)
+        if (firstRender)
         {
             _dotNetObjectRef ??= DotNetObjectReference.Create(this);
-
             DataService.GDriveSync = await JsInterop
                 .GetDriveSignedIn(_dotNetObjectRef);
             if (DataService.GDriveSync)

@@ -16,7 +16,7 @@ public class Story
 
     public List<INote>? Notes { get; set; }
 
-    public DateTime? Now { get; set; }
+    public DateTimeOffset? Now { get; set; }
 
     public IEnumerable<Character> AllCharacters()
     {
@@ -48,6 +48,19 @@ public class Story
         return null;
     }
 
+    public void Initialize()
+    {
+        if (Notes is not null)
+        {
+            foreach (var note in Notes)
+            {
+                note.Initialize();
+                note.LoadCharacters(this);
+            }
+        }
+        ResetCharacterRelationshipMaps();
+    }
+
     public void ResetCharacterRelationshipMaps()
-        => Character.SetRelationshipMaps(this, AllCharacters().ToList());
+        => Character.SetRelationshipMaps(AllCharacters().ToList());
 }

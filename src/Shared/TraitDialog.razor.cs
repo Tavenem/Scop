@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using MudBlazor;
+using Tavenem.Blazor.Framework;
 
 namespace Scop.Shared;
 
@@ -7,9 +7,9 @@ public partial class TraitDialog
 {
     [Parameter] public Trait Trait { get; set; } = new();
 
-    [Inject] private IDialogService? DialogService { get; set; }
+    [CascadingParameter] private DialogInstance? Dialog { get; set; }
 
-    [CascadingParameter] private MudDialogInstance? MudDialog { get; set; }
+    [Inject] private DialogService DialogService { get; set; } = default!;
 
     private void OnDeleteModifier(int index)
     {
@@ -26,20 +26,16 @@ public partial class TraitDialog
 
     private async Task OnEditModifierAsync(TraitModifier? modifier)
     {
-        if (DialogService is null)
-        {
-            return;
-        }
-
         var parameters = new DialogParameters();
         if (modifier is not null)
         {
             parameters.Add(nameof(TraitModifierDialog.Modifier), modifier);
         }
-        var dialog = DialogService.Show<TraitModifierDialog>("Trait Modifier", parameters);
-        var newModifier = await dialog.Result;
-        if (modifier is null
-            && newModifier?.Data is TraitModifier traitModifier)
+        var result = await DialogService
+            .Show<TraitModifierDialog>("Trait Modifier", parameters)
+            .Result;
+        if (result?.Choice == DialogChoice.Ok
+            && result.Data is TraitModifier traitModifier)
         {
             (Trait.Modifiers ??= new()).Add(traitModifier);
         }

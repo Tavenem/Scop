@@ -1,121 +1,101 @@
-﻿<MudDialog>
-    <DialogContent>
-        <MudContainer Style="max-height: 400px; overflow-y: scroll">
-            <MudGrid>
-                <MudItem xs="12">
-                    <MudTextField @bind-Value="Trait.Name" Label="Name" />
-                </MudItem>
-                <MudItem xs="12">
-                    <MudNumericField @bind-Value="Trait.Weight"
-                                     Label="Weight"
-                                     Min="0.0" />
-                </MudItem>
-                <MudItem xs="12">
-                    <MudSelect T="ChoiceType"
-                               @bind-Value="Trait.ChoiceType"
-                               Label="Choice Type"
-                               AnchorOrigin="Origin.BottomCenter">
-                        <MudSelectItem Value="ChoiceType.Category">Category</MudSelectItem>
-                        <MudSelectItem Value="ChoiceType.Manual">Manual</MudSelectItem>
-                        <MudSelectItem Value="ChoiceType.Single">Single</MudSelectItem>
-                        <MudSelectItem Value="ChoiceType.OneOrMore">One or More</MudSelectItem>
-                        <MudSelectItem Value="ChoiceType.Multiple">Multiple</MudSelectItem>
-                    </MudSelect>
-                </MudItem>
-                <MudItem xs="12">
-                    @switch (Trait.ChoiceType)
+﻿<Dialog>
+    <ChildContent>
+        <TextInput Label="Name" @bind-Value="Trait.Name" />
+        <NumericInput Label="Weight" @bind-Value="Trait.Weight" Min="0.0" />
+        <Select Label="Choice Type"
+                TValue="ChoiceType"
+                @bind-Value="Trait.ChoiceType">
+            @foreach (var type in Enum.GetValues<ChoiceType>())
+            {
+                <Option Label="@type.ToHumanReadable()" Value="type" />
+            }
+        </Select>
+        @switch (Trait.ChoiceType)
+        {
+            case ChoiceType.Category:
+                <p>
+                    All children with a non-zero weight are automatically selected when this trait is selected.
+                </p>
+                break;
+            case ChoiceType.Manual:
+                <p>
+                    No children are automatically selected, but any number may be selected by hand.
+                </p>
+                break;
+            case ChoiceType.Single:
+                <p>
+                    One child is selected at random when this trait is selected, if there are any with a non-zero weight.
+                </p>
+                <p>
+                    Only one child may be selected at a time. Selecting any child will de-select all others.
+                </p>
+                break;
+            case ChoiceType.OneOrMore:
+                <p>
+                    One child is selected at random when this trait is selected, if there are any with a non-zero weight.
+                </p>
+                <p>
+                    Any number of children may be selected at a time.
+                </p>
+                break;
+            case ChoiceType.Multiple:
+                <p>
+                    When this trait is selected, each child is selected or not based on its weight, which is treated as a probability.
+                </p>
+                <p>
+                    Any number of children may be selected at a time.
+                </p>
+                break;
+        }
+        @if (Trait.ChoiceType is ChoiceType.Single or ChoiceType.OneOrMore)
+        {
+            <div class="row">
+                <Tooltip TooltipText="Selecting no children is allowed" Delay="750">
+                    <Checkbox Label="Can Choose None"
+                              @bind-Value="Trait.CanChooseNone" />
+                </Tooltip>
+                <Tooltip TooltipText="Weight assigned to choosing no child trait" Delay="750">
+                    <NumericInput Label="None Weight"
+                                  @bind-Value="Trait.NoneWeight"
+                                  Min="0.0" />
+                </Tooltip>
+            </div>
+        }
+        <Tooltip TooltipText="Whether this option is selected if no selection is made among its children" Delay="750">
+            <Checkbox Label="Is Chosen on None"
+                      @bind-Value="Trait.IsChosenOnNone" />
+        </Tooltip>
+        <div class="card mt-3">
+            <div class="header">
+                <h6>Modifiers</h6>
+            </div>
+            <div class="body">
+                <p>
+                    A collection of conditions which may override the effective weight of this trait.
+                </p>
+                <ul class="list">
+                    @if (Trait.Modifiers is not null)
                     {
-                        case ChoiceType.Category:
-                            <MudText Typo="Typo.body2">
-                                All children with a non-zero weight are automatically selected when this trait is selected.
-                            </MudText>
-                            break;
-                        case ChoiceType.Manual:
-                            <MudText Typo="Typo.body2">
-                                No children are automatically selected, but any number may be selected by hand.
-                            </MudText>
-                            break;
-                        case ChoiceType.Single:
-                            <MudText Typo="Typo.body2">
-                                One child is selected at random when this trait is selected, if there are any with a non-zero weight.
-                            </MudText>
-                            <MudText Typo="Typo.body2">
-                                Only one child may be selected at a time. Selecting any child will de-select all others.
-                            </MudText>
-                            break;
-                        case ChoiceType.OneOrMore:
-                            <MudText Typo="Typo.body2">
-                                One child is selected at random when this trait is selected, if there are any with a non-zero weight.
-                            </MudText>
-                            <MudText Typo="Typo.body2">
-                                Any number of children may be selected at a time.
-                            </MudText>
-                            break;
-                        case ChoiceType.Multiple:
-                            <MudText Typo="Typo.body2">
-                                When this trait is selected, each child is selected or not based on its weight, which is treated as a probability.
-                            </MudText>
-                            <MudText Typo="Typo.body2">
-                                Any number of children may be selected at a time.
-                            </MudText>
-                            break;
-                    }
-                </MudItem>
-                @if (Trait.ChoiceType is ChoiceType.Single or ChoiceType.OneOrMore)
-                {
-                    <MudItem xs="12" sm="5">
-                        <MudTooltip Text="Selecting no children is allowed" Delay="600">
-                            <MudSwitch Label="Can Choose None" @bind-Checked="Trait.CanChooseNone" Color="Color.Primary" />
-                        </MudTooltip>
-                    </MudItem>
-                    <MudItem xs="12" sm="4">
-                        <MudTooltip Text="Weight assigned to choosing no child trait" Delay="600">
-                            <MudNumericField @bind-Value="Trait.NoneWeight"
-                                             Label="None Weight"
-                                             Min="0.0" />
-                        </MudTooltip>
-                    </MudItem>
-                }
-                <MudItem xs="12">
-                    <MudTooltip Text="Whether this option is selected if no selection is made among its children" Delay="600">
-                        <MudSwitch Label="Is Chosen on None" @bind-Checked="Trait.IsChosenOnNone" Color="Color.Primary" />
-                    </MudTooltip>
-                </MudItem>
-            </MudGrid>
-            <MudCard Class="mt-3">
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h6">Modifiers</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudText>
-                        A collection of conditions which may override the effective weight of this trait.
-                    </MudText>
-                    <MudList>
-                        @if (Trait.Modifiers is not null)
+                        for (var i = 0; i < Trait.Modifiers.Count; i++)
                         {
-                            for (var i = 0; i < Trait.Modifiers.Count; i++)
-                            {
-                                var index = i;
-                                <MudListItem Class="d-flex justify-space-between">
-                                    <MudText>Modifier @(index.ToString())</MudText>
-                                    <div>
-                                        <MudIconButton OnClick="@(_ => OnEditModifierAsync(Trait.Modifiers[index]))" Icon="@Icons.Material.Filled.Edit" Color="Color.Primary" />
-                                        <MudIconButton OnClick="@(_ => OnDeleteModifier(index))" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" />
-                                    </div>
-                                </MudListItem>
-                            }
+                            var index = i;
+                            <li class="d-flex justify-content-space-between">
+                                <span>Modifier @(index.ToString())</span>
+                                <div>
+                                    <button class="btn btn-icon primary" @onclick="@(_ => OnEditModifierAsync(Trait.Modifiers[index]))"><tf-icon>edit</tf-icon></button>
+                                    <button class="btn btn-icon danger" @onclick="@(_ => OnDeleteModifier(index))"><tf-icon>delete</tf-icon></button>
+                                </div>
+                            </li>
                         }
-                        <MudListItem>
-                            <MudIconButton OnClick="@(_ => OnEditModifierAsync(null))" Icon="@Icons.Material.Filled.Add" Color="Color.Success" />
-                        </MudListItem>
-                    </MudList>
-                </MudCardContent>
-            </MudCard>
-        </MudContainer>
-    </DialogContent>
-    <DialogActions>
-        <MudButton OnClick="@(_ => MudDialog?.Close(Trait))" Color="Color.Primary">Done</MudButton>
-    </DialogActions>
-</MudDialog>
+                    }
+                    <li>
+                        <button class="btn btn-icon primary" @onclick="@(_ => OnEditModifierAsync(null))"><tf-icon>add</tf-icon></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ChildContent>
+    <FooterContent>
+        <button class="btn btn-text primary" @onclick="@(_ => Dialog?.Close(Trait))">Done</button>
+    </FooterContent>
+</Dialog>
