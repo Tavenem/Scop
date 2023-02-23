@@ -30,7 +30,7 @@ jobs:
       #  working-directory: ./src
 
       - name: Publish
-        run: dotnet publish --configuration Release -o publish -p:Version=${{ env.VERSION }} --no-build --nologo
+        run: dotnet publish --configuration Release --property:PublishDir=publish -p:Version=${{ env.VERSION }} --no-build --nologo
         working-directory: ./src
 
       # copy index.html to 404.html to fix GitHub Pages SPA navigation
