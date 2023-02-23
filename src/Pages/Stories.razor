@@ -2,11 +2,11 @@
 
 <PageTitle>Scop - Stories</PageTitle>
 
-<h1 Class="mb-4">Stories</h1>
+<h1 Class="px-5">Stories</h1>
 
 @if (_loading)
 {
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center align-self-stretch">
         <tf-progress-circle class="primary"></tf-progress-circle>
     </div>
 }
@@ -14,11 +14,11 @@ else
 {
     if (DataService.Data.Stories.Count == 0)
     {
-        <p>You don't have any stories yet.</p>
+        <p Class="p-5 pb-0 align-self-stretch text-center">You don't have any stories yet.</p>
     }
     else
     {
-        <div class="d-flex flex-wrap justify-content-space-around my-2 gap-2">
+        <div class="d-flex flex-wrap justify-content-space-around align-self-stretch my-2 gap-2">
             @foreach (var story in DataService.Data.Stories)
             {
                 <div class="card">
@@ -34,10 +34,8 @@ else
         </div>
     }
 
-    <div class="d-flex justify-content-center mt-4">
-        <Tooltip TooltipText="Add new story" Delay="750">
-            <button class="btn btn-icon primary" @onclick="OnAddStory"><tf-icon>add</tf-icon></button>
-        </Tooltip>
+    <div class="d-flex justify-content-center align-self-stretch mt-4">
+        <button class="btn primary" @onclick="OnAddStory"><tf-icon>add</tf-icon>New Story</button>
     </div>
 }
 

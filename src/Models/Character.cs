@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Tavenem.Blazor.Framework;
 
 namespace Scop;
 
@@ -75,6 +76,8 @@ public class Character : INote, IEquatable<Character>
         && (Surnames is null
         || Surnames.Count == 0);
 
+    [JsonIgnore] public ElementList<INote>? List { get; set; }
+
     public string? Name { get; set; }
 
     public List<string>? Names { get; set; }
@@ -102,8 +105,6 @@ public class Character : INote, IEquatable<Character>
     public List<string[]>? TraitPaths { get; set; }
 
     [JsonIgnore] public string Type => "Character";
-
-    [JsonPropertyOrder(-1)] public NoteTypeDiscriminator TypeDiscriminator => NoteTypeDiscriminator.Character;
 
     public static string? GetRelationshipName(string? type, NameGender gender)
     {

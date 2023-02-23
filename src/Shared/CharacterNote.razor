@@ -1,0 +1,390 @@
+﻿@if (Character is null) {
+    return;
+}
+<div class="my-2">
+    <Tooltip TooltipText="Randomize">
+        <button class="btn btn-icon" @onclick="@(_ => OnRandomizeCharacterAsync(Character))"><tf-icon>casino</tf-icon></button>
+    </Tooltip>
+    <div class="accordion">
+        <Collapse Title="@($"Name: {Character.CharacterFullName}")">
+            <h4>@Character.CharacterName</h4>
+            <Tooltip TooltipText="Randomize full name">
+                <button class="btn btn-icon" @onclick="@(_ => OnRandomizeCharacterFullNameAsync(Character))"><tf-icon>casino</tf-icon></button>
+            </Tooltip>
+            <TextInput Label="Title"
+                       Value="@Character.Title"
+                       ValueChanged="@(v => OnCharacterTitleChangedAsync(Character, v))"
+                       LoadSuggestions="GetTitles" />
+            <div class="card my-3">
+                <div class="header">
+                    <h6>Given Name(s)</h6>
+                    <Tooltip Class="ms-auto" TooltipText="Randomize given name">
+                        <button class="btn btn-icon"
+                                @onclick="@(_ => OnRandomizeCharacterNameAsync(Character))">
+                            <tf-icon>casino</tf-icon>
+                        </button>
+                    </Tooltip>
+                </div>
+                <div class="body align-items-stretch">
+                    @if (Character.Names is not null) {
+                        for (var i = 0; i < Character.Names.Count; i++) {
+                            var index = i;
+                            <TextInput Value="@Character.Names[index]"
+                               ValueChanged="@(v => OnNameChangeAsync(Character, index, v))"
+                               LoadSuggestions="@(v => GetGivenNames(Character, v))">
+                                <PostfixContent>
+                                    <button class="btn btn-icon"
+                                    @onclick="@(_ => OnRandomizeCharacterNameAsync(Character, index))">
+                                        <tf-icon>casino</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        }
+                    }
+                    <TextInput Value="@NewCharacterName"
+                               ValueChanged="@(v => OnNewCharacterNameAsync(Character, v))"
+                               LoadSuggestions="@(v => GetGivenNames(Character, v))">
+                        <PostfixContent>
+                            <button class="btn btn-icon"
+                                    @onclick="@(_ => OnRandomizeCharacterNameAsync(Character, Character.Names?.Count ?? 0))">
+                                <tf-icon>casino</tf-icon>
+                            </button>
+                        </PostfixContent>
+                    </TextInput>
+                </div>
+            </div>
+            <div class="card my-3">
+                <div class="header">
+                    <h6 class="me-auto">Surname(s)</h6>
+                    @if (Character.RelationshipMap?.Count > 0) {
+                        <Tooltip TooltipText="Inherit from relative(s)">
+                            <button class="btn btn-icon"
+                                @onclick="@(_ => OnCopyCharacterSurnameAsync(Character))">
+                                <tf-icon>content_copy</tf-icon>
+                            </button>
+                        </Tooltip>
+                    }
+                    <Tooltip Class="ms-1" TooltipText="Randomize surname">
+                        <button class="btn btn-icon"
+                                @onclick="@(_ => OnRandomizeCharacterSurnameAsync(Character))">
+                            <tf-icon>casino</tf-icon>
+                        </button>
+                    </Tooltip>
+                </div>
+                <div class="body align-items-stretch">
+                    @if (Character.Surnames is not null) {
+                        for (var i = 0; i < Character.Surnames.Count; i++) {
+                            var index = i;
+                            <TextInput Value="@Character.Surnames[index]"
+                               ValueChanged="@(v => OnSurnameChangeAsync(Character, index, v))"
+                               LoadSuggestions="@(v => GetSurnames(Character, v))">
+                                <PostfixContent>
+                                    <button class="btn btn-icon"
+                                    @onclick="@(_ => OnRandomizeCharacterSurnameAsync(Character, index))">
+                                        <tf-icon>casino</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        }
+                    }
+                    <TextInput Value="@NewCharacterSurname"
+                               ValueChanged="@(v => OnNewCharacterSurnameAsync(Character))"
+                               LoadSuggestions="@(v => GetSurnames(Character, v))">
+                        <PostfixContent>
+                            <button class="btn btn-icon"
+                                    @onclick="@(_ => OnRandomizeCharacterSurnameAsync(Character, Character.Surnames?.Count ?? 0))">
+                                <tf-icon>casino</tf-icon>
+                            </button>
+                        </PostfixContent>
+                    </TextInput>
+                    @if (Character.Surnames?.Count > 1) {
+                        <Checkbox Label="Hyphenated"
+                              @bind-Value="Character.HyphenatedSurname" />
+                    }
+                </div>
+            </div>
+            <TextInput Label="Suffix"
+                       Value="@Character.Suffix"
+                       ValueChanged="@(v => OnCharacterSuffixChangedAsync(Character, v))"
+                       LoadSuggestions="GetSuffixes" />
+        </Collapse>
+        <Collapse Title="@($"Age{Character.DisplayAge}")">
+            <Tooltip TooltipText="Randomize age">
+                <button class="btn btn-icon"
+                        @onclick="@(_ => OnRandomizeCharacterAgeAsync(Character))">
+                    <tf-icon>casino</tf-icon>
+                </button>
+            </Tooltip>
+            <DateTimeInput Label="Birthdate"
+                           TValue="DateTimeOffset?"
+                           Value="SelectedBirthdate"
+                           ValueChanged="OnBirthdayChangedAsync" />
+            <div class="row fill cols-1 cols-md-3 gap-2">
+                <NumericInput Label="Years"
+                              TValue="int?"
+                              Value="Character.DisplayAgeYears"
+                              ValueChanged="@(v => OnAgeYearsChangedAsync(Character, v))"
+                              Min="0" />
+                <NumericInput Label="Months"
+                              TValue="int?"
+                              Value="Character.DisplayAgeMonths"
+                              ValueChanged="@(v => OnAgeMonthsChangedAsync(Character, v))"
+                              Min="0"
+                              Max="11" />
+                <NumericInput Label="Days"
+                              TValue="int?"
+                              Value="Character.DisplayAgeDays"
+                              ValueChanged="@(v => OnAgeDaysChangedAsync(Character, v))"
+                              Min="0"
+                              Max="30" />
+            </div>
+        </Collapse>
+        <Collapse Title="@($"Gender{Character.DisplayGender}")" BodyClass="align-items-stretch">
+            <div class="d-flex">
+                <TextInput Label="Gender"
+                           Value="@Character.Gender"
+                           ValueChanged="@(v => OnChangeGenderAsync(Character, v))"
+                           LoadSuggestions="GetGenders"
+                           Class="flex-grow-1" />
+                <Tooltip TooltipText="Randomize gender" Class="align-self-center">
+                    <button class="btn btn-icon"
+                            @onclick="@(_ => OnRandomizeCharacterGenderAsync(Character))">
+                        <tf-icon>casino</tf-icon>
+                    </button>
+                </Tooltip>
+            </div>
+            <Select Label="Pronouns"
+                    TValue="Pronouns"
+                    Value="Character.Pronouns"
+                    ValueChanged="@(v => OnPronounsChangedAsync(Character, v))">
+                @foreach (var pronouns in Enum.GetValues<Pronouns>()) {
+                    <Option @key="@pronouns"
+                        Value="@pronouns"
+                        Label="@pronouns.GetDescription()" />
+                }
+            </Select>
+        </Collapse>
+        <Collapse Title="@($"Ethnicity{Character.DisplayEthnicity}")"
+                  @bind-IsOpen="EthnicitiesVisible"
+                  BodyClass="align-items-stretch">
+            <div class="d-flex gap-2">
+                @if (Character.RelationshipMap?.Count > 0) {
+                    <Tooltip TooltipText="Inherit from relative(s)">
+                        <button class="btn btn-icon"
+                            @onclick="@(_ => OnCopyCharacterEthnicitiesAsync(Character))">
+                            <tf-icon>content_copy</tf-icon>
+                        </button>
+                    </Tooltip>
+                }
+                <Tooltip TooltipText="Randomize ethnicity">
+                    <button class="btn btn-icon"
+                            @onclick="@(_ => OnRandomizeCharacterEthnicitiesAsync(Character))">
+                        <tf-icon>casino</tf-icon>
+                    </button>
+                </Tooltip>
+            </div>
+            @if (EthnicitiesVisible) {
+                <ElementList Items="DataService.Ethnicities"
+                             ItemIsCollapsible="@(x => x.Types?.Count > 0)">
+                    <Template>
+                        <div class="d-inline-flex align-items-center flex-grow-1">
+                            <Checkbox Class="dense"
+                                      TValue="bool"
+                                      Value="Character.HasEthnicity(context)"
+                                      ValueChanged="@(v => OnEthnicitySelectAsync(v, context, Character))" />
+                            @if (context.IsEditing) {
+                                <TextInput Value="@context.Type"
+                                           ValueChanged="@(v => OnEditEthnicity(context, v))"
+                                           Placeholder="Type" />
+                            }
+                            else {
+                                <span class="me-auto">@context.Type.ToTitle()</span>
+                                @if (context.Types?.Count > 0) {
+                                    <Tooltip TooltipText="Select random child">
+                                        <button class="btn btn-icon small"
+                                                @onclick="@(_ => OnAddRandomEthnicityAsync(context, Character))">
+                                            <tf-icon>casino</tf-icon>
+                                        </button>
+                                    </Tooltip>
+                                }
+                                @if (context.UserDefined) {
+                                    <Tooltip TooltipText="Edit" Delay="750">
+                                        <button class="btn btn-icon small"
+                                                @onclick="@(_ => context.IsEditing = true)">
+                                            <tf-icon>edit</tf-icon>
+                                        </button>
+                                    </Tooltip>
+                                    <Tooltip TooltipText="Delete" Delay="750">
+                                        <button class="btn btn-icon small"
+                                                @onclick="@(_ => OnDeleteEthnicityAsync(context))">
+                                            <tf-icon>delete</tf-icon>
+                                        </button>
+                                    </Tooltip>
+                                }
+                            }
+                        </div>
+                    </Template>
+                    <CollapsibleTemplate>
+                        <ElementList Items="context.Types"
+                                     ItemIsCollapsible="@(x => x.Types?.Count > 0)">
+                            <FollowingContent>
+                                <div role="listitem"
+                                     class="clickable no-drag"
+                                     draggable="false">
+                                    <tf-icon class="me-2">note_add</tf-icon>
+                                    <TextInput Class="dense outlined flex-grow-1"
+                                               Value="@context.NewEthnicityValue"
+                                               ValueChanged="@(v => OnNewEthnicityAsync(context, v))"
+                                               Placeholder="New Ethnicity" />
+                                </div>
+                            </FollowingContent>
+                        </ElementList>
+                    </CollapsibleTemplate>
+                    <FollowingContent>
+                        <div role="listitem"
+                             class="clickable no-drag"
+                             draggable="false">
+                            <tf-icon class="me-2">note_add</tf-icon>
+                            <TextInput Class="dense outlined flex-grow-1"
+                                       Value="@NewEthnicityValue"
+                                       ValueChanged="OnNewEthnicityAsync"
+                                       Placeholder="New Ethnicity" />
+                        </div>
+                    </FollowingContent>
+                </ElementList>
+            }
+        </Collapse>
+        <Collapse Title="Traits" @bind-IsOpen="TraitsVisible" BodyClass="align-items-stretch">
+            <div class="d-flex">
+                <Tooltip TooltipText="Randomize traits">
+                    <button class="btn btn-icon"
+                            @onclick="@(_ => OnRandomizeCharacterTraitsAsync(Character))">
+                        <tf-icon>casino</tf-icon>
+                    </button>
+                </Tooltip>
+                <Tooltip TooltipText="Add additional random traits without clearing the current set">
+                    <button class="btn btn-icon"
+                            @onclick="@(_ => OnRandomizeCharacterTraitsAsync(Character, false))">
+                        <tf-icon>playlist_add</tf-icon>
+                    </button>
+                </Tooltip>
+            </div>
+            @if (TraitsVisible) {
+                <ElementList Items="DataService.Traits"
+                             ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+                    <Template>
+                        <div class="d-inline-flex flex-grow-1">
+                            <Checkbox Class="dense"
+                                      TValue="bool"
+                                      Value="Character.HasTrait(context)"
+                                      ValueChanged="@(v => OnTraitSelectAsync(v, context, Character))" />
+                            <span class="me-auto">@context.Name</span>
+                            @if (context.Children?.Count > 0) {
+                                <Tooltip TooltipText="Select random children without clearing any">
+                                    <button class="btn btn-icon small"
+                                            @onclick="@(_ => OnTraitSelectAsync(true, context, Character))">
+                                        <tf-icon>playlist_add</tf-icon>
+                                    </button>
+                                </Tooltip>
+                            }
+                            @if (context.UserDefined) {
+                                <Tooltip TooltipText="Edit" Delay="750">
+                                    <button class="btn btn-icon small"
+                                            @onclick="@(_ => OnEditTraitAsync(context))">
+                                        <tf-icon>edit</tf-icon>
+                                    </button>
+                                </Tooltip>
+                                <Tooltip TooltipText="Delete" Delay="750">
+                                    <button class="btn btn-icon small"
+                                            @onclick="@(_ => OnDeleteTraitAsync(context))">
+                                        <tf-icon>delete</tf-icon>
+                                    </button>
+                                </Tooltip>
+                            }
+                        </div>
+                    </Template>
+                    <CollapsibleTemplate>
+                        <ElementList Items="context.Children"
+                                     ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+                            <FollowingContent>
+                                <div role="listitem"
+                                     class="clickable no-drag"
+                                     draggable="false">
+                                    <tf-icon class="me-2">note_add</tf-icon>
+                                    <TextInput Class="dense outlined flex-grow-1"
+                                               Value="@context.NewTraitValue"
+                                               ValueChanged="@(v => OnNewTraitAsync(context, v))"
+                                               Placeholder="New Trait" />
+                                </div>
+                            </FollowingContent>
+                        </ElementList>
+                    </CollapsibleTemplate>
+                    <FollowingContent>
+                        <div role="listitem"
+                             class="clickable no-drag"
+                             draggable="false">
+                            <tf-icon class="me-2">note_add</tf-icon>
+                            <TextInput Class="dense outlined flex-grow-1"
+                                       Value="@NewTraitValue"
+                                       ValueChanged="OnNewTraitAsync"
+                                       Placeholder="New Trait" />
+                        </div>
+                    </FollowingContent>
+                </ElementList>
+            }
+            @if (!string.IsNullOrEmpty(Character.DisplayTraits)) {
+                <h6>Summary</h6>
+                <p>@(new MarkupString(Character.DisplayTraits))</p>
+            }
+        </Collapse>
+        <Collapse Title="@($"Relationships ({Character.RelationshipMap?.Count ?? 0})")" BodyClass="align-items-stretch">
+            @if (Character.RelationshipMap is not null) {
+                <Accordion>
+                    @foreach (var relationship in Character.RelationshipMap) {
+                        <Collapse Title="@relationship.DisplayName"
+                                  @bind-IsOpen="relationship.IsExpanded"
+                                  Disabled="relationship.Synthetic">
+                            <TextInput Label="Relative Name"
+                                       @bind-Value="@relationship.EditedRelativeName"
+                                       LoadSuggestions="@(v => GetCharacterNames(Character, v))" />
+                            <TextInput Label="Type"
+                                       @bind-Value="@relationship.EditedType"
+                                       LoadSuggestions="GetRelationshipTypes" />
+                            <TextInput Label="Relationship"
+                                       @bind-Value="@relationship.EditedRelationshipName" />
+                            <TextInput Label="Inverse Relationship"
+                                       @bind-Value="@relationship.EditedInverseType"
+                                       Class="mb-3" />
+                            <div class="row">
+                                <Tooltip TooltipText="Undo unsaved changes" Delay="750">
+                                    <button class="btn btn-icon"
+                                            @onclick="@(_ => OnCancelEditingRelationship(relationship))">
+                                        <tf-icon>undo</tf-icon>
+                                    </button>
+                                </Tooltip>
+                                <button class="btn btn-icon primary"
+                                        @onclick="@(_ => OnDoneEditingRelationship(relationship, Character))">
+                                    <tf-icon>save</tf-icon>
+                                </button>
+                                <Tooltip TooltipText="Remove relationship" Delay="750">
+                                    <button class="btn btn-icon danger"
+                                            @onclick="@(_ => OnDeleteRelationshipAsync(Character, relationship))">
+                                        <tf-icon>delete</tf-icon>
+                                    </button>
+                                </Tooltip>
+                            </div>
+                        </Collapse>
+                    }
+                </Accordion>
+            }
+            <Tooltip TooltipText="Add new relationship">
+                <button class="btn btn-icon"
+                        @onclick="@(_ => OnAddRelationship(Character))">
+                    <tf-icon>add</tf-icon>
+                </button>
+            </Tooltip>
+        </Collapse>
+    </div>
+</div>
+
+

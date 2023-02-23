@@ -79,10 +79,13 @@ public partial class ManageData : IDisposable
         }
     }
 
-    private void OnConfirmLocalDelete()
+    private async Task OnConfirmLocalDeleteAsync()
     {
         DeleteLocalDialogOpen = false;
-        DataService?.DeleteLocal();
+        if (DataService is not null)
+        {
+            await DataService.DeleteLocalAsync();
+        }
     }
 
     private async Task OnDownloadDataAsync()
@@ -103,6 +106,14 @@ public partial class ManageData : IDisposable
         {
             await JsInterop
                 .DriveAuthorize(_dotNetObjectRef);
+        }
+    }
+
+    private async Task OnSyncLocalAsync()
+    {
+        if (DataService is not null)
+        {
+            await DataService.SaveLocalAsync();
         }
     }
 

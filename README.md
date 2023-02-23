@@ -1,4 +1,4 @@
-![build](https://img.shields.io/github/workflow/status/Tavenem/Scop/publish/main)
+![build](https://img.shields.io/github/actions/workflow/status/Tavenem/Scop/publish.yml?branch=main)
 
 Scop
 ==
@@ -75,7 +75,7 @@ Sign into Google Drive again to resume saving to your account.
 ### Working Offline
 
 For a true offline experience, you can install Scop as a [progressive web app](https://en.wikipedia.org/wiki/Progressive_web_application) (PWA).
-That means Scop will be availble on your device like an installed program, without opening your browser or even being online.
+That means Scop will be available on your device like an installed program, without opening your browser or even being online.
 When you *are* online, your data will sync as usual.
 Not every browser supports PWAs on every platform, but most do.
 To install Scop as a PWA, look near the top right of your browser.
@@ -168,7 +168,7 @@ When you use a custom type, you may need to specify the relationship name manual
 It defaults to the same text used for the type, which is fine in most cases (e.g. "friend").
 
 When you assign a character a relationship with another defined character note, Scop will also show a reciprocal relationship on the other character.
-For example, if you assign a relationship to character named Sue, and specify another chartacter named Mary as Sue's mother, when you look at Mary's own note you'll see a read-only relationship that shows Sue as her daughter.
+For example, if you assign a relationship to character named Sue, and specify another character named Mary as Sue's mother, when you look at Mary's own note you'll see a read-only relationship that shows Sue as her daughter.
 
 Scop can identify the reciprocal relationship for the common familial relationship types in the autocomplete list.
 It knows that the inverse of "parent" is "child," etc.
@@ -190,7 +190,7 @@ In addition to their beginning, events can also be assigned an ending to create 
 Both the start and end can be assigned specific times, as well as dates.
 
 You can also set your story's "current" time.
-This might represent the date and time as of the story's beginnning, during the chapter where you're currently working, or any other point you want.
+This might represent the date and time as of the story's beginning, during the chapter where you're currently working, or any other point you want.
 After setting a current time for your story, it appears on the timeline in chronological order with the other events, but it cannot be edited.
 To change the current time, just assign a new one, and the original will be updated automatically.
 

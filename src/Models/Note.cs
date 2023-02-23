@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Tavenem.Blazor.Framework;
 
 namespace Scop;
 
@@ -14,6 +15,8 @@ public class Note : INote
 
     [JsonIgnore] public bool IsUnnamed => string.IsNullOrWhiteSpace(Name);
 
+    [JsonIgnore] public ElementList<INote>? List { get; set; }
+
     public string? Name { get; set; }
 
     [JsonIgnore] public string? NewNoteValue { get; set; }
@@ -23,8 +26,6 @@ public class Note : INote
     [JsonIgnore] public INote? Parent { get; set; }
 
     [JsonIgnore] public string Type => "Note";
-
-    [JsonPropertyOrder(-1)] public virtual NoteTypeDiscriminator TypeDiscriminator => NoteTypeDiscriminator.Note;
 
     public IEnumerable<Character> AllCharacters()
     {
@@ -62,4 +63,6 @@ public class Note : INote
             }
         }
     }
+
+    public override string ToString() => DisplayName;
 }

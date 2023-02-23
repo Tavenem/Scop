@@ -2,39 +2,51 @@
 
 <PageTitle>Scop - Data</PageTitle>
 
-<h1 class="mb-4">Data</h1>
+<h1 class="px-5">Data</h1>
 
-@if (_loading || DataService is null)
-{
-    <div class="d-flex justify-content-center">
+@if (_loading || DataService is null) {
+    <div class="d-flex justify-content-center align-self-stretch">
         <tf-progress-circle class="primary"></tf-progress-circle>
     </div>
 }
-else
-{
-    if (DataService.Data.LastSync == DateTime.MinValue)
-    {
-        <h2 class="mt-4 align-self-stretch align-center">You don't have any saved data.</h2>
+else {
+    if (DataService.Data.LastSync == DateTime.MinValue) {
+        <h2 class="px-5 align-self-stretch text-center">You don't have any saved data.</h2>
     }
     else
     {
-        <div class="d-flex justify-content-space-around my-2" style="gap: .5rem">
-            <div class="card" style="max-width: 500px">
-                <div class="header">
-                    <h6>Local Data</h6>
+        <div class="d-flex gap-2 justify-content-space-around align-self-stretch my-2">
+            @if (DataService.LastLocalSync == DateTime.MinValue) {
+                <div class="card" style="max-width: 500px">
+                    <div class="header">
+                        <h6>Local Data</h6>
+                    </div>
+                    <div class="body">
+                        <p>You don't have any local saved data.</p>
+                    </div>
+                    <div class="footer">
+                        <button class="btn danger ms-auto" @onclick="OnSyncLocalAsync"><tf-icon class="me-2">save</tf-icon>Sync Local</button>
+                    </div>
                 </div>
-                <div class="body">
-                    <p>Local data is saved on this device.</p>
-                    <Alert ThemeColor="ThemeColor.Warning">
-                        Clearing your browser data may delete this information
-                        without warning. You should keep a backup.
-                    </Alert>
-                    <p>Last saved: @DataService.LastLocalSync.ToLocalTime().ToString("f")</p>
+            }
+            else {
+                <div class="card" style="max-width: 500px">
+                    <div class="header">
+                        <h6>Local Data</h6>
+                    </div>
+                    <div class="body">
+                        <p>Local data is saved on this device.</p>
+                        <Alert ThemeColor="ThemeColor.Warning">
+                            Clearing your browser data may delete this information
+                            without warning. You should keep a backup.
+                        </Alert>
+                        <p>Last saved: @DataService.LastLocalSync.ToLocalTime().ToString("f")</p>
+                    </div>
+                    <div class="footer">
+                        <button class="btn danger ms-auto" @onclick="@(_ => DeleteLocalDialogOpen = true)">Delete</button>
+                    </div>
                 </div>
-                <div class="footer">
-                    <button class="btn danger ms-auto" @onclick="@(_ => DeleteLocalDialogOpen = true)">Delete</button>
-                </div>
-            </div>
+            }
             <div class="card" style="max-width: 500px">
                 <div class="header">
                     <div class="avatar">
@@ -67,14 +79,12 @@ else
                     <h6>Data</h6>
                 </div>
                 <div class="body">
-                    @if (DataService.GDriveSync)
-                    {
+                    @if (DataService.GDriveSync) {
                         <p>Your data is backed up in Google Drive™.</p>
                         <p>Account: @DataService.GDriveUserName.</p>
                         <p>Last saved: @DataService.LastGDriveSync.ToLocalTime().ToString("f")</p>
                     }
-                    else
-                    {
+                    else {
                         <p>
                             Sign into your Google Drive™ account to back up your
                             data, and synchronize between devices.
@@ -82,12 +92,10 @@ else
                     }
                 </div>
                 <div class="footer">
-                    @if (DataService.GDriveSync)
-                    {
+                    @if (DataService.GDriveSync) {
                         <button class="btn danger ms-auto" @onclick="OnUnlinkGDrive">Sign out</button>
                     }
-                    else
-                    {
+                    else {
                         <button class="btn primary ms-auto" @onclick="OnLinkGDrive">Sign In</button>
                     }
                 </div>
@@ -95,9 +103,8 @@ else
         </div>
     }
 
-    <div class="d-flex justify-content-space-around my-2" style="gap: .5rem">
-        @if (DataService.Data.LastSync != DateTime.MinValue)
-        {
+    <div class="d-flex gap-2 justify-content-space-around align-self-stretch my-2">
+        @if (DataService.Data.LastSync != DateTime.MinValue) {
             <div class="card" style="max-width: 500px">
                 <div class="body">
                     <p>You can download your data as a JSON file.</p>
@@ -138,7 +145,7 @@ else
         </p>
     </ChildContent>
     <FooterContent>
-        <button class="btn btn-text danger" @onclick="OnConfirmLocalDelete">Yes, Delete</button>
+        <button class="btn btn-text danger" @onclick="OnConfirmLocalDeleteAsync">Yes, Delete</button>
         <button class="btn btn-text" @onclick="@(_ => DeleteLocalDialogOpen = false)">Cancel</button>
     </FooterContent>
 </Dialog>
@@ -155,8 +162,8 @@ else
             you have a backup copy of your data in a known good state.
         </Alert>
         <InputFile id="fileInput" OnChange="OnUploadFileAsync" hidden />
-        <label for="fileInput">
-            <button class="btn primary"><tf-icon class="me-2">cloud_upload</tf-icon>Upload Files</button>
+        <label for="fileInput" class="btn primary">
+            <tf-icon class="me-2">cloud_upload</tf-icon>Upload Files
         </label>
     </ChildContent>
     <FooterContent>

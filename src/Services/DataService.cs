@@ -68,10 +68,18 @@ public class DataService : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    public void DeleteLocal()
+    public async Task DeleteLocalAsync()
     {
-        _indexedDb.ClearAsync();
+        await _indexedDb.ClearAsync();
         LastLocalSync = DateTime.MinValue;
+
+        if (LastGDriveSync == DateTime.MinValue)
+        {
+            Data = new();
+            await LoadInitialDataAsync()
+                .ConfigureAwait(false);
+            DataLoaded?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     /// <summary>
@@ -146,15 +154,8 @@ public class DataService : IDisposable
             return;
         }
 
-        Ethnicities = await _httpClient
-            .GetFromJsonAsync<List<Ethnicity>>("./ethnicities.json")
-            .ConfigureAwait(false)
-            ?? new();
-
-        Traits = await _httpClient
-            .GetFromJsonAsync<List<Trait>>("./traits.json")
-            .ConfigureAwait(false)
-            ?? new();
+        await LoadInitialDataAsync()
+            .ConfigureAwait(false);
 
         var localData = await _indexedDb
             .GetItemAsync<LocalData>(LocalData.IdValue)
@@ -188,6 +189,18 @@ public class DataService : IDisposable
 
     public async Task SaveAsync()
     {
+        var serializedData = await SaveLocalAsync()
+            .ConfigureAwait(false);
+
+        if (GDriveSync)
+        {
+            await SaveGDriveAsync(serializedData)
+                .ConfigureAwait(false);
+        }
+    }
+
+    public async Task<string> SaveLocalAsync()
+    {
         Data.LastSync = DateTime.UtcNow;
 
         var serializedData = JsonSerializer.Serialize(Data);
@@ -198,11 +211,7 @@ public class DataService : IDisposable
             .ConfigureAwait(false);
         LastLocalSync = Data.LastSync;
 
-        if (GDriveSync)
-        {
-            await SaveGDriveAsync(serializedData)
-                .ConfigureAwait(false);
-        }
+        return serializedData;
     }
 
     public async Task UploadAsync(string? json)
@@ -382,6 +391,19 @@ public class DataService : IDisposable
         await _jsInterop
             .LoadDriveData(_dotNetObjectRef)
             .ConfigureAwait(false);
+    }
+
+    private async Task LoadInitialDataAsync()
+    {
+        Ethnicities = await _httpClient
+            .GetFromJsonAsync<List<Ethnicity>>("./ethnicities.json")
+            .ConfigureAwait(false)
+            ?? new();
+
+        Traits = await _httpClient
+            .GetFromJsonAsync<List<Trait>>("./traits.json")
+            .ConfigureAwait(false)
+            ?? new();
     }
 
     private async Task SaveGDriveAsync(string data)
