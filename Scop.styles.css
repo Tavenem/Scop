@@ -1,7 +1,5 @@
-@import '_content/Tavenem.Blazor.MarkdownEditor/Tavenem.Blazor.MarkdownEditor.bundle.scp.css';
-
-/* /Shared/Timeline.razor.rz.scp.css */
-.timeline-container[b-z1ni03bowu] {
+/* /Shared/ScopTimeline.razor.rz.scp.css */
+.timeline-container[b-pvn8l75nqc] {
 	display: flex;
 	flex-direction: column;
 }
