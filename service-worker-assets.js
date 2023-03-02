@@ -313,7 +313,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-w0DH63dDlCuxkoIfZQB4YPnZl2JxtvLLaV6UVHtATlI=",
+      "hash": "sha256-d99TYyWAgx5leUDb3XAyt2pP3q+CUMG+UZEppxQe\/QM=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -333,7 +333,7 @@
       "url": "_framework\/Irony.dll"
     },
     {
-      "hash": "sha256-Yw+GRvxgz3z1q0RtGw3n9XUh1wzzAOQJ7uMJJAJs770=",
+      "hash": "sha256-iKKz5I0C1crIJpaE817LsfaIGinS7O1szh3CsTyQ8Bc=",
       "url": "_framework\/Markdig.dll"
     },
     {
@@ -401,7 +401,7 @@
       "url": "_framework\/netstandard.dll"
     },
     {
-      "hash": "sha256-ePkw7hNhEbOLg1B8Ds6kehAiLkUOh4bww1RTPxcvAAU=",
+      "hash": "sha256-afbKt439OU40tBEDczvsdQo\/oqfX7T2I9DAB1NDE5fE=",
       "url": "_framework\/Scop.dll"
     },
     {
@@ -633,7 +633,7 @@
       "url": "_framework\/System.Xml.Linq.dll"
     },
     {
-      "hash": "sha256-r7RProclF16DKY3+6cpxn75cjDHGV3exee3KxQNxcsQ=",
+      "hash": "sha256-AzMdbK0Islnu4of1ySORshy+gIG7nRvX600ramJOe4s=",
       "url": "_framework\/Tavenem.Blazor.Framework.dll"
     },
     {
@@ -765,5 +765,5 @@
       "url": "_content\/Tavenem.Blazor.IndexedDB\/tavenem-indexeddb.js.map"
     }
   ],
-  "version": "VgAXBC5g"
+  "version": "kWNZrA1p"
 };
