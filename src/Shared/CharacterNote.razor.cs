@@ -557,8 +557,9 @@ public partial class CharacterNote
         await OnChangeAsync();
     }
 
-    private async Task OnNewCharacterSurnameAsync(Character character)
+    private async Task OnNewCharacterSurnameAsync(Character character, string? value)
     {
+        NewCharacterSurname = value;
         if (string.IsNullOrWhiteSpace(NewCharacterSurname))
         {
             return;

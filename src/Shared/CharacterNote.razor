@@ -30,8 +30,8 @@
                         for (var i = 0; i < Character.Names.Count; i++) {
                             var index = i;
                             <TextInput Value="@Character.Names[index]"
-                               ValueChanged="@(v => OnNameChangeAsync(Character, index, v))"
-                               LoadSuggestions="@(v => GetGivenNames(Character, v))">
+                                       ValueChanged="@(v => OnNameChangeAsync(Character, index, v))"
+                                       LoadSuggestions="@(v => GetGivenNames(Character, v))">
                                 <PostfixContent>
                                     <button class="btn btn-icon"
                                     @onclick="@(_ => OnRandomizeCharacterNameAsync(Character, index))">
@@ -76,8 +76,8 @@
                         for (var i = 0; i < Character.Surnames.Count; i++) {
                             var index = i;
                             <TextInput Value="@Character.Surnames[index]"
-                               ValueChanged="@(v => OnSurnameChangeAsync(Character, index, v))"
-                               LoadSuggestions="@(v => GetSurnames(Character, v))">
+                                       ValueChanged="@(v => OnSurnameChangeAsync(Character, index, v))"
+                                       LoadSuggestions="@(v => GetSurnames(Character, v))">
                                 <PostfixContent>
                                     <button class="btn btn-icon"
                                     @onclick="@(_ => OnRandomizeCharacterSurnameAsync(Character, index))">
@@ -88,7 +88,7 @@
                         }
                     }
                     <TextInput Value="@NewCharacterSurname"
-                               ValueChanged="@(v => OnNewCharacterSurnameAsync(Character))"
+                               ValueChanged="@(v => OnNewCharacterSurnameAsync(Character, v))"
                                LoadSuggestions="@(v => GetSurnames(Character, v))">
                         <PostfixContent>
                             <button class="btn btn-icon"

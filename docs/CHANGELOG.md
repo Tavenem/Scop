@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+### Fixed
+- Surnames
+
 ## 2.0.0
 ### Changed
 - Target .NET 7
