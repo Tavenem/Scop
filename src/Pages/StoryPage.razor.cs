@@ -23,6 +23,8 @@ public partial class StoryPage : IDisposable
 
     [Inject, NotNull] private DataService? DataService { get; set; }
 
+    private string? EditorContent { get; set; }
+
     private bool IsTimelineSelected { get; set; }
 
     [Inject] private ScopJsInterop JsInterop { get; set; } = default!;
@@ -211,13 +213,13 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private async Task OnContentChangedAsync(string? value)
+    private async Task OnContentChangedAsync()
     {
         if (SelectedNote is null)
         {
             return;
         }
-        SelectedNote.Content = value;
+        SelectedNote.Content = EditorContent;
         await DataService.SaveAsync();
     }
 
@@ -243,6 +245,7 @@ public partial class StoryPage : IDisposable
         if (SelectedNote == note)
         {
             SelectedNote = null;
+            EditorContent = null;
         }
         await DataService.SaveAsync();
     }
@@ -356,6 +359,7 @@ public partial class StoryPage : IDisposable
         (_story.Notes ??= new()).Add(newNote);
         NewNoteValue = string.Empty;
         SelectedNote = newNote;
+        EditorContent = SelectedNote.Content;
         await DataService.SaveAsync();
     }
 
@@ -370,6 +374,7 @@ public partial class StoryPage : IDisposable
         (parent.Notes ??= new()).Add(newNote);
         parent.NewNoteValue = string.Empty;
         SelectedNote = newNote;
+        EditorContent = SelectedNote.Content;
         await DataService.SaveAsync();
     }
 
@@ -498,6 +503,7 @@ public partial class StoryPage : IDisposable
         }
         TopSelectedNote = null;
         SelectedNote = note;
+        EditorContent = note.Content;
         if (_story?.Notes is not null)
         {
             foreach (var child in _story.Notes)
@@ -522,9 +528,11 @@ public partial class StoryPage : IDisposable
     {
         if (TopSelectedNote?.Equals(SelectedNote) != false)
         {
+            Console.WriteLine("returning");
             return;
         }
         SelectedNote = TopSelectedNote;
+        EditorContent = SelectedNote.Content;
         IsTimelineSelected = false;
         SelectedBirthdate = SelectedNote is Character character
             ? character.Birthdate
@@ -542,6 +550,7 @@ public partial class StoryPage : IDisposable
     {
         IsTimelineSelected = true;
         SelectedNote = null;
+        EditorContent = null;
         SelectedBirthdate = null;
     }
 
@@ -582,6 +591,7 @@ public partial class StoryPage : IDisposable
         {
             parentCollection.Insert(index, newNote);
             SelectedNote = newNote;
+            EditorContent = SelectedNote.Content;
             await DataService.SaveAsync();
         }
     }

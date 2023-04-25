@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2
+### Updated
+- Update dependencies
+
 ## 2.0.1
 ### Fixed
 - Surnames

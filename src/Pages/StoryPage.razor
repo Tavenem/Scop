@@ -29,7 +29,7 @@ else
                      SelectionType="SelectionType.Single"
                      @bind-SelectedItem="TopSelectedNote"
                      @bind-SelectedItem:after="OnSelectedNoteChangedAsync"
-                     ItemIsCollapsible="@(item => item.Notes?.Count > 0)"
+                     ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
                      ItemIsDraggable="@(item => item is INote)"
                      IsDragStart="true"
                      IsDropTarget="true"
@@ -121,8 +121,8 @@ else
                                    SelectedNote="SelectedNote"
                                    Story="_story" />
                 }
-                <Editor Value="@SelectedNote.Content"
-                        ValueChanged="OnContentChangedAsync"
+                <Editor @bind-Value="@EditorContent"
+                        @bind-Value:after="OnContentChangedAsync"
                         Syntax="EditorSyntax.Markdown" />
             }
         </div>
