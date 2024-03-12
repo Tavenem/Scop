@@ -1,0 +1,110 @@
+[
+      {
+          "name": "The Quest",
+          "description": "The protagonist sets out to achieve something, often accompanied by companions, facing numerous obstacles and temptations along the way."
+      },
+      {
+          "name": "Voyage and Return",
+          "description": "The protagonist goes to a different world or environment, faces and overcomes threats, and returns transformed."
+      },
+      {
+          "name": "Rebirth",
+          "description": "After a period of moral decay or a sort of 'death,' the protagonist undergoes a transformation and is reborn into a new self."
+      },
+      {
+          "name": "Comedy",
+          "description": "A story that brings characters into conflict or confusion, but everything is resolved by the end, restoring the social order."
+      },
+      {
+          "name": "Tragedy",
+          "description": "The protagonist's flaws lead them to destruction, often imparting a lesson or moral to the audience."
+      },
+      {
+          "name": "Overcoming the Monster",
+          "description": "The protagonist must defeat a great evil or antagonist, often growing as a person in the process."
+      },
+      {
+          "name": "Rags to Riches",
+          "description": "The protagonist rises from obscurity or adversity to greatness, either materially, emotionally, or morally."
+      },
+      {
+          "name": "The Hero's Journey",
+          "description": "This plotline describes the cyclical journey of a hero: starting with a call to adventure, facing trials, receiving mentorship, confronting and overcoming the central challenge, and then returning home transformed."
+      },
+      {
+          "name": "Love Story",
+          "description": "Two characters, often from different backgrounds or circumstances, fall in love but face obstacles to their relationship, ultimately leading to a resolution (either happily or tragically)."
+      },
+      {
+          "name": "Forbidden Love",
+          "description": "Similar to the love story, but here societal, familial, or other constraints keep the lovers apart, leading to heartbreak or sacrifice."
+      },
+      {
+          "name": "The Mystery",
+          "description": "The protagonist must solve a puzzle or crime, with clues, suspects, and revelations guiding the story to its resolution."
+      },
+      {
+          "name": "The Underdog",
+          "description": "The protagonist faces seemingly insurmountable odds but ultimately succeeds, often through perseverance, heart, and grit."
+      },
+      {
+          "name": "The Coming of Age",
+          "description": "The protagonist grows from youth to adulthood. The story chronicles the challenges, lessons, and growth associated with maturation."
+      },
+      {
+          "name": "Fish Out of Water",
+          "description": "The protagonist is thrust into an unfamiliar environment and must adapt to survive or thrive."
+      },
+      {
+          "name": "Enemy to Friend",
+          "description": "Two characters start as adversaries but through mutual experiences come to respect, understand, or love each other."
+      },
+      {
+          "name": "Revolution",
+          "description": "The protagonist (or a group) stands up against an oppressive force, often representing a larger societal or philosophical issue."
+      },
+      {
+          "name": "Redemption",
+          "description": "A flawed or morally compromised protagonist seeks redemption for past misdeeds, often sacrificing something significant in the process."
+      },
+      {
+          "name": "Ambition",
+          "description": "A character's aspiration or obsession drives the plot, for better or for worse."
+      },
+      {
+          "name": "Pursuit",
+          "description": "The protagonist is relentlessly pursued, either physically or metaphorically, by an antagonist or a force."
+      },
+      {
+          "name": "Survival",
+          "description": "Characters are placed in a life-threatening situation and must endure, often leading to personal growth."
+      },
+      {
+          "name": "Betrayal",
+          "description": "Trust is broken between characters, leading to conflict and, often, a quest for justice or revenge."
+      },
+      {
+          "name": "Discovery",
+          "description": "The protagonist discovers something profound—be it a place, a truth about themselves, or a hidden secret—that has transformative power."
+      },
+      {
+          "name": "Sacrifice",
+          "description": "The protagonist must give up something significant for a greater good or for someone else."
+      },
+      {
+          "name": "Transformation",
+          "description": "A character undergoes a significant internal change, not just growth or maturation, often prompted by external events."
+      },
+      {
+          "name": "Cinderella Story",
+          "description": "Beyond just rags-to-riches, this plot involves a character being recognised or rewarded far beyond their apparent worth or station, often with a 'magical' element helping them."
+      },
+      {
+          "name": "False Protagonist",
+          "description": "The story sets up one character as the central figure, but as events unfold, focus shifts to another character, subverting expectations."
+      },
+      {
+          "name": "Frame Story",
+          "description": "A story within a story. The outer narrative sets the stage or provides context for the inner narrative."
+      }
+  ]

@@ -1,40 +1,45 @@
 ﻿window.tavenem = window.tavenem || {};
 window.tavenem.scop = window.tavenem.scop || {};
 
-function handleDriveClientLoad() {
-    gapi.load('client:auth2', initClient);
-}
+const CLIENT_ID = '933297426422-druhuvm4k0a7llu93gunnfll3hvujo7g.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyCA2fZ8lf23scCKKRrpai6dedcrb4VH4No';
 
-function initClient() {
-    gapi.client.init({
-        clientId: '933297426422-druhuvm4k0a7llu93gunnfll3hvujo7g.apps.googleusercontent.com',
-        discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-        scope: 'https://www.googleapis.com/auth/drive.file'
-    }).then(function () {
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    }, function (e) {
-        console.error(e);
-    });
+const gapiLoadPromise = new Promise((resolve, reject) => {
+    gapiLoadOkay = resolve;
+    gapiLoadFail = reject;
+});
+const gisLoadPromise = new Promise((resolve, reject) => {
+    gisLoadOkay = resolve;
+    gisLoadFail = reject;
+});
 
-    const originalTest = RegExp.prototype.test;
-    RegExp.prototype.test = function test(v) {
-        if (typeof v === 'function' && v.toString().includes('0!==t&&t.addSplice')) {
-            return true;
+let tokenClient;
+
+(async () => {
+    // First, load and initialize the gapi.client
+    await gapiLoadPromise;
+    await new Promise((resolve, reject) => {
+        gapi.load('client', { callback: resolve, onerror: reject });
+    }).catch(err => console.log(err));
+    await gapi.client.init({
+        apiKey: API_KEY,
+        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
+    }).catch(err => console.log(err));
+
+    // Now load the GIS client
+    await gisLoadPromise;
+    await new Promise((resolve, reject) => {
+        try {
+            tokenClient = google.accounts.oauth2.initTokenClient({
+                client_id: CLIENT_ID,
+                scope: 'https://www.googleapis.com/auth/drive.file',
+                prompt: 'consent',
+                callback: '',  // defined at request time in await/promise scope.
+            });
+            resolve();
+        } catch (err) {
+            reject(err);
         }
-        return originalTest.apply(this, arguments);
-    };
-}
-
-function updateSigninStatus(isSignedIn) {
-    window.tavenem.scop._driveSignedIn = isSignedIn;
-    if (isSignedIn) {
-        const user = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-        window.tavenem.scop._driveUser = `${user.getName()} (${user.getEmail()})`;
-    } else {
-        window.tavenem.scop._driveUser = null;
-    }
-    if (window.tavenem.scop._driveStatusObject) {
-        window.tavenem.scop._driveStatusObject.invokeMethodAsync("UpdateDriveStatus", window.tavenem.scop._driveSignedIn, window.tavenem.scop._driveUser);
-    }
-}
+    }).catch(err => console.log(err));
+    window.tavenem.scop._gDriveAvailable = true;
+})();

@@ -3,3 +3,21 @@
 	display: flex;
 	flex-direction: column;
 }
+/* /Shared/WritingPromptDialog.razor.rz.scp.css */
+.prompt[b-uy0gy4m5fs] {
+    line-height: 2;
+}
+
+.prompt .btn[b-uy0gy4m5fs] {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    min-width: 0;
+    padding: 0;
+    text-transform: none;
+    vertical-align: baseline;
+}
+
+.prompt .btn-text[b-uy0gy4m5fs] {
+    color: var(--tavenem-color-primary);
+}
