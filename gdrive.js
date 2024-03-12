@@ -2,7 +2,6 @@
 window.tavenem.scop = window.tavenem.scop || {};
 
 const CLIENT_ID = '933297426422-druhuvm4k0a7llu93gunnfll3hvujo7g.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyCA2fZ8lf23scCKKRrpai6dedcrb4VH4No';
 
 const gapiLoadPromise = new Promise((resolve, reject) => {
     gapiLoadOkay = resolve;
@@ -21,10 +20,10 @@ let tokenClient;
     await new Promise((resolve, reject) => {
         gapi.load('client', { callback: resolve, onerror: reject });
     }).catch(err => console.log(err));
-    await gapi.client.init({
-        apiKey: API_KEY,
-        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
-    }).catch(err => console.log(err));
+    await gapi.client.init({})
+        .then(function () {
+            gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest');
+        }).catch(err => console.log(err));
 
     // Now load the GIS client
     await gisLoadPromise;

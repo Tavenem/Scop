@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Scop",
   "resources": {
-    "hash": "sha256-n2SEMNO7KxCnWdSWjin6T19W7ege02IE1smpTCiXFLw=",
+    "hash": "sha256-8F7d6/u3dgoNrV0S9ezWCBOOFKSFHuAapaDFpFZBkOY=",
     "jsModuleNative": {
       "dotnet.native.8.0.3.wzxwl5s97r.js": "sha256-D4sYBYmDfH/YekgYRgX959/2RG6k28sJSHmcsn+iikk="
     },
@@ -42,7 +42,7 @@
       "Microsoft.JSInterop.wasm": "sha256-t+2esw4yxV14/Lww2eo8vI8oysYV7B7IFdZx3i4pm+o=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-2qBJkLnOCr4py2S0peps0cFo0z3Ew9OVwGYodtvAVkk=",
       "netstandard.wasm": "sha256-VnRDDPWyQL1aJyeDMx8D3CmiOG+w16Fg9ohFB1pojoE=",
-      "Scop.wasm": "sha256-Y6ndYgKpvBzC8+rSRw/m7hOzYbRnlnvAQPE7hdTiAPA=",
+      "Scop.wasm": "sha256-D/kI2nIRgFG7XJa+it0546NtCadPvJbrYASRGO8MQaE=",
       "SixLabors.Fonts.wasm": "sha256-TYAwAMga8iYHgcD5+CMUwDAmCjtNUbzJJP6/e+Xtl5w=",
       "System.Buffers.wasm": "sha256-3ZI78moapy7vZAsLYrOLhqk4MED6PE38F6tV32sWrH8=",
       "System.Collections.Concurrent.wasm": "sha256-3LI/FGtO/Fc6z0MacMQx9sd1IvFFyn/wWWCHAKsopUM=",
