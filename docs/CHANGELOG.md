@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.1
+- Replace use of API key
+
 ## 3.0.0
 ### Added
 - Random story selection

@@ -1,6 +1,6 @@
 name: publish
 env:
-  VERSION: '3.0.0'
+  VERSION: '3.0.1'
 on:
   push:
     branches: [ main ]
