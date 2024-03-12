@@ -6,34 +6,25 @@
                           @bind-Value="Modifier.Weight"
                           Disabled="Modifier.Force"
                           Min="0.0" />
-            <Tooltip TooltipText="Trait is always selected if the modifier applies"
-                        Delay="750"
-                        Class="flex-grow-4">
-                <Checkbox Label="Force" @bind-Value="Modifier.Force" />
-            </Tooltip>
+            <Checkbox Label="Force" Class="flex-grow-4" @bind-Value="Modifier.Force">
+                <Tooltip Delay="750">Trait is always selected if the modifier applies</Tooltip>
+            </Checkbox>
         </div>
-        <Tooltip TooltipText="Highest priority wins when multiple modifiers apply"
-                 Delay="750">
-            <NumericInput Label="Priority" @bind-Value="Modifier.Priority" />
-        </Tooltip>
+        <NumericInput Label="Priority"
+                      @bind-Value="Modifier.Priority"
+                      HelpText="Highest priority wins when multiple modifiers apply" />
         <div class="row fill">
             <NumericInput Label="Min Age" @bind-Value="Modifier.MinAge" Min="0" />
             <NumericInput Label="Max Age" @bind-Value="Modifier.MaxAge" Min="0" />
-            <Tooltip Delay="750" Style="width: 100%">
-                <TooltipContent>
-                    <p>The affected gender</p>
-                    <p>Determined by the character's pronouns</p>
-                </TooltipContent>
-                <ChildContent>
-                    <Select Label="Gender"
-                            TValue="NameGender"
-                            @bind-Value="Modifier.Gender">
-                        <Option Label="Any" Value="NameGender.None" />
-                        <Option Label="Female" Value="NameGender.Female" />
-                        <Option Label="Male" Value="NameGender.Male" />
-                    </Select>
-                </ChildContent>
-            </Tooltip>
+            <Select Label="Gender"
+                    TValue="NameGender"
+                    @bind-Value="Modifier.Gender"
+                    Style="width: 100%"
+                    HelpText="The affected gender (determined by the character's pronouns)">
+                <Option Label="Any" Value="NameGender.None" />
+                <Option Label="Female" Value="NameGender.Female" />
+                <Option Label="Male" Value="NameGender.Male" />
+            </Select>
         </div>
         <div class="card my-3">
             <div class="header">

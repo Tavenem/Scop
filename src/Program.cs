@@ -11,9 +11,11 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddTavenemFramework();
 
-builder.Services.AddIndexedDb(new IndexedDb("scop", 1));
+builder.Services.AddIndexedDb(
+    new IndexedDb("scop", 1),
+    ScopSerializerOptions.Instance);
 
 builder.Services.AddScoped<ScopJsInterop>();
 builder.Services.AddScoped<DataService>();
 
-await builder.Build().RunAsync().ConfigureAwait(false);
+await builder.Build().RunAsync();

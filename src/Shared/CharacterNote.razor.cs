@@ -19,7 +19,7 @@ public partial class CharacterNote
 
     [Inject, NotNull] private DataService? DataService { get; set; }
 
-    [Inject] private DialogService DialogService { get; set; } = default!;
+    [Inject, NotNull] private DialogService? DialogService { get; set; }
 
     private bool EthnicitiesVisible { get; set; }
 
@@ -100,14 +100,8 @@ public partial class CharacterNote
     private static void OnAddRelationship(Character character)
     {
         var relationship = new Relationship();
-        (character.Relationships ??= new()).Add(relationship);
-        (character.RelationshipMap ??= new()).Add(relationship);
-    }
-
-    private static void OnEditEthnicity(Ethnicity ethnicity, string? newValue)
-    {
-        ethnicity.Type = newValue?.Trim();
-        ethnicity.IsEditing = false;
+        (character.Relationships ??= []).Add(relationship);
+        (character.RelationshipMap ??= []).Add(relationship);
     }
 
     private Task<IEnumerable<KeyValuePair<string, object>>> GetCharacterNames(Character character, string? value)
@@ -121,7 +115,7 @@ public partial class CharacterNote
                 .Select(x => new KeyValuePair<string, object>(
                     x.CharacterName!,
                     x.CharacterName!))
-                ?? Enumerable.Empty<KeyValuePair<string, object>>());
+                ?? []);
         }
 
         var trimmed = value.Trim();
@@ -133,7 +127,7 @@ public partial class CharacterNote
                     && x.CharacterName
                         .Contains(trimmed, StringComparison.InvariantCultureIgnoreCase))
             .Select(x => new KeyValuePair<string, object>(x.CharacterName!, x.CharacterName!))
-            ?? Enumerable.Empty<KeyValuePair<string, object>>());
+            ?? []);
     }
 
     private async Task<IEnumerable<KeyValuePair<string, object>>> GetGivenNames(Character character, string? value)
@@ -143,8 +137,8 @@ public partial class CharacterNote
         if (DataService is null)
         {
             return string.IsNullOrWhiteSpace(trimmed)
-                ? Enumerable.Empty<KeyValuePair<string, object>>()
-                : new[] { new KeyValuePair<string, object>(trimmed, trimmed) };
+                ? []
+                : [new KeyValuePair<string, object>(trimmed, trimmed)];
         }
 
         return (await DataService
@@ -164,8 +158,8 @@ public partial class CharacterNote
         if (DataService is null)
         {
             return string.IsNullOrWhiteSpace(trimmed)
-                ? Enumerable.Empty<KeyValuePair<string, object>>()
-                : new[] { new KeyValuePair<string, object>(trimmed, trimmed) };
+                ? []
+                : [new KeyValuePair<string, object>(trimmed, trimmed)];
         }
 
         return (await DataService
@@ -185,8 +179,8 @@ public partial class CharacterNote
             : Ethnicity.GetRandomEthnicity(ethnicity.Types);
         if (path is not null)
         {
-            (character.EthnicityPaths ??= new()).Add(path);
-            await OnChangeAsync();
+            (character.EthnicityPaths ??= []).Add(path);
+            await DataService.SaveAsync();
         }
     }
 
@@ -197,7 +191,7 @@ public partial class CharacterNote
             character.SetAgeDays(Story, value);
             SelectedBirthdate = character.Birthdate;
             await SelectedBirthdateChanged.InvokeAsync(SelectedBirthdate);
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -208,7 +202,7 @@ public partial class CharacterNote
             character.SetAgeMonths(Story, value);
             SelectedBirthdate = character.Birthdate;
             await SelectedBirthdateChanged.InvokeAsync(SelectedBirthdate);
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -219,7 +213,7 @@ public partial class CharacterNote
             character.SetAgeYears(Story, value);
             SelectedBirthdate = character.Birthdate;
             await SelectedBirthdateChanged.InvokeAsync(SelectedBirthdate);
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -234,7 +228,7 @@ public partial class CharacterNote
         if (character.Birthdate != value)
         {
             character.SetBirthdate(Story, value);
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -244,10 +238,7 @@ public partial class CharacterNote
         relationship.EditedRelationshipName = relationship.RelationshipName;
         relationship.EditedRelativeName = relationship.Relative?.CharacterName ?? relationship.RelativeName;
         relationship.EditedType = relationship.Type;
-        relationship.IsEditing = false;
     }
-
-    private Task OnChangeAsync() => DataService.SaveAsync();
 
     private async Task OnChangeGenderAsync(Character character, string? value)
     {
@@ -265,7 +256,7 @@ public partial class CharacterNote
             character.Pronouns = Pronouns.HeHim;
             Story?.ResetCharacterRelationshipMaps();
         }
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnCharacterSuffixChangedAsync(Character character, string? value)
@@ -286,7 +277,7 @@ public partial class CharacterNote
         if (familyEthnicities.Count > 0)
         {
             character.EthnicityPaths = familyEthnicities;
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -296,46 +287,12 @@ public partial class CharacterNote
         if (familySurnames.Count > 0)
         {
             character.Surnames = familySurnames;
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
-    private async Task OnDeleteEthnicityAsync(Ethnicity ethnicity)
-    {
-        ethnicity.Parent?.Types?.Remove(ethnicity);
-        var top = ethnicity;
-        while (top.Parent is not null)
-        {
-            top = top.Parent;
-        }
-
-        static bool HasUserDefined(Ethnicity ethnicity)
-        {
-            if (ethnicity.UserDefined)
-            {
-                return true;
-            }
-            if (ethnicity.Types is not null)
-            {
-                foreach (var child in ethnicity.Types)
-                {
-                    if (HasUserDefined(child))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        if (DataService?.Data.Ethnicities is not null
-            && !HasUserDefined(top))
-        {
-            DataService.Data.Ethnicities.Remove(top);
-        }
-
-        await OnChangeAsync();
-    }
+    private Task OnDeleteEthnicityAsync(Ethnicity ethnicity)
+        => DataService.RemoveEthnicityAsync(ethnicity);
 
     private async Task OnDeleteRelationshipAsync(Character character, Relationship relationship)
     {
@@ -343,46 +300,12 @@ public partial class CharacterNote
         if (removed)
         {
             Story?.ResetCharacterRelationshipMaps();
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
-    private async Task OnDeleteTraitAsync(Trait trait)
-    {
-        trait.Parent?.Children?.Remove(trait);
-        var top = trait;
-        while (top.Parent is not null)
-        {
-            top = top.Parent;
-        }
-
-        static bool HasUserDefined(Trait trait)
-        {
-            if (trait.UserDefined)
-            {
-                return true;
-            }
-            if (trait.Children is not null)
-            {
-                foreach (var child in trait.Children)
-                {
-                    if (HasUserDefined(child))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        if (DataService?.Data.Traits is not null
-            && !HasUserDefined(top))
-        {
-            DataService.Data.Traits.Remove(top);
-        }
-
-        await OnChangeAsync();
-    }
+    private Task OnDeleteTraitAsync(Trait trait)
+        => DataService.RemoveTraitAsync(trait);
 
     private async Task OnDoneEditingRelationship(Relationship relationship, Character character)
     {
@@ -485,28 +408,27 @@ public partial class CharacterNote
             {
                 character.Relationships?.RemoveAll(x => x.Id is null && string.Equals(x.RelativeName, relationship.RelativeName, StringComparison.InvariantCultureIgnoreCase));
             }
-            (character.Relationships ??= new()).Add(relationship);
+            (character.Relationships ??= []).Add(relationship);
 
             Story?.ResetCharacterRelationshipMaps();
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
+    }
+
+    private async Task OnEditEthnicityAsync(Ethnicity ethnicity, string? newValue)
+    {
+        ethnicity.IsEditing = false;
+        await DataService.EditEthnicityAsync(ethnicity, newValue);
     }
 
     private async Task OnEditTraitAsync(Trait trait)
     {
-        if (DialogService is null)
+        await DialogService.Show<TraitDialog>("Trait", new DialogParameters
         {
-            return;
-        }
+            { nameof(TraitDialog.Trait), trait },
+        }).Result;
 
-        var parameters = new DialogParameters();
-        if (trait is not null)
-        {
-            parameters.Add(nameof(TraitDialog.Trait), trait);
-        }
-        var dialog = DialogService.Show<TraitDialog>("Trait", parameters);
-        await dialog.Result;
-        await OnChangeAsync();
+        await DataService.EditTraitAsync(trait);
     }
 
     private async Task OnEthnicitySelectAsync(bool value, Ethnicity? ethnicity, Character character)
@@ -514,7 +436,7 @@ public partial class CharacterNote
         if (ethnicity is not null)
         {
             character.SelectEthnicity(ethnicity, value);
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -541,7 +463,7 @@ public partial class CharacterNote
             character.Names[index] = value;
         }
 
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnNewCharacterNameAsync(Character character, string? value)
@@ -552,9 +474,9 @@ public partial class CharacterNote
             return;
         }
 
-        (character.Names ??= new()).Add(NewCharacterName.Trim());
+        (character.Names ??= []).Add(NewCharacterName.Trim());
         NewCharacterName = null;
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnNewCharacterSurnameAsync(Character character, string? value)
@@ -565,9 +487,9 @@ public partial class CharacterNote
             return;
         }
 
-        (character.Surnames ??= new()).Add(NewCharacterSurname.Trim());
+        (character.Surnames ??= []).Add(NewCharacterSurname.Trim());
         NewCharacterSurname = null;
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnNewEthnicityAsync(string? newValue)
@@ -589,14 +511,12 @@ public partial class CharacterNote
         }
         var newEthnicity = new Ethnicity()
         {
-            Hierarchy = new string[] { trimmed },
+            Hierarchy = [trimmed],
             Type = trimmed,
             UserDefined = true,
         };
-        (DataService.Data.Ethnicities ??= new()).Add(newEthnicity);
-        DataService.Ethnicities.Add(newEthnicity);
         NewEthnicityValue = string.Empty;
-        await DataService.SaveAsync();
+        await DataService.AddEthnicityAsync(newEthnicity);
     }
 
     private async Task OnNewEthnicityAsync(Ethnicity parent, string? newValue)
@@ -607,42 +527,14 @@ public partial class CharacterNote
             return;
         }
 
+        parent.NewEthnicityValue = string.Empty;
         var trimmed = parent.NewEthnicityValue.Trim();
         if (parent
             .Types?
-            .Any(x => string.Equals(x.Type, trimmed, StringComparison.OrdinalIgnoreCase)) == true)
+            .Any(x => string.Equals(x.Type, trimmed, StringComparison.OrdinalIgnoreCase)) != true)
         {
-            parent.NewEthnicityValue = string.Empty;
-            return;
+            await DataService.AddEthnicityAsync(parent, trimmed);
         }
-
-        var hierarchy = new string[(parent.Hierarchy?.Length ?? 0) + 1];
-        if (parent.Hierarchy is not null)
-        {
-            Array.Copy(parent.Hierarchy, hierarchy, parent.Hierarchy.Length);
-        }
-        hierarchy[^1] = trimmed;
-
-        var newEthnicity = new Ethnicity
-        {
-            Hierarchy = hierarchy,
-            Parent = parent,
-            Type = parent.NewEthnicityValue.Trim(),
-            UserDefined = true,
-        };
-
-        (parent.Types ??= new()).Add(newEthnicity);
-        var top = parent;
-        while (top.Parent is not null)
-        {
-            top = top.Parent;
-        }
-        if (DataService.Data.Ethnicities?.Any(x => x == newEthnicity) != true)
-        {
-            (DataService.Data.Ethnicities ??= new()).Add(top);
-        }
-        parent.NewEthnicityValue = string.Empty;
-        await DataService.SaveAsync();
     }
 
     private async Task OnNewTraitAsync(string? newValue)
@@ -659,27 +551,20 @@ public partial class CharacterNote
         var i = 0;
         while (DataService
             .Traits
-            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase))
-            || DataService
-            .Data
-            .Traits?
-            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)) == true)
+            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)))
         {
             newName = $"{trimmed} ({i++})";
         }
 
         var newTrait = new Trait
         {
-            Hierarchy = new string[] { newName },
+            Hierarchy = [newName],
             Name = newName,
             UserDefined = true,
         };
 
-        (DataService.Data.Traits ??= new()).Add(newTrait);
-        DataService.Traits.Add(newTrait);
-
         NewTraitValue = string.Empty;
-        await DataService.SaveAsync();
+        await DataService.AddTraitAsync(newTrait);
     }
 
     private async Task OnNewTraitAsync(Trait parent, string? newValue)
@@ -700,34 +585,8 @@ public partial class CharacterNote
             newName = $"{trimmed} ({i++})";
         }
 
-        var hierarchy = new string[(parent.Hierarchy?.Length ?? 0) + 1];
-        if (parent.Hierarchy is not null)
-        {
-            Array.Copy(parent.Hierarchy, hierarchy, parent.Hierarchy.Length);
-        }
-        hierarchy[^1] = newName;
-
-        var newTrait = new Trait
-        {
-            Hierarchy = hierarchy,
-            Name = newName,
-            Parent = parent,
-            UserDefined = true,
-        };
-
-        (parent.Children ??= new()).Add(newTrait);
-        var top = parent;
-        while (top.Parent is not null)
-        {
-            top = top.Parent;
-        }
-        if (DataService.Data.Traits?.Any(x => x == newTrait) != true)
-        {
-            (DataService.Data.Traits ??= new()).Add(top);
-        }
-
         parent.NewTraitValue = string.Empty;
-        await DataService.SaveAsync();
+        await DataService.AddTraitAsync(parent, newName);
     }
 
     private async Task OnPronounsChangedAsync(Character character, Pronouns value)
@@ -735,7 +594,7 @@ public partial class CharacterNote
         if (character.Pronouns != value)
         {
             character.Pronouns = value;
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -846,7 +705,7 @@ public partial class CharacterNote
         }
         if (!deferSave)
         {
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -863,7 +722,7 @@ public partial class CharacterNote
             character.SetEthnicities(familyEthnicities);
             if (!deferSave)
             {
-                await OnChangeAsync();
+                await DataService.SaveAsync();
             }
             return;
         }
@@ -871,7 +730,7 @@ public partial class CharacterNote
         character.SetEthnicities(DataService.GetRandomEthnicities());
         if (!deferSave)
         {
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -894,13 +753,13 @@ public partial class CharacterNote
             .GetRandomFullNameAsync(character.GetNameGender(), character.EthnicityPaths);
         if (!string.IsNullOrEmpty(givenName))
         {
-            character.Names = new() { givenName };
+            character.Names = [givenName];
         }
         if (!string.IsNullOrEmpty(surname))
         {
-            character.Surnames = new() { surname };
+            character.Surnames = [surname];
         }
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnRandomizeCharacterGenderAsync(Character? character, bool deferSave = false)
@@ -943,7 +802,7 @@ public partial class CharacterNote
         Story?.ResetCharacterRelationshipMaps();
         if (!deferSave)
         {
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -968,14 +827,14 @@ public partial class CharacterNote
             }
             else
             {
-                (character.Names ??= new()).Add(name);
+                (character.Names ??= []).Add(name);
             }
         }
         else
         {
-            character.Names = new() { name };
+            character.Names = [name];
         }
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnRandomizeCharacterSurnameAsync(Character? character, int? index = null)
@@ -999,14 +858,14 @@ public partial class CharacterNote
             }
             else
             {
-                (character.Surnames ??= new()).Add(name);
+                (character.Surnames ??= []).Add(name);
             }
         }
         else
         {
-            character.Surnames = new() { name };
+            character.Surnames = [name];
         }
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnRandomizeCharacterTraitsAsync(Character? character, bool reset = true, bool deferSave = false)
@@ -1027,7 +886,7 @@ public partial class CharacterNote
         }
         if (!deferSave)
         {
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 
@@ -1054,7 +913,7 @@ public partial class CharacterNote
             character.Surnames[index] = value;
         }
 
-        await OnChangeAsync();
+        await DataService.SaveAsync();
     }
 
     private async Task OnTraitSelectAsync(bool value, Trait? trait, Character character)
@@ -1062,7 +921,7 @@ public partial class CharacterNote
         if (trait is not null)
         {
             trait.Select(value, character);
-            await OnChangeAsync();
+            await DataService.SaveAsync();
         }
     }
 }

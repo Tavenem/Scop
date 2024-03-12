@@ -62,12 +62,12 @@ public partial class ScopTimeline
                 };
                 if (FilteredEvents is null)
                 {
-                    return new TimelineEvent[] { nowEvent };
+                    return [nowEvent];
                 }
                 else
                 {
                     return FilteredEvents
-                        .Concat(new TimelineEvent[] { nowEvent })
+                        .Concat([nowEvent])
                         .OrderBy(x => x.Start)
                         .ThenBy(x => x.End ?? x.Start);
                 }
@@ -84,20 +84,23 @@ public partial class ScopTimeline
 
     private TimelineEvent? EditedEvent { get; set; }
 
-    private HashSet<string> EditedEventCategories { get; set; } = new();
+    private HashSet<string> EditedEventCategories { get; set; } = [];
 
     private DateTimeOffset? EditedEventEnd { get; set; }
 
     private DateTimeOffset? EditedEventStart { get; set; }
 
-    private IEnumerable<TimelineEvent>? FilteredEvents => Events?
-        .Where(x => !SelectedCategories.Any()
-        || (x.Categories is not null
-        && SelectedCategories.Any(y => x.Categories.Contains(y.Id))));
+    private IEnumerable<TimelineEvent>? FilteredEvents => SelectedCategories.Count == 0
+        ? Events
+        : Events?
+            .Where(x
+                => x.Categories is not null
+                && SelectedCategories
+                    .Any(y => x.Categories.Contains(y.Id)));
 
     private string? NewCategoryName { get; set; }
 
-    private List<TimelineCategory> SelectedCategories { get; set; } = new();
+    private List<TimelineCategory> SelectedCategories { get; set; } = [];
 
     private bool ShowEditedEventEnd { get; set; }
 
@@ -112,7 +115,7 @@ public partial class ScopTimeline
         {
             return "done";
         }
-        return timelineEvent.IsReadonly ? null : "done";
+        return timelineEvent.IsReadonly ? null : "edit";
     }
 
     private async Task OnAddCategoryAsync()
@@ -121,7 +124,7 @@ public partial class ScopTimeline
         {
             return;
         }
-        (Categories ??= new()).Add(new() { Name = NewCategoryName.Trim() });
+        (Categories ??= []).Add(new() { Name = NewCategoryName.Trim() });
         NewCategoryName = null;
 
         await CategoriesChanged.InvokeAsync();
@@ -151,7 +154,7 @@ public partial class ScopTimeline
             latest = Now;
         }
 
-        (Events ??= new()).Add(new()
+        (Events ??= []).Add(new()
         {
             Start = latest.Value,
         });
@@ -180,7 +183,7 @@ public partial class ScopTimeline
     private async Task OnDeleteEventAsync(TimelineEvent item)
     {
         Events?.Remove(item);
-        await EventsChanged.InvokeAsync();
+        await EventsChanged.InvokeAsync(Events);
         await Change.InvokeAsync();
     }
 
@@ -208,11 +211,22 @@ public partial class ScopTimeline
             await Change.InvokeAsync();
         }
 
-        EditedEvent = item == EditedEvent ? null : item;
-        EditedEventCategories = EditedEvent?.Categories ?? new();
-        EditedEventEnd = EditedEvent?.End;
-        EditedEventStart = EditedEvent?.Start;
-        ShowEditedEventEnd = EditedEventEnd.HasValue;
+        if (EditedEvent?.Equals(item) == true)
+        {
+            EditedEvent = null;
+            EditedEventCategories = [];
+            EditedEventEnd = null;
+            EditedEventStart = null;
+            ShowEditedEventEnd = false;
+        }
+        else
+        {
+            EditedEvent = item;
+            EditedEventCategories = item.Categories ?? [];
+            EditedEventEnd = item.End;
+            EditedEventStart = item.Start;
+            ShowEditedEventEnd = EditedEventEnd.HasValue;
+        }
     }
 
     private void OnEditEventEndDateChanged(DateTimeOffset? value)

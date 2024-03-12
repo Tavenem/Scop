@@ -1,0 +1,17 @@
+﻿.prompt {
+    line-height: 2;
+}
+
+.prompt .btn {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    min-width: 0;
+    padding: 0;
+    text-transform: none;
+    vertical-align: baseline;
+}
+
+.prompt .btn-text {
+    color: var(--tavenem-color-primary);
+}

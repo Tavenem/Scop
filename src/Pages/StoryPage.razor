@@ -7,8 +7,10 @@
     <div class="d-flex justify-content-center align-self-stretch">
         <tf-progress-circle class="primary"></tf-progress-circle>
     </div>
+    return;
 }
-else if (_story is null)
+
+@if (_story is null)
 {
     <div class="d-flex flex-column align-items-center align-self-stretch">
         <Alert ThemeColor="ThemeColor.Warning">No such story</Alert>
@@ -16,115 +18,122 @@ else if (_story is null)
             <a href="./">Return to the main page</a> to try loading a different story.
         </p>
     </div>
+    return;
 }
-else
-{
-    <TextInput Label="Story Title"
-               Value="@_story.Name"
-               ValueChanged="OnChangeStoryNameAsync"
-               Class="align-self-stretch" />
-    <div class="d-md-flex mt-2 align-self-stretch">
-        <ElementList TListItem="INote"
-                     Items="_story.Notes"
-                     SelectionType="SelectionType.Single"
-                     @bind-SelectedItem="TopSelectedNote"
-                     @bind-SelectedItem:after="OnSelectedNoteChangedAsync"
-                     ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
-                     ItemIsDraggable="@(item => item is INote)"
-                     IsDragStart="true"
-                     IsDropTarget="true"
-                     DropEffect="DragEffect.Move"
-                     OnDrop="OnDropAsync"
-                     OnDropIndex="OnDropIndexAsync"
-                     OnDropped="OnDropped"
-                     Class="tree flex-shrink-0">
-            <ChildContent>
-                <div role="listitem"
-                     class="@(IsTimelineSelected ? "clickable no-drag active" : "clickable no-drag")"
-                     draggable="false"
-                     @onclick="OnSelectTimeline">
-                    <tf-icon class="me-2">timeline</tf-icon>
-                    <span>Timeline</span>
-                </div>
-            </ChildContent>
-            <Template>
-                <div class="d-inline-flex align-items-center gap-2 flex-grow-1">
-                    <div id="split-group" class="button-group">
-                        <Dropdown AnchorId="split-group" Icon="@_storyIcons[context.IconIndex]" Class="rounded-right small">
-                            @for (int i = 0; i < _storyIcons.Count; i++)
-                            {
-                                var index = i;
-                                <tf-icon @onclick="(_ => OnSwitchNoteTypeAsync(context, index))">@_storyIcons[index]</tf-icon>
-                            }
-                        </Dropdown>
-                    </div>
-                    <span class="@(context.IsUnnamed ? "text-muted" : null)">@context.DisplayName</span>
-                    <button class="btn btn-icon danger ms-auto" @onclick="@(_ => OnDeleteNoteAsync(context))"><tf-icon>delete</tf-icon></button>
-                </div>
-            </Template>
-            <CollapsibleTemplate Context="note">
-                <ElementList @ref="note.List"
-                             TListItem="INote"
-                             Items="note.Notes"
-                             SelectionType="SelectionType.Single"
-                             SelectedItemChanged="OnSelectChildNoteAsync"
-                             ItemIsCollapsible="@(item => item.Notes?.Count > 0)"
-                             IsDragStart="true"
-                             IsDropTarget="true"
-                             OnDrop="@(e => OnDropAsync(e, note))"
-                             OnDropIndex="@(e => OnDropIndexAsync(e, note))"
-                             OnDropped="OnDropped">
-                    <FollowingContent>
-                        <div role="listitem"
-                             class="clickable no-drag"
-                             draggable="false">
-                            <tf-icon class="me-2">note_add</tf-icon>
-                            <TextInput Class="dense outlined flex-grow-1"
-                                       Value="@note.NewNoteValue"
-                                       ValueChanged="@(v => OnNewNoteSetAsync(note, v))"
-                                       Placeholder="New Note"
-                                       Style="min-width: 9rem" />
+
+<p>
+    Generate a random writing prompt to help you get started:
+    <button class="ms-2 btn primary" @onclick="OnWritingPromptAsync">Writing Prompt</button>
+</p>
+
+<TextInput Label="Story Title"
+           Value="@_story.Name"
+           ValueChanged="OnChangeStoryNameAsync"
+           Class="align-self-stretch flex-grow-0" />
+<div class="d-md-flex mt-2 align-self-stretch">
+    <ElementList TListItem="INote"
+                 Items="_story.Notes"
+                 SelectionType="SelectionType.Single"
+                 @bind-SelectedItem="TopSelectedNote"
+                 @bind-SelectedItem:after="OnSelectedNoteChangedAsync"
+                 ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
+                 ItemIsDraggable="@(item => item is INote)"
+                 IsDragStart="true"
+                 IsDropTarget="true"
+                 DropEffect="DragEffect.Move"
+                 OnDrop="OnDropAsync"
+                 OnDropIndex="OnDropIndexAsync"
+                 OnDropped="OnDropped"
+                 Class="tree flex-shrink-0 flex-grow-1">
+        <ChildContent>
+            <div role="listitem"
+                 class="@(IsTimelineSelected ? "clickable no-drag active" : "clickable no-drag")"
+                 draggable="false"
+                 @onclick="OnSelectTimeline">
+                <tf-icon class="me-2">timeline</tf-icon>
+                <span>Timeline</span>
+            </div>
+        </ChildContent>
+        <Template>
+            <div class="@($"d-inline-flex align-items-center gap-2 flex-grow-1 {(context.IsUnnamed ? "text-muted" : null)}")">
+                <tf-icon>@_storyIcons[context.IconIndex]</tf-icon>
+                @context.DisplayName
+                <button class="btn btn-icon danger ms-auto" @onclick="@(_ => OnDeleteNoteAsync(context))"><tf-icon>delete</tf-icon></button>
+            </div>
+        </Template>
+        <CollapsibleTemplate Context="note">
+            <ElementList @ref="note.List"
+                         TListItem="INote"
+                         Items="note.Notes"
+                         SelectionType="SelectionType.Single"
+                         SelectedItemChanged="OnSelectChildNoteAsync"
+                         ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
+                         IsDragStart="true"
+                         IsDropTarget="true"
+                         OnDrop="@(e => OnDropAsync(e, note))"
+                         OnDropIndex="@(e => OnDropIndexAsync(e, note))"
+                         OnDropped="OnDropped">
+                <FollowingContent>
+                    <div role="listitem"
+                         class="clickable no-drag"
+                         draggable="false">
+                        <div id="add-split-group" class="button-group">
+                            <button class="btn btn-icon" @onclick="@(_ => OnNewNoteOfTypeAsync(note, 0))"><tf-icon>note_add</tf-icon></button>
+                            <Dropdown AnchorId="add-split-group" Icon="arrow_drop_down">
+                                @for (int i = 0; i < _storyIcons.Count; i++)
+                                {
+                                    var index = i;
+                                    <tf-icon @onclick="(_ => OnNewNoteOfTypeAsync(note, index))">@_storyAddIcons[index]</tf-icon>
+                                }
+                            </Dropdown>
                         </div>
-                    </FollowingContent>
-                </ElementList>
-            </CollapsibleTemplate>
-            <FollowingContent>
-                <div role="listitem"
-                     class="clickable no-drag"
-                     draggable="false">
-                    <tf-icon class="me-2">note_add</tf-icon>
-                    <TextInput Class="dense outlined flex-grow-1"
-                               Value="@NewNoteValue"
-                               ValueChanged="OnNewNoteSetAsync"
-                               Placeholder="New Note"
-                               Style="min-width: 9rem" />
+                    </div>
+                </FollowingContent>
+            </ElementList>
+        </CollapsibleTemplate>
+        <FollowingContent>
+            <div role="listitem"
+                 class="clickable no-drag"
+                 draggable="false">
+                <div id="add-split-group" class="button-group">
+                    <button class="btn btn-icon" @onclick="@(_ => OnNewNoteOfTypeAsync(0))"><tf-icon>note_add</tf-icon></button>
+                    <Dropdown AnchorId="add-split-group" Icon="arrow_drop_down">
+                        @for (int i = 0; i < _storyIcons.Count; i++)
+                        {
+                            var index = i;
+                            <tf-icon @onclick="(_ => OnNewNoteOfTypeAsync(index))">@_storyAddIcons[index]</tf-icon>
+                        }
+                    </Dropdown>
                 </div>
-            </FollowingContent>
-        </ElementList>
-        <div class="flex-grow-1 ms-1">
-            @if (IsTimelineSelected)
-            {
-                <ScopTimeline @bind-Categories="_story.EventCategories"
-                              @bind-Events="_story.Events"
-                              @bind-Now="_story.Now"
-                              NowChange="OnNowChangeAsync"
-                              Change="OnChangeAsync" />
+            </div>
+        </FollowingContent>
+    </ElementList>
+    <div class="d-flex flex-column flex-grow-1 ms-1">
+        @if (IsTimelineSelected)
+        {
+            <ScopTimeline @bind-Categories="_story.EventCategories"
+                          @bind-Events="_story.Events"
+                          @bind-Now="_story.Now"
+                          NowChange="OnNowChangeAsync"
+                          Change="OnChangeAsync" />
+        }
+        else if (SelectedNote is not null)
+        {
+            <TextInput Value="@SelectedNote.Name"
+                       ValueChanged="OnSelectedNoteNameChangedAsync"
+                       Placeholder="@($"New {SelectedNote.Type}")"
+                       Class="flex-grow-0" />
+            if (SelectedNote is Character character) {
+                <CharacterNote Character="character"
+                               @bind-SelectedBirthdate="SelectedBirthdate"
+                               SelectedNote="SelectedNote"
+                               Story="_story" />
             }
-            else if (SelectedNote is not null)
-            {
-                <TextInput Value="@SelectedNote.Name"
-                           ValueChanged="OnSelectedNoteNameChangedAsync"
-                           Placeholder="@($"New {SelectedNote.Type}")" />
-                if (SelectedNote is Character character) {
-                    <CharacterNote Character="character"
-                                   @bind-SelectedBirthdate="SelectedBirthdate"
-                                   SelectedNote="SelectedNote"
-                                   Story="_story" />
-                }
-                <Editor @bind-Value="@EditorContent"
-                        @bind-Value:after="OnContentChangedAsync"
-                        Syntax="EditorSyntax.Markdown" />
-            }
-        </div>
+            <Editor @bind-Value="@EditorContent"
+                    @bind-Value:after="OnContentChangedAsync"
+                    Syntax="EditorSyntax.Markdown"
+                    Height="max(300px, calc(100vh - 491px))"
+                    Class="flex-grow-1" />
+        }
     </div>
-}
+</div>

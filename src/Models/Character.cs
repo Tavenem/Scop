@@ -67,8 +67,6 @@ public class Character : INote, IEquatable<Character>
 
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
-    public bool IsExpanded { get; set; }
-
     [JsonIgnore]
     public bool IsUnnamed => string.IsNullOrWhiteSpace(Name)
         && (Names is null
@@ -81,8 +79,6 @@ public class Character : INote, IEquatable<Character>
     public string? Name { get; set; }
 
     public List<string>? Names { get; set; }
-
-    [JsonIgnore] public string? NewNoteValue { get; set; }
 
     public List<INote>? Notes { get; set; }
 
@@ -269,15 +265,15 @@ public class Character : INote, IEquatable<Character>
     {
         foreach (var character in characters)
         {
-            character.RelationshipIds = new() { character.Id };
-            character.RelationshipMap = new()
-            {
+            character.RelationshipIds = [character.Id];
+            character.RelationshipMap =
+            [
                 new()
                 {
                     Id = character.Id,
                     Type = "self",
                 }
-            };
+            ];
         }
 
         foreach (var character in characters
@@ -474,7 +470,7 @@ public class Character : INote, IEquatable<Character>
 
     public void AddTrait(string[] trait)
     {
-        (TraitPaths ??= new()).Add(trait);
+        (TraitPaths ??= []).Add(trait);
         SetDisplayTraits();
     }
 
@@ -1211,7 +1207,7 @@ public class Character : INote, IEquatable<Character>
             }
             if (EthnicityPaths?.Any(x => x.StartsWith(ethnicity.Hierarchy)) != true)
             {
-                (EthnicityPaths ??= new()).Add(ethnicity.Hierarchy);
+                (EthnicityPaths ??= []).Add(ethnicity.Hierarchy);
             }
         }
         else
@@ -1459,7 +1455,7 @@ public class Character : INote, IEquatable<Character>
             var i = 1;
             while (path.Length > i)
             {
-                parent.Types ??= new List<Ethnicity>();
+                parent.Types ??= [];
                 ethnicity = parent.Types
                     .Find(x => string.Equals(x.Type, path[i], StringComparison.OrdinalIgnoreCase));
                 if (ethnicity is null)
@@ -1533,7 +1529,7 @@ public class Character : INote, IEquatable<Character>
             var i = 1;
             while (path.Length > i)
             {
-                parent.Children ??= new List<Trait>();
+                parent.Children ??= [];
                 trait = parent.Children
                     .Find(x => string.Equals(x.Name, path[i], StringComparison.OrdinalIgnoreCase));
                 if (trait is null)

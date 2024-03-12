@@ -64,7 +64,7 @@ public partial class TraitModifierDialog
             return;
         }
 
-        (Modifier.Ethnicities ??= new()).Add(NewEthnicity.Trim());
+        (Modifier.Ethnicities ??= []).Add(NewEthnicity.Trim());
         NewEthnicity = null;
     }
 
@@ -76,7 +76,7 @@ public partial class TraitModifierDialog
             return;
         }
 
-        (Modifier.TargetPaths ??= new()).Add(NewTargetPath.Trim());
+        (Modifier.TargetPaths ??= []).Add(NewTargetPath.Trim());
         NewTargetPath = null;
     }
 

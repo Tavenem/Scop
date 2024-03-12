@@ -10,25 +10,21 @@ public interface INote
 {
     string? Content { get; set; }
 
-    string DisplayName { get; }
+    [JsonIgnore] string DisplayName { get; }
 
-    int IconIndex { get; }
+    [JsonIgnore] int IconIndex { get; }
 
-    bool IsExpanded { get; set; }
+    [JsonIgnore] bool IsUnnamed { get; }
 
-    bool IsUnnamed { get; }
-
-    ElementList<INote>? List { get; set; }
+    [JsonIgnore] ElementList<INote>? List { get; set; }
 
     string? Name { get; set; }
 
-    string? NewNoteValue { get; set; }
-
     List<INote>? Notes { get; set; }
 
-    INote? Parent { get; set; }
+    [JsonIgnore] INote? Parent { get; set; }
 
-    string Type { get; }
+    [JsonIgnore] string Type { get; }
 
     IEnumerable<Character> AllCharacters();
 

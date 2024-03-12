@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.0
+### Added
+- Random story selection
+- Writing prompt generator
+### Updated
+- Target .NET 8
+
 ## 2.0.2
 ### Updated
 - Update dependencies

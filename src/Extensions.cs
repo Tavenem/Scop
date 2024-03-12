@@ -4,6 +4,32 @@ public static class Extensions
 {
     private static readonly Random _random = new();
 
+    public static bool Contains(this INote parent, INote? child)
+    {
+        if (child is null)
+        {
+            return false;
+        }
+
+        if (parent.Equals(child))
+        {
+            return true;
+        }
+
+        if (parent.Notes is not null)
+        {
+            foreach (var note in parent.Notes)
+            {
+                if (note.Contains(child))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public static string GetDescription(this Pronouns pronouns) => pronouns switch
     {
         Pronouns.SheHer => "She/Her",

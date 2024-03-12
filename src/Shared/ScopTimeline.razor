@@ -7,24 +7,29 @@
                    ShowTime="true"
                    ShowTimeZone="true" />
     <h6>Categories</h6>
-    <ChipSet SelectionType="SelectionType.Multiple"
-             TChip="TimelineCategory"
-             @bind-Items="Categories"
-             @bind-SelectedItems="SelectedCategories"
-             OnChipClosed="OnDeleteCategoryAsync">
-        <Template>
-            @(context.Name ?? "Category")
-        </Template>
-    </ChipSet>
-    <TextInput Label="New Category"
-               Class="mb-2"
-               @bind-Value="NewCategoryName"
-               UpdateOnInput="true"
-               OnValidEnter="OnAddCategoryAsync" />
-    <button @onclick="OnAddCategoryAsync"
-            class="btn primary"
-            disabled="@string.IsNullOrWhiteSpace(NewCategoryName)">Add Category</button>
-    <Timeline>
+    @if (Categories?.Count > 0)
+    {
+        <ChipSet SelectionType="SelectionType.Multiple"
+                 TChip="TimelineCategory"
+                 @bind-Items="Categories"
+                 @bind-SelectedItems="SelectedCategories"
+                 OnChipClosed="OnDeleteCategoryAsync">
+            <Template>
+                @(context.Name ?? "Category")
+            </Template>
+        </ChipSet>
+    }
+    <div class="d-flex gap-2 align-items-center">
+        <TextInput Label="New Category"
+                   Class="mb-2"
+                   @bind-Value="NewCategoryName"
+                   UpdateOnInput="true"
+                   OnValidEnter="OnAddCategoryAsync" />
+        <button @onclick="OnAddCategoryAsync"
+                class="btn primary"
+                disabled="@string.IsNullOrWhiteSpace(NewCategoryName)">Add Category</button>
+    </div>
+    <div class="timeline mt-3">
         @foreach (var item in DisplayedEvents)
         {
             <TimelineItem ThemeColor="item == EditedEvent ? ThemeColor.Primary : ThemeColor.None"
@@ -35,16 +40,16 @@
                     {
                         <button @onclick="@(_ => OnDeleteEventAsync(item))"
                                 class="btn danger">Delete</button>
+                        <Checkbox TValue="bool"
+                                  Label="Range?"
+                                  Value="ShowEditedEventEnd"
+                                  ValueChanged="OnToggleShowEditedEventEnd" />
                         <DateTimeInput Label="Start"
                                        TValue="DateTimeOffset?"
                                        Value="EditedEventStart"
                                        ValueChanged="OnEditEventStartDateChanged"
                                        ShowTime="true"
                                        ShowTimeZone="true" />
-                        <Checkbox TValue="bool"
-                                  Value="ShowEditedEventEnd"
-                                  ValueChanged="OnToggleShowEditedEventEnd"
-                                  ThemeColor="ThemeColor.Primary">Range?</Checkbox>
                         @if (ShowEditedEventEnd)
                         {
                             <DateTimeInput Label="End"
@@ -61,26 +66,28 @@
                     }
                 </OppositeContent>
                 <ChildContent>
-                    @if (item == EditedEvent)
-                    {
-                        <TextInput Label="Title" @bind-Value="EditedEvent.Title" />
-                        <Editor Value="EditedEvent.Markdown"
-                                ValueChanged="OnEditedMarkdownChangedAsync"
-                                EditorMode="EditorMode.WYSIWYG"
-                                Syntax="EditorSyntax.Markdown"
-                                Placeholder="Enter a description for the event here..." />
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(item.Title))
+                    <div class="d-flex flex-column">
+                        @if (item == EditedEvent)
                         {
-                            <h6 class="primary">@item.Title</h6>
+                            <TextInput Label="Title" @bind-Value="EditedEvent.Title" />
+                            <Editor Value="@EditedEvent.Markdown"
+                                    ValueChanged="OnEditedMarkdownChangedAsync"
+                                    EditorMode="EditorMode.WYSIWYG"
+                                    Syntax="EditorSyntax.Markdown"
+                                    Placeholder="Enter a description for the event here..." />
                         }
-                        if (!string.IsNullOrEmpty(item.Markdown))
+                        else
                         {
-                            @GetHtml(item)
+                            if (!string.IsNullOrEmpty(item.Title))
+                            {
+                                <h6 class="primary">@item.Title</h6>
+                            }
+                            if (!string.IsNullOrEmpty(item.Markdown))
+                            {
+                                @GetHtml(item)
+                            }
                         }
-                    }
+                    </div>
                 </ChildContent>
             </TimelineItem>
         }
@@ -89,5 +96,5 @@
                 <h6 class="text-disabled">New Event</h6>
             </ChildContent>
         </TimelineItem>
-    </Timeline>
+    </div>
 </div>

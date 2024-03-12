@@ -8,7 +8,7 @@ public class LocalData : IIdItem
 
     public string Id { get; set; } = IdValue;
 
-    public string? Data { get; set; }
+    public ScopData? Data { get; set; }
 
     public bool Equals(IIdItem? other) => other is LocalData
         && Id?.Equals(Id) == true;

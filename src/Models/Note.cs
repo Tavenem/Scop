@@ -11,15 +11,11 @@ public class Note : INote
 
     [JsonIgnore] public int IconIndex => 0;
 
-    public bool IsExpanded { get; set; }
-
     [JsonIgnore] public bool IsUnnamed => string.IsNullOrWhiteSpace(Name);
 
     [JsonIgnore] public ElementList<INote>? List { get; set; }
 
     public string? Name { get; set; }
-
-    [JsonIgnore] public string? NewNoteValue { get; set; }
 
     public List<INote>? Notes { get; set; }
 

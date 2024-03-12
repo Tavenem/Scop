@@ -4,6 +4,8 @@ namespace Scop.Pages;
 
 public partial class Stories : IDisposable
 {
+    private readonly Random _random = new();
+
     private Story? _deleteStory;
     private bool _disposedValue;
     private bool _loading = true;
@@ -12,7 +14,13 @@ public partial class Stories : IDisposable
 
     private bool DeleteDialogOpen { get; set; }
 
+    private bool FirstRandomSelection { get; set; } = true;
+
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+    private Story? SelectedStory { get; set; }
+
+    private HashSet<string> SelectedStories { get; set; } = [];
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -68,11 +76,59 @@ public partial class Stories : IDisposable
     private async void OnDataLoaded(object? sender, EventArgs e)
         => await InvokeAsync(StateHasChanged);
 
+    private void OnOpenSelectedStory()
+    {
+        if (SelectedStory is not null)
+        {
+            NavigationManager.NavigateTo($"./story/{SelectedStory.Id}");
+        }
+    }
+
     private void OnOpenStory(Story story) => NavigationManager.NavigateTo($"./story/{story.Id}");
 
     private void OnDeleteStory(Story story)
     {
         _deleteStory = story;
         DeleteDialogOpen = true;
+    }
+
+    private void OnSelectRandomStory()
+    {
+        if (FirstRandomSelection
+            && SelectedStories.Count > 0)
+        {
+            FirstRandomSelection = false;
+        }
+        SelectedStory = DataService.Data.Stories.Count == 0
+            ? null
+            : DataService.Data.Stories[_random.Next(DataService.Data.Stories.Count)];
+        if (SelectedStory?.Id is not null)
+        {
+            SelectedStories.Add(SelectedStory.Id);
+        }
+    }
+
+    private void OnSelectShuffledStory()
+    {
+        if (FirstRandomSelection
+            && SelectedStories.Count > 0)
+        {
+            FirstRandomSelection = false;
+        }
+        if (SelectedStories.Count >= DataService.Data.Stories.Count)
+        {
+            SelectedStories.Clear();
+        }
+        var availableStories = DataService.Data.Stories.Where(x
+            => x.Id is not null
+            && !SelectedStories.Contains(x.Id))
+            .ToList();
+        SelectedStory = availableStories.Count == 0
+            ? null
+            : availableStories[_random.Next(availableStories.Count)];
+        if (SelectedStory?.Id is not null)
+        {
+            SelectedStories.Add(SelectedStory.Id);
+        }
     }
 }

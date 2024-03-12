@@ -50,21 +50,20 @@
         @if (Trait.ChoiceType is ChoiceType.Single or ChoiceType.OneOrMore)
         {
             <div class="row">
-                <Tooltip TooltipText="Selecting no children is allowed" Delay="750">
-                    <Checkbox Label="Can Choose None"
-                              @bind-Value="Trait.CanChooseNone" />
-                </Tooltip>
-                <Tooltip TooltipText="Weight assigned to choosing no child trait" Delay="750">
-                    <NumericInput Label="None Weight"
-                                  @bind-Value="Trait.NoneWeight"
-                                  Min="0.0" />
-                </Tooltip>
+                <Checkbox Label="Can Choose None"
+                          @bind-Value="Trait.CanChooseNone">
+                    <Tooltip Delay="750">Selecting no children is allowed</Tooltip>
+                </Checkbox>
+                <NumericInput Label="None Weight"
+                                @bind-Value="Trait.NoneWeight"
+                                Min="0.0"
+                                HelpText="Weight assigned to choosing no child trait" />
             </div>
         }
-        <Tooltip TooltipText="Whether this option is selected if no selection is made among its children" Delay="750">
-            <Checkbox Label="Is Chosen on None"
-                      @bind-Value="Trait.IsChosenOnNone" />
-        </Tooltip>
+        <Checkbox Label="Is Chosen on None"
+                  @bind-Value="Trait.IsChosenOnNone">
+            <Tooltip Delay="750">Whether this option is selected if no selection is made among its children</Tooltip>
+        </Checkbox>
         <div class="card mt-3">
             <div class="header">
                 <h6>Modifiers</h6>

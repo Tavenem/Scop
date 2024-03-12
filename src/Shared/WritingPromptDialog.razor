@@ -1,0 +1,627 @@
+﻿<Dialog>
+    <ChildContent>
+        <p>Generate a random writing prompt to help get your story started.</p>
+        <button class="btn primary" @onclick="OnRandomize"><tf-icon>casino</tf-icon>Randomize</button>
+        @if (HasPrompt)
+        {
+            <div class="prompt mt-3">
+                <p>
+                    <span>This</span>
+                    @if (IsEditingGenre)
+                    {
+                        <TextInput @bind-Value="WritingPrompt.Genre"
+                                   @bind-Value:after="OnSelectGenreName"
+                                   Class="dense"
+                                   OnValidEnter="OnSelectGenreName"
+                                   ShowAllSuggestions="true"
+                                   Suggestions="@(DataService.Genres.Select(x => x.Name ?? "unknown genre"))">
+                            <PostfixContent>
+                                <button class="btn btn-icon small" @onclick="@(_ => OnRandomizeGenre(true))">
+                                    <tf-icon>casino</tf-icon>
+                                </button>
+                            </PostfixContent>
+                        </TextInput>
+                    }
+                    else if (string.IsNullOrWhiteSpace(WritingPrompt.Genre))
+                    {
+                        <button class="btn btn-icon small" @onclick="@(_ => OnRandomizeGenre(true))">
+                            <tf-icon>add</tf-icon>
+                            <Tooltip Delay="750">Pick random genre</Tooltip>
+                        </button>
+                    }
+                    else
+                    {
+                        <span> </span>
+                        <span class="position-relative">
+                            <button class="btn btn-text" @onclick="@(_ => IsEditingGenre = true)">@WritingPrompt.Genre</button>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="OnLockGenre">
+                                    @if (IsGenreLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                    }
+                    <span>story is</span>
+                    @if (IsEditingSubgenre)
+                    {
+                        <TextInput @bind-Value="WritingPrompt.Subgenre"
+                                   Class="dense"
+                                   OnValidEnter="@(_ => IsEditingSubgenre = false)"
+                                   ShowAllSuggestions="true"
+                                   Suggestions="@Genre?.Subgenres">
+                            <PostfixContent>
+                                <button class="btn btn-icon small" @onclick="@(_ => OnRandomizeSubgenre(true))">
+                                    <tf-icon>casino</tf-icon>
+                                </button>
+                            </PostfixContent>
+                        </TextInput>
+                    }
+                    else if (string.IsNullOrWhiteSpace(WritingPrompt.Subgenre))
+                    {
+                        <button class="btn btn-icon small" @onclick="@(_ => OnRandomizeSubgenre(true))">
+                            <tf-icon>add</tf-icon>
+                            <Tooltip Delay="750">Add random subgenre</Tooltip>
+                        </button>
+                    }
+                    else
+                    {
+                        <span> </span>
+                        <span class="position-relative">
+                            <button class="btn btn-text" @onclick="@(_ => IsEditingSubgenre = true)">@WritingPrompt.Subgenre</button>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="OnLockSubgenre">
+                                    @if (IsSubgenreLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                    }
+                    @if (WritingPrompt.Themes?.Count > 0)
+                    {
+                        <span>about</span>
+                        @for (var i = 0; i < WritingPrompt.Themes.Count; i++)
+                        {
+                            var index = i;
+                            if (index > 0)
+                            {
+                                <span>,</span>
+                                if (index == WritingPrompt.Themes.Count - 1)
+                                {
+                                    <span> and</span>
+                                }
+                            }
+                            @if (index == EditingThemeIndex)
+                            {
+                                <TextInput @bind-Value="WritingPrompt.Themes[index]"
+                                           @bind-Value:after="@(() => EditingThemeIndex = -1)"
+                                           OnValidEnter="@(_ => EditingThemeIndex = -1)"
+                                           Class="dense" />
+                            }
+                            else
+                            {
+                                <span> </span>
+                                <span class="position-relative">
+                                    <button class="btn btn-text" @onclick="@(_ => EditingThemeIndex = index)">
+                                        @WritingPrompt.Themes[index]
+                                    </button>
+                                    @if (WritingPrompt.Themes.Count > 1)
+                                    {
+                                        <span class="badge">
+                                            <button class="btn btn-icon small" @onclick="@(_ => OnDeleteTheme(index))">
+                                                <tf-icon>delete</tf-icon>
+                                            </button>
+                                        </span>
+                                    }
+                                </span>
+                            }
+                        }
+                        <span class="position-relative">
+                            <span>.</span>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="@(_ => IsThemesLocked = !IsThemesLocked)">
+                                    @if (IsThemesLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                    }
+                    <button class="btn btn-icon small me-2" @onclick="OnAddTheme">
+                        <tf-icon>add</tf-icon>
+                        <Tooltip Delay="750">Add additional theme</Tooltip>
+                    </button>
+                    @if (WritingPrompt.Settings?.Count > 0)
+                    {
+                        <span>It begins</span>
+                        @for (var i = 0; i < WritingPrompt.Settings.Count; i++)
+                        {
+                            var index = i;
+                            if (index == 1)
+                            {
+                                <span>, while other events take place</span>
+                            }
+                            else if (WritingPrompt.Settings.Count > 2 && index == WritingPrompt.Settings.Count - 1)
+                            {
+                                <span>, and</span>
+                            }
+                            else if (index > 0)
+                            {
+                                <span>,</span>
+                            }
+                            @if (index == EditingSettingIndex)
+                            {
+                                <TextInput @bind-Value="WritingPrompt.Settings[index]"
+                                           @bind-Value:after="@(() => EditingSettingIndex = -1)"
+                                           OnValidEnter="@(_ => EditingSettingIndex = -1)"
+                                           Class="dense" />
+                            }
+                            else
+                            {
+                                <span> </span>
+                                <span class="position-relative">
+                                    <button class="btn btn-text" @onclick="@(_ => EditingSettingIndex = index)">
+                                        @WritingPrompt.Settings[index]
+                                    </button>
+                                    @if (WritingPrompt.Settings.Count > 1)
+                                    {
+                                        <span class="badge">
+                                            <button class="btn btn-icon small" @onclick="@(_ => OnDeleteSetting(index))">
+                                                <tf-icon>delete</tf-icon>
+                                            </button>
+                                        </span>
+                                    }
+                                </span>
+                            }
+                        }
+                        <span class="position-relative">
+                            <span>,</span>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="@(_ => IsSettingsLocked = !IsSettingsLocked)">
+                                    @if (IsSettingsLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                    }
+                    <button class="btn btn-icon small" @onclick="OnAddSetting">
+                        <tf-icon>add</tf-icon>
+                        <Tooltip Delay="750">Add additional setting</Tooltip>
+                    </button>
+                    @if (WritingPrompt.Subjects?.Count > 0)
+                    {
+                        @if (WritingPrompt.Settings?.Count > 1)
+                        {
+                            <span>starting things off with</span>
+                        }
+                        else if (WritingPrompt.Settings?.Count > 0)
+                        {
+                            <span>with</span>
+                        }
+                        else
+                        {
+                            <span>It begins with</span>
+                        }
+                        @for (var i = 0; i < WritingPrompt.Subjects.Count; i++)
+                        {
+                            var index = i;
+                            @if (index > 0)
+                            {
+                                <span>,</span>
+                            }
+                            if (index == 1)
+                            {
+                                <span> and features</span>
+                            }
+                            else if (WritingPrompt.Subjects.Count > 2 && index == WritingPrompt.Subjects.Count - 1)
+                            {
+                                <span> along with</span>
+                            }
+                            else if (WritingPrompt.Subjects.Count > 1 && index > 0 && index >= WritingPrompt.Subjects.Count - 2)
+                            {
+                                <span> and</span>
+                            }
+                            @if (index == EditingSubjectIndex)
+                            {
+                                <TextInput @bind-Value="WritingPrompt.Subjects[index]"
+                                           @bind-Value:after="@(() => EditingSubjectIndex = -1)"
+                                           OnValidEnter="@(_ => EditingSubjectIndex = -1)"
+                                           Class="dense">
+                                </TextInput>
+                            }
+                            else
+                            {
+                                <span> </span>
+                                <span class="position-relative">
+                                    <button class="btn btn-text" @onclick="@(_ => EditingSubjectIndex = index)">
+                                        @WritingPrompt.Subjects[index]
+                                    </button>
+                                    @if (WritingPrompt.Subjects.Count > 1)
+                                    {
+                                        <span class="badge">
+                                            <button class="btn btn-icon small" @onclick="@(_ => OnDeleteSubject(index))">
+                                                <tf-icon>delete</tf-icon>
+                                            </button>
+                                        </span>
+                                    }
+                                </span>
+                            }
+                        }
+                        <span class="position-relative">
+                            <span>.</span>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="@(_ => IsSubjectsLocked = !IsSubjectsLocked)">
+                                    @if (IsSubjectsLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                    }
+                    <button class="btn btn-icon small" @onclick="OnAddSubject">
+                        <tf-icon>add</tf-icon>
+                        <Tooltip Delay="750">Add additional subject</Tooltip>
+                    </button>
+                </p>
+                <p>
+                    @if (string.IsNullOrWhiteSpace(WritingPrompt.Protagonist))
+                    {
+                        <button class="btn btn-icon small" @onclick="@(_ => OnRandomizeProtagonist(true))">
+                            <tf-icon>casino</tf-icon>
+                            <Tooltip Delay="750">Add random protagonist</Tooltip>
+                        </button>
+                    }
+                    else
+                    {
+                        <span>The main character is</span>
+                        @if (IsEditingProtagonist)
+                        {
+                            <TextInput @bind-Value="WritingPrompt.Protagonist"
+                                       @bind-Value:after="@(() => IsEditingProtagonist = false)"
+                                       Class="dense"
+                                       OnValidEnter="@(_ => IsEditingProtagonist = false)"
+                                       Suggestions="@Genre?.Protagonists">
+                                <PostfixContent>
+                                    <button class="btn btn-icon small" @onclick="@(_ => OnRandomizeProtagonist(true))">
+                                        <tf-icon>casino</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        }
+                        else
+                        {
+                            <span> </span>
+                            <span class="position-relative">
+                                <button class="btn btn-text" @onclick="@(_ => IsEditingProtagonist = true)">@WritingPrompt.Protagonist</button>
+                                <span class="badge">
+                                    <button class="btn btn-icon small" @onclick="@(_ => IsProtagonistLocked = !IsProtagonistLocked)">
+                                        @if (IsProtagonistLocked)
+                                        {
+                                            <tf-icon class="tertiary">lock_open</tf-icon>
+                                        }
+                                        else
+                                        {
+                                            <tf-icon>lock</tf-icon>
+                                        }
+                                    </button>
+                                </span>
+                            </span>
+                        }
+                        @if (WritingPrompt.ProtagonistTraits?.Count > 0)
+                        {
+                            <span>who</span>
+                            @for (var i = 0; i < WritingPrompt.ProtagonistTraits.Count; i++)
+                            {
+                                var index = i;
+                                @if (index > 0)
+                                {
+                                    <span>,</span>
+                                    if (index == WritingPrompt.ProtagonistTraits.Count - 1)
+                                    {
+                                        <span> and</span>
+                                    }
+                                }
+                                @if (index == EditingProtagonistTraitIndex)
+                                {
+                                    <TextInput @bind-Value="WritingPrompt.ProtagonistTraits[index]"
+                                               @bind-Value:after="@(() => EditingProtagonistTraitIndex = -1)"
+                                               OnValidEnter="@(_ => EditingProtagonistTraitIndex = -1)"
+                                               Class="dense" />
+                                }
+                                else
+                                {
+                                    <span> </span>
+                                    <span class="position-relative">
+                                        <button class="btn btn-text" @onclick="@(_ => EditingProtagonistTraitIndex = index)">
+                                            @WritingPrompt.ProtagonistTraits[index]
+                                        </button>
+                                        @if (WritingPrompt.ProtagonistTraits.Count > 1)
+                                        {
+                                            <span class="badge">
+                                                <button class="btn btn-icon small" @onclick="@(_ => OnDeleteProtagonistTrait(index))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </span>
+                                        }
+                                    </span>
+                                }
+                            }
+                        }
+                        <span class="position-relative">
+                            <span>.</span>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="@(_ => IsProtagonistTraitsLocked = !IsProtagonistTraitsLocked)">
+                                    @if (IsProtagonistTraitsLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                        <button class="btn btn-icon small me-2" @onclick="OnAddProtagonistTrait">
+                            <tf-icon>add</tf-icon>
+                            <Tooltip Delay="750">Add additional protagonist trait</Tooltip>
+                        </button>
+                    }
+                    @if (WritingPrompt.SecondaryCharacters?.Count > 0)
+                    {
+                        <span>The story also features</span>
+                        @for (var i = 0; i < WritingPrompt.SecondaryCharacters.Count; i++)
+                        {
+                            var index = i;
+                            @if (index > 0)
+                            {
+                                <span>,</span>
+                                if (index == WritingPrompt.SecondaryCharacters.Count - 1)
+                                {
+                                    <span> and</span>
+                                }
+                            }
+                            @if (index == EditingSecondaryCharacterIndex)
+                            {
+                                <TextInput @bind-Value="WritingPrompt.SecondaryCharacters[index].Description"
+                                           @bind-Value:after="OnEndSecondaryCharacterEdit"
+                                           Class="dense"
+                                           OnValidEnter="OnEndSecondaryCharacterEdit"
+                                           Suggestions="@Genre?.SecondaryCharacters" />
+                            }
+                            else
+                            {
+                                <span> </span>
+                                <span class="position-relative">
+                                    <button class="btn btn-text" @onclick="@(_ => OnEditSecondaryCharacter(index))">
+                                        @(WritingPrompt.SecondaryCharacters[index].Description ?? "another character")
+                                    </button>
+                                    @if (WritingPrompt.SecondaryCharacters.Count > 1)
+                                    {
+                                        <span class="badge">
+                                            <button class="btn btn-icon small" @onclick="@(_ => OnDeleteSecondaryCharacter(index))">
+                                                <tf-icon>delete</tf-icon>
+                                            </button>
+                                        </span>
+                                    }
+                                </span>
+                            }
+                            @if (WritingPrompt.SecondaryCharacters[index]?.Traits?.Count > 0)
+                            {
+                                <span> who</span>
+                                @for (var j = 0; j < WritingPrompt.SecondaryCharacters[index]!.Traits!.Count; j++)
+                                {
+                                    var index2 = j;
+                                    @if (index2 > 0)
+                                    {
+                                        <span>,</span>
+                                        if (index2 == WritingPrompt.SecondaryCharacters[index]!.Traits!.Count - 1)
+                                        {
+                                            <span> and</span>
+                                        }
+                                    }
+                                    @if (index == EditingSecondaryCharacterIndex
+                                        && index2 == EditingSecondaryCharacterTraitIndex)
+                                    {
+                                        <TextInput @bind-Value="WritingPrompt.SecondaryCharacters[index]!.Traits![index2]"
+                                                   @bind-Value:after="OnEndSecondaryCharacterEdit"
+                                                   OnValidEnter="OnEndSecondaryCharacterEdit"
+                                                   Class="dense" />
+                                    }
+                                    else
+                                    {
+                                        <span> </span>
+                                        <span class="position-relative">
+                                            <button class="btn btn-text" @onclick="@(_ => OnEditSecondaryCharacterTrait(index, index2))">
+                                                @WritingPrompt.SecondaryCharacters[index]!.Traits![index2]
+                                            </button>
+                                            @if (WritingPrompt.SecondaryCharacters[index]!.Traits!.Count > 1)
+                                            {
+                                                <span class="badge">
+                                                    <button class="btn btn-icon small"
+                                                    @onclick="@(_ => OnDeleteSecondaryCharacterTrait(index, index2))">
+                                                        <tf-icon>delete</tf-icon>
+                                                    </button>
+                                                </span>
+                                            }
+                                        </span>
+                                    }
+                                }
+                            }
+                            <button class="btn btn-icon small" @onclick="@(_ => OnAddSecondaryCharacterTrait(index))">
+                                <tf-icon>add</tf-icon>
+                                <Tooltip Delay="750">Add additional character trait</Tooltip>
+                            </button>
+                        }
+                        <span class="position-relative">
+                            <span>.</span>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="@(_ => IsSecondaryCharactersLocked = !IsSecondaryCharactersLocked)">
+                                    @if (IsSecondaryCharactersLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                    }
+                    <button class="btn btn-icon small" @onclick="OnAddSecondaryCharacter">
+                        <tf-icon>add</tf-icon>
+                        <Tooltip Delay="750">Add additional character</Tooltip>
+                    </button>
+                </p>
+                <p>
+                    @if (WritingPrompt.Features?.Count > 0)
+                    {
+                        <span>Keep in mind that</span>
+                        @for (var i = 0; i < WritingPrompt.Features.Count; i++)
+                        {
+                            var index = i;
+                            @if (index > 0)
+                            {
+                                <span>,</span>
+                                if (index == WritingPrompt.Features.Count - 1)
+                                {
+                                    <span> and</span>
+                                }
+                            }
+                            @if (index == EditingFeatureIndex)
+                            {
+                                <TextInput @bind-Value="WritingPrompt.Features[index]"
+                                           @bind-Value:after="@(() => EditingFeatureIndex = -1)"
+                                           OnValidEnter="@(_ => EditingFeatureIndex = -1)"
+                                           Class="dense">
+                                </TextInput>
+                            }
+                            else
+                            {
+                                <span> </span>
+                                <span class="position-relative">
+                                    <button class="btn btn-text" @onclick="@(_ => EditingFeatureIndex = index)">
+                                        @WritingPrompt.Features[index]
+                                    </button>
+                                    @if (WritingPrompt.Features.Count > 1)
+                                    {
+                                        <span class="badge">
+                                            <button class="btn btn-icon small" @onclick="@(_ => OnDeleteFeature(index))">
+                                                <tf-icon>delete</tf-icon>
+                                            </button>
+                                        </span>
+                                    }
+                                </span>
+                            }
+                        }
+                        <span class="position-relative">
+                            <span>.</span>
+                            <span class="badge">
+                                <button class="btn btn-icon small" @onclick="@(_ => IsFeaturesLocked = !IsFeaturesLocked)">
+                                    @if (IsFeaturesLocked)
+                                    {
+                                        <tf-icon class="tertiary">lock_open</tf-icon>
+                                    }
+                                    else
+                                    {
+                                        <tf-icon>lock</tf-icon>
+                                    }
+                                </button>
+                            </span>
+                        </span>
+                    }
+                    <button class="btn btn-icon small" @onclick="OnAddFeature">
+                        <tf-icon>add</tf-icon>
+                        <Tooltip Delay="750">Add additional feature</Tooltip>
+                    </button>
+                </p>
+                <div class="d-flex">
+                    <Select Label="Plot"
+                            @bind-Value="WritingPrompt.Plot"
+                            Class="dense flex-grow-1">
+                        @foreach (var plot in DataService.Plots)
+                        {
+                            <Option Label="@plot.Name" Value="plot" />
+                        }
+                    </Select>
+                    <span class="badge">
+                        <button class="btn btn-icon small" @onclick="@(_ => IsPlotLocked = !IsPlotLocked)">
+                            @if (IsPlotLocked)
+                            {
+                                <tf-icon class="tertiary">lock_open</tf-icon>
+                            }
+                            else
+                            {
+                                <tf-icon>lock</tf-icon>
+                            }
+                        </button>
+                    </span>
+                    <button class="btn btn-icon small" @onclick="@(_ => OnRandomizePlot(true))">
+                        <tf-icon>casino</tf-icon>
+                        <Tooltip Delay="750">Randomize plot archetype</Tooltip>
+                    </button>
+                </div>
+                @if (!string.IsNullOrWhiteSpace(WritingPrompt.Plot?.Description))
+                {
+                    <p>@WritingPrompt.Plot.Description</p>
+                }
+            </div>
+        }
+        <Collapse Title="Help">
+            <p>
+                Click the "lock" icon next to any prompt element to preserve that selection when
+                randomizing other elements.
+            </p>
+            <p>
+                Most elements pick a single value by default when selected randomly (two in the case
+                of features), but many elements also allow you to add additional values by clicking
+                a "plus" icon.
+            </p>
+            <p>
+                Click any highlighted element to change it. You can enter a manual value, or click
+                the "randomize" button to choose a new random value for that element, while leaving
+                the rest of the prompt intact.
+            </p>
+            <p>
+                When editing the genre, subgenre, and plot, a list of suggested options is provided.
+                You may enter a custom value instead of picking a suggestion. Note that if you enter
+                a custom genre, the other elements will not have prepopulated random choices, and
+                can only be entered manually.
+            </p>
+        </Collapse>
+        <button class="btn" @onclick="OnEditPrompts">Edit Writing Prompts</button>
+    </ChildContent>
+    <FooterContent>
+        <button class="btn btn-text" @onclick="@(_ => Dialog?.Close())">Cancel</button>
+        <button class="btn btn-text primary" @onclick="@(_ => Dialog?.Close(WritingPrompt))">Done</button>
+    </FooterContent>
+</Dialog>

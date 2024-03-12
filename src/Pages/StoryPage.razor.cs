@@ -1,17 +1,25 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Scop.Models;
+using Scop.Shared;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Tavenem.Blazor.Framework;
 
 namespace Scop.Pages;
 
 public partial class StoryPage : IDisposable
 {
-    private static readonly List<string> _storyIcons = new()
-    {
+    private static readonly List<string> _storyIcons =
+    [
         "note",
         "person",
-    };
+    ];
+    private static readonly List<string> _storyAddIcons =
+    [
+        "note_add",
+        "person_add",
+    ];
 
     private bool _disposedValue;
     private DotNetObjectReference<StoryPage>? _dotNetObjectRef;
@@ -23,13 +31,13 @@ public partial class StoryPage : IDisposable
 
     [Inject, NotNull] private DataService? DataService { get; set; }
 
+    [Inject, NotNull] private DialogService? DialogService { get; set; }
+
     private string? EditorContent { get; set; }
 
     private bool IsTimelineSelected { get; set; }
 
-    [Inject] private ScopJsInterop JsInterop { get; set; } = default!;
-
-    private string? NewNoteValue { get; set; }
+    [Inject, NotNull] private ScopJsInterop? JsInterop { get; set; }
 
     public DateTimeOffset? SelectedBirthdate { get; set; }
 
@@ -105,15 +113,14 @@ public partial class StoryPage : IDisposable
     /// Updates the current Google Drive signed-in status.
     /// </para>
     /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
+    /// This method is invoked by internal JavaScript, and is not intended to be invoked otherwise.
     /// </para>
     /// </summary>
     /// <param name="isSignedIn">Whether the user is currently signed in.</param>
     [JSInvokable]
-    public async Task UpdateDriveStatus(bool isSignedIn, string? userName)
+    public async Task UpdateDriveStatus(bool isSignedIn)
     {
         DataService.GDriveSync = isSignedIn;
-        DataService.GDriveUserName = userName;
         if (!isSignedIn)
         {
             return;
@@ -135,26 +142,6 @@ public partial class StoryPage : IDisposable
         }
     }
 
-    private static bool Contains(INote dropTarget, INote dropped)
-    {
-        if (dropTarget.Notes is null)
-        {
-            return false;
-        }
-        if (dropTarget.Notes.Contains(dropped))
-        {
-            return true;
-        }
-        foreach (var child in dropTarget.Notes)
-        {
-            if (Contains(child, dropped))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private async Task LoadStoryAsync()
     {
         if (!_loading)
@@ -170,35 +157,6 @@ public partial class StoryPage : IDisposable
 
         _loading = false;
         await InvokeAsync(StateHasChanged);
-    }
-
-    private static Note? SwitchToNote(INote note)
-    {
-        if (note is not Character character)
-        {
-            return null;
-        }
-        return new Note
-        {
-            Content = character.ToContent(),
-            Name = character.Name,
-            Notes = character.Notes,
-        };
-    }
-
-    private static Character? SwitchToCharacter(INote note)
-    {
-        if (note is Character)
-        {
-            return null;
-        }
-
-        return new Character
-        {
-            Content = note.Content,
-            Name = note.Name,
-            Notes = note.Notes,
-        };
     }
 
     private Task OnChangeAsync() => DataService.SaveAsync();
@@ -227,26 +185,35 @@ public partial class StoryPage : IDisposable
 
     private async Task OnDeleteNoteAsync(INote note)
     {
-        List<INote>? notes = null;
         if (note.Parent is not null)
         {
-            notes = note.Parent.Notes;
+            Console.WriteLine("Parent is not null");
+            if (note.Parent.Notes is null)
+            {
+                Console.WriteLine("Parent.Notes is null");
+                return;
+            }
+            note.Parent.Notes.Remove(note);
         }
         else if (_story is not null)
         {
-            notes = _story.Notes;
+            if (_story.Notes is null)
+            {
+                return;
+            }
+            _story.Notes.Remove(note);
         }
-        if (notes is null)
+        else
         {
             return;
         }
 
-        notes.Remove(note);
-        if (SelectedNote == note)
+        if (note.Contains(SelectedNote))
         {
             SelectedNote = null;
             EditorContent = null;
         }
+
         await DataService.SaveAsync();
     }
 
@@ -278,11 +245,11 @@ public partial class StoryPage : IDisposable
 
         if (targetParent is null)
         {
-            (_story.Notes ??= new()).Add(note);
+            (_story.Notes ??= []).Add(note);
         }
         else
         {
-            (targetParent.Notes ??= new()).Add(note);
+            (targetParent.Notes ??= []).Add(note);
         }
         await OnChangeAsync();
     }
@@ -322,7 +289,7 @@ public partial class StoryPage : IDisposable
         }
 
         // avoid dropping into the note's own child tree
-        if (Contains(target, note))
+        if (note.Contains(target))
         {
             return;
         }
@@ -338,43 +305,39 @@ public partial class StoryPage : IDisposable
 
         if (targetParent is null)
         {
-            (_story.Notes ??= new()).Add(note);
+            (_story.Notes ??= []).Add(note);
         }
         else
         {
-            (targetParent.Notes ??= new()).Add(note);
+            (targetParent.Notes ??= []).Add(note);
         }
         await OnChangeAsync();
     }
 
-    private async Task OnNewNoteSetAsync(string? newValue)
+    private async Task OnNewNoteOfTypeAsync(int index)
     {
-        NewNoteValue = newValue;
-        if (_story is null
-            || string.IsNullOrEmpty(NewNoteValue))
+        if (_story is null)
         {
             return;
         }
-        var newNote = new Note() { Name = NewNoteValue };
-        (_story.Notes ??= new()).Add(newNote);
-        NewNoteValue = string.Empty;
+        INote newNote = index == 1
+            ? new Character()
+            : new Note();
+        (_story.Notes ??= []).Add(newNote);
         SelectedNote = newNote;
-        EditorContent = SelectedNote.Content;
+        EditorContent = null;
         await DataService.SaveAsync();
     }
 
-    private async Task OnNewNoteSetAsync(INote parent, string? newValue)
+    private async Task OnNewNoteOfTypeAsync(INote parent, int index)
     {
-        parent.NewNoteValue = newValue;
-        if (string.IsNullOrEmpty(parent.NewNoteValue))
-        {
-            return;
-        }
-        var newNote = new Note() { Name = parent.NewNoteValue };
-        (parent.Notes ??= new()).Add(newNote);
-        parent.NewNoteValue = string.Empty;
+        INote newNote = index == 1
+            ? new Character()
+            : new Note();
+        newNote.Parent = parent;
+        (parent.Notes ??= []).Add(newNote);
         SelectedNote = newNote;
-        EditorContent = SelectedNote.Content;
+        EditorContent = null;
         await DataService.SaveAsync();
     }
 
@@ -528,7 +491,6 @@ public partial class StoryPage : IDisposable
     {
         if (TopSelectedNote?.Equals(SelectedNote) != false)
         {
-            Console.WriteLine("returning");
             return;
         }
         SelectedNote = TopSelectedNote;
@@ -552,47 +514,299 @@ public partial class StoryPage : IDisposable
         SelectedNote = null;
         EditorContent = null;
         SelectedBirthdate = null;
+        TopSelectedNote = null;
     }
 
-    private async Task OnSwitchNoteTypeAsync(INote note, int iconIndex)
+    private async Task OnWritingPromptAsync()
     {
-        List<INote>? parentCollection = null;
-        if (note.Parent is not null)
-        {
-            parentCollection = note.Parent.Notes;
-        }
-        else if (_story is not null)
-        {
-            parentCollection = _story.Notes;
-        }
-        if (parentCollection is null)
+        if (_story is null)
         {
             return;
         }
 
-        var index = parentCollection.IndexOf(note);
-        if (index == -1)
+        var result = await DialogService.Show<WritingPromptDialog>("Writing Prompt").Result;
+        if (result.Choice != DialogChoice.Ok
+            || result.Data is not WritingPrompt prompt)
         {
             return;
         }
 
-        parentCollection.RemoveAt(index);
-
-        INote? newNote;
-        if (iconIndex == 1)
+        var blankNote = _story.Notes?.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Content));
+        if (blankNote is null)
         {
-            newNote = SwitchToCharacter(note);
+            blankNote = new Note();
+            (_story.Notes ??= []).Add(blankNote);
+        }
+
+        if (string.IsNullOrWhiteSpace(blankNote.Name))
+        {
+            blankNote.Name = "Writing Prompt";
+        }
+
+        var promptContent = new StringBuilder();
+
+        var firstSentence = !string.IsNullOrWhiteSpace(prompt.Genre)
+            || !string.IsNullOrWhiteSpace(prompt.Subgenre)
+            || prompt.Themes?.Count > 0;
+
+        if (firstSentence)
+        {
+            promptContent.Append("This");
+        }
+
+        if (!string.IsNullOrWhiteSpace(prompt.Genre))
+        {
+            if (string.IsNullOrWhiteSpace(prompt.Subgenre)
+                && !(prompt.Themes?.Count > 0))
+            {
+                promptContent.Append(" is a");
+            }
+            promptContent
+                .Append(' ')
+                .Append(prompt.Genre);
+        }
+
+        if (firstSentence)
+        {
+            promptContent.Append(" story");
+        }
+
+        if (!string.IsNullOrWhiteSpace(prompt.Subgenre))
+        {
+            promptContent.Append(" is");
+            promptContent
+                .Append(' ')
+                .Append(prompt.Subgenre);
+        }
+
+        if (prompt.Themes?.Count > 0)
+        {
+            promptContent.Append(" about ");
+            for (var i = 0; i < prompt.Themes.Count; i++)
+            {
+                if (i > 0)
+                {
+                    promptContent.Append(", ");
+                }
+                if (i > 0 && i == prompt.Themes.Count - 1)
+                {
+                    promptContent.Append("and ");
+                }
+                promptContent.Append(prompt.Themes[i]);
+            }
+        }
+
+        if (firstSentence)
+        {
+            promptContent.Append(". ");
+        }
+
+        if (prompt.Settings?.Count > 0)
+        {
+            if (firstSentence)
+            {
+                promptContent.Append("It begins ");
+            }
+            else
+            {
+                promptContent.Append("This story begins ");
+            }
+
+            for (var i = 0; i < prompt.Settings.Count; i++)
+            {
+                if (i == 1)
+                {
+                    promptContent.Append(", while other events take place");
+                }
+                else if (prompt.Settings.Count > 2 && i == prompt.Settings.Count - 1)
+                {
+                    promptContent.Append(", and");
+                }
+                else if (i > 0)
+                {
+                    promptContent.Append(", ");
+                }
+                promptContent.Append(prompt.Settings[i]);
+            }
+
+            promptContent.Append(", ");
+        }
+
+        var secondSentence = prompt.Settings?.Count > 0
+            || prompt.Subjects?.Count > 0;
+
+        if (prompt.Subjects?.Count > 0)
+        {
+            if (prompt.Settings?.Count > 1)
+            {
+                promptContent.Append(" starting things off with ");
+            }
+            else if (prompt.Settings?.Count > 0)
+            {
+                promptContent.Append(" with ");
+            }
+            else if (firstSentence)
+            {
+                promptContent.Append("It begins with ");
+            }
+            else
+            {
+                promptContent.Append("This story begins with ");
+            }
+
+            for (var i = 0; i < prompt.Subjects.Count; i++)
+            {
+                if (i > 0)
+                {
+                    promptContent.Append(", ");
+                }
+                if (i == 1)
+                {
+                    promptContent.Append("and features ");
+                }
+                else if (prompt.Subjects.Count > 2 && i == prompt.Subjects.Count - 1)
+                {
+                    promptContent.Append("along with ");
+                }
+                else if (prompt.Subjects.Count > 1 && i > 0 && i >= prompt.Subjects.Count - 2)
+                {
+                    promptContent.Append("and ");
+                }
+                promptContent.Append(prompt.Subjects[i]);
+            }
+        }
+        if (secondSentence)
+        {
+            promptContent.Append('.');
+        }
+
+        var firstParagraph = firstSentence || secondSentence;
+        if (firstParagraph)
+        {
+            promptContent.AppendLine().AppendLine();
+        }
+
+        var characterParagraph = !string.IsNullOrEmpty(prompt.Protagonist)
+            || prompt.SecondaryCharacters?.Count > 0;
+
+        if (!string.IsNullOrEmpty(prompt.Protagonist))
+        {
+            promptContent
+                .Append("The main character ");
+            if (!firstParagraph)
+            {
+                promptContent.Append("of this story ");
+            }
+            promptContent.Append("is ")
+                .Append(prompt.Protagonist);
+            if (prompt.ProtagonistTraits?.Count > 0)
+            {
+                promptContent.Append(", who ");
+                for (var i = 0; i < prompt.ProtagonistTraits.Count; i++)
+                {
+                    if (i > 0)
+                    {
+                        promptContent.Append(", ");
+                        if (i == prompt.ProtagonistTraits.Count - 1)
+                        {
+                            promptContent.Append("and ");
+                        }
+                    }
+                    promptContent.Append(prompt.ProtagonistTraits[i]);
+                }
+            }
+            promptContent.Append(". ");
+        }
+
+        if (prompt.SecondaryCharacters?.Count > 0)
+        {
+            if (firstParagraph || !string.IsNullOrEmpty(prompt.Protagonist))
+            {
+                promptContent.Append("The story also features ");
+            }
+            else
+            {
+                promptContent.Append("This story features ");
+            }
+            for (var i = 0; i < prompt.SecondaryCharacters.Count; i++)
+            {
+                if (i > 0)
+                {
+                    promptContent.Append(", ");
+                    if (i == prompt.SecondaryCharacters.Count - 1)
+                    {
+                        promptContent.Append("and ");
+                    }
+                }
+                promptContent.Append(prompt.SecondaryCharacters[i].Description ?? "another character");
+                if (prompt.SecondaryCharacters[i].Traits?.Count > 0)
+                {
+                    promptContent.Append(", who ");
+                    for (var j = 0; j < prompt.SecondaryCharacters[i].Traits!.Count; j++)
+                    {
+                        if (j > 0)
+                        {
+                            promptContent.Append(", ");
+                            if (j == prompt.SecondaryCharacters[i].Traits!.Count - 1)
+                            {
+                                promptContent.Append("and ");
+                            }
+                        }
+                        promptContent.Append(prompt.SecondaryCharacters[i].Traits![j]);
+                    }
+                }
+            }
+            promptContent.Append('.');
+        }
+        if (characterParagraph)
+        {
+            promptContent.AppendLine().AppendLine();
+        }
+
+        if (prompt.Features?.Count > 0)
+        {
+            promptContent.Append("Keep in mind that ");
+            for (var i = 0; i < prompt.Features.Count; i++)
+            {
+                if (i > 0)
+                {
+                    promptContent.Append(", ");
+                    if (i == prompt.Features.Count - 1)
+                    {
+                        promptContent.Append("and ");
+                    }
+                }
+                promptContent.Append(prompt.Features[i]);
+            }
+            promptContent.AppendLine(".").AppendLine();
+        }
+
+        if (!string.IsNullOrWhiteSpace(prompt.Plot?.Name))
+        {
+            promptContent
+                .Append("Plot archetype: ")
+                .Append(prompt.Plot.Name)
+                .Append('.');
+            if (!string.IsNullOrEmpty(prompt.Plot.Description))
+            {
+                promptContent
+                    .Append(' ')
+                    .Append(prompt.Plot.Description);
+            }
+        }
+
+        blankNote.Content = promptContent.ToString();
+
+        await DataService.SaveAsync();
+
+        if (blankNote.Parent is null)
+        {
+            TopSelectedNote = blankNote;
+            await OnSelectedNoteChangedAsync();
         }
         else
         {
-            newNote = SwitchToNote(note);
-        }
-        if (newNote is not null)
-        {
-            parentCollection.Insert(index, newNote);
-            SelectedNote = newNote;
-            EditorContent = SelectedNote.Content;
-            await DataService.SaveAsync();
+            await OnSelectChildNoteAsync(blankNote);
         }
     }
 }

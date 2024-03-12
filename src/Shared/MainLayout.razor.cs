@@ -41,17 +41,16 @@ public partial class MainLayout : IDisposable
     /// Updates the current Google Drive signed-in status.
     /// </para>
     /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
+    /// This method is invoked by internal JavaScript, and is not intended to be invoked otherwise.
     /// </para>
     /// </summary>
     /// <param name="isSignedIn">Whether the user is currently signed in.</param>
     [JSInvokable]
-    public async Task UpdateDriveStatus(bool isSignedIn, string? userName)
+    public async Task UpdateDriveStatus(bool isSignedIn)
     {
         if (DataService is not null)
         {
             DataService.GDriveSync = isSignedIn;
-            DataService.GDriveUserName = userName;
             await InvokeAsync(StateHasChanged);
         }
     }

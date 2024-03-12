@@ -13,8 +13,6 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
 
     [JsonIgnore] public bool IsEditing { get; set; }
 
-    [JsonIgnore] public bool IsExpanded { get; set; }
-
     [JsonIgnore] public string? NewEthnicityValue { get; set; }
 
     [JsonIgnore] public Ethnicity? Parent { get; set; }
@@ -23,13 +21,13 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
 
     public List<Ethnicity>? Types { get; set; }
 
-    [JsonIgnore] public bool UserDefined { get; set; }
+    public bool UserDefined { get; set; }
 
     public static List<string[]> GetRandomEthnicities(List<Ethnicity> ethnicities)
     {
         if (ethnicities.Count == 0)
         {
-            return new();
+            return [];
         }
 
         var paths = new List<string[]>();
@@ -48,6 +46,25 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
         } while (Randomizer.Instance.NextDouble() < 0.1 && sanityCheck < 5);
 
         return paths;
+    }
+
+    public bool HasUserDefined()
+    {
+        if (UserDefined)
+        {
+            return true;
+        }
+        if (Types is not null)
+        {
+            foreach (var child in Types)
+            {
+                if (child.HasUserDefined())
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public bool Equals(Ethnicity? other)
@@ -92,6 +109,18 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
 
     public void OnDeserialized() => Initialize();
 
+    internal void InitializeChildren()
+    {
+        if (Types is not null)
+        {
+            foreach (var child in Types)
+            {
+                child.Parent = this;
+                child.Initialize(Hierarchy);
+            }
+        }
+    }
+
     private void Initialize(string[]? parentHierarchy = null)
     {
         var hierarchy = new string[(parentHierarchy?.Length ?? 0) + 1];
@@ -102,14 +131,7 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
         hierarchy[^1] = Type ?? "unknown";
         Hierarchy = hierarchy;
 
-        if (Types is not null)
-        {
-            foreach (var child in Types)
-            {
-                child.Parent = this;
-                child.Initialize(hierarchy);
-            }
-        }
+        InitializeChildren();
     }
 
     public static bool operator ==(Ethnicity? left, Ethnicity? right) => left?.Equals(right) ?? (right is null);

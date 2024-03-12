@@ -37,7 +37,7 @@ public partial class TraitDialog
         if (result?.Choice == DialogChoice.Ok
             && result.Data is TraitModifier traitModifier)
         {
-            (Trait.Modifiers ??= new()).Add(traitModifier);
+            (Trait.Modifiers ??= []).Add(traitModifier);
         }
     }
 }

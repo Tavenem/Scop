@@ -76,18 +76,31 @@ else {
                             </g>
                         </svg>
                     </div>
-                    <h6>Data</h6>
+                    <h6>Cloud Data</h6>
                 </div>
                 <div class="body">
-                    @if (DataService.GDriveSync) {
-                        <p>Your data is backed up in Google Drive™.</p>
-                        <p>Account: @DataService.GDriveUserName.</p>
-                        <p>Last saved: @DataService.LastGDriveSync.ToLocalTime().ToString("f")</p>
+                    @if (SignInFailure)
+                    {
+                        <p class="danger">Your sign in attempt was unsuccessful.</p>
                     }
-                    else {
+                    else if (DataService.GDriveSync)
+                    {
+                        @if (DataService.LastGDriveSync > DateTime.MinValue)
+                        {
+                            <p>Your data has been backed up to Google Drive™.</p>
+                            <p>Last saved: @DataService.LastGDriveSync.ToLocalTime().ToString("f")</p>
+                        }
+                        else
+                        {
+                            <p>You have successfully logged into Google Drive™.</p>
+                            <p>Your data has not yet been saved.</p>
+                        }
+                    }
+                    else
+                    {
                         <p>
-                            Sign into your Google Drive™ account to back up your
-                            data, and synchronize between devices.
+                            Save your data to a Google Drive™ account to keep a remote backup, and
+                            synchronize between devices.
                         </p>
                     }
                 </div>
@@ -96,7 +109,7 @@ else {
                         <button class="btn danger ms-auto" @onclick="OnUnlinkGDrive">Sign out</button>
                     }
                     else {
-                        <button class="btn primary ms-auto" @onclick="OnLinkGDrive">Sign In</button>
+                        <button class="btn primary ms-auto" @onclick="OnLinkGDrive">Save</button>
                     }
                 </div>
             </div>

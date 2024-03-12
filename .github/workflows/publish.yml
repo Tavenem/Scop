@@ -1,6 +1,6 @@
 name: publish
 env:
-  VERSION: '2.0.2'
+  VERSION: '3.0.0'
 on:
   push:
     branches: [ main ]
@@ -9,13 +9,13 @@ jobs:
     name: build, publish, and deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
-      - name: Setup .NET 7
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
         with:
           # Semantic version range syntax or exact version of a dotnet version
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.x'
 
       - name: Install dependencies
         run: dotnet restore
@@ -45,7 +45,7 @@ jobs:
         working-directory: ./src
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.7
+        uses: JamesIves/github-pages-deploy-action@4.5.0
         with:
           branch: gh-pages
           folder: src/publish/wwwroot

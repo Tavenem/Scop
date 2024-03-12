@@ -9,35 +9,34 @@
     <div class="d-flex justify-content-center align-self-stretch">
         <tf-progress-circle class="primary"></tf-progress-circle>
     </div>
+    return;
+}
+
+@if (DataService.Data.Stories.Count == 0)
+{
+    <p Class="p-5 pb-0 align-self-stretch text-center">You don't have any stories yet.</p>
 }
 else
 {
-    if (DataService.Data.Stories.Count == 0)
-    {
-        <p Class="p-5 pb-0 align-self-stretch text-center">You don't have any stories yet.</p>
-    }
-    else
-    {
-        <div class="d-flex flex-wrap justify-content-space-around align-self-stretch my-2 gap-2">
-            @foreach (var story in DataService.Data.Stories)
-            {
-                <div class="card">
-                    <div class="body">
-                        <p class="@(story.IsUnnamed ? "text-muted" : null)">@story.DisplayName</p>
-                    </div>
-                    <div class="footer">
-                        <button class="btn danger ms-auto" @onclick="@(_ => OnDeleteStory(story))">Delete</button>
-                        <button class="btn primary ms-1" @onclick="@(_ => OnOpenStory(story))">Open</button>
-                    </div>
+    <div class="d-flex flex-wrap gap-1 flex-grow-1 align-content-start align-self-stretch my-2" style="flex-basis: min-content">
+        @foreach (var story in DataService.Data.Stories)
+        {
+            <div class="card flex-grow-0">
+                <div class="body">
+                    <p class="@(story.IsUnnamed ? "text-muted" : null)">@story.DisplayName</p>
                 </div>
-            }
-        </div>
-    }
-
-    <div class="d-flex justify-content-center align-self-stretch mt-4">
-        <button class="btn primary" @onclick="OnAddStory"><tf-icon>add</tf-icon>New Story</button>
+                <div class="footer">
+                    <button class="btn danger ms-auto" @onclick="@(_ => OnDeleteStory(story))">Delete</button>
+                    <button class="btn primary ms-1" @onclick="@(_ => OnOpenStory(story))">Open</button>
+                </div>
+            </div>
+        }
     </div>
 }
+
+<div class="d-flex justify-content-center align-self-stretch mt-4">
+    <button class="btn primary" @onclick="OnAddStory"><tf-icon>add</tf-icon>New Story</button>
+</div>
 
 <Dialog @bind-IsVisible="DeleteDialogOpen">
     <TitleContent>
@@ -55,3 +54,36 @@ else
         <button class="btn btn-text" @onclick="@(_ => DeleteDialogOpen = false)">Cancel</button>
     </FooterContent>
 </Dialog>
+
+@if (DataService.Data.Stories.Count <= 1)
+{
+    return;
+}
+
+<div class="d-flex justify-content-center align-self-stretch mt-5">
+    <button class="btn" @onclick="OnSelectRandomStory"><tf-icon>casino</tf-icon>Select Random Story</button>
+    @if (SelectedStory is not null)
+    {
+        <button class="btn ms-2" @onclick="OnSelectShuffledStory">
+            <tf-icon>shuffle</tf-icon>Shuffle
+            <Tooltip Delay="750">
+                Pick a story at random, but do not re-pick stories that have already been selected (when all stories have been chosen, the shuffle order will reset).
+            </Tooltip>
+        </button>
+        @if (!FirstRandomSelection && SelectedStories.Count == 1)
+        {
+            <span class="ms-2">
+                <tf-icon>restart_alt</tf-icon>
+                <Tooltip Delay="500">All stories were chosen, and the shuffle order has been reset.</Tooltip>
+            </span>
+        }
+    }
+</div>
+
+@if (SelectedStory is not null)
+{
+    <div class="d-flex justify-content-center align-self-stretch align-items-center mt-2">
+        <span class="@(SelectedStory.IsUnnamed ? "text-muted" : null)">@SelectedStory.DisplayName</span>
+        <button class="btn ms-1" @onclick="OnOpenSelectedStory">Open</button>
+    </div>
+}

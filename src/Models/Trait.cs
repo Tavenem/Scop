@@ -24,10 +24,6 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
     /// </summary>
     public bool IsChosenOnNone { get; set; }
 
-    [JsonIgnore] public bool IsEditing { get; set; }
-
-    [JsonIgnore] public bool IsExpanded { get; set; }
-
     public List<TraitModifier>? Modifiers { get; set; }
 
     public string? Name { get; set; }
@@ -88,6 +84,25 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
             .FirstOrDefault()?
             .EffectiveWeight
             ?? EffectiveWeight;
+    }
+
+    public bool HasUserDefined()
+    {
+        if (UserDefined)
+        {
+            return true;
+        }
+        if (Children is not null)
+        {
+            foreach (var child in Children)
+            {
+                if (child.HasUserDefined())
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void OnDeserialized() => Initialize();
@@ -151,6 +166,18 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         Randomize(character, true);
     }
 
+    internal void InitializeChildren()
+    {
+        if (Children is not null)
+        {
+            foreach (var child in Children)
+            {
+                child.Parent = this;
+                child.Initialize(Hierarchy);
+            }
+        }
+    }
+
     private void Initialize(string[]? parentHierarchy = null)
     {
         var hierarchy = new string[(parentHierarchy?.Length ?? 0) + 1];
@@ -161,14 +188,7 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         hierarchy[^1] = Name ?? "unknown";
         Hierarchy = hierarchy;
 
-        if (Children is not null)
-        {
-            foreach (var child in Children)
-            {
-                child.Parent = this;
-                child.Initialize(hierarchy);
-            }
-        }
+        InitializeChildren();
     }
 
     private bool SelectAmongChildren(Character character)

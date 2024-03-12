@@ -15,6 +15,8 @@ public partial class ManageData : IDisposable
 
     private bool DeleteLocalDialogOpen { get; set; }
 
+    private bool SignInFailure { get; set; }
+
     private bool UploadDialogOpen { get; set; }
 
     [Inject] private ScopJsInterop? JsInterop { get; set; }
@@ -28,8 +30,6 @@ public partial class ManageData : IDisposable
             _dotNetObjectRef ??= DotNetObjectReference.Create(this);
             DataService.GDriveSync = await JsInterop
                 .GetDriveSignedIn(_dotNetObjectRef);
-            DataService.GDriveUserName = await JsInterop
-                .GetDriveUser(_dotNetObjectRef);
             await DataService.LoadAsync();
             _loading = false;
             StateHasChanged();
@@ -61,21 +61,21 @@ public partial class ManageData : IDisposable
     /// Updates the current Google Drive signed-in status.
     /// </para>
     /// <para>
-    /// This method is invoked by internal javascript, and is not intended to be invoked otherwise.
+    /// This method is invoked by internal JavaScript, and is not intended to be invoked otherwise.
     /// </para>
     /// </summary>
     /// <param name="isSignedIn">Whether the user is currently signed in.</param>
     [JSInvokable]
-    public async Task UpdateDriveStatus(bool isSignedIn, string? userName)
+    public async Task UpdateDriveStatus(bool isSignedIn)
     {
         if (DataService is not null)
         {
             DataService.GDriveSync = isSignedIn;
-            DataService.GDriveUserName = userName;
             if (isSignedIn)
             {
                 await DataService.SaveAsync();
             }
+            StateHasChanged();
         }
     }
 
@@ -102,10 +102,11 @@ public partial class ManageData : IDisposable
     private async Task OnLinkGDrive()
     {
         if (JsInterop is not null
-            && _dotNetObjectRef is not null)
+            && _dotNetObjectRef is not null
+            && !await JsInterop
+                .DriveAuthorize(_dotNetObjectRef))
         {
-            await JsInterop
-                .DriveAuthorize(_dotNetObjectRef);
+            SignInFailure = true;
         }
     }
 
@@ -123,7 +124,7 @@ public partial class ManageData : IDisposable
             && _dotNetObjectRef is not null)
         {
             await JsInterop
-                .DriveSignout(_dotNetObjectRef);
+                .DriveSignOut(_dotNetObjectRef);
         }
     }
 
