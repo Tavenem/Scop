@@ -1,6 +1,11 @@
 # Changelog
 
+## 3.0.2
+### Fixed
+- GDrive load on story page
+
 ## 3.0.1
+### Fixed
 - Replace use of API key
 
 ## 3.0.0

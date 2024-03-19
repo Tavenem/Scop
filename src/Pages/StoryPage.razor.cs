@@ -129,7 +129,7 @@ public partial class StoryPage : IDisposable
         _loading = true;
         await InvokeAsync(StateHasChanged);
 
-        await DataService.LoadAsync();
+        await DataService.LoadAsync(true);
 
         if (_story is null
             && !string.IsNullOrEmpty(Id))
@@ -139,6 +139,9 @@ public partial class StoryPage : IDisposable
         else
         {
             await DataService.SaveAsync();
+
+            _loading = false;
+            await InvokeAsync(StateHasChanged);
         }
     }
 
@@ -149,9 +152,27 @@ public partial class StoryPage : IDisposable
             _loading = true;
             await InvokeAsync(StateHasChanged);
         }
-        _story = string.IsNullOrEmpty(Id)
-            ? null
-            : DataService.Data.Stories.Find(x => x.Id == Id);
+
+        _story = null;
+        if (string.IsNullOrEmpty(Id))
+        {
+            _loading = false;
+            await InvokeAsync(StateHasChanged);
+            return;
+        }
+
+        _story = DataService.Data.Stories.Find(x => x.Id == Id);
+        if (_story is null
+            && !DataService.GDriveSync)
+        {
+            _dotNetObjectRef ??= DotNetObjectReference.Create(this);
+            if (await JsInterop
+                .DriveAuthorize(_dotNetObjectRef))
+            {
+                await DataService.LoadAsync(true);
+                _story = DataService.Data.Stories.Find(x => x.Id == Id);
+            }
+        }
 
         _story?.Initialize();
 

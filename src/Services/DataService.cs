@@ -419,14 +419,17 @@ public class DataService(
         return set?.Surnames ?? [];
     }
 
-    public async ValueTask LoadAsync()
+    public async ValueTask LoadAsync(bool reload = false)
     {
-        if (_loaded)
+        if (!_loaded)
+        {
+            await LoadInitialDataAsync();
+        }
+
+        if (!reload)
         {
             return;
         }
-
-        await LoadInitialDataAsync();
 
         var localData = await indexedDb
             .GetItemAsync<LocalData>(LocalData.IdValue);
@@ -767,11 +770,6 @@ public class DataService(
 
     private async Task LoadGDriveAsync()
     {
-        if (jsInterop is null)
-        {
-            return;
-        }
-
         _dotNetObjectRef ??= DotNetObjectReference.Create(this);
 
         await jsInterop.LoadDriveData(_dotNetObjectRef);
@@ -787,11 +785,6 @@ public class DataService(
 
     private async Task SaveGDriveAsync()
     {
-        if (jsInterop is null)
-        {
-            return;
-        }
-
         var serializedData = JsonSerializer.Serialize(
             Data,
             ScopSerializerOptions.Instance);

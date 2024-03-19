@@ -15,6 +15,10 @@
 @if (DataService.Data.Stories.Count == 0)
 {
     <p Class="p-5 pb-0 align-self-stretch text-center">You don't have any stories yet.</p>
+    @if (!DataService.GDriveSync)
+    {
+        <button class="btn primary align-self-center" @onclick="OnLinkGDrive">Sign In to Google Drive™</button>
+    }
 }
 else
 {

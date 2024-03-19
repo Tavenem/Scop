@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Scop.Pages;
 
@@ -8,15 +10,18 @@ public partial class Stories : IDisposable
 
     private Story? _deleteStory;
     private bool _disposedValue;
+    private DotNetObjectReference<Stories>? _dotNetObjectRef;
     private bool _loading = true;
 
-    [Inject] private DataService DataService { get; set; } = default!;
+    [Inject, NotNull] private DataService? DataService { get; set; }
 
     private bool DeleteDialogOpen { get; set; }
 
     private bool FirstRandomSelection { get; set; } = true;
 
-    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+    [Inject, NotNull] private ScopJsInterop? JsInterop { get; set; }
+
+    [Inject, NotNull] private NavigationManager? NavigationManager { get; set; }
 
     private Story? SelectedStory { get; set; }
 
@@ -27,10 +32,40 @@ public partial class Stories : IDisposable
         if (firstRender)
         {
             DataService.DataLoaded += OnDataLoaded;
+            _dotNetObjectRef ??= DotNetObjectReference.Create(this);
+            DataService.GDriveSync = await JsInterop
+                .GetDriveSignedIn(_dotNetObjectRef);
             await DataService.LoadAsync();
             _loading = false;
             StateHasChanged();
         }
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the current Google Drive signed-in status.
+    /// </para>
+    /// <para>
+    /// This method is invoked by internal JavaScript, and is not intended to be invoked otherwise.
+    /// </para>
+    /// </summary>
+    /// <param name="isSignedIn">Whether the user is currently signed in.</param>
+    [JSInvokable]
+    public async Task UpdateDriveStatus(bool isSignedIn)
+    {
+        DataService.GDriveSync = isSignedIn;
+        if (!isSignedIn)
+        {
+            return;
+        }
+
+        _loading = true;
+        await InvokeAsync(StateHasChanged);
+
+        await DataService.LoadAsync(true);
+
+        _loading = false;
+        await InvokeAsync(StateHasChanged);
     }
 
     protected virtual void Dispose(bool disposing)
@@ -75,6 +110,16 @@ public partial class Stories : IDisposable
 
     private async void OnDataLoaded(object? sender, EventArgs e)
         => await InvokeAsync(StateHasChanged);
+
+    private async Task OnLinkGDrive()
+    {
+        if (JsInterop is not null
+            && _dotNetObjectRef is not null)
+        {
+            await JsInterop
+                .DriveAuthorize(_dotNetObjectRef);
+        }
+    }
 
     private void OnOpenSelectedStory()
     {

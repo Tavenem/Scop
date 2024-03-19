@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace Scop.Pages;
@@ -11,7 +12,7 @@ public partial class ManageData : IDisposable
     private DotNetObjectReference<ManageData>? _dotNetObjectRef;
     private bool _loading = true;
 
-    [Inject] private DataService? DataService { get; set; }
+    [Inject, NotNull] private DataService? DataService { get; set; }
 
     private bool DeleteLocalDialogOpen { get; set; }
 
@@ -19,13 +20,11 @@ public partial class ManageData : IDisposable
 
     private bool UploadDialogOpen { get; set; }
 
-    [Inject] private ScopJsInterop? JsInterop { get; set; }
+    [Inject, NotNull] private ScopJsInterop? JsInterop { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender
-            && JsInterop is not null
-            && DataService is not null)
+        if (firstRender)
         {
             _dotNetObjectRef ??= DotNetObjectReference.Create(this);
             DataService.GDriveSync = await JsInterop
@@ -88,21 +87,13 @@ public partial class ManageData : IDisposable
         }
     }
 
-    private async Task OnDownloadDataAsync()
-    {
-        if (JsInterop is not null
-            && DataService is not null)
-        {
-            await JsInterop.DownloadText(
-              "scop.json",
-              JsonSerializer.Serialize(DataService.Data));
-        }
-    }
+    private async Task OnDownloadDataAsync() => await JsInterop.DownloadText(
+        "scop.json",
+        JsonSerializer.Serialize(DataService.Data));
 
     private async Task OnLinkGDrive()
     {
-        if (JsInterop is not null
-            && _dotNetObjectRef is not null
+        if (_dotNetObjectRef is not null
             && !await JsInterop
                 .DriveAuthorize(_dotNetObjectRef))
         {
@@ -110,28 +101,21 @@ public partial class ManageData : IDisposable
         }
     }
 
-    private async Task OnSyncLocalAsync()
-    {
-        if (DataService is not null)
-        {
-            await DataService.SaveLocalAsync();
-        }
-    }
+    private async Task OnSyncLocalAsync() => await DataService.SaveLocalAsync();
 
     private async Task OnUnlinkGDrive()
     {
-        if (JsInterop is not null
-            && _dotNetObjectRef is not null)
+        if (_dotNetObjectRef is not null)
         {
             await JsInterop
                 .DriveSignOut(_dotNetObjectRef);
+            await DataService.LoadAsync(true);
         }
     }
 
     private async Task OnUploadFileAsync(InputFileChangeEventArgs e)
     {
-        if (DataService is not null
-            && e.File.ContentType == "application/json")
+        if (e.File.ContentType == "application/json")
         {
             var json = await new StreamReader(e.File.OpenReadStream())
                 .ReadToEndAsync();

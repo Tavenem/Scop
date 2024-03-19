@@ -38,7 +38,7 @@ public class ScopJsInterop(IJSRuntime jsRuntime) : IAsyncDisposable
         await module.InvokeVoidAsync("downloadText", filename, text);
     }
 
-    public async ValueTask<bool> DriveAuthorize(DotNetObjectReference<ManageData> dotNetObjectRef)
+    public async ValueTask<bool> DriveAuthorize<T>(DotNetObjectReference<T> dotNetObjectRef) where T : ComponentBase
     {
         var module = await _moduleTask.Value;
         return await module.InvokeAsync<bool>("driveAuthorize", dotNetObjectRef);
