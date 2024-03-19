@@ -21,9 +21,9 @@ let tokenClient;
         gapi.load('client', { callback: resolve, onerror: reject });
     }).catch(err => console.log(err));
     await gapi.client.init({})
-        .then(function () {
-            gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest');
-        }).catch(err => console.log(err));
+        .catch(err => console.log(err));
+    await gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest')
+        .catch(err => console.log(err));
 
     // Now load the GIS client
     await gisLoadPromise;

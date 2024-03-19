@@ -144,7 +144,7 @@ async function getDriveFileId() {
         fields: 'files(name, trashed, id)',
         spaces: 'drive'
     };
-    gapi.client.drive.files.list(request)
+    await gapi.client.drive.files.list(request)
         .then(loadDriveFile)
         .catch(err => getToken(err))
         .then(retry => gapi.client.drive.files.list(request))

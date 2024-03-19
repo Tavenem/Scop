@@ -17,7 +17,7 @@
       "url": "favicon.ico"
     },
     {
-      "hash": "sha256-hOZJlT3cgUFwdJBMw5ANBI4wng9ZeQ72XSpefLiTEBk=",
+      "hash": "sha256-a6VneT7BYJbfreZ5VOHgzRNQwp7Bl5WfldwUi6PCMIA=",
       "url": "gdrive.js"
     },
     {
@@ -277,7 +277,7 @@
       "url": "plots.json"
     },
     {
-      "hash": "sha256-GIGOt6cArmMxyKHdCqtyl4pFOBU\/7TmIhequ1lfsNTA=",
+      "hash": "sha256-Uk6tTcZI2BWHAWOhprFSAVClqbyZ7CsIfDnxsOMJSlU=",
       "url": "script.js"
     },
     {
@@ -321,7 +321,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-BiOM9bPPd+YzopiE1DQznYhUdQZOPUlpXLUNUaM4Pbo=",
+      "hash": "sha256-14DX0LTifbKcIO6B1kx2FAVNxO\/wKGXZMnBuHj8H1Rg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -425,7 +425,7 @@
       "url": "_framework\/netstandard.wasm"
     },
     {
-      "hash": "sha256-D\/kI2nIRgFG7XJa+it0546NtCadPvJbrYASRGO8MQaE=",
+      "hash": "sha256-Iw7joVzKbIJIPxNTXVqU5P6oNDHjqP8iGZxLbTCJ3FY=",
       "url": "_framework\/Scop.wasm"
     },
     {
@@ -1053,5 +1053,5 @@
       "url": "_content\/Tavenem.Blazor.Framework\/Tavenem.Blazor.Framework.lib.module.js"
     }
   ],
-  "version": "NBqf4ccj"
+  "version": "bLbmTbbE"
 };
