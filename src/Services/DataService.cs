@@ -425,8 +425,7 @@ public class DataService(
         {
             await LoadInitialDataAsync();
         }
-
-        if (!reload)
+        else if (!reload)
         {
             return;
         }
@@ -573,6 +572,15 @@ public class DataService(
 
     public async Task SaveAsync()
     {
+        if (!(Data.Ethnicities?.Count > 0
+            || Data.Genres?.Count > 0
+            || Data.Plots?.Count > 0
+            || Data.Stories.Count > 0
+            || Data.Traits?.Count > 0))
+        {
+            return;
+        }
+
         await SaveLocalAsync();
 
         if (GDriveSync)
@@ -583,6 +591,15 @@ public class DataService(
 
     public async Task SaveLocalAsync()
     {
+        if (!(Data.Ethnicities?.Count > 0
+            || Data.Genres?.Count > 0
+            || Data.Plots?.Count > 0
+            || Data.Stories.Count > 0
+            || Data.Traits?.Count > 0))
+        {
+            return;
+        }
+
         Data.LastSync = DateTime.UtcNow;
 
         var localData = new LocalData { Data = Data };
@@ -771,7 +788,6 @@ public class DataService(
     private async Task LoadGDriveAsync()
     {
         _dotNetObjectRef ??= DotNetObjectReference.Create(this);
-
         await jsInterop.LoadDriveData(_dotNetObjectRef);
     }
 

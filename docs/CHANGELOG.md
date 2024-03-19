@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.3
+### Fixed
+- Story collection loading
+
 ## 3.0.2
 ### Fixed
 - GDrive load on story page

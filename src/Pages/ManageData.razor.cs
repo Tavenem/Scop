@@ -27,6 +27,7 @@ public partial class ManageData : IDisposable
         if (firstRender)
         {
             _dotNetObjectRef ??= DotNetObjectReference.Create(this);
+            DataService.DataLoaded += OnDataLoaded;
             DataService.GDriveSync = await JsInterop
                 .GetDriveSignedIn(_dotNetObjectRef);
             await DataService.LoadAsync();
@@ -72,7 +73,13 @@ public partial class ManageData : IDisposable
             DataService.GDriveSync = isSignedIn;
             if (isSignedIn)
             {
-                await DataService.SaveAsync();
+                _loading = true;
+                await InvokeAsync(StateHasChanged);
+
+                await DataService.LoadAsync(true);
+
+                _loading = false;
+                await InvokeAsync(StateHasChanged);
             }
             StateHasChanged();
         }
@@ -85,6 +92,12 @@ public partial class ManageData : IDisposable
         {
             await DataService.DeleteLocalAsync();
         }
+    }
+
+    private async void OnDataLoaded(object? sender, EventArgs e)
+    {
+        await DataService.SaveAsync();
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task OnDownloadDataAsync() => await JsInterop.DownloadText(
