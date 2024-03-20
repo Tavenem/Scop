@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.4
+### Fixed
+- Deserialization
+
 ## 3.0.3
 ### Fixed
 - Story collection loading
