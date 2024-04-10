@@ -589,6 +589,22 @@ public class DataService(
         }
     }
 
+    public async Task SaveGDriveAsync()
+    {
+        if (!GDriveSync)
+        {
+            return;
+        }
+
+        var serializedData = JsonSerializer.Serialize(
+            Data,
+            ScopSerializerOptions.Instance);
+
+        await jsInterop.SaveDriveData(serializedData);
+
+        LastGDriveSync = Data.LastSync;
+    }
+
     public async Task SaveLocalAsync()
     {
         if (!(Data.Ethnicities?.Count > 0
@@ -797,17 +813,6 @@ public class DataService(
         Genres = await GetDefaultGenresAsync();
         Plots = await GetDefaultPlotsAsync();
         Traits = await GetDefaultTraitsAsync();
-    }
-
-    private async Task SaveGDriveAsync()
-    {
-        var serializedData = JsonSerializer.Serialize(
-            Data,
-            ScopSerializerOptions.Instance);
-
-        await jsInterop.SaveDriveData(serializedData);
-
-        LastGDriveSync = Data.LastSync;
     }
 
     private void UpdateData()

@@ -114,6 +114,8 @@ public partial class ManageData : IDisposable
         }
     }
 
+    private async Task OnSaveGDriveAsync() => await DataService.SaveGDriveAsync();
+
     private async Task OnSyncLocalAsync() => await DataService.SaveLocalAsync();
 
     private async Task OnUnlinkGDrive()

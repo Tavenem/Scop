@@ -102,10 +102,23 @@ else
                 }
             </div>
             <div class="footer">
-                @if (DataService.GDriveSync) {
+                @if (DataService.GDriveSync)
+                {
                     <button class="btn danger ms-auto" @onclick="OnUnlinkGDrive">Sign out</button>
+                    if (!SignInFailure
+                        && DataService.GDriveSync
+                        && DataService.LastGDriveSync == DateTime.MinValue
+                        && (DataService.Data.Ethnicities?.Count > 0
+                            || DataService.Data.Genres?.Count > 0
+                            || DataService.Data.Plots?.Count > 0
+                            || DataService.Data.Stories.Count > 0
+                            || DataService.Data.Traits?.Count > 0))
+                    {
+                        <button class="btn primary ms-1" @onclick="OnSaveGDriveAsync">Save</button>
+                    }
                 }
-                else {
+                else
+                {
                     <button class="btn primary ms-auto" @onclick="OnLinkGDrive">Save</button>
                 }
             </div>
