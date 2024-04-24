@@ -36,6 +36,8 @@ public class DataService(
 
     public List<Plot> Plots { get; set; } = [];
 
+    public List<Trait> StoryTraits { get; set; } = [];
+
     public List<Trait> Traits { get; set; } = [];
 
     public event EventHandler? DataLoaded;
@@ -158,6 +160,42 @@ public class DataService(
         await SaveAsync();
     }
 
+    public async Task AddStoryTraitAsync(Trait value)
+    {
+        value.UserDefined = true;
+
+        Data.StoryTraits?.Remove(value);
+        (Data.StoryTraits ??= []).Add(value);
+
+        var index = StoryTraits.IndexOf(value);
+        if (index >= 0)
+        {
+            StoryTraits.RemoveAt(index);
+            StoryTraits.Insert(index, value);
+        }
+        else
+        {
+            StoryTraits.Add(value);
+        }
+
+        await SaveAsync();
+    }
+
+    public async Task AddStoryTraitAsync(Trait parent, string newValue)
+    {
+        if (string.IsNullOrEmpty(newValue))
+        {
+            return;
+        }
+
+        var top = GetNewTrait(parent, newValue);
+        if (Data.StoryTraits?.Any(x => x == top) != true)
+        {
+            (Data.StoryTraits ??= []).Add(top);
+        }
+        await SaveAsync();
+    }
+
     public async Task AddTraitAsync(Trait value)
     {
         value.UserDefined = true;
@@ -186,27 +224,7 @@ public class DataService(
             return;
         }
 
-        var hierarchy = new string[(parent.Hierarchy?.Length ?? 0) + 1];
-        if (parent.Hierarchy is not null)
-        {
-            Array.Copy(parent.Hierarchy, hierarchy, parent.Hierarchy.Length);
-        }
-        hierarchy[^1] = newValue;
-
-        var newTrait = new Trait
-        {
-            Hierarchy = hierarchy,
-            Parent = parent,
-            Name = newValue,
-            UserDefined = true,
-        };
-
-        (parent.Children ??= []).Add(newTrait);
-        var top = parent;
-        while (top.Parent is not null)
-        {
-            top = top.Parent;
-        }
+        var top = GetNewTrait(parent, newValue);
         if (Data.Traits?.Any(x => x == top) != true)
         {
             (Data.Traits ??= []).Add(top);
@@ -338,6 +356,48 @@ public class DataService(
         Data.Plots?.Remove(plot);
         plot.Name = newName;
         (Data.Plots ??= []).Add(plot);
+        await SaveAsync();
+    }
+
+    public async Task EditStoryTraitAsync(Trait trait)
+    {
+        var trimmed = trait.Name?.Trim();
+        if (string.IsNullOrEmpty(trimmed))
+        {
+            trimmed = trait.Hierarchy is null
+                ? "unknown trait"
+                : trait.Hierarchy[^1];
+        }
+        trait.Name = trimmed;
+
+        trait.UserDefined = true;
+
+        var top = trait;
+        while (trait.Parent is not null)
+        {
+            top = trait.Parent;
+        }
+
+        Data.StoryTraits?.Remove(top);
+        var index = Traits.IndexOf(top);
+
+        if (trait.Hierarchy?.Length > 0)
+        {
+            trait.Hierarchy[^1] = trait.Name;
+            trait.InitializeChildren();
+        }
+
+        (Data.StoryTraits ??= []).Add(top);
+        if (index >= 0)
+        {
+            StoryTraits.RemoveAt(index);
+            StoryTraits.Insert(index, top);
+        }
+        else
+        {
+            StoryTraits.Add(top);
+        }
+
         await SaveAsync();
     }
 
@@ -532,6 +592,44 @@ public class DataService(
         }
     }
 
+    public async Task RemoveStoryTraitAsync(Trait value)
+    {
+        var updated = false;
+        if (value.UserDefined)
+        {
+            updated = Data.StoryTraits?.Remove(value) == true;
+        }
+
+        var top = value;
+        while (top.Parent is not null)
+        {
+            top = top.Parent;
+        }
+
+        if (Data.StoryTraits is not null
+            && !top.HasUserDefined())
+        {
+            updated |= Data.StoryTraits.Remove(top);
+        }
+
+        if (value.UserDefined
+            && value.Parent is null
+            && StoryTraits.Remove(value))
+        {
+            var defaultList = await GetDefaultStoryTraitsAsync();
+            var index = defaultList.IndexOf(value);
+            if (index != -1)
+            {
+                StoryTraits.Insert(index, defaultList[index]);
+            }
+        }
+
+        if (updated)
+        {
+            await SaveAsync();
+        }
+    }
+
     public async Task RemoveTraitAsync(Trait value)
     {
         var updated = false;
@@ -576,6 +674,7 @@ public class DataService(
             || Data.Genres?.Count > 0
             || Data.Plots?.Count > 0
             || Data.Stories.Count > 0
+            || Data.StoryTraits?.Count > 0
             || Data.Traits?.Count > 0))
         {
             return;
@@ -611,6 +710,7 @@ public class DataService(
             || Data.Genres?.Count > 0
             || Data.Plots?.Count > 0
             || Data.Stories.Count > 0
+            || Data.StoryTraits?.Count > 0
             || Data.Traits?.Count > 0))
         {
             return;
@@ -639,6 +739,32 @@ public class DataService(
             }
         }
         catch { }
+    }
+
+    private static Trait GetNewTrait(Trait parent, string newValue)
+    {
+        var hierarchy = new string[(parent.Hierarchy?.Length ?? 0) + 1];
+        if (parent.Hierarchy is not null)
+        {
+            Array.Copy(parent.Hierarchy, hierarchy, parent.Hierarchy.Length);
+        }
+        hierarchy[^1] = newValue;
+
+        var newTrait = new Trait
+        {
+            Hierarchy = hierarchy,
+            Parent = parent,
+            Name = newValue,
+            UserDefined = true,
+        };
+
+        (parent.Children ??= []).Add(newTrait);
+        var top = parent;
+        while (top.Parent is not null)
+        {
+            top = top.Parent;
+        }
+        return top;
     }
 
     private async ValueTask AddNamesAsync(NameSet names, Ethnicity ethnicity)
@@ -679,6 +805,11 @@ public class DataService(
     private async Task<List<Plot>> GetDefaultPlotsAsync()
         => await httpClient
             .GetFromJsonAsync<List<Plot>>("./plots.json")
+            ?? [];
+
+    private async Task<List<Trait>> GetDefaultStoryTraitsAsync()
+        => await httpClient
+            .GetFromJsonAsync<List<Trait>>("./story_traits.json")
             ?? [];
 
     private async Task<List<Trait>> GetDefaultTraitsAsync()
@@ -812,6 +943,7 @@ public class DataService(
         Ethnicities = await GetDefaultEthnicitiesAsync();
         Genres = await GetDefaultGenresAsync();
         Plots = await GetDefaultPlotsAsync();
+        StoryTraits = await GetDefaultStoryTraitsAsync();
         Traits = await GetDefaultTraitsAsync();
     }
 
@@ -864,6 +996,23 @@ public class DataService(
                 else
                 {
                     Plots.Add(plot);
+                }
+            }
+        }
+
+        if (Data.StoryTraits?.Count > 0)
+        {
+            foreach (var trait in Data.StoryTraits)
+            {
+                var index = StoryTraits.IndexOf(trait);
+                if (index >= 0)
+                {
+                    StoryTraits.RemoveAt(index);
+                    StoryTraits.Insert(index, trait);
+                }
+                else
+                {
+                    StoryTraits.Add(trait);
                 }
             }
         }

@@ -1,12 +1,11 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Tavenem.Blazor.Framework;
 
 namespace Scop;
 
-public class Character : INote, IEquatable<Character>
+public class Character : TraitContainer, INote, IEquatable<Character>
 {
     public int? AgeYears { get; set; }
 
@@ -55,8 +54,6 @@ public class Character : INote, IEquatable<Character>
 
     [JsonIgnore] public string DisplayName => CharacterName ?? Name ?? Type;
 
-    [JsonIgnore] public string? DisplayTraits { get; set; }
-
     public List<string[]>? EthnicityPaths { get; set; }
 
     public string? Gender { get; set; }
@@ -97,8 +94,6 @@ public class Character : INote, IEquatable<Character>
     public List<string>? Surnames { get; set; }
 
     public string? Title { get; set; }
-
-    public List<string[]>? TraitPaths { get; set; }
 
     [JsonIgnore] public string Type => "Character";
 
@@ -468,12 +463,6 @@ public class Character : INote, IEquatable<Character>
         }
     }
 
-    public void AddTrait(string[] trait)
-    {
-        (TraitPaths ??= []).Add(trait);
-        SetDisplayTraits();
-    }
-
     public IEnumerable<Character> AllCharacters()
     {
         yield return this;
@@ -487,12 +476,6 @@ public class Character : INote, IEquatable<Character>
                 }
             }
         }
-    }
-
-    public void ClearTraits()
-    {
-        TraitPaths = null;
-        SetDisplayTraits();
     }
 
     /// <summary>
@@ -1156,9 +1139,6 @@ public class Character : INote, IEquatable<Character>
     public bool HasEthnicity(Ethnicity ethnicity) => ethnicity.Hierarchy is not null
         && EthnicityPaths?.Any(x => x.StartsWith(ethnicity.Hierarchy)) == true;
 
-    public bool HasTrait(Trait trait) => trait.Hierarchy is not null
-        && TraitPaths?.Any(x => x.StartsWith(trait.Hierarchy)) == true;
-
     public void Initialize()
     {
         if (Notes is not null)
@@ -1184,12 +1164,6 @@ public class Character : INote, IEquatable<Character>
                 child.LoadCharacters(story);
             }
         }
-    }
-
-    public void RemoveTrait(string[] trait)
-    {
-        TraitPaths?.RemoveAll(x => x.StartsWith(trait));
-        SetDisplayTraits();
     }
 
     public void SelectEthnicity(Ethnicity ethnicity, bool value)
@@ -1499,219 +1473,10 @@ public class Character : INote, IEquatable<Character>
         DisplayEthnicity = sb.ToString();
     }
 
-    public void SetDisplayTraits()
-    {
-        if (TraitPaths is null
-            || TraitPaths.Count == 0)
-        {
-            DisplayTraits = null;
-            return;
-        }
-
-        var traits = new List<Trait>();
-        foreach (var path in TraitPaths)
-        {
-            if (path.Length == 0)
-            {
-                continue;
-            }
-            var trait = traits
-                .Find(x => string.Equals(x.Name, path[0], StringComparison.OrdinalIgnoreCase));
-            if (trait is null)
-            {
-                trait = new()
-                {
-                    Name = path[0],
-                };
-                traits.Add(trait);
-            }
-            var parent = trait;
-            var i = 1;
-            while (path.Length > i)
-            {
-                parent.Children ??= [];
-                trait = parent.Children
-                    .Find(x => string.Equals(x.Name, path[i], StringComparison.OrdinalIgnoreCase));
-                if (trait is null)
-                {
-                    trait = new()
-                    {
-                        Name = path[i],
-                    };
-                    parent.Children.Add(trait);
-                }
-                i++;
-                parent = trait;
-            }
-        }
-
-        if (traits.Count == 0)
-        {
-            DisplayTraits = null;
-            return;
-        }
-
-        static void AppendTraitChildren(StringBuilder sb, List<Trait> traits)
-        {
-            sb.Append("<ul style=\"padding-inline-start:1rem\">");
-            for (var i = 0; i < traits.Count; i++)
-            {
-                sb.Append("<li>");
-                sb.Append(traits[i].Name);
-                var childSet = traits[i].Children;
-                while (childSet?.Count > 0)
-                {
-                    if (childSet.Count == 1)
-                    {
-                        sb.Append(": ")
-                            .Append(childSet[0].Name);
-                        childSet = childSet[0].Children;
-                    }
-                    else
-                    {
-                        AppendTraitChildren(sb, childSet!);
-                        break;
-                    }
-                }
-                sb.Append("</li>");
-            }
-            sb.Append("</ul>");
-        }
-
-        var sb = new StringBuilder();
-        AppendTraitChildren(sb, traits);
-        DisplayTraits = sb.ToString();
-    }
-
     public void SetEthnicities(List<string[]> ethnicities)
     {
         EthnicityPaths = ethnicities;
         SetDisplayEthnicity();
-    }
-
-    public string? ToContent()
-    {
-        var sb = new StringBuilder();
-
-        if (!string.IsNullOrEmpty(Title)
-            || Names?.Count > 0
-            || Surnames?.Count > 0
-            || !string.IsNullOrEmpty(Suffix))
-        {
-            sb.AppendLine("# Name");
-            BuildName(sb);
-        }
-
-        if (Birthdate.HasValue
-            || AgeYears.HasValue
-            || AgeMonths.HasValue
-            || AgeDays.HasValue)
-        {
-            if (sb.Length > 0)
-            {
-                sb.AppendLine();
-            }
-            if (Birthdate.HasValue)
-            {
-                sb.AppendLine("# Birthdate");
-                sb.AppendLine(Birthdate.Value.ToString("D", CultureInfo.CurrentCulture));
-            }
-            else
-            {
-                sb.AppendLine("# Age");
-                if (AgeYears > 0)
-                {
-                    sb.Append(AgeYears.Value);
-                    sb.Append(" years");
-                }
-                if (AgeMonths > 0 || (AgeYears > 0 && AgeDays > 0))
-                {
-                    sb.Append(AgeMonths ?? 0);
-                    sb.Append(" months");
-                }
-                if (AgeDays > 0)
-                {
-                    sb.Append(AgeDays ?? 0);
-                    sb.Append(" days");
-                }
-            }
-        }
-
-        if (!string.IsNullOrEmpty(Gender)
-            || Pronouns != Pronouns.Other)
-        {
-            if (sb.Length > 0)
-            {
-                sb.AppendLine();
-            }
-            sb.AppendLine("# Gender");
-            if (!string.IsNullOrEmpty(Gender))
-            {
-                sb.Append(Gender);
-                if (Pronouns != Pronouns.Other)
-                {
-                    sb.Append(" (");
-                    sb.Append(Pronouns.GetDescription());
-                    sb.AppendLine(" )");
-                }
-            }
-            else
-            {
-                sb.AppendLine(Pronouns.GetDescription());
-            }
-        }
-
-        if (EthnicityPaths?.Count > 0)
-        {
-            if (sb.Length > 0)
-            {
-                sb.AppendLine();
-            }
-            sb.AppendLine("# Ethnicity");
-            foreach (var path in EthnicityPaths)
-            {
-                sb.AppendJoin(": ", path);
-                sb.AppendLine();
-            }
-        }
-
-        if (TraitPaths?.Count > 0)
-        {
-            if (sb.Length > 0)
-            {
-                sb.AppendLine();
-            }
-            sb.AppendLine("# Traits");
-            foreach (var path in TraitPaths)
-            {
-                sb.AppendJoin(": ", path);
-                sb.AppendLine();
-            }
-        }
-
-        if (Relationships?.Count > 0)
-        {
-            if (sb.Length > 0)
-            {
-                sb.AppendLine();
-            }
-            sb.AppendLine("# Relationships");
-            foreach (var relationship in Relationships)
-            {
-                sb.Append(relationship.RelativeName ?? relationship.Relative?.CharacterName);
-                sb.Append(": ");
-                sb.Append(relationship.RelationshipName ?? relationship.Type);
-            }
-        }
-
-        if (sb.Length > 0)
-        {
-            sb.AppendLine();
-        }
-        sb.Append(Content);
-        return sb.Length > 0
-            ? sb.ToString()
-            : null;
     }
 
     /// <summary>Returns a string that represents the current object.</summary>

@@ -33,28 +33,6 @@ public partial class WritingPromptEditor
 
     private string? EditedTheme { get; set; }
 
-    private bool IsFeaturesOpen { get; set; }
-
-    private bool IsGenresOpen { get; set; }
-
-    private bool IsPlotsOpen { get; set; }
-
-    private bool IsProtagonistsOpen { get; set; }
-
-    private bool IsProtagonistTraitsOpen { get; set; }
-
-    private bool IsSecondaryCharactersOpen { get; set; }
-
-    private bool IsSecondaryCharacterTraitsOpen { get; set; }
-
-    private bool IsSettingsOpen { get; set; }
-
-    private bool IsSubgenresOpen { get; set; }
-
-    private bool IsSubjectsOpen { get; set; }
-
-    private bool IsThemesOpen { get; set; }
-
     private string? NewFeature { get; set; }
 
     private string? NewGenre { get; set; }

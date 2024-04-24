@@ -762,7 +762,7 @@
       {
         "name": "Height",
         "canChooseNone": true,
-        "choiceType": 3,
+        "choiceType": 2,
         "noneWeight": 3,
         "children": [
           {

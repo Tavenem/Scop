@@ -71,12 +71,19 @@ public class TraitModifier
 
     public double? Weight { get; set; }
 
-    public bool Applies(Character character)
+    public bool Applies(TraitContainer container)
     {
         if (Gender != NameGender.None)
         {
-            var gender = character.GetNameGender();
-            if ((gender & Gender) == NameGender.None)
+            if (container is Character character)
+            {
+                var gender = character.GetNameGender();
+                if ((gender & Gender) == NameGender.None)
+                {
+                    return false;
+                }
+            }
+            else
             {
                 return false;
             }
@@ -84,27 +91,34 @@ public class TraitModifier
 
         if (MinAge > 0 || MaxAge.HasValue)
         {
-            var age = character.DisplayAgeYears;
-            if (!age.HasValue)
+            if (container is Character character)
             {
-                return false;
-            }
-            if (MaxAge.HasValue)
-            {
-                if (MinAge <= MaxAge)
+                var age = character.DisplayAgeYears;
+                if (!age.HasValue)
                 {
-                    if (age < MinAge
-                        || age > MaxAge)
+                    return false;
+                }
+                if (MaxAge.HasValue)
+                {
+                    if (MinAge <= MaxAge)
+                    {
+                        if (age < MinAge
+                            || age > MaxAge)
+                        {
+                            return false;
+                        }
+                    }
+                    else if (age < MinAge && age > MaxAge)
                     {
                         return false;
                     }
                 }
-                else if (age < MinAge && age > MaxAge)
+                else if (age < MinAge)
                 {
                     return false;
                 }
             }
-            else if (age < MinAge)
+            else
             {
                 return false;
             }
@@ -112,24 +126,31 @@ public class TraitModifier
 
         if (Ethnicities?.Count > 0)
         {
-            if (character.EthnicityPaths is null)
+            if (container is Character character)
             {
-                return false;
-            }
-
-            foreach (var ethnicity in Ethnicities)
-            {
-                var path = ethnicity.Split(';');
-                if (!character.EthnicityPaths.Any(x => x.StartsWith(path)))
+                if (character.EthnicityPaths is null)
                 {
                     return false;
                 }
+
+                foreach (var ethnicity in Ethnicities)
+                {
+                    var path = ethnicity.Split(';');
+                    if (!character.EthnicityPaths.Any(x => x.StartsWith(path)))
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                return false;
             }
         }
 
         if (TargetPaths?.Count > 0)
         {
-            if (character.TraitPaths is null)
+            if (container.TraitPaths is null)
             {
                 return false;
             }
@@ -137,7 +158,7 @@ public class TraitModifier
             foreach (var traitPath in TargetPaths)
             {
                 var path = traitPath.Split(';');
-                if (!character.TraitPaths.Any(x => x.StartsWith(path)))
+                if (!container.TraitPaths.Any(x => x.StartsWith(path)))
                 {
                     return false;
                 }

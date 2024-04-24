@@ -10,6 +10,12 @@ namespace Scop.Pages;
 
 public partial class StoryPage : IDisposable
 {
+    private static readonly List<string> _articles =
+    [
+        "a",
+        "an",
+        "the",
+    ];
     private static readonly List<string> _storyIcons =
     [
         "note",
@@ -38,6 +44,8 @@ public partial class StoryPage : IDisposable
     private bool IsTimelineSelected { get; set; }
 
     [Inject, NotNull] private ScopJsInterop? JsInterop { get; set; }
+
+    private string? NewTraitValue { get; set; }
 
     public DateTimeOffset? SelectedBirthdate { get; set; }
 
@@ -238,6 +246,9 @@ public partial class StoryPage : IDisposable
         await DataService.SaveAsync();
     }
 
+    private Task OnDeleteTraitAsync(Trait trait)
+        => DataService.RemoveStoryTraitAsync(trait);
+
     private Task OnDropAsync(DropEventArgs e)
         => OnDropAsync(e, null);
 
@@ -335,6 +346,16 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
+    private async Task OnEditTraitAsync(Trait trait)
+    {
+        await DialogService.Show<TraitDialog>("Trait", new DialogParameters
+        {
+            { nameof(TraitDialog.Trait), trait },
+        }).Result;
+
+        await DataService.EditStoryTraitAsync(trait);
+    }
+
     private async Task OnNewNoteOfTypeAsync(int index)
     {
         if (_story is null)
@@ -360,6 +381,58 @@ public partial class StoryPage : IDisposable
         SelectedNote = newNote;
         EditorContent = null;
         await DataService.SaveAsync();
+    }
+
+    private async Task OnNewTraitAsync(string? newValue)
+    {
+        NewTraitValue = newValue;
+        if (_story is null
+            || string.IsNullOrEmpty(NewTraitValue))
+        {
+            return;
+        }
+
+        var trimmed = NewTraitValue.Trim();
+        var newName = trimmed;
+        var i = 0;
+        while (DataService
+            .StoryTraits
+            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)))
+        {
+            newName = $"{trimmed} ({i++})";
+        }
+
+        var newTrait = new Trait
+        {
+            Hierarchy = [newName],
+            Name = newName,
+            UserDefined = true,
+        };
+
+        NewTraitValue = string.Empty;
+        await DataService.AddStoryTraitAsync(newTrait);
+    }
+
+    private async Task OnNewTraitAsync(Trait parent, string? newValue)
+    {
+        parent.NewTraitValue = newValue;
+        if (string.IsNullOrEmpty(parent.NewTraitValue))
+        {
+            return;
+        }
+
+        var trimmed = parent.NewTraitValue.Trim();
+        var newName = trimmed;
+        var i = 0;
+        while (parent
+            .Children?
+            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)) == true)
+        {
+            newName = $"{trimmed} ({i++})";
+        }
+
+        parent.NewTraitValue = string.Empty;
+        await DataService.AddStoryTraitAsync(parent, newName);
     }
 
     private async Task OnNowChangeAsync(DateTimeOffset? old)
@@ -479,6 +552,24 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
+    private async Task OnRandomizeStoryTraitsAsync(bool reset = true)
+    {
+        if (_story is null)
+        {
+            return;
+        }
+
+        if (reset)
+        {
+            _story.ClearTraits();
+        }
+        foreach (var trait in DataService.StoryTraits)
+        {
+            trait.Randomize(_story);
+        }
+        await DataService.SaveAsync();
+    }
+
     private async Task OnSelectChildNoteAsync(INote? note)
     {
         if (note?.Equals(SelectedNote) != false)
@@ -538,6 +629,15 @@ public partial class StoryPage : IDisposable
         TopSelectedNote = null;
     }
 
+    private async Task OnTraitSelectAsync(bool value, Trait? trait)
+    {
+        if (_story is not null && trait is not null)
+        {
+            trait.Select(value, _story);
+            await DataService.SaveAsync();
+        }
+    }
+
     private async Task OnWritingPromptAsync()
     {
         if (_story is null)
@@ -545,23 +645,149 @@ public partial class StoryPage : IDisposable
             return;
         }
 
-        var result = await DialogService.Show<WritingPromptDialog>("Writing Prompt").Result;
+        var result = await DialogService.Show<WritingPromptDialog>(
+            "Writing Prompt",
+            new DialogParameters
+            {
+                { nameof(WritingPromptDialog.WritingPrompt), _story.WritingPrompt ?? new() },
+            }).Result;
         if (result.Choice != DialogChoice.Ok
             || result.Data is not WritingPrompt prompt)
         {
             return;
         }
 
-        var blankNote = _story.Notes?.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Content));
-        if (blankNote is null)
+        _story.WritingPrompt = prompt;
+
+        if (!string.IsNullOrEmpty(prompt.Genre))
         {
-            blankNote = new Note();
-            (_story.Notes ??= []).Add(blankNote);
+            var match = DataService.StoryTraits.Find(x => x.Name?.Equals("Genre", StringComparison.OrdinalIgnoreCase) == true);
+            match = match?.Children?.Find(x => x.Name?.Equals(prompt.Genre, StringComparison.OrdinalIgnoreCase) == true);
+            if (match is not null)
+            {
+                match.Select(true, _story);
+                if (!string.IsNullOrEmpty(prompt.Subgenre))
+                {
+                    match = match.Children?.Find(x => x.Name?.Equals("Subgenre", StringComparison.OrdinalIgnoreCase) == true);
+                    if (match?.Children is not null)
+                    {
+                        var subgenre = prompt.Subgenre;
+                        foreach (var article in _articles)
+                        {
+                            if (subgenre.StartsWith(article, StringComparison.OrdinalIgnoreCase))
+                            {
+                                subgenre = subgenre[article.Length..].TrimStart();
+                                break;
+                            }
+                        }
+                        match = match.Children.Find(x => x.Name?.Equals(subgenre, StringComparison.OrdinalIgnoreCase) == true);
+                        match?.Select(true, _story);
+                    }
+                }
+            }
+        }
+        if (prompt.Settings?.Count > 0)
+        {
+            var settingTrait = DataService.StoryTraits.Find(x => x.Name?.Equals("Setting", StringComparison.OrdinalIgnoreCase) == true);
+            if (settingTrait?.Children is not null)
+            {
+                foreach (var setting in prompt.Settings)
+                {
+                    var match = settingTrait.Children.Find(x => x.Name?.Equals(setting, StringComparison.OrdinalIgnoreCase) == true);
+                    if (match is null)
+                    {
+                        var settingTerms = setting.Split(' ');
+                        (Trait? trait, int macthes, int length) bestMatch = (null, 0, 0);
+                        foreach (var trait in settingTrait.Children)
+                        {
+                            if (string.IsNullOrEmpty(trait.Name))
+                            {
+                                continue;
+                            }
+                            var matches = trait
+                                .Name
+                                .Split(' ')
+                                .Except(_articles)
+                                .Intersect(settingTerms, StringComparer.OrdinalIgnoreCase)
+                                .ToList();
+                            if (matches.Count == 0 || matches.Count < bestMatch.macthes)
+                            {
+                                continue;
+                            }
+                            var maxLength = matches.MaxBy(x => x.Length)!.Length;
+                            if (matches.Count == bestMatch.macthes
+                                && maxLength < bestMatch.length)
+                            {
+                                continue;
+                            }
+                            bestMatch = (trait, matches.Count, maxLength);
+                        }
+                        if (bestMatch.trait is not null)
+                        {
+                            match = bestMatch.trait;
+                        }
+                    }
+                    match?.Select(true, _story);
+                }
+            }
+        }
+        if (prompt.Themes?.Count > 0)
+        {
+            var themesTrait = DataService.StoryTraits.Find(x => x.Name?.Equals("Themes", StringComparison.OrdinalIgnoreCase) == true);
+            if (themesTrait?.Children is not null)
+            {
+                foreach (var theme in prompt.Themes)
+                {
+                    var match = themesTrait.Children.Find(x => x.Name?.Equals(theme, StringComparison.OrdinalIgnoreCase) == true);
+                    if (match is null)
+                    {
+                        var themeTerms = theme.Split(' ');
+                        (Trait? trait, int macthes, int length) bestMatch = (null, 0, 0);
+                        foreach (var trait in themesTrait.Children)
+                        {
+                            if (string.IsNullOrEmpty(trait.Name))
+                            {
+                                continue;
+                            }
+                            var matches = trait
+                                .Name
+                                .Split(' ')
+                                .Except(_articles)
+                                .Intersect(themeTerms, StringComparer.OrdinalIgnoreCase)
+                                .ToList();
+                            if (matches.Count == 0 || matches.Count < bestMatch.macthes)
+                            {
+                                continue;
+                            }
+                            var maxLength = matches.MaxBy(x => x.Length)!.Length;
+                            if (matches.Count == bestMatch.macthes
+                                && maxLength < bestMatch.length)
+                            {
+                                continue;
+                            }
+                            bestMatch = (trait, matches.Count, maxLength);
+                        }
+                        if (bestMatch.trait is not null)
+                        {
+                            match = bestMatch.trait;
+                        }
+                    }
+                    match?.Select(true, _story);
+                }
+            }
         }
 
-        if (string.IsNullOrWhiteSpace(blankNote.Name))
+        var note = _story.Notes?.FirstOrDefault(x => x.Name?.Equals("Writing Prompt", StringComparison.Ordinal) == true)
+            ?? _story.Notes?.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Content));
+        if (note is null)
         {
-            blankNote.Name = "Writing Prompt";
+            note = new Note();
+            (_story.Notes ??= []).Insert(0, note);
+        }
+
+        if (string.IsNullOrWhiteSpace(note.Name))
+        {
+            note.Name = "Writing Prompt";
         }
 
         var promptContent = new StringBuilder();
@@ -816,18 +1042,18 @@ public partial class StoryPage : IDisposable
             }
         }
 
-        blankNote.Content = promptContent.ToString();
+        note.Content = promptContent.ToString();
 
         await DataService.SaveAsync();
 
-        if (blankNote.Parent is null)
+        if (note.Parent is null)
         {
-            TopSelectedNote = blankNote;
+            TopSelectedNote = note;
             await OnSelectedNoteChangedAsync();
         }
         else
         {
-            await OnSelectChildNoteAsync(blankNote);
+            await OnSelectChildNoteAsync(note);
         }
     }
 }

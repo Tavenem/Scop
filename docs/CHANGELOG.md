@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.0
+### Added
+- Story traits
+
 ## 3.0.4
 ### Fixed
 - Deserialization

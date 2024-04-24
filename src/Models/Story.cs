@@ -1,6 +1,8 @@
-﻿namespace Scop;
+﻿using Scop.Models;
 
-public class Story
+namespace Scop;
+
+public class Story : TraitContainer
 {
     public List<TimelineCategory>? EventCategories { get; set; }
 
@@ -17,6 +19,8 @@ public class Story
     public List<INote>? Notes { get; set; }
 
     public DateTimeOffset? Now { get; set; }
+
+    public WritingPrompt? WritingPrompt { get; set; }
 
     public IEnumerable<Character> AllCharacters()
     {

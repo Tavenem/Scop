@@ -8,6 +8,8 @@ namespace Scop.Shared;
 
 public partial class WritingPromptDialog
 {
+    [Parameter] public WritingPrompt WritingPrompt { get; set; } = new();
+
     [Inject, NotNull] private DataService? DataService { get; set; }
 
     [CascadingParameter] private DialogInstance? Dialog { get; set; }
@@ -60,8 +62,6 @@ public partial class WritingPromptDialog
     private bool IsSubjectsLocked { get; set; }
 
     private bool IsThemesLocked { get; set; }
-
-    private WritingPrompt WritingPrompt { get; set; } = new();
 
     private SecondaryCharacter? GetRandomSecondaryCharacter(bool unique = false)
     {

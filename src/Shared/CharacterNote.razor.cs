@@ -21,8 +21,6 @@ public partial class CharacterNote
 
     [Inject, NotNull] private DialogService? DialogService { get; set; }
 
-    private bool EthnicitiesVisible { get; set; }
-
     private string? NewCharacterName { get; set; }
 
     private string? NewCharacterSurname { get; set; }
@@ -30,8 +28,6 @@ public partial class CharacterNote
     private string? NewEthnicityValue { get; set; }
 
     private string? NewTraitValue { get; set; }
-
-    private bool TraitsVisible { get; set; }
 
     private static Task<IEnumerable<KeyValuePair<string, object>>> GetGenders(string? value)
     {

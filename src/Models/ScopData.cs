@@ -14,5 +14,7 @@ public class ScopData
 
     public List<Story> Stories { get; set; } = [];
 
+    public HashSet<Trait>? StoryTraits { get; set; }
+
     public HashSet<Trait>? Traits { get; set; }
 }

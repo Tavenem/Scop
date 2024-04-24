@@ -1,0 +1,512 @@
+[
+  {
+    "name": "Genre",
+    "choiceType": 2,
+    "children": [
+      {
+        "name": "Adventure",
+        "children": [
+          {
+            "name": "Subgenre",
+            "choiceType": 2,
+            "children": [
+              {
+                "name": "Epic"
+              },
+              {
+                "name": "Lost world"
+              },
+              {
+                "name": "Nautical adventure"
+              },
+              {
+                "name": "Picaresque"
+              },
+              {
+                "name": "Robinsonade"
+              },
+              {
+                "name": "Western adventure"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "drama",
+        "children": [
+          {
+            "name": "Subgenre",
+            "choiceType": 2,
+            "children": [
+              {
+                "name": "Literary fiction"
+              },
+              {
+                "name": "Satire"
+              },
+              {
+                "name": "Anthology"
+              },
+              {
+                "name": "Comedy-drama"
+              },
+              {
+                "name": "Family saga"
+              },
+              {
+                "name": "Historical fiction"
+              },
+              {
+                "name": "Bildungsroman"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fantasy",
+        "children": [
+          {
+            "name": "Subgenre",
+            "choiceType": 2,
+            "children": [
+              {
+                "name": "Dying earth fantasy"
+              },
+              {
+                "name": "Heroic fantasy"
+              },
+              {
+                "name": "Historical fantasy"
+              },
+              {
+                "name": "Medieval fantasy"
+              },
+              {
+                "name": "Political fantasy"
+              },
+              {
+                "name": "Sword and sorcery"
+              },
+              {
+                "name": "Urban fantasy"
+              },
+              {
+                "name": "Comic fantasy"
+              },
+              {
+                "name": "Epic fantasy"
+              },
+              {
+                "name": "Dark fantasy"
+              },
+              {
+                "name": "Grimdark fantasy"
+              },
+              {
+                "name": "Low fantasy"
+              },
+              {
+                "name": "Military fantasy"
+              },
+              {
+                "name": "Magical realism"
+              },
+              {
+                "name": "Gothic horror"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mystery",
+        "children": [
+          {
+            "name": "Subgenre",
+            "choiceType": 2,
+            "children": [
+              {
+                "name": "Hardboiled PI"
+              },
+              {
+                "name": "Noir"
+              },
+              {
+                "name": "Procedural"
+              },
+              {
+                "name": "Spy"
+              },
+              {
+                "name": "Thriller"
+              },
+              {
+                "name": "Whodunit"
+              },
+              {
+                "name": "Historical mystery"
+              },
+              {
+                "name": "Suspense"
+              },
+              {
+                "name": "Occult detective"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Romance",
+        "children": [
+          {
+            "name": "Subgenre",
+            "choiceType": 2,
+            "children": [
+              {
+                "name": "Romance-tinged"
+              },
+              {
+                "name": "Contemporary romance"
+              },
+              {
+                "name": "Erotic romance"
+              },
+              {
+                "name": "Paranormal romance"
+              },
+              {
+                "name": "Romantic suspense"
+              },
+              {
+                "name": "Comedy of manners"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Science fiction",
+        "children": [
+          {
+            "name": "Subgenre",
+            "choiceType": 2,
+            "children": [
+              {
+                "name": "Hard science fiction"
+              },
+              {
+                "name": "Soft science fiction"
+              },
+              {
+                "name": "Military science fiction"
+              },
+              {
+                "name": "Robot fiction"
+              },
+              {
+                "name": "Space opera"
+              },
+              {
+                "name": "Steampunk"
+              },
+              {
+                "name": "Cyberpunk"
+              },
+              {
+                "name": "Biopunk"
+              },
+              {
+                "name": "Apocalyptic"
+              },
+              {
+                "name": "Horror"
+              },
+              {
+                "name": "Post-apocalyptic"
+              },
+              {
+                "name": "Planetary romance"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Setting",
+    "choiceType": 3,
+    "children": [
+      { "name": "a beach" },
+      { "name": "a forgotten island" },
+      { "name": "a dusty road" },
+      { "name": "a dank prison" },
+      { "name": "a raging river" },
+      { "name": "a bustling market" },
+      { "name": "a blistering desert" },
+      { "name": "a city square" },
+      { "name": "an ancient ruins" },
+      { "name": "a laboratory" },
+      { "name": "a casino" },
+      { "name": "a ship" },
+      { "name": "a brothel" },
+      { "name": "a pub" },
+      { "name": "a museum" },
+      { "name": "a waterfall" },
+      { "name": "catacombs" },
+      { "name": "a library" },
+      { "name": "a hospital" },
+      { "name": "a yacht" },
+      { "name": "a nightclub" },
+      { "name": "a café" },
+      { "name": "a butcher shop" },
+      { "name": "a parkour academy" },
+      { "name": "a monastary" },
+      { "name": "a train" },
+      { "name": "a hookah lounge" },
+      { "name": "a waiting room" },
+      { "name": "a spa" },
+      { "name": "a taxi" },
+      { "name": "a botanical garden" },
+      { "name": "a temple" },
+      { "name": "a manor" },
+      { "name": "a ski chalet" },
+      { "name": "the Grand Canyon" },
+      { "name": "a balcony" },
+      { "name": "the suburbs" },
+      { "name": "a gas station" },
+      { "name": "a cabin" },
+      { "name": "a summer house" },
+      { "name": "a mosque" },
+      { "name": "a local festival" },
+      { "name": "an office" },
+      { "name": "a restaurant" },
+      { "name": "an abandoned shed" },
+      { "name": "the woods" },
+      { "name": "an alley" },
+      { "name": "a graveyard" },
+      { "name": "a campground" },
+      { "name": "a bar" },
+      { "name": "a college campus" },
+      { "name": "a protest" },
+      { "name": "a drive-through" },
+      { "name": "under a bridge" },
+      { "name": "a forest" },
+      { "name": "a castle" },
+      { "name": "an abandoned coliseum" },
+      { "name": "a humble cottage" },
+      { "name": "a battlefield" },
+      { "name": "a beer cellar" },
+      { "name": "the stables" },
+      { "name": "a tower" },
+      { "name": "a deserted fort" },
+      { "name": "a dark cave" },
+      { "name": "a busy tavern" },
+      { "name": "the royal court" },
+      { "name": "a barracks" },
+      { "name": "an old inn" },
+      { "name": "a belltower" },
+      { "name": "a peaceful glade" },
+      { "name": "an apothecary" },
+      { "name": "a quiet residential district" },
+      { "name": "a cathedral" },
+      { "name": "a bank" },
+      { "name": "a hotel" },
+      { "name": "a cruise liner" },
+      { "name": "a beach house" },
+      { "name": "a football match" },
+      { "name": "a fun house" },
+      { "name": "a baseball stadium" },
+      { "name": "a farmhouse" },
+      { "name": "a ski resort" },
+      { "name": "a penitentiary" },
+      { "name": "a ranch" },
+      { "name": "a patisserie" },
+      { "name": "a skyscraper" },
+      { "name": "a car park" },
+      { "name": "a laundromat" },
+      { "name": "an animal shelter" },
+      { "name": "a fairground" },
+      { "name": "a courtroom" },
+      { "name": "a gym" },
+      { "name": "a yard sale" },
+      { "name": "a coffee shop" },
+      { "name": "an airport" },
+      { "name": "a bookshop" },
+      { "name": "a mall" },
+      { "name": "a convention" },
+      { "name": "a flower shop" },
+      { "name": "an engine room" },
+      { "name": "a dream" },
+      { "name": "a space station" },
+      { "name": "a new colony" },
+      { "name": "a moon base" },
+      { "name": "a meteorite" },
+      { "name": "an engineering workshop" },
+      { "name": "a greenhouse" },
+      { "name": "a nuclear submarine" },
+      { "name": "an alien planet" },
+      { "name": "a black hole" },
+      { "name": "a void" },
+      { "name": "limbo" }
+    ]
+  },
+  {
+    "name": "Themes",
+    "choiceType": 3,
+    "children": [
+      { "name": "coming of age" },
+      { "name": "finding courage again" },
+      { "name": "the temptation of power" },
+      { "name": "taking risks again" },
+      { "name": "unlikely friendships" },
+      { "name": "good versus evil" },
+      { "name": "companionship" },
+      { "name": "learning from previous mistakes" },
+      { "name": "an impossible quest" },
+      { "name": "facing reality" },
+      { "name": "the price of freedom" },
+      { "name": "defying destiny" },
+      { "name": "found families" },
+      { "name": "the meaning of home" },
+      { "name": "redemption" },
+      { "name": "the weight of heritage" },
+      { "name": "a descent into madness" },
+      { "name": "making peace with the world" },
+      { "name": "change versus tradition" },
+      { "name": "broken dreams" },
+      { "name": "finding justice" },
+      { "name": "the futility of ambition" },
+      { "name": "vengeance" },
+      { "name": "religion and power" },
+      { "name": "the bonds of loyalty" },
+      { "name": "a search for identity" },
+      { "name": "personhood" },
+      { "name": "transformation" },
+      { "name": "re-creating memory" },
+      { "name": "hubris" },
+      { "name": "standing up for what is right" },
+      { "name": "the nature of loneliness" },
+      { "name": "religion and moral truth" },
+      { "name": "believing in oneself" },
+      { "name": "the dangers of ignorance" },
+      { "name": "the loss of innocence" },
+      { "name": "corruption" },
+      { "name": "the dangers of conformity" },
+      { "name": "non-conformity" },
+      { "name": "mortality" },
+      { "name": "displacement" },
+      { "name": "the American dream" },
+      { "name": "the evils of racism" },
+      { "name": "overcoming insecurities" },
+      { "name": "fate and free will" },
+      { "name": "fear of failure" },
+      { "name": "battling prejudice" },
+      { "name": "struggling to live up to expectations" },
+      { "name": "the transience of youth" },
+      { "name": "overcoming guilt" },
+      { "name": "second chances" },
+      { "name": "the cost of power" },
+      { "name": "growing up" },
+      { "name": "rationalism versus romanticism" },
+      { "name": "the nature of obsession" },
+      { "name": "love and loss" },
+      { "name": "the unreliability of truth" },
+      { "name": "honor and integrity" },
+      { "name": "overcoming adversity" },
+      { "name": "mental health" },
+      { "name": "greed" },
+      { "name": "a family in crisis" },
+      { "name": "the death of a marriage" },
+      { "name": "a relationship in decline" },
+      { "name": "homelessness" },
+      { "name": "overthrowing the patriarchy" },
+      { "name": "toppling the establishment" },
+      { "name": "a country in crisis" },
+      { "name": "the downfall of an empire" },
+      { "name": "the evils of avarice" },
+      { "name": "regret" },
+      { "name": "a decades-old cold case" },
+      { "name": "a serial killer on the loose again" },
+      { "name": "crooked cops" },
+      { "name": "the mafia" },
+      { "name": "blackmail" },
+      { "name": "the depths of remorse" },
+      { "name": "atonement" },
+      { "name": "restitution" },
+      { "name": "double identities" },
+      { "name": "white-collar crime" },
+      { "name": "blue-collar crime" },
+      { "name": "the underbelly of society" },
+      { "name": "drug trafficking" },
+      { "name": "an arranged marriage" },
+      { "name": "a marriage of convenience" },
+      { "name": "a fake relationship" },
+      { "name": "forbidden love" },
+      { "name": "enemies becoming lovers" },
+      { "name": "serendipity" },
+      { "name": "friends becoming lovers" },
+      { "name": "change" },
+      { "name": "commitment" },
+      { "name": "how all's fair in love and war" },
+      { "name": "the complications of a secret relationship" },
+      { "name": "the validity of first impressions" },
+      { "name": "the dangers of jealousy" },
+      { "name": "accidental love" },
+      { "name": "hurt and comfort" },
+      { "name": "unrequited love" },
+      { "name": "loss" },
+      { "name": "reincarnation" },
+      { "name": "compromise" },
+      { "name": "taking responsibility" },
+      { "name": "letting go of the past" },
+      { "name": "the perils of pleasure" },
+      { "name": "the strength of a vow" },
+      { "name": "standing up for oneself" },
+      { "name": "conquering a fear of intimacy" },
+      { "name": "embracing imperfections" },
+      { "name": "hoping again" },
+      { "name": "history repeating itself" },
+      { "name": "revenge" },
+      { "name": "the pitfalls of addiction" },
+      { "name": "the slow burn" },
+      { "name": "getting the timing right" },
+      { "name": "power dynamics" },
+      { "name": "giving into temptation" },
+      { "name": "empowerment" },
+      { "name": "overcoming familial pressure" },
+      { "name": "fear of abandonment" },
+      { "name": "overcoming opposing backgrounds" },
+      { "name": "opposites attracting" },
+      { "name": "fatal attraction" },
+      { "name": "adultery" },
+      { "name": "how beauty is in the eye of the beholder" },
+      { "name": "learning to accept differences" },
+      { "name": "class differences" },
+      { "name": "belonging" },
+      { "name": "the hypocrisy of war" },
+      { "name": "the illusion of free will" },
+      { "name": "the individual versus collective identity" },
+      { "name": "overcoming totalitarianism" },
+      { "name": "psychological manipulation" },
+      { "name": "the control of information" },
+      { "name": "the ethical limits of technology" },
+      { "name": "resistance and revolution" },
+      { "name": "a fight for independence" },
+      { "name": "the dangers of modernization" },
+      { "name": "the definition of evolution" },
+      { "name": "mind-swapping" },
+      { "name": "teleportation" },
+      { "name": "the sins of colonialism" },
+      { "name": "the exploration of space" },
+      { "name": "the folly of eugenics" },
+      { "name": "confronting fascism" },
+      { "name": "what it means to be human" },
+      { "name": "pacifism" },
+      { "name": "rebellion against authority" }
+    ]
+  }
+]

@@ -161,170 +161,159 @@
                 }
             </Select>
         </Collapse>
-        <Collapse Title="@($"Ethnicity{Character.DisplayEthnicity}")"
-                  IsOpenChanged="@(v => EthnicitiesVisible = v)"
-                  BodyClass="align-items-stretch">
-            @if (EthnicitiesVisible)
-            {
-                <div class="d-flex gap-2">
-                    @if (Character.RelationshipMap?.Count > 0) {
-                        <button class="btn btn-icon"
-                                @onclick="@(_ => OnCopyCharacterEthnicitiesAsync(Character))">
-                            <tf-icon>content_copy</tf-icon>
-                            <Tooltip Delay="750">Inherit from relative(s)</Tooltip>
-                        </button>
-                    }
+        <Collapse Title="@($"Ethnicity{Character.DisplayEthnicity}")" BodyClass="align-items-stretch">
+            <div class="d-flex gap-2">
+                @if (Character.RelationshipMap?.Count > 0) {
                     <button class="btn btn-icon"
-                            @onclick="@(_ => OnRandomizeCharacterEthnicitiesAsync(Character))">
-                        <tf-icon>casino</tf-icon>
-                        <Tooltip Delay="750">Randomize ethnicity</Tooltip>
+                            @onclick="@(_ => OnCopyCharacterEthnicitiesAsync(Character))">
+                        <tf-icon>content_copy</tf-icon>
+                        <Tooltip Delay="750">Inherit from relative(s)</Tooltip>
                     </button>
-                </div>
-                <ElementList Items="DataService.Ethnicities"
-                             ItemIsCollapsible="@(x => x.Types?.Count > 0)">
-                    <Template>
-                        <div class="d-inline-flex align-items-center flex-grow-1">
-                            <Checkbox Class="dense"
-                                      TValue="bool"
-                                      Value="Character.HasEthnicity(context)"
-                                      ValueChanged="@(v => OnEthnicitySelectAsync(v, context, Character))" />
-                            @if (context.IsEditing)
-                            {
-                                <TextInput Value="@context.Type"
-                                           ValueChanged="@(v => OnEditEthnicityAsync(context, v))"
-                                           Placeholder="Type" />
-                            }
-                            else
-                            {
-                                <span class="me-auto">@context.Type.ToTitle()</span>
-                                @if (context.Types?.Count > 0) {
-                                    <button class="btn btn-icon small"
-                                            @onclick="@(_ => OnAddRandomEthnicityAsync(context, Character))">
-                                        <tf-icon>casino</tf-icon>
-                                        <Tooltip Delay="750">Select random child</Tooltip>
-                                    </button>
-                                }
-                                @if (context.UserDefined) {
-                                    <button class="btn btn-icon small"
-                                            @onclick="@(_ => context.IsEditing = true)">
-                                        <tf-icon>edit</tf-icon>
-                                        <Tooltip Delay="750">Edit</Tooltip>
-                                    </button>
-                                    <button class="btn btn-icon small"
-                                            @onclick="@(_ => OnDeleteEthnicityAsync(context))">
-                                        <tf-icon>delete</tf-icon>
-                                        <Tooltip Delay="750">Delete</Tooltip>
-                                    </button>
-                                }
-                            }
-                        </div>
-                    </Template>
-                    <CollapsibleTemplate>
-                        <ElementList Items="context.Types"
-                                     ItemIsCollapsible="@(x => x.Types?.Count > 0)">
-                            <FollowingContent>
-                                <div role="listitem"
-                                     class="clickable no-drag"
-                                     draggable="false">
-                                    <tf-icon class="me-2">note_add</tf-icon>
-                                    <TextInput Class="dense outlined flex-grow-1"
-                                               Value="@context.NewEthnicityValue"
-                                               ValueChanged="@(v => OnNewEthnicityAsync(context, v))"
-                                               Placeholder="New Ethnicity" />
-                                </div>
-                            </FollowingContent>
-                        </ElementList>
-                    </CollapsibleTemplate>
-                    <FollowingContent>
-                        <div role="listitem"
-                             class="clickable no-drag"
-                             draggable="false">
-                            <tf-icon class="me-2">note_add</tf-icon>
-                            <TextInput Class="dense outlined flex-grow-1"
-                                       Value="@NewEthnicityValue"
-                                       ValueChanged="OnNewEthnicityAsync"
-                                       Placeholder="New Ethnicity" />
-                        </div>
-                    </FollowingContent>
-                </ElementList>
-            }
-        </Collapse>
-        <Collapse Title="Traits"
-                  IsOpenChanged="@(v => TraitsVisible = v)"
-                  BodyClass="align-items-stretch">
-            @if (TraitsVisible)
-            {
-                <div class="d-flex">
-                    <button class="btn btn-icon"
-                            @onclick="@(_ => OnRandomizeCharacterTraitsAsync(Character))">
-                        <tf-icon>casino</tf-icon>
-                        <Tooltip Delay="750">Randomize traits</Tooltip>
-                    </button>
-                    <button class="btn btn-icon"
-                            @onclick="@(_ => OnRandomizeCharacterTraitsAsync(Character, false))">
-                        <tf-icon>playlist_add</tf-icon>
-                        <Tooltip Delay="750">Add additional random traits without clearing the current set</Tooltip>
-                    </button>
-                </div>
-                <ElementList Items="DataService.Traits"
-                             ItemIsCollapsible="@(x => x.Children?.Count > 0)">
-                    <Template>
-                        <div class="d-inline-flex flex-grow-1">
-                            <Checkbox Class="dense"
-                                      TValue="bool"
-                                      Value="Character.HasTrait(context)"
-                                      ValueChanged="@(v => OnTraitSelectAsync(v, context, Character))" />
-                            <span class="me-auto">@context.Name</span>
-                            @if (context.Children?.Count > 0) {
+                }
+                <button class="btn btn-icon"
+                        @onclick="@(_ => OnRandomizeCharacterEthnicitiesAsync(Character))">
+                    <tf-icon>casino</tf-icon>
+                    <Tooltip Delay="750">Randomize ethnicity</Tooltip>
+                </button>
+            </div>
+            <ElementList Items="DataService.Ethnicities" ItemIsCollapsible="@(x => x.Types?.Count > 0)">
+                <Template>
+                    <div class="d-inline-flex align-items-center flex-grow-1">
+                        <Checkbox Class="dense"
+                                    TValue="bool"
+                                    Value="Character.HasEthnicity(context)"
+                                    ValueChanged="@(v => OnEthnicitySelectAsync(v, context, Character))" />
+                        @if (context.IsEditing)
+                        {
+                            <TextInput Value="@context.Type"
+                                        ValueChanged="@(v => OnEditEthnicityAsync(context, v))"
+                                        Placeholder="Type" />
+                        }
+                        else
+                        {
+                            <span class="me-auto">@context.Type.ToTitle()</span>
+                            @if (context.Types?.Count > 0) {
                                 <button class="btn btn-icon small"
-                                        @onclick="@(_ => OnTraitSelectAsync(true, context, Character))">
-                                    <tf-icon>playlist_add</tf-icon>
-                                    <Tooltip Delay="750">Select random children without clearing any</Tooltip>
+                                        @onclick="@(_ => OnAddRandomEthnicityAsync(context, Character))">
+                                    <tf-icon>casino</tf-icon>
+                                    <Tooltip Delay="750">Select random child</Tooltip>
                                 </button>
                             }
                             @if (context.UserDefined) {
                                 <button class="btn btn-icon small"
-                                        @onclick="@(_ => OnEditTraitAsync(context))">
+                                        @onclick="@(_ => context.IsEditing = true)">
                                     <tf-icon>edit</tf-icon>
                                     <Tooltip Delay="750">Edit</Tooltip>
                                 </button>
                                 <button class="btn btn-icon small"
-                                        @onclick="@(_ => OnDeleteTraitAsync(context))">
+                                        @onclick="@(_ => OnDeleteEthnicityAsync(context))">
                                     <tf-icon>delete</tf-icon>
                                     <Tooltip Delay="750">Delete</Tooltip>
                                 </button>
                             }
-                        </div>
-                    </Template>
-                    <CollapsibleTemplate>
-                        <ElementList Items="context.Children"
-                                     ItemIsCollapsible="@(x => x.Children?.Count > 0)">
-                            <FollowingContent>
-                                <div role="listitem"
-                                     class="clickable no-drag"
-                                     draggable="false">
-                                    <tf-icon class="me-2">note_add</tf-icon>
-                                    <TextInput Class="dense outlined flex-grow-1"
-                                               Value="@context.NewTraitValue"
-                                               ValueChanged="@(v => OnNewTraitAsync(context, v))"
-                                               Placeholder="New Trait" />
-                                </div>
-                            </FollowingContent>
-                        </ElementList>
-                    </CollapsibleTemplate>
-                    <FollowingContent>
-                        <div role="listitem"
-                             class="clickable no-drag"
-                             draggable="false">
-                            <tf-icon class="me-2">note_add</tf-icon>
-                            <TextInput Class="dense outlined flex-grow-1"
-                                       Value="@NewTraitValue"
-                                       ValueChanged="OnNewTraitAsync"
-                                       Placeholder="New Trait" />
-                        </div>
-                    </FollowingContent>
-                </ElementList>
-            }
+                        }
+                    </div>
+                </Template>
+                <CollapsibleTemplate>
+                    <ElementList Items="context.Types"
+                                    ItemIsCollapsible="@(x => x.Types?.Count > 0)">
+                        <FollowingContent>
+                            <div role="listitem"
+                                    class="clickable no-drag"
+                                    draggable="false">
+                                <tf-icon class="me-2">note_add</tf-icon>
+                                <TextInput Class="dense outlined flex-grow-1"
+                                            Value="@context.NewEthnicityValue"
+                                            ValueChanged="@(v => OnNewEthnicityAsync(context, v))"
+                                            Placeholder="New Ethnicity" />
+                            </div>
+                        </FollowingContent>
+                    </ElementList>
+                </CollapsibleTemplate>
+                <FollowingContent>
+                    <div role="listitem"
+                            class="clickable no-drag"
+                            draggable="false">
+                        <tf-icon class="me-2">note_add</tf-icon>
+                        <TextInput Class="dense outlined flex-grow-1"
+                                    Value="@NewEthnicityValue"
+                                    ValueChanged="OnNewEthnicityAsync"
+                                    Placeholder="New Ethnicity" />
+                    </div>
+                </FollowingContent>
+            </ElementList>
+        </Collapse>
+        <Collapse Title="Traits" BodyClass="align-items-stretch">
+            <div class="d-flex">
+                <button class="btn btn-icon"
+                        @onclick="@(_ => OnRandomizeCharacterTraitsAsync(Character))">
+                    <tf-icon>casino</tf-icon>
+                    <Tooltip Delay="750">Randomize traits</Tooltip>
+                </button>
+                <button class="btn btn-icon"
+                        @onclick="@(_ => OnRandomizeCharacterTraitsAsync(Character, false))">
+                    <tf-icon>playlist_add</tf-icon>
+                    <Tooltip Delay="750">Add additional random traits without clearing the current set</Tooltip>
+                </button>
+            </div>
+            <ElementList Items="DataService.Traits"
+                         ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+                <Template>
+                    <div class="d-inline-flex flex-grow-1">
+                        <Checkbox Class="dense"
+                                    TValue="bool"
+                                    Value="Character.HasTrait(context)"
+                                    ValueChanged="@(v => OnTraitSelectAsync(v, context, Character))" />
+                        <span class="me-auto">@context.Name</span>
+                        @if (context.Children?.Count > 0) {
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnTraitSelectAsync(true, context, Character))">
+                                <tf-icon>playlist_add</tf-icon>
+                                <Tooltip Delay="750">Select random children without clearing any</Tooltip>
+                            </button>
+                        }
+                        @if (context.UserDefined) {
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnEditTraitAsync(context))">
+                                <tf-icon>edit</tf-icon>
+                                <Tooltip Delay="750">Edit</Tooltip>
+                            </button>
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnDeleteTraitAsync(context))">
+                                <tf-icon>delete</tf-icon>
+                                <Tooltip Delay="750">Delete</Tooltip>
+                            </button>
+                        }
+                    </div>
+                </Template>
+                <CollapsibleTemplate>
+                    <ElementList Items="context.Children"
+                                 ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+                        <FollowingContent>
+                            <div role="listitem"
+                                    class="clickable no-drag"
+                                    draggable="false">
+                                <tf-icon class="me-2">note_add</tf-icon>
+                                <TextInput Class="dense outlined flex-grow-1"
+                                            Value="@context.NewTraitValue"
+                                            ValueChanged="@(v => OnNewTraitAsync(context, v))"
+                                            Placeholder="New Trait" />
+                            </div>
+                        </FollowingContent>
+                    </ElementList>
+                </CollapsibleTemplate>
+                <FollowingContent>
+                    <div role="listitem"
+                            class="clickable no-drag"
+                            draggable="false">
+                        <tf-icon class="me-2">note_add</tf-icon>
+                        <TextInput Class="dense outlined flex-grow-1"
+                                    Value="@NewTraitValue"
+                                    ValueChanged="OnNewTraitAsync"
+                                    Placeholder="New Trait" />
+                    </div>
+                </FollowingContent>
+            </ElementList>
             @if (!string.IsNullOrEmpty(Character.DisplayTraits)) {
                 <h6>Summary</h6>
                 <p>@(new MarkupString(Character.DisplayTraits))</p>

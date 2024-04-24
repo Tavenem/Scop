@@ -937,7 +937,7 @@
               "in a bagel pub",
               "in a waiting room",
               "outside the spa",
-              "in an Uber",
+              "in a taxi",
               "by the beach",
               "in Barcelona",
               "in a library",
@@ -964,7 +964,7 @@
               "in a bar",
               "on a college campus",
               "at a protest",
-              "at a McDonald's drive-through"
+              "at a drive-through"
           ],
           "subgenres": [
               "a literary fiction",
@@ -1941,7 +1941,7 @@
           ],
           "settings": [
               "in a quiet residential district",
-              "at a McDonald's drive-through",
+              "at a drive-through",
               "on a yacht",
               "in a cathedral",
               "at a bank",
@@ -2919,18 +2919,18 @@
               "has perfect night vision"
           ],
           "settings": [
-              "on an alien galaxy",
+              "in an alien galaxy",
               "in a laboratory",
               "in the engine room",
               "on a space-rig",
               "inside a dream",
-              "on a distant star",
+              "near a distant star",
               "on a flying island",
               "near Yggdrasil",
               "at a space station",
               "at a new colony",
               "on a moon base",
-              "on a dead star",
+              "near a dead star",
               "on a meteorite",
               "on an unfamiliar planet",
               "in a future Mesopotamia",
@@ -2950,7 +2950,7 @@
               "on a dwarf planet",
               "between two asteroid belts",
               "on Titan",
-              "by a black hole",
+              "near a black hole",
               "in a void",
               "in limbo",
               "in a space shopping mall",

@@ -1,544 +1,511 @@
 ﻿<Dialog>
     <ChildContent>
-        <Collapse Title="Genres" IsOpenChanged="@(v => IsGenresOpen = v)">
-            @if (IsGenresOpen)
-            {
-                <ElementList Items="DataService.Genres" ItemIsCollapsible="@(_ => true)">
-                    <Template>
-                        <div class="d-flex flex-grow-1">
+        <Collapse Title="Genres">
+            <ElementList Items="DataService.Genres" ItemIsCollapsible="@(_ => true)">
+                <Template>
+                    <div class="d-flex flex-grow-1">
+                        <span>@context.Name</span>
+                        @if (context.UserDefined)
+                        {
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnDeleteGenreAsync(context))">
+                                <tf-icon>delete</tf-icon>
+                                <Tooltip Delay="750">Delete</Tooltip>
+                            </button>
+                        }
+                    </div>
+                </Template>
+                <CollapsibleTemplate Context="genre">
+                    @if (genre.Equals(EditedGenre))
+                    {
+                        <TextInput Label="Name"
+                                   Value="@genre.Name"
+                                   ValueChanged="OnChangeGenreAsync" />
+                        <Collapse Title="Subgenres">
+                            @if (genre.Subgenres?.Count > 0)
+                            {
+                                <ElementList Items="genre.Subgenres">
+                                    <Template Context="subgenre">
+                                        @if (subgenre.Equals(EditedSubgenre))
+                                        {
+                                            <TextInput Value="@subgenre"
+                                                        ValueChanged="OnChangeSubgenreAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@subgenre</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedSubgenre = subgenre)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon" @onclick="@(_ => OnDeleteSubgenreAsync(subgenre))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New subgenre"
+                                        @bind-Value="@NewSubgenre"
+                                        Class="dense"
+                                        OnValidEnter="OnAddSubgenreAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddSubgenreAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Features">
+                            @if (genre.Features?.Count > 0)
+                            {
+                                <ElementList Items="genre.Features">
+                                    <Template Context="feature">
+                                        @if (feature.Equals(EditedFeature))
+                                        {
+                                            <TextInput Value="@feature"
+                                                        ValueChanged="OnChangeFeatureAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@feature</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedFeature = feature)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon" @onclick="@(_ => OnDeleteFeatureAsync(feature))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New feature"
+                                        @bind-Value="@NewFeature"
+                                        Class="dense"
+                                        OnValidEnter="OnAddFeatureAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddFeatureAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Protagonists">
+                            @if (genre.Protagonists?.Count > 0)
+                            {
+                                <ElementList Items="genre.Protagonists">
+                                    <Template Context="protagonist">
+                                        @if (protagonist.Equals(EditedProtagonist))
+                                        {
+                                            <TextInput Value="@protagonist"
+                                                        ValueChanged="OnChangeProtagonistAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@protagonist</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedProtagonist = protagonist)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon" @onclick="@(_ => OnDeleteProtagonistAsync(protagonist))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New protagonist"
+                                        @bind-Value="@NewProtagonist"
+                                        Class="dense"
+                                        OnValidEnter="OnAddProtagonistAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddProtagonistAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Protagonist Traits">
+                            @if (genre.ProtagonistTraits?.Count > 0)
+                            {
+                                <ElementList Items="genre.ProtagonistTraits">
+                                    <Template Context="protagonistTrait">
+                                        @if (protagonistTrait.Equals(EditedProtagonistTrait))
+                                        {
+                                            <TextInput Value="@protagonistTrait"
+                                                        ValueChanged="OnChangeProtagonistTraitAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@protagonistTrait</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedProtagonistTrait = protagonistTrait)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon"
+                                                        @onclick="@(_ => OnDeleteProtagonistTraitAsync(protagonistTrait))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New protagonist trait"
+                                        @bind-Value="@NewProtagonistTrait"
+                                        Class="dense"
+                                        OnValidEnter="OnAddProtagonistTraitAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddProtagonistTraitAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Secondary Characters">
+                            @if (genre.SecondaryCharacters?.Count > 0)
+                            {
+                                <ElementList Items="genre.SecondaryCharacters">
+                                    <Template Context="secondaryCharacter">
+                                        @if (secondaryCharacter.Equals(EditedSecondaryCharacter))
+                                        {
+                                            <TextInput Value="@secondaryCharacter"
+                                                        ValueChanged="OnChangeSecondaryCharacterAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@secondaryCharacter</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedSecondaryCharacter = secondaryCharacter)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon"
+                                                        @onclick="@(_ => OnDeleteSecondaryCharacterAsync(secondaryCharacter))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New secondary character"
+                                        @bind-Value="@NewSecondaryCharacter"
+                                        Class="dense"
+                                        OnValidEnter="OnAddSecondaryCharacterAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddSecondaryCharacterAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Secondary Character Traits">
+                            @if (genre.SecondaryCharacterTraits?.Count > 0)
+                            {
+                                <ElementList Items="genre.SecondaryCharacterTraits">
+                                    <Template Context="secondaryCharacterTrait">
+                                        @if (secondaryCharacterTrait.Equals(EditedSecondaryCharacterTrait))
+                                        {
+                                            <TextInput Value="@secondaryCharacterTrait"
+                                                        ValueChanged="OnChangeSecondaryCharacterTraitAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@secondaryCharacterTrait</span>
+                                                <button class="btn btn-icon"
+                                                        @onclick="@(_ => EditedSecondaryCharacterTrait = secondaryCharacterTrait)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon"
+                                                        @onclick="@(_ => OnDeleteSecondaryCharacterTraitAsync(secondaryCharacterTrait))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New secondary character trait"
+                                        @bind-Value="@NewSecondaryCharacterTrait"
+                                        Class="dense"
+                                        OnValidEnter="OnAddSecondaryCharacterTraitAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddSecondaryCharacterTraitAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Settings">
+                            @if (genre.Settings?.Count > 0)
+                            {
+                                <ElementList Items="genre.Settings">
+                                    <Template Context="setting">
+                                        @if (setting.Equals(EditedSetting))
+                                        {
+                                            <TextInput Value="@setting"
+                                                        ValueChanged="OnChangeSettingAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@setting</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedSetting = setting)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon" @onclick="@(_ => OnDeleteSettingAsync(setting))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New setting"
+                                        @bind-Value="@NewSetting"
+                                        Class="dense"
+                                        OnValidEnter="OnAddSettingAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddSettingAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Subjects">
+                            @if (genre.Subjects?.Count > 0)
+                            {
+                                <ElementList Items="genre.Subjects">
+                                    <Template Context="subject">
+                                        @if (subject.Equals(EditedSubject))
+                                        {
+                                            <TextInput Value="@subject"
+                                                        ValueChanged="OnChangeSubjectAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@subject</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedSubject = subject)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon" @onclick="@(_ => OnDeleteSubjectAsync(subject))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New subject"
+                                        @bind-Value="@NewSubject"
+                                        Class="dense"
+                                        OnValidEnter="OnAddSubjectAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddSubjectAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                        <Collapse Title="Themes">
+                            @if (genre.Themes?.Count > 0)
+                            {
+                                <ElementList Items="genre.Themes">
+                                    <Template Context="theme">
+                                        @if (theme.Equals(EditedTheme))
+                                        {
+                                            <TextInput Value="@theme"
+                                                        ValueChanged="OnChangeThemeAsync" />
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-grow-1">
+                                                <span class="flex-grow-1">@theme</span>
+                                                <button class="btn btn-icon" @onclick="@(_ => EditedTheme = theme)">
+                                                    <tf-icon>edit</tf-icon>
+                                                </button>
+                                                <button class="btn btn-icon" @onclick="@(_ => OnDeleteThemeAsync(theme))">
+                                                    <tf-icon>delete</tf-icon>
+                                                </button>
+                                            </div>
+                                        }
+                                    </Template>
+                                </ElementList>
+                            }
+                            <TextInput Label="New theme"
+                                        @bind-Value="@NewTheme"
+                                        Class="dense"
+                                        OnValidEnter="OnAddThemeAsync">
+                                <PostfixContent>
+                                    <button class="btn btn-icon" @onclick="OnAddThemeAsync">
+                                        <tf-icon>add</tf-icon>
+                                    </button>
+                                </PostfixContent>
+                            </TextInput>
+                        </Collapse>
+                    }
+                    else
+                    {
+                        <p class="h4">
+                            <span>@genre.Name</span>
+                            <button class="btn btn-icon" @onclick="@(_ => EditedGenre = genre)">
+                                <tf-icon>edit</tf-icon>
+                            </button>
+                        </p>
+                        @if (genre.Subgenres?.Count > 0)
+                        {
+                            <Collapse Title="Subgenres">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.Subgenres)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.Features?.Count > 0)
+                        {
+                            <Collapse Title="Features">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.Features)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.Protagonists?.Count > 0)
+                        {
+                            <Collapse Title="Protagonists">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.Protagonists)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.ProtagonistTraits?.Count > 0)
+                        {
+                            <Collapse Title="Protagonist Traits">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.ProtagonistTraits)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.SecondaryCharacters?.Count > 0)
+                        {
+                            <Collapse Title="Secondary Characters">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.SecondaryCharacters)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.SecondaryCharacterTraits?.Count > 0)
+                        {
+                            <Collapse Title="Secondary Character Traits">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.SecondaryCharacterTraits)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.Settings?.Count > 0)
+                        {
+                            <Collapse Title="Settings">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.Settings)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.Subjects?.Count > 0)
+                        {
+                            <Collapse Title="Subjects">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.Subjects)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                        @if (genre.Themes?.Count > 0)
+                        {
+                            <Collapse Title="Themes">
+                                <ul class="bullets">
+                                    @foreach (var feature in genre.Themes)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </Collapse>
+                        }
+                    }
+                </CollapsibleTemplate>
+            </ElementList>
+            <TextInput Label="New genre"
+                        @bind-Value="@NewGenre"
+                        OnValidEnter="OnAddGenreAsync">
+                <PostfixContent>
+                    <button class="btn btn-icon" @onclick="OnAddGenreAsync">
+                        <tf-icon>add</tf-icon>
+                    </button>
+                </PostfixContent>
+            </TextInput>
+        </Collapse>
+        <Collapse Title="Plots">
+            <ElementList Items="DataService.Plots">
+                <Template>
+                    <div class="d-flex flex-column flex-grow-1">
+                        @if (context.Equals(EditedPlot))
+                        {
+                            <TextInput Value="@context.Name"
+                                        ValueChanged="@(v => OnPlotNameChangeAsync(context, v))"
+                                        Placeholder="Plot name" />
+                            <TextInput Value="@context.Description"
+                                        ValueChanged="@(v => OnPlotDescriptionChangeAsync(context, v))"
+                                        Placeholder="Plot description" />
+                            <button class="btn primary" @onclick="@(_ => EditedPlot = null)">Done</button>
+                        }
+                        else
+                        {
                             <span>@context.Name</span>
+                            <span>@context.Description</span>
                             @if (context.UserDefined)
                             {
                                 <button class="btn btn-icon small"
-                                        @onclick="@(_ => OnDeleteGenreAsync(context))">
+                                        @onclick="@(_ => EditedPlot = context)">
+                                    <tf-icon>edit</tf-icon>
+                                    <Tooltip Delay="750">Edit</Tooltip>
+                                </button>
+                                <button class="btn btn-icon small"
+                                        @onclick="@(_ => OnDeletePlotAsync(context))">
                                     <tf-icon>delete</tf-icon>
                                     <Tooltip Delay="750">Delete</Tooltip>
                                 </button>
                             }
-                        </div>
-                    </Template>
-                    <CollapsibleTemplate Context="genre">
-                        @if (genre.Equals(EditedGenre))
-                        {
-                            <TextInput Label="Name"
-                                       Value="@genre.Name"
-                                       ValueChanged="OnChangeGenreAsync" />
-                            <Collapse Title="Subgenres" IsOpenChanged="@(v => IsSubgenresOpen = v)">
-                                @if (IsSubgenresOpen)
-                                {
-                                    @if (genre.Subgenres?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.Subgenres">
-                                            <Template Context="subgenre">
-                                                @if (subgenre.Equals(EditedSubgenre))
-                                                {
-                                                    <TextInput Value="@subgenre"
-                                                               ValueChanged="OnChangeSubgenreAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@subgenre</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedSubgenre = subgenre)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon" @onclick="@(_ => OnDeleteSubgenreAsync(subgenre))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New subgenre"
-                                               @bind-Value="@NewSubgenre"
-                                               Class="dense"
-                                               OnValidEnter="OnAddSubgenreAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddSubgenreAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Features" IsOpenChanged="@(v => IsFeaturesOpen = v)">
-                                @if (IsFeaturesOpen)
-                                {
-                                    @if (genre.Features?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.Features">
-                                            <Template Context="feature">
-                                                @if (feature.Equals(EditedFeature))
-                                                {
-                                                    <TextInput Value="@feature"
-                                                               ValueChanged="OnChangeFeatureAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@feature</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedFeature = feature)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon" @onclick="@(_ => OnDeleteFeatureAsync(feature))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New feature"
-                                               @bind-Value="@NewFeature"
-                                               Class="dense"
-                                               OnValidEnter="OnAddFeatureAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddFeatureAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Protagonists" IsOpenChanged="@(v => IsProtagonistsOpen = v)">
-                                @if (IsProtagonistsOpen)
-                                {
-                                    @if (genre.Protagonists?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.Protagonists">
-                                            <Template Context="protagonist">
-                                                @if (protagonist.Equals(EditedProtagonist))
-                                                {
-                                                    <TextInput Value="@protagonist"
-                                                               ValueChanged="OnChangeProtagonistAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@protagonist</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedProtagonist = protagonist)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon" @onclick="@(_ => OnDeleteProtagonistAsync(protagonist))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New protagonist"
-                                               @bind-Value="@NewProtagonist"
-                                               Class="dense"
-                                               OnValidEnter="OnAddProtagonistAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddProtagonistAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Protagonist Traits" IsOpenChanged="@(v => IsProtagonistTraitsOpen = v)">
-                                @if (IsProtagonistTraitsOpen)
-                                {
-                                    @if (genre.ProtagonistTraits?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.ProtagonistTraits">
-                                            <Template Context="protagonistTrait">
-                                                @if (protagonistTrait.Equals(EditedProtagonistTrait))
-                                                {
-                                                    <TextInput Value="@protagonistTrait"
-                                                               ValueChanged="OnChangeProtagonistTraitAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@protagonistTrait</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedProtagonistTrait = protagonistTrait)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon"
-                                                                @onclick="@(_ => OnDeleteProtagonistTraitAsync(protagonistTrait))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New protagonist trait"
-                                               @bind-Value="@NewProtagonistTrait"
-                                               Class="dense"
-                                               OnValidEnter="OnAddProtagonistTraitAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddProtagonistTraitAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Secondary Characters" IsOpenChanged="@(v => IsSecondaryCharactersOpen = v)">
-                                @if (IsSecondaryCharactersOpen)
-                                {
-                                    @if (genre.SecondaryCharacters?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.SecondaryCharacters">
-                                            <Template Context="secondaryCharacter">
-                                                @if (secondaryCharacter.Equals(EditedSecondaryCharacter))
-                                                {
-                                                    <TextInput Value="@secondaryCharacter"
-                                                               ValueChanged="OnChangeSecondaryCharacterAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@secondaryCharacter</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedSecondaryCharacter = secondaryCharacter)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon"
-                                                                @onclick="@(_ => OnDeleteSecondaryCharacterAsync(secondaryCharacter))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New secondary character"
-                                               @bind-Value="@NewSecondaryCharacter"
-                                               Class="dense"
-                                               OnValidEnter="OnAddSecondaryCharacterAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddSecondaryCharacterAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Secondary Character Traits" IsOpenChanged="@(v => IsSecondaryCharacterTraitsOpen = v)">
-                                @if (IsSecondaryCharacterTraitsOpen)
-                                {
-                                    @if (genre.SecondaryCharacterTraits?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.SecondaryCharacterTraits">
-                                            <Template Context="secondaryCharacterTrait">
-                                                @if (secondaryCharacterTrait.Equals(EditedSecondaryCharacterTrait))
-                                                {
-                                                    <TextInput Value="@secondaryCharacterTrait"
-                                                               ValueChanged="OnChangeSecondaryCharacterTraitAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@secondaryCharacterTrait</span>
-                                                        <button class="btn btn-icon"
-                                                                @onclick="@(_ => EditedSecondaryCharacterTrait = secondaryCharacterTrait)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon"
-                                                                @onclick="@(_ => OnDeleteSecondaryCharacterTraitAsync(secondaryCharacterTrait))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New secondary character trait"
-                                               @bind-Value="@NewSecondaryCharacterTrait"
-                                               Class="dense"
-                                               OnValidEnter="OnAddSecondaryCharacterTraitAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddSecondaryCharacterTraitAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Settings" IsOpenChanged="@(v => IsSettingsOpen = v)">
-                                @if (IsSettingsOpen)
-                                {
-                                    @if (genre.Settings?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.Settings">
-                                            <Template Context="setting">
-                                                @if (setting.Equals(EditedSetting))
-                                                {
-                                                    <TextInput Value="@setting"
-                                                               ValueChanged="OnChangeSettingAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@setting</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedSetting = setting)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon" @onclick="@(_ => OnDeleteSettingAsync(setting))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New setting"
-                                               @bind-Value="@NewSetting"
-                                               Class="dense"
-                                               OnValidEnter="OnAddSettingAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddSettingAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Subjects" IsOpenChanged="@(v => IsSubjectsOpen = v)">
-                                @if (IsSubjectsOpen)
-                                {
-                                    @if (genre.Subjects?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.Subjects">
-                                            <Template Context="subject">
-                                                @if (subject.Equals(EditedSubject))
-                                                {
-                                                    <TextInput Value="@subject"
-                                                               ValueChanged="OnChangeSubjectAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@subject</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedSubject = subject)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon" @onclick="@(_ => OnDeleteSubjectAsync(subject))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New subject"
-                                               @bind-Value="@NewSubject"
-                                               Class="dense"
-                                               OnValidEnter="OnAddSubjectAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddSubjectAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
-                            <Collapse Title="Themes" IsOpenChanged="@(v => IsThemesOpen = v)">
-                                @if (IsThemesOpen)
-                                {
-                                    @if (genre.Themes?.Count > 0)
-                                    {
-                                        <ElementList Items="genre.Themes">
-                                            <Template Context="theme">
-                                                @if (theme.Equals(EditedTheme))
-                                                {
-                                                    <TextInput Value="@theme"
-                                                               ValueChanged="OnChangeThemeAsync" />
-                                                }
-                                                else
-                                                {
-                                                    <div class="d-flex flex-grow-1">
-                                                        <span class="flex-grow-1">@theme</span>
-                                                        <button class="btn btn-icon" @onclick="@(_ => EditedTheme = theme)">
-                                                            <tf-icon>edit</tf-icon>
-                                                        </button>
-                                                        <button class="btn btn-icon" @onclick="@(_ => OnDeleteThemeAsync(theme))">
-                                                            <tf-icon>delete</tf-icon>
-                                                        </button>
-                                                    </div>
-                                                }
-                                            </Template>
-                                        </ElementList>
-                                    }
-                                    <TextInput Label="New theme"
-                                               @bind-Value="@NewTheme"
-                                               Class="dense"
-                                               OnValidEnter="OnAddThemeAsync">
-                                        <PostfixContent>
-                                            <button class="btn btn-icon" @onclick="OnAddThemeAsync">
-                                                <tf-icon>add</tf-icon>
-                                            </button>
-                                        </PostfixContent>
-                                    </TextInput>
-                                }
-                            </Collapse>
                         }
-                        else
-                        {
-                            <p class="h4">
-                                <span>@genre.Name</span>
-                                <button class="btn btn-icon" @onclick="@(_ => EditedGenre = genre)">
-                                    <tf-icon>edit</tf-icon>
-                                </button>
-                            </p>
-                            @if (genre.Subgenres?.Count > 0)
-                            {
-                                <Collapse Title="Subgenres">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.Subgenres)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.Features?.Count > 0)
-                            {
-                                <Collapse Title="Features">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.Features)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.Protagonists?.Count > 0)
-                            {
-                                <Collapse Title="Protagonists">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.Protagonists)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.ProtagonistTraits?.Count > 0)
-                            {
-                                <Collapse Title="ProtagonistTraits">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.ProtagonistTraits)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.SecondaryCharacters?.Count > 0)
-                            {
-                                <Collapse Title="SecondaryCharacters">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.SecondaryCharacters)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.SecondaryCharacterTraits?.Count > 0)
-                            {
-                                <Collapse Title="SecondaryCharacterTraits">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.SecondaryCharacterTraits)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.Settings?.Count > 0)
-                            {
-                                <Collapse Title="Settings">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.Settings)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.Subjects?.Count > 0)
-                            {
-                                <Collapse Title="Subjects">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.Subjects)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                            @if (genre.Themes?.Count > 0)
-                            {
-                                <Collapse Title="Themes">
-                                    <ul class="bullets">
-                                        @foreach (var feature in genre.Themes)
-                                        {
-                                            <li>@feature</li>
-                                        }
-                                    </ul>
-                                </Collapse>
-                            }
-                        }
-                    </CollapsibleTemplate>
-                </ElementList>
-                <TextInput Label="New genre"
-                           @bind-Value="@NewGenre"
-                           OnValidEnter="OnAddGenreAsync">
-                    <PostfixContent>
-                        <button class="btn btn-icon" @onclick="OnAddGenreAsync">
-                            <tf-icon>add</tf-icon>
-                        </button>
-                    </PostfixContent>
-                </TextInput>
-            }
-        </Collapse>
-        <Collapse Title="Plots" IsOpenChanged="@(v => IsPlotsOpen = v)">
-            @if (IsPlotsOpen)
-            {
-                <ElementList Items="DataService.Plots">
-                    <Template>
-                        <div class="d-flex flex-column flex-grow-1">
-                            @if (context.Equals(EditedPlot))
-                            {
-                                <TextInput Value="@context.Name"
-                                           ValueChanged="@(v => OnPlotNameChangeAsync(context, v))"
-                                           Placeholder="Plot name" />
-                                <TextInput Value="@context.Description"
-                                           ValueChanged="@(v => OnPlotDescriptionChangeAsync(context, v))"
-                                           Placeholder="Plot description" />
-                                <button class="btn primary" @onclick="@(_ => EditedPlot = null)">Done</button>
-                            }
-                            else
-                            {
-                                <span>@context.Name</span>
-                                <span>@context.Description</span>
-                                @if (context.UserDefined)
-                                {
-                                    <button class="btn btn-icon small"
-                                            @onclick="@(_ => EditedPlot = context)">
-                                        <tf-icon>edit</tf-icon>
-                                        <Tooltip Delay="750">Edit</Tooltip>
-                                    </button>
-                                    <button class="btn btn-icon small"
-                                            @onclick="@(_ => OnDeletePlotAsync(context))">
-                                        <tf-icon>delete</tf-icon>
-                                        <Tooltip Delay="750">Delete</Tooltip>
-                                    </button>
-                                }
-                            }
-                        </div>
-                    </Template>
-                </ElementList>
-                <button class="btn" @onclick="OnAddPlot">New Plot</button>
-            }
+                    </div>
+                </Template>
+            </ElementList>
+            <button class="btn" @onclick="OnAddPlot">New Plot</button>
         </Collapse>
     </ChildContent>
     <FooterContent>

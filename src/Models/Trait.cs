@@ -67,13 +67,13 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
 
     public override int GetHashCode() => HashCode.Combine(Hierarchy);
 
-    public double GetWeight(Character character)
+    public double GetWeight(TraitContainer container)
     {
         if (Modifiers is null)
         {
             return EffectiveWeight;
         }
-        var modifiers = Modifiers.Where(x => x.Applies(character)).ToList();
+        var modifiers = Modifiers.Where(x => x.Applies(container)).ToList();
         if (modifiers.Any(x => x.Force))
         {
             return double.PositiveInfinity;
@@ -107,14 +107,14 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
 
     public void OnDeserialized() => Initialize();
 
-    public bool Randomize(Character character, bool forceSelect = false)
+    public bool Randomize(TraitContainer container, bool forceSelect = false)
     {
         if (Children is null
             || Children.Count == 0)
         {
             if (Hierarchy is not null)
             {
-                character.AddTrait(Hierarchy);
+                container.AddTrait(Hierarchy);
             }
             return true;
         }
@@ -125,33 +125,33 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
             case ChoiceType.Category:
                 foreach (var child in Children)
                 {
-                    var weight = child.GetWeight(character);
+                    var weight = child.GetWeight(container);
                     if (weight > 0)
                     {
-                        anyChildren |= child.Randomize(character);
+                        anyChildren |= child.Randomize(container);
                     }
                 }
                 break;
             case ChoiceType.Single:
             case ChoiceType.OneOrMore:
-                anyChildren = SelectAmongChildren(character);
+                anyChildren = SelectAmongChildren(container);
                 break;
             case ChoiceType.Multiple:
-                anyChildren = SelectMultipleChildren(character);
+                anyChildren = SelectMultipleChildren(container);
                 break;
         }
         if (forceSelect || anyChildren || IsChosenOnNone)
         {
             if (Hierarchy is not null)
             {
-                character.AddTrait(Hierarchy);
+                container.AddTrait(Hierarchy);
             }
             return true;
         }
         return false;
     }
 
-    public void Select(bool value, Character character)
+    public void Select(bool value, TraitContainer container)
     {
         if (Hierarchy is null || Hierarchy.Length == 0)
         {
@@ -159,11 +159,24 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         }
         if (!value)
         {
-            character.RemoveTrait(Hierarchy);
+            container.RemoveTrait(Hierarchy);
             return;
         }
 
-        Randomize(character, true);
+        if (Parent?.Hierarchy is not null
+            && Parent.ChoiceType == ChoiceType.Single
+            && Parent.Children?.Count > 1)
+        {
+            foreach (var child in Parent.Children)
+            {
+                if (child.Hierarchy is not null
+                    && !child.Equals(this))
+                {
+                    container.RemoveTrait(child.Hierarchy);
+                }
+            }
+        }
+        Randomize(container, true);
     }
 
     internal void InitializeChildren()
@@ -191,7 +204,7 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         InitializeChildren();
     }
 
-    private bool SelectAmongChildren(Character character)
+    private bool SelectAmongChildren(TraitContainer container)
     {
         if (Hierarchy is null
             || Children is null
@@ -200,14 +213,14 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
             return false;
         }
 
-        if (character.TraitPaths?.Any(x => x.StartsWith(Hierarchy)) == true)
+        if (container.TraitPaths?.Any(x => x.StartsWith(Hierarchy)) == true)
         {
             return true;
         }
 
         foreach (var child in Children)
         {
-            child.CurrentEffectiveWeight = child.GetWeight(character);
+            child.CurrentEffectiveWeight = child.GetWeight(container);
         }
 
         var candidates = Children
@@ -219,7 +232,7 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         while (forced.Count > 0)
         {
             var child = Randomizer.Instance.Next(forced)!;
-            var selected = child.Randomize(character);
+            var selected = child.Randomize(container);
             if (selected)
             {
                 return true;
@@ -252,7 +265,7 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
                 choice -= candidates[i].CurrentEffectiveWeight;
                 if (choice <= 0)
                 {
-                    var selected = candidates[i].Randomize(character);
+                    var selected = candidates[i].Randomize(container);
                     if (selected)
                     {
                         return true;
@@ -265,7 +278,7 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         return false;
     }
 
-    private bool SelectMultipleChildren(Character character)
+    private bool SelectMultipleChildren(TraitContainer container)
     {
         if (Children is null
             || Children.Count == 0)
@@ -276,9 +289,9 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
         var any = false;
         foreach (var child in Children)
         {
-            if (Randomizer.Instance.NextDouble() <= child.GetWeight(character))
+            if (Randomizer.Instance.NextDouble() <= child.GetWeight(container))
             {
-                any = child.Randomize(character);
+                any = child.Randomize(container);
             }
         }
         return any;

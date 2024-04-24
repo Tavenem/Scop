@@ -31,83 +31,164 @@
            ValueChanged="OnChangeStoryNameAsync"
            Class="align-self-stretch flex-grow-0" />
 <div class="d-md-flex mt-2 align-self-stretch">
-    <ElementList TListItem="INote"
-                 Items="_story.Notes"
-                 SelectionType="SelectionType.Single"
-                 @bind-SelectedItem="TopSelectedNote"
-                 @bind-SelectedItem:after="OnSelectedNoteChangedAsync"
-                 ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
-                 ItemIsDraggable="@(item => item is INote)"
-                 IsDragStart="true"
-                 IsDropTarget="true"
-                 DropEffect="DragEffect.Move"
-                 OnDrop="OnDropAsync"
-                 OnDropIndex="OnDropIndexAsync"
-                 OnDropped="OnDropped"
-                 Class="tree flex-shrink-0 flex-grow-1">
-        <ChildContent>
-            <div role="listitem"
-                 class="@(IsTimelineSelected ? "clickable no-drag active" : "clickable no-drag")"
-                 draggable="false"
-                 @onclick="OnSelectTimeline">
-                <tf-icon class="me-2">timeline</tf-icon>
-                <span>Timeline</span>
+    <div class="d-flex flex-column flex-shrink-0 flex-grow-1">
+        <Collapse Title="Traits" BodyClass="align-items-stretch">
+            <div class="d-flex">
+                <button class="btn btn-icon"
+                        @onclick="@(_ => OnRandomizeStoryTraitsAsync())">
+                    <tf-icon>casino</tf-icon>
+                    <Tooltip Delay="750">Randomize traits</Tooltip>
+                </button>
+                <button class="btn btn-icon"
+                        @onclick="@(_ => OnRandomizeStoryTraitsAsync(false))">
+                    <tf-icon>playlist_add</tf-icon>
+                    <Tooltip Delay="750">Add additional random traits without clearing the current set</Tooltip>
+                </button>
             </div>
-        </ChildContent>
-        <Template>
-            <div class="@($"d-inline-flex align-items-center gap-2 flex-grow-1 {(context.IsUnnamed ? "text-muted" : null)}")">
-                <tf-icon>@_storyIcons[context.IconIndex]</tf-icon>
-                @context.DisplayName
-                <button class="btn btn-icon danger ms-auto" @onclick="@(_ => OnDeleteNoteAsync(context))"><tf-icon>delete</tf-icon></button>
-            </div>
-        </Template>
-        <CollapsibleTemplate Context="note">
-            <ElementList @ref="note.List"
-                         TListItem="INote"
-                         Items="note.Notes"
-                         SelectionType="SelectionType.Single"
-                         SelectedItemChanged="OnSelectChildNoteAsync"
-                         ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
-                         IsDragStart="true"
-                         IsDropTarget="true"
-                         OnDrop="@(e => OnDropAsync(e, note))"
-                         OnDropIndex="@(e => OnDropIndexAsync(e, note))"
-                         OnDropped="OnDropped">
+            <ElementList Items="DataService.StoryTraits"
+                         ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+                <Template>
+                    <div class="d-inline-flex flex-grow-1">
+                        <Checkbox Class="dense"
+                                  TValue="bool"
+                                  Value="_story.HasTrait(context)"
+                                  ValueChanged="@(v => OnTraitSelectAsync(v, context))" />
+                        <span class="me-auto">@context.Name</span>
+                        @if (context.Children?.Count > 0)
+                        {
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnTraitSelectAsync(true, context))">
+                                <tf-icon>playlist_add</tf-icon>
+                                <Tooltip Delay="750">Select random children without clearing any</Tooltip>
+                            </button>
+                        }
+                        @if (context.UserDefined)
+                        {
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnEditTraitAsync(context))">
+                                <tf-icon>edit</tf-icon>
+                                <Tooltip Delay="750">Edit</Tooltip>
+                            </button>
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnDeleteTraitAsync(context))">
+                                <tf-icon>delete</tf-icon>
+                                <Tooltip Delay="750">Delete</Tooltip>
+                            </button>
+                        }
+                    </div>
+                </Template>
+                <CollapsibleTemplate>
+                    <ElementList Items="context.Children"
+                                 ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+                        <FollowingContent>
+                            <div role="listitem"
+                                 class="clickable no-drag"
+                                 draggable="false">
+                                <tf-icon class="me-2">note_add</tf-icon>
+                                <TextInput Class="dense outlined flex-grow-1"
+                                           Value="@context.NewTraitValue"
+                                           ValueChanged="@(v => OnNewTraitAsync(context, v))"
+                                           Placeholder="New Trait" />
+                            </div>
+                        </FollowingContent>
+                    </ElementList>
+                </CollapsibleTemplate>
                 <FollowingContent>
                     <div role="listitem"
                          class="clickable no-drag"
                          draggable="false">
-                        <div id="add-split-group" class="button-group">
-                            <button class="btn btn-icon" @onclick="@(_ => OnNewNoteOfTypeAsync(note, 0))"><tf-icon>note_add</tf-icon></button>
-                            <Dropdown AnchorId="add-split-group" Icon="arrow_drop_down">
-                                @for (int i = 0; i < _storyIcons.Count; i++)
-                                {
-                                    var index = i;
-                                    <tf-icon @onclick="(_ => OnNewNoteOfTypeAsync(note, index))">@_storyAddIcons[index]</tf-icon>
-                                }
-                            </Dropdown>
-                        </div>
+                        <tf-icon class="me-2">note_add</tf-icon>
+                        <TextInput Class="dense outlined flex-grow-1"
+                                   Value="@NewTraitValue"
+                                   ValueChanged="OnNewTraitAsync"
+                                   Placeholder="New Trait" />
                     </div>
                 </FollowingContent>
             </ElementList>
-        </CollapsibleTemplate>
-        <FollowingContent>
-            <div role="listitem"
-                 class="clickable no-drag"
-                 draggable="false">
-                <div id="add-split-group" class="button-group">
-                    <button class="btn btn-icon" @onclick="@(_ => OnNewNoteOfTypeAsync(0))"><tf-icon>note_add</tf-icon></button>
-                    <Dropdown AnchorId="add-split-group" Icon="arrow_drop_down">
-                        @for (int i = 0; i < _storyIcons.Count; i++)
-                        {
-                            var index = i;
-                            <tf-icon @onclick="(_ => OnNewNoteOfTypeAsync(index))">@_storyAddIcons[index]</tf-icon>
-                        }
-                    </Dropdown>
+            @if (!string.IsNullOrEmpty(_story.DisplayTraits))
+            {
+                <h6>Summary</h6>
+                <p>@(new MarkupString(_story.DisplayTraits))</p>
+            }
+        </Collapse>
+        <ElementList TListItem="INote"
+                     Items="_story.Notes"
+                     SelectionType="SelectionType.Single"
+                     @bind-SelectedItem="TopSelectedNote"
+                     @bind-SelectedItem:after="OnSelectedNoteChangedAsync"
+                     ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
+                     ItemIsDraggable="@(item => item is INote)"
+                     IsDragStart="true"
+                     IsDropTarget="true"
+                     DropEffect="DragEffect.Move"
+                     OnDrop="OnDropAsync"
+                     OnDropIndex="OnDropIndexAsync"
+                     OnDropped="OnDropped"
+                     Class="tree flex-shrink-0 flex-grow-1">
+            <ChildContent>
+                <div role="listitem"
+                     class="@(IsTimelineSelected ? "clickable no-drag active" : "clickable no-drag")"
+                     draggable="false"
+                     @onclick="OnSelectTimeline">
+                    <tf-icon class="me-2">timeline</tf-icon>
+                    <span>Timeline</span>
                 </div>
-            </div>
-        </FollowingContent>
-    </ElementList>
+            </ChildContent>
+            <Template>
+                <div class="@($"d-inline-flex align-items-center gap-2 flex-grow-1 {(context.IsUnnamed ? "text-muted" : null)}")">
+                    <tf-icon>@_storyIcons[context.IconIndex]</tf-icon>
+                    @context.DisplayName
+                    <button class="btn btn-icon danger ms-auto" @onclick="@(_ => OnDeleteNoteAsync(context))"><tf-icon>delete</tf-icon></button>
+                </div>
+            </Template>
+            <CollapsibleTemplate Context="note">
+                <ElementList @ref="note.List"
+                             TListItem="INote"
+                             Items="note.Notes"
+                             SelectionType="SelectionType.Single"
+                             SelectedItemChanged="OnSelectChildNoteAsync"
+                             ItemIsCollapsible="@(item => item.Notes?.Count > 0 || item == SelectedNote)"
+                             IsDragStart="true"
+                             IsDropTarget="true"
+                             OnDrop="@(e => OnDropAsync(e, note))"
+                             OnDropIndex="@(e => OnDropIndexAsync(e, note))"
+                             OnDropped="OnDropped">
+                    <FollowingContent>
+                        <div role="listitem"
+                             class="clickable no-drag"
+                             draggable="false">
+                            <div id="add-split-group" class="button-group">
+                                <button class="btn btn-icon" @onclick="@(_ => OnNewNoteOfTypeAsync(note, 0))"><tf-icon>note_add</tf-icon></button>
+                                <Dropdown AnchorId="add-split-group" Icon="arrow_drop_down">
+                                    @for (int i = 0; i < _storyIcons.Count; i++)
+                                    {
+                                        var index = i;
+                                        <tf-icon @onclick="(_ => OnNewNoteOfTypeAsync(note, index))">@_storyAddIcons[index]</tf-icon>
+                                    }
+                                </Dropdown>
+                            </div>
+                        </div>
+                    </FollowingContent>
+                </ElementList>
+            </CollapsibleTemplate>
+            <FollowingContent>
+                <div role="listitem"
+                     class="clickable no-drag"
+                     draggable="false">
+                    <div id="add-split-group" class="button-group">
+                        <button class="btn btn-icon" @onclick="@(_ => OnNewNoteOfTypeAsync(0))"><tf-icon>note_add</tf-icon></button>
+                        <Dropdown AnchorId="add-split-group" Icon="arrow_drop_down">
+                            @for (int i = 0; i < _storyIcons.Count; i++)
+                            {
+                                var index = i;
+                                <tf-icon @onclick="(_ => OnNewNoteOfTypeAsync(index))">@_storyAddIcons[index]</tf-icon>
+                            }
+                        </Dropdown>
+                    </div>
+                </div>
+            </FollowingContent>
+        </ElementList>
+    </div>
     <div class="d-flex flex-column flex-grow-1 ms-1">
         @if (IsTimelineSelected)
         {
