@@ -10,7 +10,12 @@ function tavenemBlazorFrameworkAfterStarted(blazor, web) {
 
     blazor.registerCustomEventType('focuslost', {
         createEventArgs: (event) => {
-            return event;
+            return {
+                parentId: event instanceof CustomEvent
+                    && event.detail
+                    ? event.detail.parentId
+                    : undefined
+            }
         }
 });
     blazor.registerCustomEventType('dropdowntoggle', {
@@ -53,24 +58,16 @@ function addHeadContent() {
     fontPreconnectCrossorigin.crossOrigin = '';
     document.head.appendChild(fontPreconnectCrossorigin);
 
-    const fallbackFontPreload = document.createElement('link');
-    fallbackFontPreload.rel = 'preload';
-    fallbackFontPreload.type = 'font/woff';
-    fallbackFontPreload.as = 'font';
-    fallbackFontPreload.crossOrigin = '';
-    fallbackFontPreload.href = "_content/Tavenem.Blazor.Framework/AdobeBlank.otf.woff";
-    document.head.appendChild(fallbackFontPreload);
-
     const fallbackFont = document.createElement('link');
     fallbackFont.rel = 'stylesheet';
     fallbackFont.type = 'text/css';
-    fallbackFont.href = "https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wdth,wght@75,100..900&family=Recursive:slnt,wght,CASL,MONO@-15..0,300..1000,0..1,0..1&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,-25..0&display=block";
+    fallbackFont.href = "https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wdth,wght@75,100..900&family=Recursive:slnt,wght,CASL,MONO@-15..0,300..1000,0..1,0..1&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,-25..0&family=Noto+Color+Emoji&display=block";
     document.head.appendChild(fallbackFont);
 
     const style = document.createElement('link');
     style.rel = 'stylesheet';
     style.type = 'text/css';
-    style.href = "_content/Tavenem.Blazor.Framework/framework.css";
+    style.href = "_content/Tavenem.Blazor.Framework/css/framework.css";
     document.head.appendChild(style);
 
     const script = document.createElement('script');

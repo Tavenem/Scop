@@ -21,7 +21,7 @@
       "url": "gdrive.js"
     },
     {
-      "hash": "sha256-FJurVtfTfe8oo5EndNk81XMGzFZobwg1BleQifF9jlc=",
+      "hash": "sha256-po6nw5pvA\/M6JPhEH1nx0hOPljPVoHkF2Br+yMCxCo0=",
       "url": "genres.json"
     },
     {
@@ -285,7 +285,11 @@
       "url": "site.webmanifest"
     },
     {
-      "hash": "sha256-W+iYeGC90QrO9DtJxdWnY2hF\/wH9z58kbu+3xxhcE4Y=",
+      "hash": "sha256-KmpGY0u57y8Jryp1U+\/zF234aAghqjX4reRvRMfhLlQ=",
+      "url": "story_traits.json"
+    },
+    {
+      "hash": "sha256-Ht4b7TimA0rHa8aSaJgUHfDkoSwqNRFC5DDAq8m2v8w=",
       "url": "traits.json"
     },
     {
@@ -321,7 +325,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-Bh9wllBLRX6V\/VhGQM5VVNUVuaF2Jqv5BzQrbGQVqNo=",
+      "hash": "sha256-bj5ZQuyN\/aKt02VQ0aR9RrJKWJ+PO+BrxigMepxF07M=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -353,23 +357,23 @@
       "url": "_framework\/Irony.wasm"
     },
     {
-      "hash": "sha256-oCdxqwfJocA1w2ZGv6cJ4PYKanVs6Wq2L6GWmpi43nw=",
+      "hash": "sha256-Jv9S5coLP28fMUd+sd72uOfd5e3pWx+IFMRNtR\/lykc=",
       "url": "_framework\/Markdig.wasm"
     },
     {
-      "hash": "sha256-wEOp3W0XAw+1c6vu7aCj3Y1KXZ+LXJqCCzowpiJ\/g2g=",
+      "hash": "sha256-VO0+spjGtCgEHvJm8h6nrJz5uYkicFdSkGFdueLBkpY=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Forms.wasm"
     },
     {
-      "hash": "sha256-D48tSojX2N8+hgfSo4tkL+9H4j8r+3Kiw71HH4RNK+M=",
+      "hash": "sha256-S\/iYXOacl8B2G\/wSivY1bcXUGu7YWrVbSHuvfax7qJM=",
       "url": "_framework\/Microsoft.AspNetCore.Components.wasm"
     },
     {
-      "hash": "sha256-UQKCaMNpG\/yXWPaZ83H9e+yzLh7V8bjsJjEITYuueaQ=",
+      "hash": "sha256-HTIou3OKOiv+9\/hMyZjpcRCSfek\/dtiQTI+1ieOfNzE=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Web.wasm"
     },
     {
-      "hash": "sha256-9j9n27hUy3IGN+JWSy5ybpXzo3Y9UUY8HKDXmHGYfO8=",
+      "hash": "sha256-\/YlY5UzBXxtjcKkIHCWhBdSsJRajfNyZfhRc0cVyzWA=",
       "url": "_framework\/Microsoft.AspNetCore.Components.WebAssembly.wasm"
     },
     {
@@ -413,11 +417,11 @@
       "url": "_framework\/Microsoft.Extensions.Primitives.wasm"
     },
     {
-      "hash": "sha256-2ALlaq6zaOjRormhB7JKO7VKHpvLrTuoFE27RS0w\/ms=",
+      "hash": "sha256-ZdkUsmOZq6n2Dq9iN9O4aVkKYQPdHen2ja+4qTrLYZY=",
       "url": "_framework\/Microsoft.JSInterop.wasm"
     },
     {
-      "hash": "sha256-Kr13V+6zGL8rPvFmuBAsaEJfoMlR4Q8keJHKaVGVbGA=",
+      "hash": "sha256-i8yLC1pzEZMAPAHK2MyunJW81S6Tpyvwka9LDZSylx8=",
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.wasm"
     },
     {
@@ -425,7 +429,7 @@
       "url": "_framework\/netstandard.wasm"
     },
     {
-      "hash": "sha256-7rdJE7yezXEqtimhhyNlsf8WB+U2MBJdx1P9agO0sFQ=",
+      "hash": "sha256-WgzzbmCpfl+rslqLMne9xMpRpCLGDTVMkg3wxHZK58M=",
       "url": "_framework\/Scop.wasm"
     },
     {
@@ -533,7 +537,7 @@
       "url": "_framework\/System.Linq.Parallel.wasm"
     },
     {
-      "hash": "sha256-9zD1dRd4dve8KGlzciJN9r0ynq6fAhw7JFSFn\/wMGUw=",
+      "hash": "sha256-ufB+t+n\/U6Dkd14MF6\/jMqTHYgo9MWNV8yRI5qABy84=",
       "url": "_framework\/System.Linq.wasm"
     },
     {
@@ -541,7 +545,7 @@
       "url": "_framework\/System.Memory.wasm"
     },
     {
-      "hash": "sha256-CklBiN1qGN3Y\/eQPMuVnS9r0jSe0Ksv0e1ZwJBydWuQ=",
+      "hash": "sha256-nF+knyG9lj6rqcqGfFHfjYAX5O9xFaKvyNWq85FJoT8=",
       "url": "_framework\/System.Net.Http.Json.wasm"
     },
     {
@@ -573,7 +577,7 @@
       "url": "_framework\/System.ObjectModel.wasm"
     },
     {
-      "hash": "sha256-+\/TIS87flO6R5xzrgzhtMp1jDds2hUj0q4srO+ssFJo=",
+      "hash": "sha256-wiZc0afNjf664bgI71Reqg\/Y8DeyzE8yPc3I1vIhovw=",
       "url": "_framework\/System.Private.CoreLib.wasm"
     },
     {
@@ -665,7 +669,7 @@
       "url": "_framework\/System.Text.Encodings.Web.wasm"
     },
     {
-      "hash": "sha256-xuT4\/QEGjApDYZ9mVxO4wIQOpC2\/WTftYXQ2oCtHNHQ=",
+      "hash": "sha256-yZyO8N1Dkor9fLllygoohyh\/e2YfJjYDT8onEEVOf7E=",
       "url": "_framework\/System.Text.Json.wasm"
     },
     {
@@ -685,7 +689,7 @@
       "url": "_framework\/System.Xml.Linq.wasm"
     },
     {
-      "hash": "sha256-iplYxZBQfF9JgVX7RPhjw01mKuDu97T0udF46OIpCo4=",
+      "hash": "sha256-hpYSQatyUVfb7qlgTk9Cw7ilnHG+Q1XlcALYnymOsmM=",
       "url": "_framework\/Tavenem.Blazor.Framework.wasm"
     },
     {
@@ -713,180 +717,216 @@
       "url": "Scop.styles.css"
     },
     {
-      "hash": "sha256-M5F1TPi6y25rtg+M3vKfwh\/c3p+1KCaAbstUU0Jr+Mk=",
-      "url": "_content\/Tavenem.Blazor.Framework\/AdobeBlank.otf.woff"
-    },
-    {
       "hash": "sha256-ydLlde9pkJtnH07ftVtXAxFzlGIoKPNwtP+RyvLcPlI=",
-      "url": "_content\/Tavenem.Blazor.Framework\/blazor.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/blazor.css"
     },
     {
       "hash": "sha256-5LY4C4d+f5Q1p8m8YvSGHZgW7cosCG3Lb8Wg6PUnMfo=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/alert.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/alert.css"
     },
     {
       "hash": "sha256-OrydY5K0FbPRiFypzwdXBVjL37Y2djSmjgWs80AjZhI=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/avatar.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/avatar.css"
     },
     {
       "hash": "sha256-htqIhuOztLfnngabUsS5t5DSvsMGGT45eBToGA\/ba\/w=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/badge.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/badge.css"
     },
     {
       "hash": "sha256-2H5itMzx7IcX09bYvsoe6JBT7QQ5S0+\/SGi+2NJvPrw=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/breadcrumb.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/breadcrumb.css"
     },
     {
-      "hash": "sha256-AzYxY+Q027dhxqNL8pS4NnVU7mUxSUzH1Hz2aU8W\/z0=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/button.css"
+      "hash": "sha256-Jv5Odiqs2UNqgNufZsLJhRC5kdiimdRvDlYR6ft28Iw=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/button.css"
     },
     {
       "hash": "sha256-gpxndDG2NYKo8ePdMz4AVmYE6+DhQ27zqV7mFNyfggM=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/buttongroup.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/buttongroup.css"
     },
     {
       "hash": "sha256-M5oTKJrLKpTMUwNSIh04lTJH3I0jPSaeTaoidGM6VNE=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/card.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/card.css"
     },
     {
       "hash": "sha256-3ozLC66FVJRw8QeA7zBouEIpqBid9ypLfkydKqazCy8=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/checkbox.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/checkbox.css"
     },
     {
       "hash": "sha256-q+P7n3QI3JOdMi9tSTi48gVYaFpq+a18U8RCisqgmO0=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/chip.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/chip.css"
     },
     {
       "hash": "sha256-8m1J+WLWlZ+0K74TJZTbdGFO5+nJRvMVK9Jv9P6lxQ4=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/collapse.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/collapse.css"
     },
     {
       "hash": "sha256-cZzMjkswfBXew\/oLhIv9ZVQxPfO7QLn84NPmwsw6yhQ=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/colorpicker.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/colorpicker.css"
     },
     {
       "hash": "sha256-BMnpajCwGYBMB9qtIinp7T9ZP68K7zMtSEwkNzJupCs=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/datepicker.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/datepicker.css"
     },
     {
       "hash": "sha256-UMkt4cDIk6dgu+C+LlpfF3gnEn3o7Vo3Po5EeaxHwxo=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/dialog.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/dialog.css"
     },
     {
       "hash": "sha256-3NPXaSZryqZh5\/DM3rNjcjzv6tDtkpUF0GcC78gaXHA=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/drawer.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/drawer.css"
     },
     {
-      "hash": "sha256-He6zkF25xNn3HT9cPvaexILnkz2vFUMBs9H+ao0KkeM=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/editor.css"
+      "hash": "sha256-oV+TaSEkMJxlqpshEWbr69TDqubrAMAENM2eHYI0+S4=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/editor.css"
+    },
+    {
+      "hash": "sha256-MXCcCmLQWU7nwdmnh6\/O4RtEfYElQFjt4tzptqbsLCA=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/emoji.css"
     },
     {
       "hash": "sha256-6nxxzNbR6+i9wUIs9o4cwr4vIL+94OmOg+YdGQG7SRs=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/field.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/field.css"
     },
     {
-      "hash": "sha256-\/pH3b+SOg+p+UDYhQhPAEf+JLbxnzp+y0pAlBWhXhsY=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/icon.css"
+      "hash": "sha256-992Lc7MYNofoicnGQe7UjMqPpmzFmeLdOAuwZSMo7V0=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/icon.css"
     },
     {
       "hash": "sha256-8wgeqEnNPeynD6sqQzForCGXoimAkvwVTlUbdfSCZVc=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/imageeditor.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/imageeditor.css"
     },
     {
       "hash": "sha256-arsydHFK4qRSXrfkFXgrtCE5gWaK0OCQk4hXZoWU7ew=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/inputs.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/inputs.css"
     },
     {
-      "hash": "sha256-j2numk4rJf9JdjyWqNjEvWDnkR05JOvO\/FrMhcHXF2k=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/list.css"
+      "hash": "sha256-N4UrvvU2DXYrLMyH1wi9fvUueynvT6yAFOPntIyiCIg=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/list.css"
     },
     {
       "hash": "sha256-DN+pOQA0kiJbrkXild4ra\/XhsIMAArEtLXlbQoLMRUE=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/meter.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/meter.css"
     },
     {
       "hash": "sha256-IXQASU0dWNVue5ZCoVEJ9vgo4QhdJCxceM0h8NasUc8=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/overlay.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/overlay.css"
     },
     {
       "hash": "sha256-CmjGb4yl5r9jOqlLDb5hNL3NosyHqa\/tw8qyyL8ifk8=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/pagination.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/pagination.css"
     },
     {
       "hash": "sha256-U8n58aCtkuN4f3gkLRLKq\/IXNbcjl+KXXw\/MA\/LsGdA=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/popover.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/popover.css"
     },
     {
       "hash": "sha256-HmQkMlVsTQZAnDzidKuvjjKvYmcsumPm0Y34YCT16go=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/rating.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/rating.css"
     },
     {
       "hash": "sha256-4tVqnP3LiE3SKA6pS7COs20IKFTY2xqtWEda8cDEIgA=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/select.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/select.css"
     },
     {
       "hash": "sha256-ulT\/aCHnS+8qEDDqC4HL1bzFEkC\/O69uq3FhEljoQu0=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/skeleton.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/skeleton.css"
     },
     {
       "hash": "sha256-xUQuQvIApkvzrx6XNIejrscMQmCjQpGt2Qaq6uuA\/DY=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/slider.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/slider.css"
     },
     {
       "hash": "sha256-mBTZAZJSg\/ifTIaXXx3z99Hu7RHbugYCJiDm3h8hr4E=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/snackbar.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/snackbar.css"
     },
     {
       "hash": "sha256-bGAgRUTwJ290vY4B3DHwZflnFDnvL6icg85HRCqfFPU=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/steps.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/steps.css"
     },
     {
       "hash": "sha256-Y+xMINLfzC6+xIAAEwmf9PvEDSdXJepH3Fc+f84fr3U=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/switch.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/switch.css"
     },
     {
       "hash": "sha256-+QFPRT4aso502mBDFowjbDNdLGcazRJ\/uW8se4gM8TI=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/table.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/table.css"
     },
     {
       "hash": "sha256-4k+Lg8O\/4erF8LOT3RyCWEQ2qZsgOkiuJRAxIRHFgUk=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/tabs.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/tabs.css"
     },
     {
       "hash": "sha256-Sxx2fwL6wtGfqiRSKqZRTyXMG2dfuewsEaiB9mOijNo=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/timeline.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/timeline.css"
     },
     {
       "hash": "sha256-u\/tCuFVssrFxBwBvvvJu7rd2vfTL99OuJZwajU0PjII=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/toolbar.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/toolbar.css"
     },
     {
       "hash": "sha256-unkquhsZx9OVhIKnCSgbmEDvXFDAHmoiQnHM6npHoSY=",
-      "url": "_content\/Tavenem.Blazor.Framework\/components\/tooltip.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/components\/tooltip.css"
     },
     {
-      "hash": "sha256-aLuwu4Hv3+wZmNBXtzD+10I7rEvizn46hLe0YI5oNT8=",
-      "url": "_content\/Tavenem.Blazor.Framework\/framework.css"
+      "hash": "sha256-hjd9ayW5SUPuBXflgaYOABU\/tNSfOPeaJZbgE056EWY=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/framework.css"
     },
     {
       "hash": "sha256-OlaWHn1HXCVOePvO6pAWFQGSmSYUCRxUyGyr1Gmmp9Y=",
-      "url": "_content\/Tavenem.Blazor.Framework\/highlight.css"
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/highlight.css"
+    },
+    {
+      "hash": "sha256-lxhuw1qUo+FX6t0oPIjlVAP9sLygH5UkdtCgLkzuLZo=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/layout.css"
+    },
+    {
+      "hash": "sha256-P\/NqUALOgnop8ezlIlhehLiIRO4PvWdjpdJK\/dyEMhs=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/reset.css"
+    },
+    {
+      "hash": "sha256-ubdragDvOq7KUVjT63LdGd2VdrvsdXVIm+IdBrORY04=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/theme.css"
+    },
+    {
+      "hash": "sha256-X74+DtabMloiaMR\/ifjtbyT+98h4UVDWsHfuk8c2emc=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/utilities\/lg.css"
+    },
+    {
+      "hash": "sha256-5XjAXtzJsuhU3ZfzLliOPxYe5mb4i7rMiAk06QfLq1k=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/utilities\/md.css"
+    },
+    {
+      "hash": "sha256-MzLAszBQWu7vVgMB4W\/Kbw3o00Rvui1qadC\/4hrNF4E=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/utilities\/sm.css"
+    },
+    {
+      "hash": "sha256-sEVNuVt9ZKVvLyu9RfnHuAwLmrI5MpJh3ZqR34oKAz0=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/utilities\/utilities.css"
+    },
+    {
+      "hash": "sha256-nnD++\/xeoxzd3vE+WtpkC+Y1WTkhWaZsZZoXB0fvJTY=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/utilities\/xl.css"
+    },
+    {
+      "hash": "sha256-JoU6XfVrXs\/GH\/LFGKTKnJFTC6jiZtWq2Tv6auOpQBw=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/utilities\/xxl.css"
+    },
+    {
+      "hash": "sha256-xQW67iizIpcJFwRCgjr9ajYe57of7P5ziss9w9A3wb8=",
+      "url": "_content\/Tavenem.Blazor.Framework\/css\/variables.css"
+    },
+    {
+      "hash": "sha256-Let1+VveMfjAtVttG3LUIVhXPrAoKeVjBQO+guh6xGw=",
+      "url": "_content\/Tavenem.Blazor.Framework\/emoji.json"
     },
     {
       "hash": "sha256-5k0HbM0muqYsUuJ1quHPMwp\/gQaMc1SBNjlcnXw0VgI=",
       "url": "_content\/Tavenem.Blazor.Framework\/katex.min.css"
     },
     {
-      "hash": "sha256-lxhuw1qUo+FX6t0oPIjlVAP9sLygH5UkdtCgLkzuLZo=",
-      "url": "_content\/Tavenem.Blazor.Framework\/layout.css"
-    },
-    {
       "hash": "sha256-tIi8bipwlFXheC\/xcklAi+4tiN53VF7Kl2x56YKBw4Q=",
       "url": "_content\/Tavenem.Blazor.Framework\/math.css"
-    },
-    {
-      "hash": "sha256-dHTwKA8qWf+l29TIJl4RZRSkY80vRDzp6lWyFAzB8Nc=",
-      "url": "_content\/Tavenem.Blazor.Framework\/reset.css"
     },
     {
       "hash": "sha256-WKm0pFLWcRAj2U8jp73VPanRd+hYc5pTvfByAWKY1OQ=",
@@ -929,12 +969,20 @@
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-drawer.js.map"
     },
     {
-      "hash": "sha256-10xR33Woc5WKWQ+x7SYWEX56mkVPtJnb5zossTtTGmA=",
+      "hash": "sha256-4fI57fr8UhhMSfrGcpAaWM2b3fJtDiYjze40jTyWQrw=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-editor.js"
     },
     {
-      "hash": "sha256-4q66PoYovosGsM7do2gSlUxEqwRbT9VeRMkRvTFhms0=",
+      "hash": "sha256-liwSa4a2eyTMOktiv3oKD1mMYyXslBdSM3bJiyHm9r0=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-editor.js.map"
+    },
+    {
+      "hash": "sha256-3mbLBWI+jh\/HMv32wGUEt4+qJ+6j34gK41ikdpAU22E=",
+      "url": "_content\/Tavenem.Blazor.Framework\/tavenem-emoji.js"
+    },
+    {
+      "hash": "sha256-CP1zHrGFxbeMx+Fgae6LFxg8i8fcIGcPX37hydkvVXE=",
+      "url": "_content\/Tavenem.Blazor.Framework\/tavenem-emoji.js.map"
     },
     {
       "hash": "sha256-M7EZzI0TNJwATIaC5OxPbdnGWdyaT6FLUJzfh9UpIy0=",
@@ -945,11 +993,11 @@
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-events.js.map"
     },
     {
-      "hash": "sha256-Uz3WLIqmAR2+En28fCccOgLuKiEBPWYrFZ6fBcvBKe0=",
+      "hash": "sha256-f9mLi36ZH6hMBI2sPVIm5JH7BvjhY0GzsvPHALATGmE=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-framework.js"
     },
     {
-      "hash": "sha256-togVz0nXywTdAooVGbdjnF76cG14D3VZERo7CdRRusI=",
+      "hash": "sha256-lz0jPqmxc1I+6efRDlg7GVB9vX35KOjh9+FZqpHCyuk=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-framework.js.map"
     },
     {
@@ -977,11 +1025,11 @@
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-keylistener.js.map"
     },
     {
-      "hash": "sha256-yxjuZDShi2Zk6ZzuMTADEL6VnDx8zV+VW\/ngXQK17xo=",
+      "hash": "sha256-ixkDaErJKpVVRNk14JNIzMzKdyBTHdYYVJFPKYt6fbw=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-popover.js"
     },
     {
-      "hash": "sha256-9UwXYaX3WyW\/ZgYUHWW3xq3CbZ4zAvWlnDs4wx8bhWs=",
+      "hash": "sha256-HdINmgLGE1yJmtwW2pltS\/XHvvG5l9jEDCz6K3CzYd0=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-popover.js.map"
     },
     {
@@ -1001,44 +1049,12 @@
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-scroll.js.map"
     },
     {
-      "hash": "sha256-jcFcFIPX2KiQuWpt5Yjj4\/smYuA4n7ZJdxZRKQSk6is=",
+      "hash": "sha256-LVqmpUlfXXJ\/oaGJM2PE41p28CbyFSH+23pavVyaBwc=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-utility.js"
     },
     {
-      "hash": "sha256-3dkN4Ed3z9ImuXGE3Bsa7iIrLhdwuumN655vloonB60=",
+      "hash": "sha256-\/5ohEsdLDFpcOUOikBFXNQV+Tpe20LXP7PVgoxjnWzY=",
       "url": "_content\/Tavenem.Blazor.Framework\/tavenem-utility.js.map"
-    },
-    {
-      "hash": "sha256-ubdragDvOq7KUVjT63LdGd2VdrvsdXVIm+IdBrORY04=",
-      "url": "_content\/Tavenem.Blazor.Framework\/theme.css"
-    },
-    {
-      "hash": "sha256-X74+DtabMloiaMR\/ifjtbyT+98h4UVDWsHfuk8c2emc=",
-      "url": "_content\/Tavenem.Blazor.Framework\/utilities\/lg.css"
-    },
-    {
-      "hash": "sha256-5XjAXtzJsuhU3ZfzLliOPxYe5mb4i7rMiAk06QfLq1k=",
-      "url": "_content\/Tavenem.Blazor.Framework\/utilities\/md.css"
-    },
-    {
-      "hash": "sha256-MzLAszBQWu7vVgMB4W\/Kbw3o00Rvui1qadC\/4hrNF4E=",
-      "url": "_content\/Tavenem.Blazor.Framework\/utilities\/sm.css"
-    },
-    {
-      "hash": "sha256-rKlwGK5vcYTNmeQIVOUt3I\/H84xI\/w8AP1IdWI0cG78=",
-      "url": "_content\/Tavenem.Blazor.Framework\/utilities\/utilities.css"
-    },
-    {
-      "hash": "sha256-nnD++\/xeoxzd3vE+WtpkC+Y1WTkhWaZsZZoXB0fvJTY=",
-      "url": "_content\/Tavenem.Blazor.Framework\/utilities\/xl.css"
-    },
-    {
-      "hash": "sha256-JoU6XfVrXs\/GH\/LFGKTKnJFTC6jiZtWq2Tv6auOpQBw=",
-      "url": "_content\/Tavenem.Blazor.Framework\/utilities\/xxl.css"
-    },
-    {
-      "hash": "sha256-wiqtJuyNC6zoQoxRJSyNFDZ9Or\/n5L+EGiMdhCNtaFA=",
-      "url": "_content\/Tavenem.Blazor.Framework\/variables.css"
     },
     {
       "hash": "sha256-10n9qH2u+\/SEOIzTTqEIuNWaK7vkNAE73SOgn97R\/0I=",
@@ -1049,9 +1065,9 @@
       "url": "_content\/Tavenem.Blazor.IndexedDB\/tavenem-indexeddb.js.map"
     },
     {
-      "hash": "sha256-XACg\/nLswJ0Obz9+QH\/JhsNUp4W3PPJ6sTA4qQfBytQ=",
+      "hash": "sha256-ncNT2tK3Olro\/BCiY0Ajjbzl0\/8JmYShwa97wjPK0uc=",
       "url": "_content\/Tavenem.Blazor.Framework\/Tavenem.Blazor.Framework.lib.module.js"
     }
   ],
-  "version": "Ql6x75Gk"
+  "version": "QoqQT6ei"
 };
