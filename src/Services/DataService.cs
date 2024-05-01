@@ -287,7 +287,7 @@ public class DataService(
         }
 
         Data.Ethnicities?.Remove(top);
-        var index = Ethnicities.IndexOf(top);
+        var index = Ethnicities.FindIndex(x => x.Equals(top));
 
         if (ethnicity.Hierarchy?.Length > 0)
         {
@@ -379,7 +379,7 @@ public class DataService(
         }
 
         Data.StoryTraits?.Remove(top);
-        var index = Traits.IndexOf(top);
+        var index = Traits.FindIndex(x => x.Equals(top));
 
         if (trait.Hierarchy?.Length > 0)
         {
@@ -421,7 +421,7 @@ public class DataService(
         }
 
         Data.Traits?.Remove(top);
-        var index = Traits.IndexOf(top);
+        var index = Traits.FindIndex(x => x.Equals(top));
 
         if (trait.Hierarchy?.Length > 0)
         {

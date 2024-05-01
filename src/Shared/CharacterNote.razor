@@ -256,8 +256,7 @@
                     <Tooltip Delay="750">Add additional random traits without clearing the current set</Tooltip>
                 </button>
             </div>
-            <ElementList Items="DataService.Traits"
-                         ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+            <ElementList Items="DataService.Traits" ItemIsCollapsible="@(x => true)">
                 <Template>
                     <div class="d-inline-flex flex-grow-1">
                         <Checkbox Class="dense"
@@ -287,8 +286,7 @@
                     </div>
                 </Template>
                 <CollapsibleTemplate>
-                    <ElementList Items="context.Children"
-                                 ItemIsCollapsible="@(x => x.Children?.Count > 0)">
+                    <ElementList Items="context.Children" ItemIsCollapsible="@(x => true)">
                         <FollowingContent>
                             <div role="listitem"
                                     class="clickable no-drag"
