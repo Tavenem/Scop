@@ -11,6 +11,12 @@ body {
     position: relative;
 }
 
+.new-list-item {
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-top: 6px;
+}
+
 .loading-icon-container {
     align-content: center;
     align-items: center;

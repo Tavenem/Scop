@@ -1,0 +1,175 @@
+[
+  {
+    "name": "child",
+    "inverseName": "parent",
+    "names": {
+      "1": "daughter",
+      "2": "son"
+    },
+    "ageGap": {
+      "0": {
+        "min": 16,
+        "mean": 25
+      }
+    }
+  },
+  {
+    "name": "cousin",
+    "ageGap": { "0": { "mean": 0 } }
+  },
+  {
+    "name": "employee",
+    "inverseName": "employer",
+    "ageGap": {
+      "0": {
+        "min": -47,
+        "mean": 12,
+        "max": 49
+      }
+    }
+  },
+  {
+    "name": "employer",
+    "inverseName": "employee",
+    "ageGap": {
+      "0": {
+        "min": -49,
+        "mean": -12,
+        "max": 47
+      }
+    }
+  },
+  {
+    "name": "doctor",
+    "inverseName": "patient"
+  },
+  {
+    "name": "friend",
+    "ageGap": { "0": { "mean": 0 } }
+  },
+  {
+    "name": "nibling",
+    "inverseName": "pibling",
+    "names": {
+      "1": "niece",
+      "2": "nephew"
+    },
+    "ageGap": {
+      "0": {
+        "min": -10,
+        "mean": 25
+      }
+    }
+  },
+  {
+    "name": "parent",
+    "inverseName": "child",
+    "names": {
+      "1": "mother",
+      "2": "father"
+    },
+    "ageGap": {
+      "1": {
+        "min": -42,
+        "mean": -25,
+        "max": -16
+      },
+      "2": {
+        "mean": -25,
+        "max": -16
+      }
+    }
+  },
+  {
+    "name": "patient",
+    "inverseName": "doctor"
+  },
+  {
+    "name": "pibling",
+    "inverseName": "nibling",
+    "names": {
+      "1": "aunt",
+      "2": "uncle"
+    },
+    "ageGap": {
+      "0": {
+        "mean": -25,
+        "max": 10
+      }
+    }
+  },
+  {
+    "name": "sibling",
+    "names": {
+      "1": "sister",
+      "2": "brother"
+    },
+    "ageGap": {
+      "0": {
+        "min": -26,
+        "mean": 0,
+        "max": 26
+      }
+    }
+  },
+  {
+    "name": "spouse",
+    "names": {
+      "1": "wife",
+      "2": "husband"
+    },
+    "ageGap": {
+      "1": {
+        "min": -3,
+        "mean": 0,
+        "max": 15
+      },
+      "2": {
+        "min": -15,
+        "mean": 0,
+        "max": 3
+      }
+    }
+  },
+  {
+    "name": "student",
+    "inverseName": "teacher",
+    "ageGap": {
+      "0": {
+        "min": 5,
+        "mean": 20,
+        "max": 62
+      }
+    }
+  },
+  {
+    "name": "sweetheart",
+    "names": {
+      "1": "girlfriend",
+      "2": "boyfriend"
+    },
+    "ageGap": {
+      "1": {
+        "min": -3,
+        "mean": 0,
+        "max": 7
+      },
+      "2": {
+        "min": -7,
+        "mean": 0,
+        "max": 3
+      }
+    }
+  },
+  {
+    "name": "teacher",
+    "inverseName": "student",
+    "ageGap": {
+      "0": {
+        "min": -62,
+        "mean": -20,
+        "max": -5
+      }
+    }
+  }
+]
