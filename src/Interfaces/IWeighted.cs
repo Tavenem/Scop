@@ -1,4 +1,4 @@
-﻿namespace Scop;
+﻿namespace Scop.Interfaces;
 
 public interface IWeighted
 {

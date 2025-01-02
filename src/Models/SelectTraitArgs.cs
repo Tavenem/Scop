@@ -1,4 +1,4 @@
-﻿namespace Scop;
+﻿namespace Scop.Models;
 
 public class SelectTraitArgs
 {

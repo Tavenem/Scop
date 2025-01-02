@@ -2,33 +2,16 @@
 
 public static class Strings
 {
-    public static readonly string[] Genders = new[]
-    {
+    public static readonly string[] Genders =
+    [
         "Female",
         "Male",
         "Non-binary",
         "Trans female",
         "Trans male",
-    };
-    public static readonly string[] RelationshipTypes = new[]
-    {
-        "Child",
-        "Child-in-law",
-        "Cousin",
-        "Grandparent",
-        "Nibling",
-        "Parent",
-        "Parent-in-law",
-        "Pibling",
-        "Sibling",
-        "Sibling-in-law",
-        "Spouse",
-        "Ex-Spouse",
-        "Sweetheart",
-        "Ex-Sweetheart",
-    };
-    public static readonly string[] Suffixes = new[]
-    {
+    ];
+    public static readonly string[] Suffixes =
+    [
         "Esq.",
         "II",
         "III",
@@ -62,9 +45,9 @@ public static class Strings
         "XXX",
         "Sr.",
         "[deceased]",
-    };
-    public static readonly string[] Titles = new[]
-    {
+    ];
+    public static readonly string[] Titles =
+    [
         "Abbess",
         "Abbot",
         "Adm.",
@@ -182,5 +165,5 @@ public static class Strings
         "Tsarina",
         "Viscount",
         "Viscountess",
-    };
+    ];
 }

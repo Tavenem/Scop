@@ -2,7 +2,7 @@
 using Microsoft.JSInterop;
 using Scop.Pages;
 
-namespace Scop;
+namespace Scop.Services;
 
 public class ScopJsInterop(IJSRuntime jsRuntime) : IAsyncDisposable
 {

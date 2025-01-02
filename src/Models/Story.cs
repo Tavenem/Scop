@@ -1,18 +1,19 @@
-﻿using Scop.Models;
+﻿using Scop.Interfaces;
+using System.Text.Json.Serialization;
 
-namespace Scop;
+namespace Scop.Models;
 
 public class Story : TraitContainer
 {
     public List<TimelineCategory>? EventCategories { get; set; }
 
-    public string DisplayName => Name ?? "New Story";
+    [JsonIgnore] public string DisplayName => Name ?? "New Story";
 
     public List<TimelineEvent>? Events { get; set; }
 
     public string? Id { get; set; }
 
-    public bool IsUnnamed => string.IsNullOrWhiteSpace(Name);
+    [JsonIgnore] public bool IsUnnamed => string.IsNullOrWhiteSpace(Name);
 
     public string? Name { get; set; }
 
@@ -52,19 +53,18 @@ public class Story : TraitContainer
         return null;
     }
 
-    public void Initialize()
+    public void Initialize(ScopData data)
     {
         if (Notes is not null)
         {
             foreach (var note in Notes)
             {
                 note.Initialize();
-                note.LoadCharacters(this);
             }
         }
-        ResetCharacterRelationshipMaps();
+        ResetCharacterRelationshipMaps(data);
     }
 
-    public void ResetCharacterRelationshipMaps()
-        => Character.SetRelationshipMaps(AllCharacters().ToList());
+    public void ResetCharacterRelationshipMaps(ScopData data)
+        => Character.SetRelationshipMaps(data, [.. AllCharacters()]);
 }

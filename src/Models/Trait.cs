@@ -1,7 +1,8 @@
-﻿using System.Text.Json.Serialization;
+﻿using Scop.Enums;
+using System.Text.Json.Serialization;
 using Tavenem.Randomize;
 
-namespace Scop;
+namespace Scop.Models;
 
 public class Trait : IEquatable<Trait>, IJsonOnDeserialized
 {
@@ -28,8 +29,6 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
 
     public string? Name { get; set; }
 
-    [JsonIgnore] public string? NewTraitValue { get; set; }
-
     /// <summary>
     /// Indicates the weight of selecting no option if <see cref="ChoiceType"/> is <see
     /// cref="ChoiceType.Single"/> or <see cref="ChoiceType.OneOrMore"/>.
@@ -38,8 +37,6 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
     public double? NoneWeight { get; set; }
 
     [JsonIgnore] public Trait? Parent { get; set; }
-
-    public bool UserDefined { get; set; }
 
     public double? Weight { get; set; }
 
@@ -84,25 +81,6 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
             .FirstOrDefault()?
             .EffectiveWeight
             ?? EffectiveWeight;
-    }
-
-    public bool HasUserDefined()
-    {
-        if (UserDefined)
-        {
-            return true;
-        }
-        if (Children is not null)
-        {
-            foreach (var child in Children)
-            {
-                if (child.HasUserDefined())
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public void OnDeserialized() => Initialize();
@@ -301,6 +279,6 @@ public class Trait : IEquatable<Trait>, IJsonOnDeserialized
     /// <returns>A string that represents the current object.</returns>
     public override string? ToString() => Name ?? base.ToString();
 
-    public static bool operator ==(Trait? left, Trait? right) => left?.Equals(right) ?? (right is null);
+    public static bool operator ==(Trait? left, Trait? right) => left?.Equals(right) ?? right is null;
     public static bool operator !=(Trait? left, Trait? right) => !(left == right);
 }

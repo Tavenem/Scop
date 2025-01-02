@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Scop.Models;
+using Scop.Services;
 using System.Diagnostics.CodeAnalysis;
 using Tavenem.Blazor.Framework;
 using Tavenem.Randomize;
@@ -72,14 +73,13 @@ public partial class WritingPromptDialog
         }
 
         var choices = unique && WritingPrompt.SecondaryCharacters is not null
-            ? Genre
+            ? [.. Genre
                 .SecondaryCharacters
                 .Except(WritingPrompt
                     .SecondaryCharacters
                     .Where(x => !string.IsNullOrWhiteSpace(x.Description))
                     .Select(x => x.Description)
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.SecondaryCharacters;
 
         if (choices.Count == 0)
@@ -114,20 +114,17 @@ public partial class WritingPromptDialog
         }
 
         var choices = WritingPrompt.Features is not null
-            ? Genre
+            ? [.. Genre
                 .Features
                 .Except(WritingPrompt
                     .Features
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.Features;
 
         if (except is not null)
         {
-            choices = choices
-                .Except(except)
-                .ToList();
+            choices = [.. choices.Except(except)];
         }
 
         if (choices.Count == 0)
@@ -153,13 +150,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = WritingPrompt.ProtagonistTraits is not null
-            ? Genre
+            ? [.. Genre
                 .ProtagonistTraits
                 .Except(WritingPrompt
                     .ProtagonistTraits
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.ProtagonistTraits;
 
         if (choices.Count == 0)
@@ -199,14 +195,13 @@ public partial class WritingPromptDialog
         }
 
         var choices = WritingPrompt.SecondaryCharacters[index].Traits is not null
-            ? Genre
+            ? [.. Genre
                 .SecondaryCharacterTraits
                 .Except(WritingPrompt
                     .SecondaryCharacters[index]!
                     .Traits!
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.SecondaryCharacterTraits;
 
         if (choices.Count == 0)
@@ -230,13 +225,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = WritingPrompt.Settings is not null
-            ? Genre
+            ? [.. Genre
                 .Settings
                 .Except(WritingPrompt
                     .Settings
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.Settings;
 
         if (choices.Count == 0)
@@ -260,13 +254,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = WritingPrompt.Subjects is not null
-            ? Genre
+            ? [.. Genre
                 .Subjects
                 .Except(WritingPrompt
                     .Subjects
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.Subjects;
 
         if (choices.Count == 0)
@@ -290,13 +283,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = WritingPrompt.Themes is not null
-            ? Genre
+            ? [.. Genre
                 .Themes
                 .Except(WritingPrompt
                     .Themes
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.Themes;
 
         if (choices.Count == 0)
@@ -455,10 +447,10 @@ public partial class WritingPromptDialog
         Genre? genre;
         do
         {
-            genre = Randomizer.Instance.Next(DataService.Genres);
+            genre = Randomizer.Instance.Next(DataService.Data.Genres);
         } while (force
             && genre is not null
-            && DataService.Genres.Count > 1
+            && DataService.Data.Genres?.Count > 1
             && genre.Name?.Equals(WritingPrompt.Genre) == true);
         Genre = genre;
         OnSelectGenre();
@@ -490,7 +482,7 @@ public partial class WritingPromptDialog
         Plot? value;
         do
         {
-            value = Randomizer.Instance.Next(DataService.Plots);
+            value = Randomizer.Instance.Next(DataService.Data.Plots);
         } while (force
             && !string.IsNullOrWhiteSpace(value?.Name)
             && value.Equals(WritingPrompt.Plot));
@@ -525,13 +517,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = force && WritingPrompt.ProtagonistTraits is not null
-            ? Genre
+            ? [.. Genre
                 .ProtagonistTraits
                 .Except(WritingPrompt
                     .ProtagonistTraits
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.ProtagonistTraits;
 
         if (choices.Count == 0)
@@ -586,13 +577,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = force && WritingPrompt.Settings is not null
-            ? Genre
+            ? [.. Genre
                 .Settings
                 .Except(WritingPrompt
                     .Settings
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.Settings;
 
         if (choices.Count == 0)
@@ -617,13 +607,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = force && WritingPrompt.Subjects is not null
-            ? Genre
+            ? [.. Genre
                 .Subjects
                 .Except(WritingPrompt
                     .Subjects
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.Subjects;
 
         if (choices.Count == 0)
@@ -648,13 +637,12 @@ public partial class WritingPromptDialog
         }
 
         var choices = force && WritingPrompt.Themes is not null
-            ? Genre
+            ? [.. Genre
                 .Themes
                 .Except(WritingPrompt
                     .Themes
                     .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .OfType<string>())
-                .ToList()
+                    .OfType<string>())]
             : Genre.Themes;
 
         if (choices.Count == 0)
@@ -691,7 +679,8 @@ public partial class WritingPromptDialog
         }
 
         Genre = DataService
-            .Genres
+            .Data
+            .Genres?
             .Find(x
                 => x.Name?.Equals(
                     WritingPrompt.Genre,

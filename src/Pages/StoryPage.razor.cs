@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Scop.Enums;
+using Scop.Interfaces;
 using Scop.Models;
+using Scop.Services;
 using Scop.Shared;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -21,11 +24,6 @@ public partial class StoryPage : IDisposable
         "note",
         "person",
     ];
-    private static readonly List<string> _storyAddIcons =
-    [
-        "note_add",
-        "person_add",
-    ];
 
     private bool _disposedValue;
     private DotNetObjectReference<StoryPage>? _dotNetObjectRef;
@@ -41,13 +39,7 @@ public partial class StoryPage : IDisposable
 
     private string? EditorContent { get; set; }
 
-    private bool IsTimelineSelected { get; set; }
-
     [Inject, NotNull] private ScopJsInterop? JsInterop { get; set; }
-
-    private string? NewTraitValue { get; set; }
-
-    public DateTimeOffset? SelectedBirthdate { get; set; }
 
     private INote? SelectedNote { get; set; }
 
@@ -116,6 +108,27 @@ public partial class StoryPage : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    public async Task SelectNoteAsync(INote? note)
+    {
+        if (note?.Equals(SelectedNote) != false)
+        {
+            return;
+        }
+        TopSelectedNote = _story?.Notes?.Contains(note) == true
+            ? note
+            : null;
+        SelectedNote = note;
+        EditorContent = note.Content;
+        if (_story?.Notes is not null)
+        {
+            foreach (var child in _story.Notes)
+            {
+                await child.SetSelectionAsync(note);
+            }
+        }
+        StateHasChanged();
+    }
+
     /// <summary>
     /// <para>
     /// Updates the current Google Drive signed-in status.
@@ -182,13 +195,52 @@ public partial class StoryPage : IDisposable
             }
         }
 
-        _story?.Initialize();
+        _story?.Initialize(DataService.Data);
 
         _loading = false;
         await InvokeAsync(StateHasChanged);
     }
 
     private Task OnChangeAsync() => DataService.SaveAsync();
+
+    private async Task OnChangeNoteTypeAsync(INote note)
+    {
+        if (note is Character
+            || (_story is null
+                && note.Parent is null))
+        {
+            return;
+        }
+        var newNote = Character.FromNote(note);
+        newNote.Initialize();
+        var notes = note.Parent is null
+            ? _story!.Notes
+            : note.Parent.Notes;
+        var indexOfNote = notes?.IndexOf(note) ?? -1;
+        if (indexOfNote != -1)
+        {
+            notes!.RemoveAt(indexOfNote);
+        }
+        if (notes is null)
+        {
+            if (note.Parent is null)
+            {
+                _story!.Notes = [];
+                notes = _story.Notes;
+            }
+            else
+            {
+                note.Parent.Notes = [];
+                notes = note.Parent.Notes;
+            }
+        }
+        notes.Insert(
+            indexOfNote < 0 ? notes.Count - 1 : indexOfNote,
+            newNote);
+        SelectedNote = newNote;
+        EditorContent = null;
+        await DataService.SaveAsync();
+    }
 
     private async Task OnChangeStoryNameAsync(string? name)
     {
@@ -216,10 +268,8 @@ public partial class StoryPage : IDisposable
     {
         if (note.Parent is not null)
         {
-            Console.WriteLine("Parent is not null");
             if (note.Parent.Notes is null)
             {
-                Console.WriteLine("Parent.Notes is null");
                 return;
             }
             note.Parent.Notes.Remove(note);
@@ -243,11 +293,13 @@ public partial class StoryPage : IDisposable
             EditorContent = null;
         }
 
+        if (note is Character)
+        {
+            _story?.ResetCharacterRelationshipMaps(DataService.Data);
+        }
+
         await DataService.SaveAsync();
     }
-
-    private Task OnDeleteTraitAsync(Trait trait)
-        => DataService.RemoveStoryTraitAsync(trait);
 
     private Task OnDropAsync(DropEventArgs e)
         => OnDropAsync(e, null);
@@ -346,93 +398,25 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private async Task OnEditTraitAsync(Trait trait)
-    {
-        await DialogService.Show<TraitDialog>("Trait", new DialogParameters
-        {
-            { nameof(TraitDialog.Trait), trait },
-        }).Result;
-
-        await DataService.EditStoryTraitAsync(trait);
-    }
-
-    private async Task OnNewNoteOfTypeAsync(int index)
+    private async Task OnNewNoteAsync()
     {
         if (_story is null)
         {
             return;
         }
-        INote newNote = index == 1
-            ? new Character()
-            : new Note();
+        var newNote = new Note();
         (_story.Notes ??= []).Add(newNote);
         SelectedNote = newNote;
         EditorContent = null;
         await DataService.SaveAsync();
     }
 
-    private async Task OnNewNoteOfTypeAsync(INote parent, int index)
+    private async Task OnNewNoteAsync(INote parent)
     {
-        INote newNote = index == 1
-            ? new Character()
-            : new Note();
-        newNote.Parent = parent;
+        var newNote = new Note { Parent = parent };
         (parent.Notes ??= []).Add(newNote);
-        SelectedNote = newNote;
-        EditorContent = null;
         await DataService.SaveAsync();
-    }
-
-    private async Task OnNewTraitAsync(string? newValue)
-    {
-        NewTraitValue = newValue;
-        if (_story is null
-            || string.IsNullOrEmpty(NewTraitValue))
-        {
-            return;
-        }
-
-        var trimmed = NewTraitValue.Trim();
-        var newName = trimmed;
-        var i = 0;
-        while (DataService
-            .StoryTraits
-            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)))
-        {
-            newName = $"{trimmed} ({i++})";
-        }
-
-        var newTrait = new Trait
-        {
-            Hierarchy = [newName],
-            Name = newName,
-            UserDefined = true,
-        };
-
-        NewTraitValue = string.Empty;
-        await DataService.AddStoryTraitAsync(newTrait);
-    }
-
-    private async Task OnNewTraitAsync(Trait parent, string? newValue)
-    {
-        parent.NewTraitValue = newValue;
-        if (string.IsNullOrEmpty(parent.NewTraitValue))
-        {
-            return;
-        }
-
-        var trimmed = parent.NewTraitValue.Trim();
-        var newName = trimmed;
-        var i = 0;
-        while (parent
-            .Children?
-            .Any(x => string.Equals(x.Name, newName, StringComparison.OrdinalIgnoreCase)) == true)
-        {
-            newName = $"{trimmed} ({i++})";
-        }
-
-        parent.NewTraitValue = string.Empty;
-        await DataService.AddStoryTraitAsync(parent, newName);
+        await OnSelectChildNoteAsync(newNote);
     }
 
     private async Task OnNowChangeAsync(DateTimeOffset? old)
@@ -552,24 +536,6 @@ public partial class StoryPage : IDisposable
         await OnChangeAsync();
     }
 
-    private async Task OnRandomizeStoryTraitsAsync(bool reset = true)
-    {
-        if (_story is null)
-        {
-            return;
-        }
-
-        if (reset)
-        {
-            _story.ClearTraits();
-        }
-        foreach (var trait in DataService.StoryTraits)
-        {
-            trait.Randomize(_story);
-        }
-        await DataService.SaveAsync();
-    }
-
     private async Task OnSelectChildNoteAsync(INote? note)
     {
         if (note?.Equals(SelectedNote) != false)
@@ -583,7 +549,7 @@ public partial class StoryPage : IDisposable
         {
             foreach (var child in _story.Notes)
             {
-                await child.SetSelectionAsync(SelectedNote);
+                await child.SetSelectionAsync(note);
             }
         }
     }
@@ -607,34 +573,12 @@ public partial class StoryPage : IDisposable
         }
         SelectedNote = TopSelectedNote;
         EditorContent = SelectedNote.Content;
-        IsTimelineSelected = false;
-        SelectedBirthdate = SelectedNote is Character character
-            ? character.Birthdate
-            : null;
         if (_story?.Notes is not null)
         {
             foreach (var child in _story.Notes)
             {
                 await child.SetSelectionAsync(SelectedNote);
             }
-        }
-    }
-
-    private void OnSelectTimeline()
-    {
-        IsTimelineSelected = true;
-        SelectedNote = null;
-        EditorContent = null;
-        SelectedBirthdate = null;
-        TopSelectedNote = null;
-    }
-
-    private async Task OnTraitSelectAsync(bool value, Trait? trait)
-    {
-        if (_story is not null && trait is not null)
-        {
-            trait.Select(value, _story);
-            await DataService.SaveAsync();
         }
     }
 
@@ -659,121 +603,158 @@ public partial class StoryPage : IDisposable
 
         _story.WritingPrompt = prompt;
 
-        if (!string.IsNullOrEmpty(prompt.Genre))
+        if (!string.IsNullOrEmpty(prompt.Genre)
+            && DataService
+            .Data
+            .StoryTraits?
+            .FirstOrDefault(x => x.Name?.Equals(
+                "Genre",
+                StringComparison.OrdinalIgnoreCase) == true) is Trait genreTrait)
         {
-            var match = DataService.StoryTraits.Find(x => x.Name?.Equals("Genre", StringComparison.OrdinalIgnoreCase) == true);
-            match = match?.Children?.Find(x => x.Name?.Equals(prompt.Genre, StringComparison.OrdinalIgnoreCase) == true);
-            if (match is not null)
+            var match = genreTrait.Children?.Find(x => x.Name?.Equals(prompt.Genre, StringComparison.OrdinalIgnoreCase) == true);
+            if (match is null)
             {
+                match = new() { Name = string.Concat(char.ToUpper(prompt.Genre[0]).ToString(), prompt.Genre.AsSpan(1)) };
+                genreTrait.Children ??= [];
+                genreTrait.Children.Add(match);
+            }
+            match.Select(true, _story);
+            if (!string.IsNullOrEmpty(prompt.Subgenre))
+            {
+                var subgenreMatch = match.Children?.Find(x => x.Name?.Equals("Subgenre", StringComparison.OrdinalIgnoreCase) == true);
+                if (subgenreMatch is null)
+                {
+                    subgenreMatch = new()
+                    {
+                        ChoiceType = ChoiceType.Single,
+                        Name = "Subgenre",
+                    };
+                    match.Children ??= [];
+                    match.Children.Add(subgenreMatch);
+                }
+                var subgenre = prompt.Subgenre;
+                foreach (var article in _articles)
+                {
+                    if (subgenre.StartsWith(article, StringComparison.OrdinalIgnoreCase))
+                    {
+                        subgenre = subgenre[article.Length..].TrimStart();
+                        break;
+                    }
+                }
+                match = subgenreMatch.Children?.Find(x => x.Name?.Equals(subgenre, StringComparison.OrdinalIgnoreCase) == true);
+                if (match is null)
+                {
+                    match = new() { Name = string.Concat(char.ToUpper(subgenre[0]).ToString(), subgenre.AsSpan(1)) };
+                    subgenreMatch.Children ??= [];
+                    subgenreMatch.Children.Add(match);
+                }
                 match.Select(true, _story);
-                if (!string.IsNullOrEmpty(prompt.Subgenre))
-                {
-                    match = match.Children?.Find(x => x.Name?.Equals("Subgenre", StringComparison.OrdinalIgnoreCase) == true);
-                    if (match?.Children is not null)
-                    {
-                        var subgenre = prompt.Subgenre;
-                        foreach (var article in _articles)
-                        {
-                            if (subgenre.StartsWith(article, StringComparison.OrdinalIgnoreCase))
-                            {
-                                subgenre = subgenre[article.Length..].TrimStart();
-                                break;
-                            }
-                        }
-                        match = match.Children.Find(x => x.Name?.Equals(subgenre, StringComparison.OrdinalIgnoreCase) == true);
-                        match?.Select(true, _story);
-                    }
-                }
             }
         }
-        if (prompt.Settings?.Count > 0)
+        if (prompt.Settings?.Count > 0
+            && DataService
+                .Data
+                .StoryTraits?
+                .FirstOrDefault(x => x.Name?.Equals(
+                    "Setting",
+                    StringComparison.OrdinalIgnoreCase) == true) is Trait settingTrait)
         {
-            var settingTrait = DataService.StoryTraits.Find(x => x.Name?.Equals("Setting", StringComparison.OrdinalIgnoreCase) == true);
-            if (settingTrait?.Children is not null)
+            foreach (var setting in prompt.Settings)
             {
-                foreach (var setting in prompt.Settings)
+                var match = settingTrait.Children?.Find(x => x.Name?.Equals(setting, StringComparison.OrdinalIgnoreCase) == true);
+                if (match is null && settingTrait.Children is not null)
                 {
-                    var match = settingTrait.Children.Find(x => x.Name?.Equals(setting, StringComparison.OrdinalIgnoreCase) == true);
-                    if (match is null)
+                    var settingTerms = setting.Split(' ');
+                    (Trait? trait, int macthes, int length) bestMatch = (null, 0, 0);
+                    foreach (var trait in settingTrait.Children)
                     {
-                        var settingTerms = setting.Split(' ');
-                        (Trait? trait, int macthes, int length) bestMatch = (null, 0, 0);
-                        foreach (var trait in settingTrait.Children)
+                        if (string.IsNullOrEmpty(trait.Name))
                         {
-                            if (string.IsNullOrEmpty(trait.Name))
-                            {
-                                continue;
-                            }
-                            var matches = trait
-                                .Name
-                                .Split(' ')
-                                .Except(_articles)
-                                .Intersect(settingTerms, StringComparer.OrdinalIgnoreCase)
-                                .ToList();
-                            if (matches.Count == 0 || matches.Count < bestMatch.macthes)
-                            {
-                                continue;
-                            }
-                            var maxLength = matches.MaxBy(x => x.Length)!.Length;
-                            if (matches.Count == bestMatch.macthes
-                                && maxLength < bestMatch.length)
-                            {
-                                continue;
-                            }
-                            bestMatch = (trait, matches.Count, maxLength);
+                            continue;
                         }
-                        if (bestMatch.trait is not null)
+                        var matches = trait
+                            .Name
+                            .Split(' ')
+                            .Except(_articles)
+                            .Intersect(settingTerms, StringComparer.OrdinalIgnoreCase)
+                            .ToList();
+                        if (matches.Count == 0 || matches.Count < bestMatch.macthes)
                         {
-                            match = bestMatch.trait;
+                            continue;
                         }
+                        var maxLength = matches.MaxBy(x => x.Length)!.Length;
+                        if (matches.Count == bestMatch.macthes
+                            && maxLength < bestMatch.length)
+                        {
+                            continue;
+                        }
+                        bestMatch = (trait, matches.Count, maxLength);
                     }
-                    match?.Select(true, _story);
+                    if (bestMatch.trait is not null)
+                    {
+                        match = bestMatch.trait;
+                    }
                 }
+                if (match is null)
+                {
+                    match = new() { Name = setting };
+                    settingTrait.Children ??= [];
+                    settingTrait.Children.Add(match);
+                }
+                match.Select(true, _story);
             }
         }
-        if (prompt.Themes?.Count > 0)
+        if (prompt.Themes?.Count > 0
+            && DataService
+            .Data
+            .StoryTraits?
+            .FirstOrDefault(x => x.Name?.Equals(
+                "Themes",
+                StringComparison.OrdinalIgnoreCase) == true) is Trait themesTrait)
         {
-            var themesTrait = DataService.StoryTraits.Find(x => x.Name?.Equals("Themes", StringComparison.OrdinalIgnoreCase) == true);
-            if (themesTrait?.Children is not null)
+            foreach (var theme in prompt.Themes)
             {
-                foreach (var theme in prompt.Themes)
+                var match = themesTrait.Children?.Find(x => x.Name?.Equals(theme, StringComparison.OrdinalIgnoreCase) == true);
+                if (match is null && themesTrait.Children is not null)
                 {
-                    var match = themesTrait.Children.Find(x => x.Name?.Equals(theme, StringComparison.OrdinalIgnoreCase) == true);
-                    if (match is null)
+                    var themeTerms = theme.Split(' ');
+                    (Trait? trait, int macthes, int length) bestMatch = (null, 0, 0);
+                    foreach (var trait in themesTrait.Children)
                     {
-                        var themeTerms = theme.Split(' ');
-                        (Trait? trait, int macthes, int length) bestMatch = (null, 0, 0);
-                        foreach (var trait in themesTrait.Children)
+                        if (string.IsNullOrEmpty(trait.Name))
                         {
-                            if (string.IsNullOrEmpty(trait.Name))
-                            {
-                                continue;
-                            }
-                            var matches = trait
-                                .Name
-                                .Split(' ')
-                                .Except(_articles)
-                                .Intersect(themeTerms, StringComparer.OrdinalIgnoreCase)
-                                .ToList();
-                            if (matches.Count == 0 || matches.Count < bestMatch.macthes)
-                            {
-                                continue;
-                            }
-                            var maxLength = matches.MaxBy(x => x.Length)!.Length;
-                            if (matches.Count == bestMatch.macthes
-                                && maxLength < bestMatch.length)
-                            {
-                                continue;
-                            }
-                            bestMatch = (trait, matches.Count, maxLength);
+                            continue;
                         }
-                        if (bestMatch.trait is not null)
+                        var matches = trait
+                            .Name
+                            .Split(' ')
+                            .Except(_articles)
+                            .Intersect(themeTerms, StringComparer.OrdinalIgnoreCase)
+                            .ToList();
+                        if (matches.Count == 0 || matches.Count < bestMatch.macthes)
                         {
-                            match = bestMatch.trait;
+                            continue;
                         }
+                        var maxLength = matches.MaxBy(x => x.Length)!.Length;
+                        if (matches.Count == bestMatch.macthes
+                            && maxLength < bestMatch.length)
+                        {
+                            continue;
+                        }
+                        bestMatch = (trait, matches.Count, maxLength);
                     }
-                    match?.Select(true, _story);
+                    if (bestMatch.trait is not null)
+                    {
+                        match = bestMatch.trait;
+                    }
                 }
+                if (match is null)
+                {
+                    match = new() { Name = theme };
+                    themesTrait.Children ??= [];
+                    themesTrait.Children.Add(match);
+                }
+                match.Select(true, _story);
             }
         }
 

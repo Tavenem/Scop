@@ -22,8 +22,6 @@ public class Genre : IEquatable<Genre>
 
     public List<string>? Themes { get; set; }
 
-    public bool UserDefined { get; set; }
-
     public bool Equals(Genre? other) => other is not null
         && other.Name?.Equals(Name, StringComparison.OrdinalIgnoreCase) == true;
 

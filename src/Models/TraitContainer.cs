@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Scop;
+namespace Scop.Models;
 
 public abstract class TraitContainer
 {

@@ -1,9 +1,12 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿using Scop.Enums;
+using Scop.Interfaces;
+using Scop.Services;
+using System.Text;
 using System.Text.Json.Serialization;
 using Tavenem.Blazor.Framework;
+using Tavenem.Randomize;
 
-namespace Scop;
+namespace Scop.Models;
 
 public class Character : TraitContainer, INote, IEquatable<Character>
 {
@@ -15,9 +18,13 @@ public class Character : TraitContainer, INote, IEquatable<Character>
 
     public DateTimeOffset? Birthdate { get; set; }
 
-    [JsonIgnore] public string? CharacterFullName => GetName(true);
+    [JsonIgnore] public string? CharacterFullName => CharacterName?.ToString();
 
-    [JsonIgnore] public string? CharacterName => GetName();
+    public CharacterName? CharacterName { get; set; }
+
+    internal string? _characterShortName;
+    [JsonIgnore]
+    public string? CharacterShortName => _characterShortName ??= CharacterName?.ToShortName();
 
     public string? Content { get; set; }
 
@@ -50,14 +57,42 @@ public class Character : TraitContainer, INote, IEquatable<Character>
 
     [JsonIgnore] public string? DisplayEthnicity { get; set; }
 
-    [JsonIgnore] public string? DisplayGender => string.IsNullOrEmpty(Gender) ? null : $": {Gender}";
+    [JsonIgnore]
+    public string? DisplayGender
+    {
+        get
+        {
+            var sb = new StringBuilder();
+            if (!string.IsNullOrEmpty(Gender))
+            {
+                sb.Append(Gender);
+            }
+            if (Pronouns != Pronouns.Other)
+            {
+                if (sb.Length > 0)
+                {
+                    sb.Append(", ");
+                }
+                sb.Append(Pronouns.GetDescription());
+            }
+            if (sb.Length > 0)
+            {
+                sb.Insert(0, ": ");
+            }
+            return sb.ToString();
+        }
+    }
 
-    [JsonIgnore] public string DisplayName => CharacterName ?? Name ?? Type;
+    [JsonIgnore]
+    public string DisplayName => IsDeceased
+        ? $"{CharacterName?.ToShortName() ?? Name ?? Type} 💀"
+        : CharacterName?.ToShortName() ?? Name ?? Type;
 
     public List<string[]>? EthnicityPaths { get; set; }
 
     public string? Gender { get; set; }
 
+    [Obsolete("Use CharacterName.HasHyphenatedSurname")]
     public bool HyphenatedSurname { get; set; }
 
     [JsonIgnore] public int IconIndex => 1;
@@ -65,21 +100,25 @@ public class Character : TraitContainer, INote, IEquatable<Character>
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
     [JsonIgnore]
-    public bool IsUnnamed => string.IsNullOrWhiteSpace(Name)
-        && (Names is null
-        || Names.Count == 0)
-        && (Surnames is null
-        || Surnames.Count == 0);
+    public bool Initialized { get; set; }
+
+    public bool IsDeceased { get; set; }
+
+    [JsonIgnore]
+    public bool IsUnnamed => CharacterName?.IsEmpty != false && string.IsNullOrWhiteSpace(Name);
 
     [JsonIgnore] public ElementList<INote>? List { get; set; }
 
     public string? Name { get; set; }
 
+    [Obsolete("Use CharacterName.GivenNames and CharacterName.MiddleNames")]
     public List<string>? Names { get; set; }
 
     public List<INote>? Notes { get; set; }
 
     [JsonIgnore] public INote? Parent { get; set; }
+
+    [JsonIgnore] public string PlaceholderName => CharacterName?.ToShortName() ?? "New Character";
 
     public Pronouns Pronouns { get; set; }
 
@@ -89,13 +128,24 @@ public class Character : TraitContainer, INote, IEquatable<Character>
 
     public List<Relationship>? Relationships { get; set; }
 
+    [Obsolete("Use CharacterName.Suffixes")]
     public string? Suffix { get; set; }
 
+    [Obsolete("Use CharacterName.Surnames")]
     public List<string>? Surnames { get; set; }
 
+    [Obsolete("Use CharacterName.Title")]
     public string? Title { get; set; }
 
     [JsonIgnore] public string Type => "Character";
+
+    public static Character FromNote(INote note) => new()
+    {
+        Content = note.Content,
+        Name = note.Name,
+        Notes = note.Notes,
+        Parent = note.Parent,
+    };
 
     public static string? GetRelationshipName(string? type, NameGender gender)
     {
@@ -256,126 +306,16 @@ public class Character : TraitContainer, INote, IEquatable<Character>
         return type;
     }
 
-    public static void SetRelationshipMaps(List<Character> characters)
+    public static void SetRelationshipMaps(ScopData data, List<Character> characters)
     {
+        // must be separate loops: InitializeRelationshipMap affects the RelationshipMap of multiple characters
         foreach (var character in characters)
         {
-            character.RelationshipIds = [character.Id];
-            character.RelationshipMap =
-            [
-                new()
-                {
-                    Id = character.Id,
-                    Type = "self",
-                }
-            ];
+            character.RelationshipMap = null;
         }
-
-        foreach (var character in characters
-            .Where(x => x.Relationships is not null))
+        foreach (var character in characters)
         {
-            var name = character.GetName();
-            var gender = character.GetNameGender();
-
-            foreach (var relationship in character.Relationships!)
-            {
-                if (relationship.Id is not null
-                    && character.RelationshipIds!.Contains(relationship.Id))
-                {
-                    continue;
-                }
-
-                character.RelationshipMap!.Add(relationship);
-
-                if (relationship.Id is null)
-                {
-                    continue;
-                }
-
-                var relative = characters.Find(x => x.Id == relationship.Id);
-                if (relative is null)
-                {
-                    relationship.Id = null;
-                    continue;
-                }
-
-                character.RelationshipIds!.Add(relationship.Id);
-                relationship.Relative = relative;
-                relationship.EditedRelativeName = relative.CharacterName;
-
-                if (relative.RelationshipMap?.Any(x => x.Id == character.Id) != true
-                    && relative.Relationships?.Any(x => x.Id == character.Id) != true)
-                {
-                    var inverseType = relationship.InverseType ?? relationship.Type;
-                    var inverted = !string.IsNullOrEmpty(relationship.InverseType);
-                    if (!string.IsNullOrEmpty(relationship.Type)
-                        && !inverted)
-                    {
-                        if (relationship.Type.EndsWith("grandchild"))
-                        {
-                            inverseType = relationship.Type[..^5] + "parent";
-                            inverted = true;
-                        }
-                        else if (relationship.Type.EndsWith("grandparent"))
-                        {
-                            inverseType = relationship.Type[..^6] + "child";
-                            inverted = true;
-                        }
-                        else
-                        {
-                            switch (relationship.Type)
-                            {
-                                case "child":
-                                    inverseType = "parent";
-                                    inverted = true;
-                                    break;
-                                case "child-in-law":
-                                    inverseType = "parent-in-law";
-                                    inverted = true;
-                                    break;
-                                case "parent":
-                                    inverseType = "child";
-                                    inverted = true;
-                                    break;
-                                case "parent-in-law":
-                                    inverseType = "child-in-law";
-                                    inverted = true;
-                                    break;
-                                case "sibling":
-                                case "spouse":
-                                case "ex-spouse":
-                                case "sweetheart":
-                                case "ex-sweetheart":
-                                    inverted = true;
-                                    break;
-                                case "pibling":
-                                    inverseType = "nibling";
-                                    inverted = true;
-                                    break;
-                                case "nibling":
-                                    inverseType = "pibling";
-                                    inverted = true;
-                                    break;
-                            }
-                        }
-                    }
-                    var relationshipName = GetRelationshipName(inverseType, gender);
-                    relative.RelationshipMap!.Add(new Relationship
-                    {
-                        EditedInverseType = relationship.Type,
-                        EditedRelationshipName = relationshipName,
-                        EditedRelativeName = name,
-                        EditedType = inverseType,
-                        Id = character.Id,
-                        InverseType = relationship.Type,
-                        RelationshipName = relationshipName,
-                        Relative = character,
-                        Synthetic = true,
-                        Type = inverseType,
-                    });
-                    relative.RelationshipIds!.Add(character.Id);
-                }
-            }
+            character.InitializeRelationshipMap(data, characters);
         }
 
         void AdjustRelativeMap(
@@ -383,42 +323,24 @@ public class Character : TraitContainer, INote, IEquatable<Character>
             Relationship relationship,
             HashSet<Character> queue)
         {
-            var adjustedMap = AdjustRelationshipMap(
-                relationship.Relative!.RelationshipMap,
-                relationship.Type switch
-                {
-                    "child" => AdjustRelationshipForChild,
-                    "parent" => AdjustRelationshipForParent,
-                    "sibling" => AdjustRelationshipForSibling,
-                    "spouse" => AdjustRelationshipForSpouse,
-                    _ => _ => null,
-                });
-            if (adjustedMap is null)
-            {
-                return;
-            }
-
             var anyAdded = false;
-            foreach (var relativeRelationship in adjustedMap)
+            foreach (var relativeRelationship in Relationship.GetAdjustedRelationships(
+                data,
+                character,
+                relationship,
+                relationship
+                    .Relative?
+                    .RelationshipMap?
+                    .Where(x
+                        => x.RelativeId is null
+                        || (!string.Equals(x.RelativeId, character.Id, StringComparison.Ordinal)
+                            && character.RelationshipIds?.Contains(x.RelativeId) != true))
+                    .ToList()))
             {
-                if (!string.IsNullOrEmpty(relativeRelationship.Id)
-                    && character.RelationshipIds!
-                    .Contains(relativeRelationship.Id))
+                (character.RelationshipMap ??= []).Add(relativeRelationship);
+                if (!string.IsNullOrEmpty(relativeRelationship.RelativeId))
                 {
-                    continue;
-                }
-                else if (string.IsNullOrEmpty(relativeRelationship.Id)
-                    && character.RelationshipMap!
-                    .Any(x => string.IsNullOrEmpty(x.Id)
-                    && x.RelativeName == relativeRelationship.RelativeName))
-                {
-                    continue;
-                }
-
-                character.RelationshipMap!.Add(relativeRelationship);
-                if (!string.IsNullOrEmpty(relativeRelationship.Id))
-                {
-                    character.RelationshipIds!.Add(relativeRelationship.Id);
+                    (character.RelationshipIds ??= []).Add(relativeRelationship.RelativeId);
                 }
                 anyAdded = true;
 
@@ -431,9 +353,9 @@ public class Character : TraitContainer, INote, IEquatable<Character>
 
             if (anyAdded)
             {
-                foreach (var relationship2 in character.RelationshipMap!
-                    .Where(x => x.Id != character.Id
-                    && x.Relative is not null))
+                foreach (var relationship2 in character
+                    .RelationshipMap!
+                    .Where(x => x.Relative is not null))
                 {
                     queue.Add(relationship2.Relative!);
                 }
@@ -441,15 +363,15 @@ public class Character : TraitContainer, INote, IEquatable<Character>
         }
 
         var queue = new HashSet<Character>(characters
-            .Where(x => x.RelationshipMap!.Count > 1));
+            .Where(x => x.RelationshipMap?.Count > 1));
         while (queue.Count > 0)
         {
             var character = queue.First();
             queue.Remove(character);
 
-            foreach (var relationship in character.RelationshipMap!
-                .Where(x => x.Id != character.Id
-                    && x.Relative is not null)
+            foreach (var relationship in character
+                .RelationshipMap!
+                .Where(x => x.Relative is not null)
                 .ToList())
             {
                 AdjustRelativeMap(character, relationship, queue);
@@ -459,7 +381,6 @@ public class Character : TraitContainer, INote, IEquatable<Character>
         foreach (var character in characters)
         {
             character.RelationshipIds = null;
-            character.RelationshipMap!.RemoveAll(x => x.Id == character.Id);
         }
     }
 
@@ -475,6 +396,29 @@ public class Character : TraitContainer, INote, IEquatable<Character>
                     yield return child;
                 }
             }
+        }
+    }
+
+    public void CopyFamilySurnames()
+    {
+        var familySurnames = GetFamilySurnames();
+        if (familySurnames is null)
+        {
+            return;
+        }
+
+        var added = false;
+        foreach (var name in familySurnames)
+        {
+            if (CharacterName?.Surnames?.Contains(name) != true)
+            {
+                ((CharacterName ??= new()).Surnames ??= []).Add(name);
+                added = true;
+            }
+        }
+        if (added)
+        {
+            _characterShortName = null;
         }
     }
 
@@ -556,34 +500,36 @@ public class Character : TraitContainer, INote, IEquatable<Character>
                     return (null, null, null);
                 }
             }
-            days += DateTime.DaysInMonth(now.Value.Year, now.Value.Month == 1 ? 12 : (now.Value.Month - 1));
+            days += DateTime.DaysInMonth(now.Value.Year, now.Value.Month == 1 ? 12 : now.Value.Month - 1);
         }
 
         return (years, months, days);
     }
 
-    public (int min, int max, int? mean) GetAgeRange()
+    public AgeGap GetAgeRange(Story? story)
     {
-        var minAge = 0;
-        var maxAge = 100;
-
         if (RelationshipMap is null)
         {
-            return (minAge, maxAge, null);
+            return new();
         }
 
-        int? mean = null;
-        var minAgeGood = false;
-        var maxAgeGood = false;
+        InitializeCharacter(story);
+        var ageYears = DisplayAgeYears;
         var gender = GetNameGender();
+
+        var minAge = 0;
+        int? mean = null;
+        var meanStrength = 0;
+        var maxAge = 100;
 
         foreach (var relationship in RelationshipMap)
         {
-            if (relationship.Type is null
-                || relationship.Relative is null)
+            if (relationship.Relative is null)
             {
                 continue;
             }
+
+            relationship.Relative.InitializeCharacter(story);
             var relativeAge = relationship.Relative.DisplayAgeYears;
             if (!relativeAge.HasValue)
             {
@@ -591,475 +537,528 @@ public class Character : TraitContainer, INote, IEquatable<Character>
             }
 
             var relativeAgeYears = relativeAge.Value;
-
             var relativeGender = relationship.Relative.GetNameGender();
 
-            if (relationship.Type.EndsWith("child"))
+            GetRelationshipAgeGap(
+                ref minAge,
+                ref mean,
+                ref meanStrength,
+                ref maxAge,
+                relationship,
+                relativeAgeYears,
+                relativeGender);
+
+            if (relationship.Inverse is not null
+                && ageYears.HasValue)
             {
-                var counter = 0;
-                var type = relationship.Type.AsSpan();
-                while (type.StartsWith("great"))
+                GetRelationshipAgeGap(
+                    ref minAge,
+                    ref mean,
+                    ref meanStrength,
+                    ref maxAge,
+                    relationship.Inverse,
+                    ageYears.Value,
+                    gender,
+                    true);
+            }
+
+            if (minAge >= maxAge)
+            {
+                break;
+            }
+        }
+
+        if (minAge > maxAge)
+        {
+            minAge = maxAge = (minAge + maxAge) / 2;
+        }
+
+        if (mean < minAge || mean > maxAge)
+        {
+            mean = null;
+        }
+
+        return new(minAge, mean, maxAge);
+
+        static void GetRelationshipAgeGap(
+            ref int minAge,
+            ref int? mean,
+            ref int meanStrength,
+            ref int maxAge,
+            Relationship relationship,
+            int relativeAgeYears,
+            NameGender relativeGender,
+            bool inverse = false)
+        {
+            if (relationship.RelationshipType?.AgeGap is null
+                || (!relationship.RelationshipType.AgeGap.TryGetValue(relativeGender, out var ageGap)
+                && !relationship.RelationshipType.AgeGap.TryGetValue(NameGender.None, out ageGap)))
+            {
+                return;
+            }
+
+            if (ageGap.Min.HasValue)
+            {
+                if (inverse)
                 {
-                    counter++;
-                    type = type[5..];
+                    maxAge = Math.Min(maxAge, relativeAgeYears - ageGap.Min.Value);
                 }
-                if (type.StartsWith("grand"))
+                else
                 {
-                    counter++;
-                    type = type[5..];
-                }
-                if (type == "child")
-                {
-                    counter++;
-
-                    minAge = Math.Max(minAge, (counter * 16) + relativeAgeYears);
-                    minAgeGood = true;
-
-                    mean = (counter * 22) + relativeAgeYears;
-
-                    if (gender.HasFlag(NameGender.Female))
-                    {
-                        maxAge = Math.Min(maxAge, 42 + relativeAgeYears);
-                        maxAgeGood = true;
-                    }
+                    minAge = Math.Max(minAge, relativeAgeYears + ageGap.Min.Value);
                 }
             }
-            else if (relationship.Type.EndsWith("parent"))
+
+            if (ageGap.Max.HasValue)
             {
-                var counter = 0;
-                var type = relationship.Type.AsSpan();
-                while (type.StartsWith("great"))
+                if (inverse)
                 {
-                    counter++;
-                    type = type[5..];
+                    minAge = Math.Max(minAge, relativeAgeYears - ageGap.Max.Value);
                 }
-                if (type.StartsWith("grand"))
+                else
                 {
-                    counter++;
-                    type = type[5..];
-                }
-                if (type == "parent")
-                {
-                    counter++;
-
-                    maxAge = Math.Min(maxAge, relativeAgeYears - (counter * 16));
-                    maxAgeGood = true;
-
-                    mean = relativeAgeYears - (counter * 22);
-
-                    if (gender.HasFlag(NameGender.Female))
-                    {
-                        minAge = Math.Max(minAge, relativeAgeYears - 42);
-                        minAgeGood = true;
-                    }
+                    maxAge = Math.Min(maxAge, relativeAgeYears + ageGap.Max.Value);
                 }
             }
-            else if (relationship.Type.EndsWith("pibling"))
-            {
-                var counter = 0;
-                var type = relationship.Type.AsSpan();
-                while (type.StartsWith("great"))
-                {
-                    counter++;
-                    type = type[5..];
-                }
-                if (type == "pibling")
-                {
-                    if (!minAgeGood)
-                    {
-                        minAge = Math.Max(minAge, relativeAgeYears - ((counter - 1) * 16) - 84);
 
-                        mean = relativeAgeYears - ((counter - 1) * 22) - 84;
-                    }
-                    if (!maxAgeGood)
-                    {
-                        maxAge = Math.Min(maxAge, relativeAgeYears - (counter * 16) + 42 - 32);
-                    }
+            if (ageGap.Mean.HasValue)
+            {
+                var relativeMeanStrength = 0;
+                if (ageGap.Mean.Value != 0)
+                {
+                    relativeMeanStrength += 2;
+                }
+                if (ageGap.Min.HasValue)
+                {
+                    relativeMeanStrength++;
+                }
+                if (ageGap.Max.HasValue)
+                {
+                    relativeMeanStrength++;
+                }
+
+                if (!mean.HasValue || relativeMeanStrength > meanStrength)
+                {
+                    mean = relativeAgeYears + (inverse ? -ageGap.Mean.Value : ageGap.Mean.Value);
+                    meanStrength = relativeMeanStrength;
+                }
+            }
+        }
+    }
+
+    public List<string[]>? GetFamilyEthnicities()
+    {
+        if (!(RelationshipMap?.Count > 0))
+        {
+            return null;
+        }
+
+        Dictionary<int, List<string[]>>? familyEthnicities = null;
+        Dictionary<int, List<string[]>>? spousalEthnicities = null;
+        foreach (var relationship in RelationshipMap)
+        {
+            if (relationship.Type is null
+                || relationship.Relative is null
+                || relationship.Relative.CharacterName?.IsEmpty != false
+                || !(relationship.Relative.CharacterName.Surnames?.Count > 0)
+                || !(relationship.Relative.EthnicityPaths?.Count > 0))
+            {
+                continue;
+            }
+
+            IEnumerable<string[]>? relativeFamilyEthnicities = null;
+            IEnumerable<string[]>? relativeSpousalEthnicities = null;
+            var familyConfidenceKey = 0;
+            var spousalConfidenceKey = 0;
+
+            if (relationship.Type != "child"
+                && relationship.Type.EndsWith("child"))
+            {
+                relativeFamilyEthnicities = relationship
+                    .Relative
+                    .EthnicityPaths;
+                familyConfidenceKey = 4;
+            }
+            else if (relationship.Type != "parent"
+                && relationship.Type.EndsWith("parent"))
+            {
+                relativeFamilyEthnicities = relationship
+                    .Relative
+                    .EthnicityPaths;
+                familyConfidenceKey = 1;
+            }
+            else
+            {
+                switch (relationship.Type)
+                {
+                    case "child":
+                        relativeSpousalEthnicities = relationship
+                            .Relative
+                            .EthnicityPaths;
+                        spousalConfidenceKey = 3;
+                        break;
+                    case "parent":
+                    case "sibling":
+                        relativeFamilyEthnicities = relationship
+                            .Relative
+                            .EthnicityPaths;
+                        break;
+                    case "spouse":
+                    case "ex-spouse":
+                        relativeSpousalEthnicities = relationship
+                            .Relative
+                            .EthnicityPaths;
+                        spousalConfidenceKey = 5;
+                        break;
+                    case "pibling":
+                    case "cousin":
+                    case "nibling":
+                        relativeFamilyEthnicities = relationship
+                            .Relative
+                            .EthnicityPaths;
+                        familyConfidenceKey = 2;
+                        break;
+                }
+            }
+
+            if (relativeFamilyEthnicities?.Any() == true)
+            {
+                if (familyEthnicities?.TryGetValue(
+                    familyConfidenceKey,
+                    out var relativeEthnicities) != true)
+                {
+                    relativeEthnicities = [];
+                    (familyEthnicities ??= [])[familyConfidenceKey] = relativeEthnicities;
+                }
+                relativeEthnicities!.AddRange(relativeFamilyEthnicities);
+            }
+
+            if (relativeSpousalEthnicities?.Any() == true)
+            {
+                if (spousalEthnicities?.TryGetValue(
+                    spousalConfidenceKey,
+                    out var relativeEthnicities) != true)
+                {
+                    relativeEthnicities = [];
+                    (spousalEthnicities ??= [])[spousalConfidenceKey] = relativeEthnicities;
+                }
+                relativeEthnicities!.AddRange(relativeSpousalEthnicities);
+            }
+        }
+
+        List<string[]>? ethnicities = null;
+
+        if (familyEthnicities?.Count > 0)
+        {
+            ethnicities = [];
+            var familyEthnicityCandidates = familyEthnicities[familyEthnicities
+                .Keys
+                .Order()
+                .First()];
+            ethnicities.AddRange(familyEthnicityCandidates);
+        }
+
+        if (!(ethnicities?.Count > 0)
+            && spousalEthnicities?.Count > 0
+            && Randomizer.Instance.NextDouble() < 0.81) // odds of ethnically-homogeneous marriage
+        {
+            ethnicities ??= [];
+            var spousalEthnicityCandidates = spousalEthnicities[spousalEthnicities
+                .Keys
+                .Order()
+                .First()];
+            ethnicities.AddRange(spousalEthnicityCandidates);
+        }
+
+        return ethnicities;
+    }
+
+    public List<Surname>? GetFamilySurnames()
+    {
+        if (!(RelationshipMap?.Count > 0))
+        {
+            return null;
+        }
+
+        var skipFamilial = CharacterName?.Surnames?.Any(x => !x.IsSpousal) == true;
+        var skipSpousal = CharacterName?.Surnames?.Any(x => x.IsSpousal) == true;
+
+        Dictionary<int, List<(Surname name, bool inheritedMatronym)>>? familySurnames = null;
+        Dictionary<int, List<(Surname name, bool inheritedMatronym)>>? spousalSurnames = null;
+        foreach (var relationship in RelationshipMap)
+        {
+            if (relationship.Type is null
+                || relationship.Relative is null
+                || relationship.Relative.CharacterName?.IsEmpty != false
+                || !(relationship.Relative.CharacterName.Surnames?.Count > 0))
+            {
+                continue;
+            }
+
+            IEnumerable<(Surname name, bool inheritedMatronym)>? relativeFamilyNames = null;
+            IEnumerable<(Surname name, bool inheritedMatronym)>? relativeSpousalNames = null;
+            var familyConfidenceKey = 0;
+            var spousalConfidenceKey = 0;
+
+            if (relationship.Type != "child"
+                && relationship.Type.EndsWith("child"))
+            {
+                if (!skipFamilial)
+                {
+                    relativeFamilyNames = relationship
+                        .Relative
+                        .CharacterName
+                        .Surnames
+                        .Where(x =>
+                            !x.IsSpousal
+                            && x.IsMatronymic == (Pronouns == Pronouns.SheHer))
+                        .Select(x => (
+                            new Surname(x.Name, Pronouns == Pronouns.SheHer),
+                            false));
+                    familyConfidenceKey = 4;
+                }
+            }
+            else if (relationship.Type != "parent"
+                && relationship.Type.EndsWith("parent"))
+            {
+                if (!skipFamilial)
+                {
+                    relativeFamilyNames = relationship
+                        .Relative
+                        .CharacterName
+                        .Surnames
+                        .Where(x => !x.IsSpousal)
+                        .Select(x => (
+                            new Surname(x.Name, relationship.Relative.Pronouns == Pronouns.SheHer),
+                            x.IsMatronymic));
+                    familyConfidenceKey = 1;
                 }
             }
             else
             {
                 switch (relationship.Type)
                 {
-                    case "cousin":
-                        if (!minAgeGood)
+                    case "child":
+                        if (skipFamilial)
                         {
-                            minAge = Math.Max(minAge, relativeAgeYears - 52);
-
-                            mean = relativeAgeYears;
+                            break;
                         }
-                        if (!maxAgeGood)
-                        {
-                            maxAge = Math.Min(maxAge, relativeAgeYears + 52);
-                        }
+                        relativeFamilyNames = relationship
+                            .Relative
+                            .CharacterName
+                            .Surnames
+                            .Where(x => !x.IsSpousal)
+                            .Select(x => (
+                                new Surname(x.Name, x.IsMatronymic),
+                                x.IsMatronymic));
+                        familyConfidenceKey = 3;
                         break;
-                    case "nibling":
-                        if (!minAgeGood)
+                    case "parent":
+                        if (skipFamilial)
                         {
-                            minAge = Math.Max(minAge, relativeAgeYears - 68);
-
-                            mean = relativeAgeYears - 22;
+                            break;
                         }
-                        if (!maxAgeGood)
-                        {
-                            maxAge = Math.Min(maxAge, relativeAgeYears + 68);
-                        }
+                        relativeFamilyNames = relationship
+                            .Relative
+                            .CharacterName
+                            .Surnames
+                            .Where(x => !x.IsSpousal)
+                            .Select(x => (
+                                new Surname(x.Name, relationship.Relative.Pronouns == Pronouns.SheHer),
+                                x.IsMatronymic));
                         break;
                     case "sibling":
-                        if (!minAgeGood)
+                        if (skipFamilial)
                         {
-                            minAge = Math.Max(minAge, relativeAgeYears - 26);
-
-                            mean = relativeAgeYears;
+                            break;
                         }
-                        if (!maxAgeGood)
-                        {
-                            maxAge = Math.Min(maxAge, relativeAgeYears + 26);
-                        }
+                        relativeFamilyNames = relationship
+                            .Relative
+                            .CharacterName
+                            .Surnames
+                            .Where(x => !x.IsSpousal)
+                            .Select(x => (
+                                new Surname(x.Name, x.IsMatronymic),
+                                false));
                         break;
                     case "spouse":
-                    case "ex-spouse":
-                        if (gender.HasFlag(NameGender.Male)
-                            && relativeGender.HasFlag(NameGender.Female))
+                        if (!skipFamilial)
                         {
-                            minAge = Math.Max(minAge, relativeAgeYears - 3);
-                        }
-                        else
-                        {
-                            minAge = Math.Max(minAge, relativeAgeYears - 20);
+                            relativeFamilyNames = relationship
+                                .Relative
+                                .CharacterName
+                                .Surnames
+                                .Where(x => x.IsSpousal)
+                                .Select(x => (
+                                    new Surname(x.Name, x.IsMatronymic),
+                                    false));
+                            familyConfidenceKey = Pronouns == Pronouns.HeHim
+                                ? 1
+                                : 2;
                         }
 
-                        mean = relativeAgeYears;
+                        if (skipSpousal)
+                        {
+                            break;
+                        }
 
-                        if (gender.HasFlag(NameGender.Female)
-                            && relativeGender.HasFlag(NameGender.Male))
+                        relativeSpousalNames = relationship
+                            .Relative
+                            .CharacterName
+                            .Surnames
+                            .Where(x => !x.IsSpousal)
+                            .Select(x => (
+                                new Surname(x.Name, x.IsMatronymic, true),
+                                x.IsMatronymic));
+                        spousalConfidenceKey = relationship.Relative.Pronouns == Pronouns.HeHim
+                            ? 0
+                            : 2;
+                        break;
+                    case "pibling":
+                    case "cousin":
+                    case "nibling":
+                        if (skipFamilial)
                         {
-                            maxAge = Math.Min(maxAge, relativeAgeYears + 3);
+                            break;
                         }
-                        else
-                        {
-                            maxAge = Math.Min(maxAge, relativeAgeYears + 20);
-                        }
+                        relativeFamilyNames = relationship
+                            .Relative
+                            .CharacterName
+                            .Surnames
+                            .Where(x => !x.IsSpousal)
+                            .Select(x => (
+                                new Surname(x.Name, x.IsMatronymic),
+                                x.IsMatronymic));
+                        familyConfidenceKey = 3;
                         break;
                 }
             }
-            if (minAge >= maxAge
-                && minAgeGood
-                && maxAgeGood)
+
+            if (relativeFamilyNames?.Any() == true)
             {
-                break;
+                if (familySurnames?.TryGetValue(
+                    familyConfidenceKey,
+                    out var relativeSurnames) != true)
+                {
+                    relativeSurnames = [];
+                    (familySurnames ??= [])[familyConfidenceKey] = relativeSurnames;
+                }
+                relativeSurnames!.AddRange(relativeFamilyNames);
+            }
+
+            if (relativeSpousalNames?.Any() == true)
+            {
+                if (spousalSurnames?.TryGetValue(
+                    spousalConfidenceKey,
+                    out var relativeSurnames) != true)
+                {
+                    relativeSurnames = [];
+                    (spousalSurnames ??= [])[spousalConfidenceKey] = relativeSurnames;
+                }
+                relativeSurnames!.AddRange(relativeSpousalNames);
             }
         }
 
-        minAge = Math.Max(0, minAge);
-        maxAge = Math.Max(0, Math.Min(100, maxAge));
-        if (minAge > maxAge)
+        List<Surname>? familyNames = null;
+
+        if (familySurnames?.Count > 0)
         {
-            if (!minAgeGood)
+            familyNames = [];
+            var familyNameCandidates = familySurnames[familySurnames
+                .Keys
+                .Order()
+                .First()];
+            if (familyNameCandidates.Any(x => !x.inheritedMatronym))
             {
-                minAge = maxAge;
-            }
-            else if (!maxAgeGood)
-            {
-                maxAge = minAge;
+                familyNames
+                    .AddRange(familyNameCandidates
+                    .Where(x => !x.inheritedMatronym)
+                    .Select(x => x.name));
             }
             else
             {
-                minAge = maxAge = (minAge + maxAge) / 2;
+                familyNames.AddRange(familyNameCandidates.Select(x => x.name));
             }
         }
 
-        if (mean.HasValue)
+        if (spousalSurnames?.Count > 0)
         {
-            if (mean < minAge)
+            familyNames ??= [];
+            var spousalNameCandidates = spousalSurnames[spousalSurnames
+                .Keys
+                .Order()
+                .First()];
+            if (spousalNameCandidates.Any(x => !x.inheritedMatronym))
             {
-                mean = minAge;
+                familyNames
+                    .AddRange(spousalNameCandidates
+                    .Where(x => !x.inheritedMatronym)
+                    .Select(x => x.name));
             }
-            if (mean > maxAge)
+            else
             {
-                mean = maxAge;
+                familyNames.AddRange(spousalNameCandidates.Select(x => x.name));
             }
         }
 
-        return (minAge, maxAge, mean);
-    }
-
-    public List<string[]> GetFamilyEthnicities()
-    {
-        var familyEthnicities = new List<string[]>();
-        if (RelationshipMap is null)
-        {
-            return familyEthnicities;
-        }
-
-        List<string[]>? maternalEthnicities = null;
-        List<string[]>? paternalEthnicities = null;
-        List<string[]>? miscEthnicities = null;
-        var miscEthnicityDegree = 0;
-        List<string[]>? spouseEthnicities = null;
-        var spouseEthnicityDegree = 0;
-
-        foreach (var relationship in RelationshipMap)
-        {
-            if (relationship.Type is null
-                || relationship.Relative is null
-                || relationship.Relative.EthnicityPaths is null
-                || relationship.Relative.EthnicityPaths.Count == 0)
-            {
-                continue;
-            }
-
-            if (relationship.Type.EndsWith("child"))
-            {
-                if (miscEthnicities is null
-                    || miscEthnicities.Count == 0
-                    || miscEthnicityDegree < 2)
-                {
-                    miscEthnicities = relationship.Relative.EthnicityPaths;
-                    miscEthnicityDegree = 2;
-                }
-                continue;
-            }
-
-            if (relationship.Type != "parent"
-                && relationship.Type.EndsWith("parent"))
-            {
-                if (miscEthnicities is null
-                    || miscEthnicities.Count == 0
-                    || miscEthnicityDegree < 3)
-                {
-                    miscEthnicities = relationship.Relative.EthnicityPaths;
-                    miscEthnicityDegree = 3;
-                }
-                continue;
-            }
-
-            switch (relationship.Type)
-            {
-                case "parent":
-                    var gender = relationship.Relative.GetNameGender();
-                    if (gender == NameGender.Female)
-                    {
-                        if (maternalEthnicities is null
-                            || maternalEthnicities.Count == 0)
-                        {
-                            maternalEthnicities = relationship.Relative.EthnicityPaths;
-                        }
-                        else
-                        {
-                            maternalEthnicities.AddRange(relationship.Relative.EthnicityPaths);
-                        }
-                    }
-                    else if (gender == NameGender.Male)
-                    {
-                        if (paternalEthnicities is null
-                            || paternalEthnicities.Count == 0)
-                        {
-                            paternalEthnicities = relationship.Relative.EthnicityPaths;
-                        }
-                        else
-                        {
-                            paternalEthnicities.AddRange(relationship.Relative.EthnicityPaths);
-                        }
-                    }
-                    else
-                    {
-                        if (miscEthnicities is null
-                            || miscEthnicities.Count == 0
-                            || miscEthnicityDegree < 5)
-                        {
-                            miscEthnicities = relationship.Relative.EthnicityPaths;
-                            miscEthnicityDegree = 5;
-                        }
-                    }
-                    break;
-                case "sibling":
-                    if (miscEthnicities is null
-                        || miscEthnicities.Count == 0
-                        || miscEthnicityDegree < 4)
-                    {
-                        miscEthnicities = relationship.Relative.EthnicityPaths;
-                        miscEthnicityDegree = 4;
-                    }
-                    break;
-                case "pibling":
-                case "cousin":
-                case "nibling":
-                    if (miscEthnicities is null
-                        || miscEthnicities.Count == 0
-                        || miscEthnicityDegree < 1)
-                    {
-                        miscEthnicities = relationship.Relative.EthnicityPaths;
-                        miscEthnicityDegree = 1;
-                    }
-                    break;
-                case "spouse":
-                    if (spouseEthnicities is null
-                        || spouseEthnicities.Count == 0
-                        || spouseEthnicityDegree < 2)
-                    {
-                        spouseEthnicities = relationship.Relative.EthnicityPaths;
-                        spouseEthnicityDegree = 2;
-                    }
-                    break;
-                case "ex-spouse":
-                    if (spouseEthnicities is null
-                        || spouseEthnicities.Count == 0
-                        || spouseEthnicityDegree < 1)
-                    {
-                        spouseEthnicities = relationship.Relative.EthnicityPaths;
-                        spouseEthnicityDegree = 1;
-                    }
-                    break;
-            }
-        }
-
-        if (maternalEthnicities is not null)
-        {
-            familyEthnicities.AddRange(maternalEthnicities);
-        }
-        if (paternalEthnicities is not null)
-        {
-            familyEthnicities.AddRange(paternalEthnicities);
-        }
-        if (familyEthnicities.Count == 0
-            && miscEthnicities is not null)
-        {
-            familyEthnicities.AddRange(miscEthnicities);
-        }
-        if (familyEthnicities.Count == 0
-            && spouseEthnicities is not null)
-        {
-            familyEthnicities.AddRange(spouseEthnicities);
-        }
-        return familyEthnicities;
-    }
-
-    public List<string> GetFamilySurnames()
-    {
-        var familyNames = new List<string>();
-        if (RelationshipMap is null)
-        {
-            return familyNames;
-        }
-
-        string? familyName = null;
-        var familyNameDegree = 0;
-
-        string? spousalName = null;
-        var spousalNameDegree = 0;
-
-        foreach (var relationship in RelationshipMap)
-        {
-            if (relationship.Type is null
-                || relationship.Relative is null
-                || relationship.Relative.Surnames is null
-                || relationship.Relative.Surnames.Count == 0)
-            {
-                continue;
-            }
-
-            if (relationship.Type.EndsWith("child")
-                || (relationship.Type != "parent"
-                && relationship.Type.EndsWith("parent")))
-            {
-                if (familyName is null
-                    || familyNameDegree < 2)
-                {
-                    familyName = relationship.Relative.Surnames[0];
-                    familyNameDegree = 2;
-                }
-                continue;
-            }
-            switch (relationship.Type)
-            {
-                case "parent":
-                    if (familyName is null
-                        || familyNameDegree < 5)
-                    {
-                        if (relationship.Relative.Pronouns == Pronouns.HeHim)
-                        {
-                            familyName = relationship.Relative.Surnames[0];
-                            familyNameDegree = 5;
-                        }
-                        else if (familyNameDegree < 4)
-                        {
-                            familyName = relationship.Relative.Surnames[0];
-                            familyNameDegree = 4;
-                        }
-                    }
-                    break;
-                case "sibling":
-                    if (familyName is null
-                        || familyNameDegree < 3)
-                    {
-                        familyName = relationship.Relative.Surnames[0];
-                        familyNameDegree = 3;
-                    }
-                    break;
-                case "spouse":
-                    if (spousalName is null
-                        || spousalNameDegree < 4)
-                    {
-                        if (relationship.Relative.Pronouns == Pronouns.HeHim)
-                        {
-                            spousalName = relationship.Relative.Surnames[0];
-                            spousalNameDegree = 4;
-                        }
-                        else if (spousalNameDegree < 3)
-                        {
-                            spousalName = relationship.Relative.Surnames[^1];
-                            spousalNameDegree = 3;
-                        }
-                    }
-                    break;
-                case "ex-spouse":
-                    if (spousalName is null
-                        || spousalNameDegree < 2)
-                    {
-                        if (relationship.Relative.Pronouns == Pronouns.HeHim)
-                        {
-                            spousalName = relationship.Relative.Surnames[0];
-                            spousalNameDegree = 2;
-                        }
-                        else if (spousalNameDegree < 1 && relationship.Relative.Surnames.Count == 1)
-                        {
-                            spousalName = relationship.Relative.Surnames[0];
-                            spousalNameDegree = 1;
-                        }
-                    }
-                    break;
-                case "pibling":
-                case "cousin":
-                case "nibling":
-                    if (familyName is null
-                        || familyNameDegree < 1)
-                    {
-                        familyName = relationship.Relative.Surnames[0];
-                        familyNameDegree = 1;
-                    }
-                    break;
-            }
-        }
-
-        if (familyName is not null)
-        {
-            familyNames.Add(familyName);
-        }
-        if (spousalName is not null)
-        {
-            if (GetNameGender() != NameGender.Male
-                || familyNames.Count == 0)
-            {
-                familyNames.Add(spousalName);
-            }
-        }
         return familyNames;
     }
 
     /// <summary>Serves as the default hash function.</summary>
     /// <returns>A hash code for the current object.</returns>
     public override int GetHashCode() => HashCode.Combine(Id);
+
+    public int GetMarriageChance() => this switch
+    {
+        { AgeYears: < 18 } => 0,
+        { Pronouns: Pronouns.SheHer } => AgeYears switch
+        {
+            18 => 2,
+            19 => 4,
+            20 => 7,
+            21 => 10,
+            22 => 15,
+            23 => 20,
+            24 => 26,
+            25 => 32,
+            26 => 38,
+            27 => 44,
+            28 => 50,
+            29 => 55,
+            30 => 60,
+            31 => 64,
+            32 => 67,
+            33 => 70,
+            < 36 => 74,
+            < 41 => 81,
+            < 51 => 87,
+            < 61 => 91,
+            < 71 => 93,
+            _ => 96,
+        },
+        { AgeYears: 18 } => 1,
+        { AgeYears: 19 } => 2,
+        { AgeYears: 20 } => 3,
+        { AgeYears: 21 } => 5,
+        { AgeYears: 22 } => 8,
+        { AgeYears: 23 } => 12,
+        { AgeYears: 24 } => 16,
+        { AgeYears: 25 } => 21,
+        { AgeYears: 26 } => 27,
+        { AgeYears: 27 } => 33,
+        { AgeYears: 28 } => 38,
+        { AgeYears: 29 } => 44,
+        { AgeYears: 30 } => 48,
+        { AgeYears: 31 } => 54,
+        { AgeYears: 32 } => 58,
+        { AgeYears: 33 } => 61,
+        { AgeYears: < 36 } => 67,
+        { AgeYears: < 41 } => 76,
+        { AgeYears: < 51 } => 83,
+        { AgeYears: < 61 } => 90,
+        { AgeYears: < 71 } => 93,
+        _ => 96,
+    };
 
     public NameGender GetNameGender() => Pronouns switch
     {
@@ -1068,73 +1067,15 @@ public class Character : TraitContainer, INote, IEquatable<Character>
         _ => NameGender.Both,
     };
 
-    public double GetNameMatchScore(string? name)
+    public int GetSignificantOtherChance() => AgeYears switch
     {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            return 0;
-        }
-
-        var length = 0;
-        var matches = 0;
-
-        var parts = name.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        if (parts.Length > 1)
-        {
-            length++;
-
-            if (!string.IsNullOrWhiteSpace(Suffix)
-                && string.Equals(
-                    Suffix.Trim(),
-                    string.Join(", ", parts[1..]),
-                    StringComparison.InvariantCultureIgnoreCase))
-            {
-                matches++;
-            }
-        }
-
-        parts = parts[0].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        length += parts.Length;
-
-        string[]? titleParts = null;
-        if (!string.IsNullOrWhiteSpace(Title)
-            && Title.Contains(' '))
-        {
-            titleParts = Title.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        }
-
-        for (var i = 0; i < parts.Length; i++)
-        {
-            if (Names?.Any(x =>
-                string.Equals(parts[i], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true
-                || Surnames?.Any(x =>
-                string.Equals(parts[i], x.Trim(), StringComparison.InvariantCultureIgnoreCase)) == true)
-            {
-                matches++;
-                continue;
-            }
-            if (!string.IsNullOrWhiteSpace(Title))
-            {
-                if (string.Equals(parts[i], Title.Trim(), StringComparison.InvariantCultureIgnoreCase))
-                {
-                    matches++;
-                }
-                else if (titleParts is not null)
-                {
-                    if (titleParts.Any(x =>
-                        string.Equals(parts[i], x, StringComparison.InvariantCultureIgnoreCase)))
-                    {
-                        matches++;
-                    }
-                }
-            }
-        }
-
-        return Math.Min(matches, length) / length;
-    }
-
-    public string? GetRelationshipName(string? type, NameGender? gender = null)
-        => GetRelationshipName(type, gender ?? GetNameGender());
+        < 13 => 0,
+        < 15 => 8,
+        < 18 => 24,
+        < 30 => 53,
+        < 50 => 79,
+        _ => 70,
+    };
 
     public bool HasEthnicity(Ethnicity ethnicity) => ethnicity.Hierarchy is not null
         && EthnicityPaths?.Any(x => x.StartsWith(ethnicity.Hierarchy)) == true;
@@ -1151,17 +1092,310 @@ public class Character : TraitContainer, INote, IEquatable<Character>
         }
     }
 
-    public void LoadCharacters(Story story)
+    public void InitializeCharacter(Story? story)
     {
+        if (Initialized)
+        {
+            return;
+        }
         SetDisplayAge(story);
+        SetBirthdate(story);
         SetDisplayEthnicity();
         SetDisplayTraits();
+        Initialized = true;
+    }
 
-        if (Notes is not null)
+    public async Task RandomizeAsync(DataService dataService, Story? story = null)
+    {
+        RandomizeAge(story);
+        RandomizeEthnicities(dataService);
+        RandomizeGender(dataService.Data, story);
+        RandomizeTraits(dataService.Data, true);
+        await RandomizeFullNameAsync(dataService);
+    }
+
+    public void RandomizeAge(Story? story = null)
+    {
+        var (min, mean, max) = GetAgeRange(story);
+        min = min.HasValue ? Math.Max(0, min.Value) : 0;
+        max ??= 105;
+
+        double years;
+        if (mean.HasValue)
         {
-            foreach (var child in Notes)
+            var magnitude = int.MaxMagnitude(mean.Value - min.Value, max.Value - mean.Value);
+            years = Randomizer.Instance
+                .NormalDistributionSample(mean.Value, magnitude / 3.0, min, max);
+        }
+        else
+        {
+            years = Randomizer.Instance.NextDouble(min.Value, max.Value);
+        }
+
+        if (story?.Now.HasValue == true)
+        {
+            var birthDate = story.Now.Value.AddYears(-(int)Math.Floor(years));
+            birthDate = birthDate.Subtract(TimeSpan.FromDays(Math.Floor(years % 1 * 365.25)));
+            SetBirthdate(story, birthDate);
+        }
+        else if (years >= 1)
+        {
+            SetAge(story, (int)years, null, null);
+        }
+        else
+        {
+            var days = Math.Floor(years * 365.25);
+            var months = 0;
+            if (days > 31)
             {
-                child.LoadCharacters(story);
+                days -= 31;
+                months++;
+            }
+            if (days > 28)
+            {
+                days -= 28;
+                months++;
+            }
+            if (days > 31)
+            {
+                days -= 31;
+                months++;
+            }
+            if (days > 30)
+            {
+                days -= 30;
+                months++;
+            }
+            if (days > 31)
+            {
+                days -= 31;
+                months++;
+            }
+            if (days > 30)
+            {
+                days -= 30;
+                months++;
+            }
+            if (days > 31)
+            {
+                days -= 31;
+                months++;
+            }
+            if (days > 31)
+            {
+                days -= 31;
+                months++;
+            }
+            if (days > 30)
+            {
+                days -= 30;
+                months++;
+            }
+            if (days > 31)
+            {
+                days -= 31;
+                months++;
+            }
+            if (days > 30)
+            {
+                days -= 30;
+                months++;
+            }
+            if (months >= 1)
+            {
+                SetAge(
+                    story,
+                    0,
+                    months,
+                    null);
+            }
+            else
+            {
+                SetAge(
+                    story,
+                    0,
+                    0,
+                    Math.Max(0, (int)Math.Floor(days)));
+            }
+        }
+    }
+
+    private void RandomizeLifespan(Story? story)
+    {
+        if (story is null
+            || (!Birthdate.HasValue
+            && !AgeYears.HasValue
+            && !AgeMonths.HasValue
+            && !AgeDays.HasValue))
+        {
+            return;
+        }
+
+        var (age, _, _) = GetAge(story.Now ?? DateTime.UtcNow);
+        if (age > 105)
+        {
+            IsDeceased = true;
+            return;
+        }
+
+        age ??= 0;
+
+        var birthYear = Birthdate?.Year ?? (DateTime.UtcNow.Year - age.Value);
+        double deathAge = birthYear switch
+        {
+            > 2009 => 80,
+            > 1975 => 75,
+            > 1955 => 70,
+            > 1940 => 65,
+            > 1920 => 60,
+            > 1910 => 55,
+            > 1890 => 50,
+            > 1885 => 45,
+            _ => 40,
+        };
+        if (Pronouns == Pronouns.HeHim)
+        {
+            deathAge -= double.Lerp(2.7, 5.4, 1 - Math.Min(1, age.Value / 65));
+        }
+        deathAge = Randomizer.Instance.NormalDistributionSample(deathAge, 3.5, 0, 105);
+        if (deathAge < age.Value)
+        {
+            IsDeceased = true;
+        }
+    }
+
+    public async Task RandomizeAndInitializeAsync(DataService dataService, Story? story = null)
+    {
+        Initialize();
+        if (Pronouns == Pronouns.Other)
+        {
+            RandomizeGender(dataService.Data, story);
+        }
+        story?.ResetCharacterRelationshipMaps(dataService.Data);
+        RandomizeAge(story);
+        RandomizeLifespan(story);
+        RandomizeEthnicities(dataService);
+        RandomizeTraits(dataService.Data, true);
+        await RandomizeFullNameAsync(dataService);
+    }
+
+    public void RandomizeEthnicities(DataService dataService)
+    {
+        var familyEthnicities = GetFamilyEthnicities();
+        if (familyEthnicities?.Count > 0)
+        {
+            SetEthnicities(familyEthnicities);
+        }
+        else
+        {
+            SetEthnicities(dataService.GetRandomEthnicities());
+        }
+    }
+
+    public async Task RandomizeFullNameAsync(DataService dataService)
+    {
+        CopyFamilySurnames();
+        if (CharacterName?.Surnames?.Count(x => !x.IsSpousal) > 0)
+        {
+            await RandomizeNameAsync(dataService);
+            return;
+        }
+
+        var (givenName, middleName, surname) = await dataService
+            .GetRandomFullNameAsync(GetNameGender(), EthnicityPaths);
+        if (!string.IsNullOrEmpty(givenName))
+        {
+            ((CharacterName ??= new()).GivenNames ??= []).Add(givenName);
+            _characterShortName = null;
+        }
+        if (!string.IsNullOrEmpty(middleName))
+        {
+            ((CharacterName ??= new()).MiddleNames ??= []).Add(middleName);
+        }
+        if (!string.IsNullOrEmpty(surname))
+        {
+            ((CharacterName ??= new()).Surnames ??= []).Add(new(surname));
+            _characterShortName = null;
+        }
+    }
+
+    public void RandomizeGender(ScopData data, Story? story = null)
+    {
+        var chance = Randomizer.Instance.NextDouble();
+        if (chance < 0.01)
+        {
+            Pronouns = Pronouns.TheyThem;
+            Gender = "Non-binary";
+        }
+        else if (chance < 0.505)
+        {
+            Pronouns = Pronouns.SheHer;
+            if (chance >= 0.495)
+            {
+                Gender = "Trans female";
+            }
+            else
+            {
+                Gender = "Female";
+            }
+        }
+        else
+        {
+            Pronouns = Pronouns.HeHim;
+            if (chance >= 0.99)
+            {
+                Gender = "Trans male";
+            }
+            else
+            {
+                Gender = "Male";
+            }
+        }
+        story?.ResetCharacterRelationshipMaps(data);
+    }
+
+    public async Task RandomizeGivenNameAsync(DataService dataService)
+    {
+        var name = await dataService
+            .GetRandomNameAsync(GetNameGender(), EthnicityPaths);
+        if (string.IsNullOrEmpty(name))
+        {
+            return;
+        }
+
+        (CharacterName ??= new()).GivenNames = [name];
+        _characterShortName = null;
+    }
+
+    public async Task RandomizeMiddleNameAsync(DataService dataService)
+    {
+        var name = await dataService
+            .GetRandomNameAsync(GetNameGender(), EthnicityPaths);
+        if (string.IsNullOrEmpty(name))
+        {
+            return;
+        }
+
+        (CharacterName ??= new()).MiddleNames = [name];
+    }
+
+    public async Task RandomizeNameAsync(DataService dataService)
+    {
+        await RandomizeGivenNameAsync(dataService);
+        await RandomizeMiddleNameAsync(dataService);
+    }
+
+    public void RandomizeTraits(ScopData data, bool reset = true)
+    {
+        if (reset)
+        {
+            ClearTraits();
+        }
+        if (data.Traits is not null)
+        {
+            foreach (var trait in data.Traits)
+            {
+                trait.Randomize(this);
             }
         }
     }
@@ -1243,6 +1477,8 @@ public class Character : TraitContainer, INote, IEquatable<Character>
 
     public void SetAgeDays(Story? story, int? value)
     {
+        InitializeCharacter(story);
+
         if (!value.HasValue)
         {
             if (AgeDays.HasValue)
@@ -1289,6 +1525,8 @@ public class Character : TraitContainer, INote, IEquatable<Character>
 
     public void SetAgeMonths(Story? story, int? value)
     {
+        InitializeCharacter(story);
+
         if (!value.HasValue)
         {
             if (AgeMonths.HasValue)
@@ -1335,6 +1573,8 @@ public class Character : TraitContainer, INote, IEquatable<Character>
 
     public void SetAgeYears(Story? story, int? value)
     {
+        InitializeCharacter(story);
+
         if (!value.HasValue)
         {
             if (AgeYears.HasValue)
@@ -1379,6 +1619,36 @@ public class Character : TraitContainer, INote, IEquatable<Character>
     {
         Birthdate = value;
         SetDisplayAge(story);
+    }
+
+    public void SetBirthdate(Story? story)
+    {
+        if (story?.Now.HasValue != true)
+        {
+            return;
+        }
+
+        InitializeCharacter(story);
+
+        try
+        {
+            if (DisplayAgeYears.HasValue)
+            {
+                Birthdate = story.Now!.Value.AddYears(-DisplayAgeYears.Value);
+            }
+            if (DisplayAgeMonths.HasValue)
+            {
+                Birthdate = (Birthdate ?? story.Now!).Value.AddMonths(-DisplayAgeMonths.Value);
+            }
+            if (DisplayAgeDays.HasValue)
+            {
+                Birthdate = (Birthdate ?? story.Now!).Value.AddDays(-DisplayAgeDays.Value);
+            }
+        }
+        catch
+        {
+            Birthdate = null;
+        }
     }
 
     public void SetDisplayAge(Story? story)
@@ -1483,388 +1753,76 @@ public class Character : TraitContainer, INote, IEquatable<Character>
     /// <returns>A string that represents the current object.</returns>
     public override string ToString() => CharacterFullName ?? Name ?? Type;
 
-    private static List<Relationship>? AdjustRelationshipMap(
-        List<Relationship>? relationshipMap,
-        Func<Relationship, Relationship?> func)
+    private void InitializeRelationshipMap(ScopData data, List<Character> characters)
     {
-        if (relationshipMap is null)
+        if (Relationships is null)
         {
-            return null;
+            return;
         }
 
-        var newMap = new List<Relationship>();
-        foreach (var relationship in relationshipMap)
+        foreach (var relationship in Relationships)
         {
-            var newRelationship = func(relationship);
-            if (newRelationship is not null)
-            {
-                newMap.Add(newRelationship);
-            }
-        }
-
-        return newMap.Count > 0
-            ? newMap
-            : null;
-    }
-
-    private static Relationship? AdjustRelationshipForChild(Relationship relationship)
-    {
-        var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
-        if (newRelationship is null
-            || relationship.Type is null)
-        {
-            return null;
-        }
-        newRelationship.Relative = relationship.Relative;
-        newRelationship.Synthetic = true;
-
-        if (relationship.Type == "child")
-        {
-            newRelationship.Type = "grandchild";
-            newRelationship.RelationshipName = $"grand{relationship.RelationshipName}";
-            return newRelationship;
-        }
-
-        if (relationship.Type.EndsWith("grandchild"))
-        {
-            newRelationship.Type = $"great{relationship.Type}";
-            newRelationship.RelationshipName = $"great{relationship.RelationshipName}";
-            return newRelationship;
-        }
-
-        var gender = relationship.Relative?.GetNameGender();
-
-        switch (relationship.Type)
-        {
-            case "sibling":
-                newRelationship.Type = "child";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "daughter";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "son";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "child";
-                }
-                return newRelationship;
-            case "spouse":
-                newRelationship.Type = "child-in-law";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "daughter-in-law";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "son-in-law";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "child-in-law";
-                }
-                return newRelationship;
-        }
-
-        return null;
-    }
-
-    private static Relationship? AdjustRelationshipForParent(Relationship relationship)
-    {
-        var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
-        if (newRelationship is null
-            || relationship.Type is null)
-        {
-            return null;
-        }
-        newRelationship.Relative = relationship.Relative;
-        newRelationship.Synthetic = true;
-
-        if (relationship.Type == "cousin")
-        {
-            return newRelationship;
-        }
-
-        if (relationship.Type == "parent")
-        {
-            newRelationship.Type = $"grand{relationship.Type}";
-            newRelationship.RelationshipName = $"grand{relationship.RelationshipName}";
-            return newRelationship;
-        }
-
-        if (relationship.Type.EndsWith("grandparent")
-            || relationship.Type.EndsWith("pibling"))
-        {
-            newRelationship.Type = $"great{relationship.Type}";
-            newRelationship.RelationshipName = $"great{relationship.RelationshipName}";
-            return newRelationship;
-        }
-
-        var gender = relationship.Relative?.GetNameGender();
-
-        switch (relationship.Type)
-        {
-            case "child":
-                newRelationship.Type = "sibling";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "sister";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "brother";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "sibling";
-                }
-                return newRelationship;
-            case "child-in-law":
-                newRelationship.Type = "sibling-in-law";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "sister-in-law";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "brother-in-law";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "sibling-in-law";
-                }
-                return newRelationship;
-            case "sibling":
-                newRelationship.Type = "pibling";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "aunt";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "uncle";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "pibling";
-                }
-                return newRelationship;
-            case "spouse":
-                newRelationship.Type = "parent";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "mother";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "father";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "parent";
-                }
-                return newRelationship;
-        }
-
-        return null;
-    }
-
-    private static Relationship? AdjustRelationshipForSibling(Relationship relationship)
-    {
-        var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
-        if (newRelationship is null
-            || relationship.Type is null)
-        {
-            return null;
-        }
-        newRelationship.Relative = relationship.Relative;
-        newRelationship.Synthetic = true;
-
-        if (relationship.Type == "cousin"
-            || relationship.Type == "sibling"
-            || relationship.Type.EndsWith("parent")
-            || relationship.Type.EndsWith("pibling"))
-        {
-            return newRelationship;
-        }
-
-        var gender = relationship.Relative?.GetNameGender();
-
-        switch (relationship.Type)
-        {
-            case "child":
-                newRelationship.Type = "nibling";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "niece";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "nephew";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "nibling";
-                }
-                return newRelationship;
-            case "spouse":
-                newRelationship.Type = "sibling-in-law";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "sister-in-law";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "brother-in-law";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "sibling-in-law";
-                }
-                return newRelationship;
-        }
-
-        return null;
-    }
-
-    private static Relationship? AdjustRelationshipForSpouse(Relationship relationship)
-    {
-        var newRelationship = JsonSerializer.Deserialize<Relationship>(JsonSerializer.Serialize(relationship));
-        if (newRelationship is null
-            || relationship.Type is null)
-        {
-            return null;
-        }
-        newRelationship.Relative = relationship.Relative;
-        newRelationship.Synthetic = true;
-
-        var gender = relationship.Relative?.GetNameGender();
-
-        switch (relationship.Type)
-        {
-            case "child":
-            case "child-in-law":
-            case "spouse":
-                return newRelationship;
-            case "parent":
-                newRelationship.Type = "parent-in-law";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "mother-in-law";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "father-in-law";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "parent-in-law";
-                }
-                return newRelationship;
-            case "parent-in-law":
-                newRelationship.Type = "parent";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "mother";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "father";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "parent";
-                }
-                return newRelationship;
-            case "sibling":
-                newRelationship.Type = "sibling-in-law";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "sister-in-law";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "brother-in-law";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "sibling-in-law";
-                }
-                return newRelationship;
-            case "sibling-in-law":
-                newRelationship.Type = "sibling";
-                if (gender == NameGender.Female)
-                {
-                    newRelationship.RelationshipName = "sister";
-                }
-                else if (gender == NameGender.Male)
-                {
-                    newRelationship.RelationshipName = "brother";
-                }
-                else
-                {
-                    newRelationship.RelationshipName = "sibling";
-                }
-                return newRelationship;
-        }
-
-        return null;
-    }
-
-    private void BuildName(StringBuilder sb, bool full = false)
-    {
-        sb.Append(Title);
-        if (Names is not null)
-        {
-            if (sb.Length > 0)
-            {
-                sb.Append(' ');
-            }
-            if (full)
-            {
-                sb.AppendJoin(' ', Names);
-            }
-            else
-            {
-                sb.Append(Names[0]);
-            }
-        }
-        if (Surnames is not null)
-        {
-            if (sb.Length > 0)
-            {
-                sb.Append(' ');
-            }
-            if (HyphenatedSurname)
-            {
-                sb.AppendJoin('-', Surnames);
-            }
-            else if (!full && GetNameGender() == NameGender.Female)
-            {
-                sb.Append(Surnames[^1]);
-            }
-            else
-            {
-                sb.AppendJoin(' ', Surnames);
-            }
-        }
-        if (!string.IsNullOrWhiteSpace(Suffix))
-        {
-            if (sb.Length > 0)
-            {
-                sb.Append(", ");
-            }
-            sb.Append(Suffix);
+            InitializeRelationship(relationship, data, characters);
         }
     }
 
-    private string? GetName(bool full = false)
+    private void InitializeRelationship(
+        Relationship relationship,
+        ScopData data,
+        List<Character> characters)
     {
-        var sb = new StringBuilder();
-        BuildName(sb, full);
-        return sb.Length == 0 ? null : sb.ToString();
+        if (relationship.RelativeId is not null
+            && RelationshipIds?.Contains(relationship.RelativeId) == true)
+        {
+            return;
+        }
+
+        (RelationshipMap ??= []).Add(relationship);
+
+        if (RelationshipType.GetRelationshipType(data, relationship.Type) is RelationshipType type)
+        {
+            relationship.RelationshipType = type;
+            relationship.EditedRelationshipType = type;
+            relationship.Type = type.Name;
+            relationship.EditedType = relationship.GetRelationshipTypeName();
+        }
+        else
+        {
+            relationship.EditedType = relationship.Type;
+        }
+
+        relationship.EditedRelativeGender = relationship.RelativeGender;
+
+        relationship.Inverse = relationship.GetInverseRelationship(data, this);
+        relationship.InverseType = relationship.Inverse.Type;
+        relationship.EditedInverseType = relationship.Inverse.GetRelationshipTypeName();
+
+        if (relationship.RelativeId is null)
+        {
+            return;
+        }
+
+        (RelationshipIds ??= []).Add(relationship.RelativeId);
+
+        var relative = characters.Find(x => x.Id == relationship.RelativeId);
+        if (relative is null)
+        {
+            relationship.EditedRelativeName = relationship.RelativeId;
+            return;
+        }
+
+        relationship.Relative = relative;
+        relationship.EditedRelative = relative;
+        relationship.RelativeGender = relative.GetNameGender();
+        relationship.EditedRelativeGender = relationship.RelativeGender;
+        relationship.EditedRelativeName = relative.DisplayName;
+
+        if (relative.RelationshipMap?.Any(x => x.RelativeId == Id) != true
+            && relative.Relationships?.Any(x => x.RelativeId == Id) != true)
+        {
+            (relative.RelationshipMap ??= []).Add(relationship.GetInverseRelationship(data, this));
+            (relative.RelationshipIds ??= []).Add(Id);
+        }
     }
 
     public static bool operator ==(Character? left, Character? right) => EqualityComparer<Character>.Default.Equals(left, right);

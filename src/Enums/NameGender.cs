@@ -1,4 +1,4 @@
-﻿namespace Scop;
+﻿namespace Scop.Enums;
 
 [Flags]
 public enum NameGender

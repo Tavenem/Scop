@@ -1,4 +1,6 @@
-﻿namespace Scop;
+﻿using Scop.Enums;
+
+namespace Scop.Models;
 
 public class NameSet
 {

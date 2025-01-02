@@ -1,7 +1,8 @@
-﻿using System.Text.Json.Serialization;
+﻿using Scop.Interfaces;
+using System.Text.Json.Serialization;
 using Tavenem.Blazor.Framework;
 
-namespace Scop;
+namespace Scop.Models;
 
 public class Note : INote
 {
@@ -20,6 +21,8 @@ public class Note : INote
     public List<INote>? Notes { get; set; }
 
     [JsonIgnore] public INote? Parent { get; set; }
+
+    [JsonIgnore] public string PlaceholderName => "New Note";
 
     [JsonIgnore] public string Type => "Note";
 
@@ -45,17 +48,6 @@ public class Note : INote
             {
                 child.Parent = this;
                 child.Initialize();
-            }
-        }
-    }
-
-    public void LoadCharacters(Story story)
-    {
-        if (Notes is not null)
-        {
-            foreach (var child in Notes)
-            {
-                child.LoadCharacters(story);
             }
         }
     }

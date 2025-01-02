@@ -1,6 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using Scop.Enums;
+using System.Text.Json.Serialization;
 
-namespace Scop;
+namespace Scop.Models;
 
 public class TraitModifier
 {

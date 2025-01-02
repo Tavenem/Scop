@@ -14,7 +14,7 @@
                                    Class="dense"
                                    OnValidEnter="OnSelectGenreName"
                                    ShowAllSuggestions="true"
-                                   Suggestions="@(DataService.Genres.Select(x => x.Name ?? "unknown genre"))">
+                                   Suggestions="@(DataService.Data.Genres?.Select(x => x.Name ?? "unknown genre"))">
                             <PostfixContent>
                                 <button class="btn btn-icon small" @onclick="@(_ => OnRandomizeGenre(true))">
                                     <tf-icon>casino</tf-icon>
@@ -564,32 +564,35 @@
                         <Tooltip Delay="750">Add additional feature</Tooltip>
                     </button>
                 </p>
-                <div class="d-flex">
-                    <Select Label="Plot"
-                            @bind-Value="WritingPrompt.Plot"
-                            Class="dense flex-grow-1">
-                        @foreach (var plot in DataService.Plots)
-                        {
-                            <Option Label="@plot.Name" Value="plot" />
-                        }
-                    </Select>
-                    <span class="badge">
-                        <button class="btn btn-icon small" @onclick="@(_ => IsPlotLocked = !IsPlotLocked)">
-                            @if (IsPlotLocked)
+                @if (DataService.Data.Plots is not null)
+                {
+                    <div class="d-flex">
+                        <Select Label="Plot"
+                                @bind-Value="WritingPrompt.Plot"
+                                Class="dense flex-grow-1">
+                            @foreach (var plot in DataService.Data.Plots)
                             {
-                                <tf-icon class="tertiary">lock_open</tf-icon>
+                                <Option Label="@plot.Name" Value="plot" />
                             }
-                            else
-                            {
-                                <tf-icon>lock</tf-icon>
-                            }
+                        </Select>
+                        <span class="badge">
+                            <button class="btn btn-icon small" @onclick="@(_ => IsPlotLocked = !IsPlotLocked)">
+                                @if (IsPlotLocked)
+                                {
+                                    <tf-icon class="tertiary">lock_open</tf-icon>
+                                }
+                                else
+                                {
+                                    <tf-icon>lock</tf-icon>
+                                }
+                            </button>
+                        </span>
+                        <button class="btn btn-icon small" @onclick="@(_ => OnRandomizePlot(true))">
+                            <tf-icon>casino</tf-icon>
+                            <Tooltip Delay="750">Randomize plot archetype</Tooltip>
                         </button>
-                    </span>
-                    <button class="btn btn-icon small" @onclick="@(_ => OnRandomizePlot(true))">
-                        <tf-icon>casino</tf-icon>
-                        <Tooltip Delay="750">Randomize plot archetype</Tooltip>
-                    </button>
-                </div>
+                    </div>
+                }
                 @if (!string.IsNullOrWhiteSpace(WritingPrompt.Plot?.Description))
                 {
                     <p>@WritingPrompt.Plot.Description</p>

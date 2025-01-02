@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Scop.Models;
+using Scop.Services;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Scop.Pages;

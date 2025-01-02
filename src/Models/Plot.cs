@@ -6,8 +6,6 @@ public class Plot : IEquatable<Plot>
 
     public string? Description { get; set; }
 
-    public bool UserDefined { get; set; }
-
     public bool Equals(Plot? other) => other is not null
         && other.Name?.Equals(Name, StringComparison.OrdinalIgnoreCase) == true;
 

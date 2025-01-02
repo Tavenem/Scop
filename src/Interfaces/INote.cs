@@ -1,7 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using Scop.Enums;
+using Scop.Models;
+using System.Text.Json.Serialization;
 using Tavenem.Blazor.Framework;
 
-namespace Scop;
+namespace Scop.Interfaces;
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "TypeDiscriminator")]
 [JsonDerivedType(typeof(Note), (int)NoteTypeDiscriminator.Note)]
@@ -24,11 +26,11 @@ public interface INote
 
     [JsonIgnore] INote? Parent { get; set; }
 
+    [JsonIgnore] string PlaceholderName => "New Note";
+
     [JsonIgnore] string Type { get; }
 
     IEnumerable<Character> AllCharacters();
 
     void Initialize();
-
-    void LoadCharacters(Story story);
 }

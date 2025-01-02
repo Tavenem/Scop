@@ -1,4 +1,4 @@
-﻿namespace Scop;
+﻿namespace Scop.Enums;
 
 /// <summary>
 /// Indicates the action taken when an option is selected, and how many children may be selected at once.

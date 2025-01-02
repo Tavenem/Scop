@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0
+### Changed
+- Character note update
+
 ## 3.1.0
 ### Added
 - Story traits

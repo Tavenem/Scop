@@ -1,10 +1,10 @@
-﻿using Scop.Models;
-
-namespace Scop;
+﻿namespace Scop.Models;
 
 public class ScopData
 {
-    public HashSet<Ethnicity>? Ethnicities { get; set; }
+    public const int CurrentVersion = 2;
+
+    public List<Ethnicity>? Ethnicities { get; set; }
 
     public List<Genre>? Genres { get; set; }
 
@@ -12,9 +12,13 @@ public class ScopData
 
     public List<Plot>? Plots { get; set; }
 
+    public List<RelationshipType>? RelationshipTypes { get; set; }
+
     public List<Story> Stories { get; set; } = [];
 
-    public HashSet<Trait>? StoryTraits { get; set; }
+    public List<Trait>? StoryTraits { get; set; }
 
-    public HashSet<Trait>? Traits { get; set; }
+    public List<Trait>? Traits { get; set; }
+
+    public int Version { get; set; }
 }

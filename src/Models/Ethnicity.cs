@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Tavenem.Randomize;
 
-namespace Scop;
+namespace Scop.Models;
 
 public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
 {
@@ -20,8 +20,6 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
     public string? Type { get; set; }
 
     public List<Ethnicity>? Types { get; set; }
-
-    public bool UserDefined { get; set; }
 
     public static List<string[]> GetRandomEthnicities(List<Ethnicity> ethnicities)
     {
@@ -48,25 +46,6 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
         return paths;
     }
 
-    public bool HasUserDefined()
-    {
-        if (UserDefined)
-        {
-            return true;
-        }
-        if (Types is not null)
-        {
-            foreach (var child in Types)
-            {
-                if (child.HasUserDefined())
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public bool Equals(Ethnicity? other)
     {
         if (other is null)
@@ -91,7 +70,7 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
 
     public override int GetHashCode() => HashCode.Combine(Hierarchy);
 
-    internal static string[]? GetRandomEthnicity(List<Ethnicity> ethnicities)
+    internal static string[]? GetRandomEthnicity(ICollection<Ethnicity> ethnicities)
     {
         var set = Randomizer.Instance.Next(ethnicities);
 
@@ -134,6 +113,6 @@ public class Ethnicity : IEquatable<Ethnicity>, IJsonOnDeserialized
         InitializeChildren();
     }
 
-    public static bool operator ==(Ethnicity? left, Ethnicity? right) => left?.Equals(right) ?? (right is null);
+    public static bool operator ==(Ethnicity? left, Ethnicity? right) => left?.Equals(right) ?? right is null;
     public static bool operator !=(Ethnicity? left, Ethnicity? right) => !(left == right);
 }

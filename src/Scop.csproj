@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.37.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
-    <PackageReference Include="Tavenem.Blazor.Framework" Version="2.38.4" />
-    <PackageReference Include="Tavenem.Blazor.IndexedDB" Version="3.0.2" />
-    <PackageReference Include="Tavenem.Randomize" Version="2.2.9" />
+    <PackageReference Include="Markdig" Version="0.39.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Tavenem.Blazor.Framework" Version="4.5.4" />
+    <PackageReference Include="Tavenem.Blazor.IndexedDB" Version="5.0.2" />
+    <PackageReference Include="Tavenem.Randomize" Version="2.3.3" />
   </ItemGroup>
 
   <ItemGroup>

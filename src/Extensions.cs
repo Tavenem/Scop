@@ -1,4 +1,7 @@
-﻿namespace Scop;
+﻿using Scop.Enums;
+using Scop.Interfaces;
+
+namespace Scop;
 
 public static class Extensions
 {

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Scop.Models;
 using Tavenem.Blazor.Framework;
 
 namespace Scop.Shared;

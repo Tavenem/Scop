@@ -1,4 +1,4 @@
-﻿namespace Scop;
+﻿namespace Scop.Enums;
 
 public enum NoteTypeDiscriminator
 {

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Scop.Services;
 
 namespace Scop.Shared;
 

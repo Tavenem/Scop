@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Scop.Models;
+using System.Text.Json.Serialization;
 using Tavenem.DataStorage;
 
 namespace Scop;

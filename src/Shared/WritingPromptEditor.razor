@@ -1,18 +1,15 @@
 ﻿<Dialog>
     <ChildContent>
         <Collapse Title="Genres">
-            <ElementList Items="DataService.Genres" ItemIsCollapsible="@(_ => true)">
+            <ElementList Items="DataService.Data.Genres" ItemIsCollapsible="@(_ => true)">
                 <Template>
                     <div class="d-flex flex-grow-1">
                         <span>@context.Name</span>
-                        @if (context.UserDefined)
-                        {
-                            <button class="btn btn-icon small"
-                                    @onclick="@(_ => OnDeleteGenreAsync(context))">
-                                <tf-icon>delete</tf-icon>
-                                <Tooltip Delay="750">Delete</Tooltip>
-                            </button>
-                        }
+                        <button class="btn btn-icon small"
+                                @onclick="@(_ => OnDeleteGenreAsync(context))">
+                            <tf-icon>delete</tf-icon>
+                            <Tooltip Delay="750">Delete</Tooltip>
+                        </button>
                     </div>
                 </Template>
                 <CollapsibleTemplate Context="genre">
@@ -471,36 +468,33 @@
             </TextInput>
         </Collapse>
         <Collapse Title="Plots">
-            <ElementList Items="DataService.Plots">
+            <ElementList Items="DataService.Data.Plots">
                 <Template>
                     <div class="d-flex flex-column flex-grow-1">
                         @if (context.Equals(EditedPlot))
                         {
                             <TextInput Value="@context.Name"
-                                        ValueChanged="@(v => OnPlotNameChangeAsync(context, v))"
-                                        Placeholder="Plot name" />
+                                       ValueChanged="@(v => OnPlotNameChangeAsync(context, v))"
+                                       Placeholder="Plot name" />
                             <TextInput Value="@context.Description"
-                                        ValueChanged="@(v => OnPlotDescriptionChangeAsync(context, v))"
-                                        Placeholder="Plot description" />
+                                       ValueChanged="@(v => OnPlotDescriptionChangeAsync(context, v))"
+                                       Placeholder="Plot description" />
                             <button class="btn primary" @onclick="@(_ => EditedPlot = null)">Done</button>
                         }
                         else
                         {
                             <span>@context.Name</span>
                             <span>@context.Description</span>
-                            @if (context.UserDefined)
-                            {
-                                <button class="btn btn-icon small"
-                                        @onclick="@(_ => EditedPlot = context)">
-                                    <tf-icon>edit</tf-icon>
-                                    <Tooltip Delay="750">Edit</Tooltip>
-                                </button>
-                                <button class="btn btn-icon small"
-                                        @onclick="@(_ => OnDeletePlotAsync(context))">
-                                    <tf-icon>delete</tf-icon>
-                                    <Tooltip Delay="750">Delete</Tooltip>
-                                </button>
-                            }
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => EditedPlot = context)">
+                                <tf-icon>edit</tf-icon>
+                                <Tooltip Delay="750">Edit</Tooltip>
+                            </button>
+                            <button class="btn btn-icon small"
+                                    @onclick="@(_ => OnDeletePlotAsync(context))">
+                                <tf-icon>delete</tf-icon>
+                                <Tooltip Delay="750">Delete</Tooltip>
+                            </button>
                         }
                     </div>
                 </Template>

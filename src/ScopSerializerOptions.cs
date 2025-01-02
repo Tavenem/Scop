@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Scop.Models;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using Tavenem.DataStorage;
@@ -11,7 +12,10 @@ public static class ScopSerializerOptions
 
     static ScopSerializerOptions()
     {
-        Instance = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        Instance = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+        };
         Instance.TypeInfoResolverChain.Add(ScopSerializerContext.Default.WithAddedModifier(static typeInfo =>
         {
             if (typeInfo.Type == typeof(IIdItem))

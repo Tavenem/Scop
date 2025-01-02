@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Scop.Models;
+using Scop.Services;
 using System.Diagnostics.CodeAnalysis;
 using Tavenem.Blazor.Framework;
 
@@ -82,7 +83,7 @@ public partial class WritingPromptEditor
         }
 
         var value = NewGenre.Trim();
-        if (DataService.Genres?.Any(x
+        if (DataService.Data.Genres?.Any(x
             => x.Name?.Equals(value, StringComparison.OrdinalIgnoreCase) == true) == true)
         {
             return;
@@ -93,7 +94,6 @@ public partial class WritingPromptEditor
         EditedGenre = new()
         {
             Name = value,
-            UserDefined = true,
         };
 
         await DataService.AddGenreAsync(EditedGenre);
@@ -538,17 +538,11 @@ public partial class WritingPromptEditor
     private async Task OnPlotDescriptionChangeAsync(Plot plot, string? value)
     {
         plot.Description = value?.Trim();
-        await DataService.EditPlotAsync(plot);
+        await DataService.SaveAsync();
     }
 
     private Task OnPlotNameChangeAsync(Plot plot, string? value)
         => DataService.EditPlotAsync(plot, value);
 
-    private async Task UpdateGenreAsync()
-    {
-        if (EditedGenre is not null)
-        {
-            await DataService.EditGenreAsync(EditedGenre);
-        }
-    }
+    private Task UpdateGenreAsync() => DataService.SaveAsync();
 }

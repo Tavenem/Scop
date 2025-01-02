@@ -1,6 +1,6 @@
 ﻿using Tavenem.DataStorage;
 
-namespace Scop;
+namespace Scop.Models;
 
 public class LocalData : IIdItem
 {
