@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.1
+### Updated
+- Update dependencies
+
 ## 4.0.0
 ### Changed
 - Character note update

@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.39.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
-    <PackageReference Include="Tavenem.Blazor.Framework" Version="4.5.4" />
-    <PackageReference Include="Tavenem.Blazor.IndexedDB" Version="5.0.2" />
+    <PackageReference Include="Markdig" Version="0.40.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.1" PrivateAssets="all" />
+    <PackageReference Include="Tavenem.Blazor.Framework" Version="4.11.4" />
+    <PackageReference Include="Tavenem.Blazor.IndexedDB" Version="5.1.4" />
     <PackageReference Include="Tavenem.Randomize" Version="2.3.3" />
   </ItemGroup>
 
