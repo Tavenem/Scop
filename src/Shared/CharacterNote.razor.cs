@@ -1378,7 +1378,7 @@ public partial class CharacterNote
 
         var newInverseTypeName = relationship
             .GetInverseRelationship(DataService.Data, Character)
-            .GetRelationshipTypeName();
+            .GetRelationshipTypeName(relative: Character);
         if (newInverseTypeName is not null)
         {
             relationship.EditedInverseType = newInverseTypeName;
@@ -1442,7 +1442,7 @@ public partial class CharacterNote
 
         var newInverseTypeName = relationship
             .GetInverseRelationship(DataService.Data, Character)
-            .GetRelationshipTypeName();
+            .GetRelationshipTypeName(relative: Character);
         if (newInverseTypeName is not null)
         {
             relationship.EditedInverseType = newInverseTypeName;

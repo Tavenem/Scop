@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.2
+### Fixed
+- Binding fixes
+
 ## 4.0.1
 ### Updated
 - Update dependencies
